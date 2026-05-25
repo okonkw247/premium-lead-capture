@@ -1,41 +1,21 @@
 {
   "version": 2,
   "builds": [
-    {
-      "src": "server.js",
-      "use": "@vercel/node",
-      "config": {
-        "includeFiles": [
-          "index.html",
-          "adams-x.jpg",
-          "campaign_image_1.png",
-          "campaign_image_2.png"
-        ]
-      }
-    }
+    { "src": "server.js", "use": "@vercel/node" },
+    { "src": "adams-x.jpg", "use": "@vercel/static" },
+    { "src": "campaign_image_1.png", "use": "@vercel/static" },
+    { "src": "campaign_image_2.png", "use": "@vercel/static" },
+    { "src": "index.html", "use": "@vercel/static" }
   ],
   "routes": [
-    {
-      "src": "/api/(.*)",
-      "dest": "/server.js"
-    },
-    {
-      "src": "/(.*\\.(jpg|jpeg|png|gif|ico|svg|webp|woff|woff2|ttf|otf|css|js))",
-      "dest": "/$1"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/server.js"
-    }
+    { "src": "/api/(.*)", "dest": "/server.js" },
+    { "src": "/adams-x.jpg", "dest": "/adams-x.jpg" },
+    { "src": "/campaign_image_1.png", "dest": "/campaign_image_1.png" },
+    { "src": "/campaign_image_2.png", "dest": "/campaign_image_2.png" },
+    { "src": "/(.*)", "dest": "/index.html" }
   ],
   "crons": [
-    {
-      "path": "/api/cron/digest",
-      "schedule": "0 8 * * *"
-    },
-    {
-      "path": "/api/cron/drip",
-      "schedule": "0 9 * * *"
-    }
+    { "path": "/api/cron/digest", "schedule": "0 8 * * *" },
+    { "path": "/api/cron/drip",   "schedule": "0 9 * * *" }
   ]
 }
