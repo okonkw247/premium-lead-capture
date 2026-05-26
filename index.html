@@ -2239,7 +2239,7 @@
                     const data = await response.json();
 
                     if (!response.ok) {
-                        throw new Error(data.error || 'Failed to dispatch email notification.');
+                        throw new Error((data.details ? data.details : data.error) || 'Failed to dispatch email notification.');
                     }
 
                     // Success - transition UI states
@@ -2259,7 +2259,7 @@
 
                 } catch (error) {
                     console.error("Submission error:", error);
-                    alert("Subscription Error: " + error.message + "\n\nTip: Make sure you have set your RESEND_API_KEY in the .env file and started the backend server using 'npm run dev'.");
+                    alert("Subscription Error: " + error.message);
                 } finally {
                     submitBtn.classList.remove('loading');
                     submitBtn.disabled = false;
@@ -2323,7 +2323,7 @@
                     const data = await response.json();
 
                     if (!response.ok) {
-                        throw new Error(data.error || 'Failed to join waitlist.');
+                        throw new Error((data.details ? data.details : data.error) || 'Failed to join waitlist.');
                     }
 
                     // Transition to thank you
