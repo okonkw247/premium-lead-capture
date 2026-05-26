@@ -4,7 +4,7 @@ const cors = require('cors');
 const path = require('path');
 const { Resend } = require('resend');
 const { supabase } = require('./lib/supabase');
-const { day0, waitlistConfirmation } = require('./lib/emails');
+const { day0, waitlistConfirmation } = require('./lib/email-templates');
 
 // Cron handlers
 const dripHandler   = require('./api/cron/drip');
@@ -14,7 +14,7 @@ const blastHandler  = require('./api/cron/blast');
 const app = express();
 const PORT = process.env.PORT || 8000;
 const resend = new Resend(process.env.RESEND_API_KEY || '');
-const SENDER = process.env.SENDER_EMAIL || 'onboarding@resend.dev';
+const SENDER = process.env.SENDER_EMAIL || 'adams@adamsxproject.com.ng';
 
 // ── Middleware ──────────────────────────────────────────────
 app.use(cors());

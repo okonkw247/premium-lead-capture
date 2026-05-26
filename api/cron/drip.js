@@ -6,10 +6,10 @@
 require('dotenv').config({ path: require('path').join(__dirname, '../../.env') });
 const { Resend } = require('resend');
 const { supabase } = require('../../lib/supabase');
-const emails = require('../../lib/emails');
+const emails = require('../../lib/email-templates');
 
 const resend = new Resend(process.env.RESEND_API_KEY);
-const SENDER = process.env.SENDER_EMAIL || 'onboarding@resend.dev';
+const SENDER = process.env.SENDER_EMAIL || 'adams@adamsxproject.com.ng';
 
 // Map drip_day number → email template function
 const DRIP_MAP = {
