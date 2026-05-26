@@ -25,7 +25,8 @@ const DRIP_MAP = {
 
 async function handler(req, res) {
     // Protect the endpoint — only Vercel cron or requests with CRON_SECRET can trigger
-    const secret = req.headers['x-cron-secret'] || req.query.secret;
+    const authHeader = req.headers.authorization;
+    const secret = req.headers['x-cron-secret'] || req.query.secret || (authHeader && authHeader.startsWith('Bearer ') ? authHeader.substring(7) : null);
     if (process.env.CRON_SECRET && secret !== process.env.CRON_SECRET) {
         return res.status(401).json({ error: 'Unauthorized' });
     }
@@ -64,13 +65,17 @@ async function handler(req, res) {
         const { subject, html } = templateFn(lead.first_name);
 
         try {
-            await resend.emails.send({
+            const emailResponse = await resend.emails.send({
                 from: `Adams X Project <${SENDER}>`,
                 to: lead.email,
                 subject,
                 html,
                 tags: [{ name: 'sequence', value: 'monk-mode-drip' }]
             });
+
+            if (emailResponse.error) {
+                throw new Error(emailResponse.error.message || 'Resend error');
+            }
 
             // Increment drip_day. If this was day 7, also mark inactive.
             const nextDay = lead.drip_day + 1;

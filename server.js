@@ -68,7 +68,7 @@ app.post('/api/subscribe', async (req, res) => {
 
         // ── 2. Send Day 0 welcome email ──
         const { subject, html } = day0(firstName);
-        await resend.emails.send({
+        const emailResponse = await resend.emails.send({
             from: `Adams X Project <${SENDER}>`,
             to: email,
             subject,
@@ -76,9 +76,13 @@ app.post('/api/subscribe', async (req, res) => {
             tags: [{ name: 'sequence', value: 'monk-mode-drip' }]
         });
 
+        if (emailResponse.error) {
+            throw new Error(emailResponse.error.message || 'Resend failed to send welcome email.');
+        }
+
         // ── 3. Notify Adams X ──
         if (process.env.NOTIFICATION_EMAIL) {
-            await resend.emails.send({
+            const adminNotifyResponse = await resend.emails.send({
                 from: `Adams X Lead Alerts <${SENDER}>`,
                 to: process.env.NOTIFICATION_EMAIL,
                 subject: `🔥 New Lead: ${firstName} just claimed the Starter Kit`,
@@ -91,6 +95,9 @@ app.post('/api/subscribe', async (req, res) => {
                         <p><strong>Time:</strong> ${new Date().toISOString()}</p>
                     </div>`
             });
+            if (adminNotifyResponse.error) {
+                console.error('[subscribe] Admin alert email failed:', adminNotifyResponse.error);
+            }
         }
 
         console.log(`[subscribe] ✅ Welcome email sent to ${email}`);
@@ -136,7 +143,7 @@ app.post('/api/waitlist', async (req, res) => {
 
         // ── 2. Send confirmation email ──
         const { subject, html } = waitlistConfirmation(firstName);
-        await resend.emails.send({
+        const emailResponse = await resend.emails.send({
             from: `Adams X Project <${SENDER}>`,
             to: email,
             subject,
@@ -144,9 +151,13 @@ app.post('/api/waitlist', async (req, res) => {
             tags: [{ name: 'list', value: 'unrecognizable-waitlist' }]
         });
 
+        if (emailResponse.error) {
+            throw new Error(emailResponse.error.message || 'Resend failed to send waitlist confirmation.');
+        }
+
         // ── 3. Notify Adams X ──
         if (process.env.NOTIFICATION_EMAIL) {
-            await resend.emails.send({
+            const adminNotifyResponse = await resend.emails.send({
                 from: `Adams X Lead Alerts <${SENDER}>`,
                 to: process.env.NOTIFICATION_EMAIL,
                 subject: `🚀 Waitlist: ${firstName} joined Comeback: Unrecognizable`,
@@ -159,6 +170,9 @@ app.post('/api/waitlist', async (req, res) => {
                         <p><strong>Time:</strong> ${new Date().toISOString()}</p>
                     </div>`
             });
+            if (adminNotifyResponse.error) {
+                console.error('[waitlist] Admin alert email failed:', adminNotifyResponse.error);
+            }
         }
 
         console.log(`[waitlist] ✅ Confirmation sent to ${email}`);

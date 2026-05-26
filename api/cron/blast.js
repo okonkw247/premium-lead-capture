@@ -19,7 +19,8 @@ async function handler(req, res) {
     }
 
     // Require secret — this is a one-way door, protect it
-    const secret = req.headers['x-cron-secret'] || req.query.secret;
+    const authHeader = req.headers.authorization;
+    const secret = req.headers['x-cron-secret'] || req.query.secret || (authHeader && authHeader.startsWith('Bearer ') ? authHeader.substring(7) : null);
     if (!process.env.CRON_SECRET || secret !== process.env.CRON_SECRET) {
         return res.status(401).json({ error: 'Unauthorized. Provide your CRON_SECRET.' });
     }
@@ -54,13 +55,17 @@ async function handler(req, res) {
         const { subject, html } = waitlistBlast(entry.first_name);
 
         try {
-            await resend.emails.send({
+            const emailResponse = await resend.emails.send({
                 from: `Adams X Project <${SENDER}>`,
                 to: entry.email,
                 subject,
                 html,
                 tags: [{ name: 'campaign', value: 'comeback-launch' }]
             });
+
+            if (emailResponse.error) {
+                throw new Error(emailResponse.error.message || 'Resend error');
+            }
 
             // Mark as notified so they don't get blasted twice
             await supabase.from('waitlist').update({ notified: true }).eq('id', entry.id);

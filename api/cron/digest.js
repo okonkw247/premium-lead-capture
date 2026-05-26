@@ -12,7 +12,8 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 const SENDER = process.env.SENDER_EMAIL || 'onboarding@resend.dev';
 
 async function handler(req, res) {
-    const secret = req.headers['x-cron-secret'] || req.query.secret;
+    const authHeader = req.headers.authorization;
+    const secret = req.headers['x-cron-secret'] || req.query.secret || (authHeader && authHeader.startsWith('Bearer ') ? authHeader.substring(7) : null);
     if (process.env.CRON_SECRET && secret !== process.env.CRON_SECRET) {
         return res.status(401).json({ error: 'Unauthorized' });
     }
@@ -53,12 +54,17 @@ async function handler(req, res) {
         totalWaitlist || 0
     );
 
-    await resend.emails.send({
+    const emailResponse = await resend.emails.send({
         from: `Adams X Project <${SENDER}>`,
         to: process.env.NOTIFICATION_EMAIL,
         subject,
         html,
     });
+
+    if (emailResponse.error) {
+        console.error('[digest-cron] Failed to send digest email:', emailResponse.error);
+        return res.status(500).json({ error: 'Failed to send digest email.', details: emailResponse.error.message });
+    }
 
     console.log(`[digest-cron] ✅ Digest sent: ${newLeads?.length} leads, ${newWaitlist?.length} waitlist signups.`);
     return res.status(200).json({
