@@ -132,12 +132,10 @@ app.post('/api/waitlist', async (req, res) => {
                 );
 
             if (dbError) {
-                if (dbError.code === '23505') {
-                    return res.status(409).json({ error: 'Already on the waitlist.' });
-                }
                 console.error('[waitlist] Supabase error:', dbError);
+                throw new Error(dbError.message || 'Database save failed.');
             } else {
-                console.log(`[waitlist] ✅ Waitlist entry saved: ${email}`);
+                console.log(`[waitlist] ✅ Waitlist entry saved/updated: ${email}`);
             }
         }
 
@@ -188,6 +186,11 @@ app.post('/api/waitlist', async (req, res) => {
 app.get('/api/cron/drip',   dripHandler);   // Vercel cron: daily 9AM UTC
 app.get('/api/cron/digest', digestHandler); // Vercel cron: daily 8AM UTC
 app.post('/api/cron/blast', blastHandler);  // Manual: POST with CRON_SECRET
+
+// ── Serve waitlist.html for /waitlist ───────────────────────
+app.get('/waitlist', (req, res) => {
+    res.sendFile(path.join(__dirname, 'waitlist.html'));
+});
 
 // ── Serve index.html for all other routes ───────────────────
 app.get('*', (req, res) => {

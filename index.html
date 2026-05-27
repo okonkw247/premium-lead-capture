@@ -1565,6 +1565,7 @@
 
         .waitlist-section {
             padding: 100px 0;
+            scroll-margin-top: 80px; /* Offset for fixed header */
         }
 
         .waitlist-card {
@@ -2145,6 +2146,14 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             
+            // 0. HASH REDIRECT SCROLL LOGIC
+            if (window.location.hash === '#waitlist') {
+                setTimeout(() => {
+                    const el = document.getElementById('waitlist');
+                    if (el) el.scrollIntoView({ behavior: 'smooth' });
+                }, 150);
+            }
+
             // 1. DYNAMIC SELF-ASSESSMENT CALCULATOR LOGIC
             const workSlider = document.getElementById('work-hours-slider');
             const screenSlider = document.getElementById('screen-time-slider');
