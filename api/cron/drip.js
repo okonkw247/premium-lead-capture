@@ -11,20 +11,21 @@ const emails = require('../../lib/email-templates');
 const resend = new Resend(process.env.RESEND_API_KEY);
 const SENDER = process.env.SENDER_EMAIL || 'adams@adamsxproject.com.ng';
 
-// Map drip_day number → email template function
 const DRIP_MAP = {
-    0: emails.day0,
-    1: emails.day1,
-    2: emails.day2,
-    3: emails.day3,
-    4: emails.day4,
-    5: emails.day5,
-    6: emails.day6,
-    7: emails.day7,
+    0:  emails.day0,
+    1:  emails.day1,
+    2:  emails.day2,
+    3:  emails.day3,
+    4:  emails.day4,
+    5:  emails.day5,
+    6:  emails.day6,
+    7:  emails.day7,
+    10: emails.day10,
+    14: emails.day14,
+    21: emails.day21,
 };
 
 async function handler(req, res) {
-    // Protect the endpoint — only Vercel cron or requests with CRON_SECRET can trigger
     const authHeader = req.headers.authorization;
     const secret = req.headers['x-cron-secret'] || req.query.secret || (authHeader && authHeader.startsWith('Bearer ') ? authHeader.substring(7) : null);
     if (process.env.CRON_SECRET && secret !== process.env.CRON_SECRET) {
@@ -37,12 +38,10 @@ async function handler(req, res) {
 
     console.log('[drip-cron] Starting daily drip run...');
 
-    // Fetch all active leads that still have pending drip days (0–7)
     const { data: leads, error } = await supabase
         .from('leads')
-        .select('id, first_name, email, drip_day')
-        .eq('active', true)
-        .lte('drip_day', 7);
+        .select('id, first_name, email, drip_day, purchased')
+        .eq('active', true);
 
     if (error) {
         console.error('[drip-cron] Supabase fetch error:', error);
@@ -55,8 +54,39 @@ async function handler(req, res) {
 
     for (const lead of leads) {
         const templateFn = DRIP_MAP[lead.drip_day];
+
+        // No template for this day — figure out next step
         if (!templateFn) {
-            // drip_day > 7, deactivate them
+            // Between day 7 and day 10 — just increment and wait
+            if (lead.drip_day > 7 && lead.drip_day < 10) {
+                await supabase.from('leads').update({ drip_day: lead.drip_day + 1 }).eq('id', lead.id);
+                results.skipped++;
+                continue;
+            }
+            // Between day 10 and day 14 — just increment and wait
+            if (lead.drip_day > 10 && lead.drip_day < 14) {
+                await supabase.from('leads').update({ drip_day: lead.drip_day + 1 }).eq('id', lead.id);
+                results.skipped++;
+                continue;
+            }
+            // Between day 14 and day 21 — just increment and wait
+            if (lead.drip_day > 14 && lead.drip_day < 21) {
+                await supabase.from('leads').update({ drip_day: lead.drip_day + 1 }).eq('id', lead.id);
+                results.skipped++;
+                continue;
+            }
+            // After day 21 — deactivate
+            if (lead.drip_day > 21) {
+                await supabase.from('leads').update({ active: false }).eq('id', lead.id);
+                results.skipped++;
+                continue;
+            }
+            results.skipped++;
+            continue;
+        }
+
+        // If they already purchased — skip follow up emails
+        if (lead.purchased && lead.drip_day > 7) {
             await supabase.from('leads').update({ active: false }).eq('id', lead.id);
             results.skipped++;
             continue;
@@ -77,11 +107,17 @@ async function handler(req, res) {
                 throw new Error(emailResponse.error.message || 'Resend error');
             }
 
-            // Increment drip_day. If this was day 7, also mark inactive.
+            // After day 7 — keep active for follow up sequence
+            // After day 21 — deactivate
             const nextDay = lead.drip_day + 1;
+            const shouldDeactivate = lead.drip_day === 21;
+
             await supabase
                 .from('leads')
-                .update({ drip_day: nextDay, active: nextDay <= 7 })
+                .update({
+                    drip_day: nextDay,
+                    active: !shouldDeactivate
+                })
                 .eq('id', lead.id);
 
             console.log(`[drip-cron] ✅ Day ${lead.drip_day} sent to ${lead.email}`);
