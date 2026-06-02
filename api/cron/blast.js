@@ -60,6 +60,7 @@ async function handler(req, res) {
                 to: entry.email,
                 subject,
                 html,
+                reply_to: 'adams@adamsxproject.com.ng',
                 tags: [{ name: 'campaign', value: 'comeback-launch' }]
             });
 

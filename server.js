@@ -73,6 +73,7 @@ app.post('/api/subscribe', async (req, res) => {
             to: email,
             subject,
             html,
+            reply_to: 'adams@adamsxproject.com.ng',
             tags: [{ name: 'sequence', value: 'monk-mode-drip' }]
         });
 
@@ -86,6 +87,7 @@ app.post('/api/subscribe', async (req, res) => {
                 from: `Adams X Lead Alerts <${SENDER}>`,
                 to: process.env.NOTIFICATION_EMAIL,
                 subject: `🔥 New Lead: ${firstName} just claimed the Starter Kit`,
+                reply_to: 'adams@adamsxproject.com.ng',
                 html: `
                     <div style="font-family:sans-serif;padding:24px;max-width:500px;">
                         <h3 style="margin:0 0 16px;">🔥 New Monk Mode Lead</h3>
@@ -146,6 +148,7 @@ app.post('/api/waitlist', async (req, res) => {
             to: email,
             subject,
             html,
+            reply_to: 'adams@adamsxproject.com.ng',
             tags: [{ name: 'list', value: 'unrecognizable-waitlist' }]
         });
 
@@ -159,6 +162,7 @@ app.post('/api/waitlist', async (req, res) => {
                 from: `Adams X Lead Alerts <${SENDER}>`,
                 to: process.env.NOTIFICATION_EMAIL,
                 subject: `🚀 Waitlist: ${firstName} joined Comeback: Unrecognizable`,
+                reply_to: 'adams@adamsxproject.com.ng',
                 html: `
                     <div style="font-family:sans-serif;padding:24px;max-width:500px;">
                         <h3 style="margin:0 0 16px;">🚀 New Waitlist Signup</h3>

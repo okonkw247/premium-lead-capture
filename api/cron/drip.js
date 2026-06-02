@@ -100,6 +100,7 @@ async function handler(req, res) {
                 to: lead.email,
                 subject,
                 html,
+                reply_to: 'adams@adamsxproject.com.ng',
                 tags: [{ name: 'sequence', value: 'monk-mode-drip' }]
             });
 
