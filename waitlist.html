@@ -418,6 +418,93 @@
             color: var(--text-secondary);
         }
 
+        /* ==================== PREMIUM PRICING DISPLAY ==================== */
+        .pricing-display {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.85rem;
+            background: linear-gradient(135deg, rgba(var(--accent-rgb), 0.06) 0%, rgba(var(--accent-rgb), 0.02) 100%);
+            border: 1px solid rgba(var(--accent-rgb), 0.18);
+            padding: 1.1rem 2rem;
+            margin: 1.75rem auto 2.25rem;
+            position: relative;
+            transition: var(--transition-smooth);
+            flex-wrap: wrap;
+        }
+
+        .pricing-display::before {
+            content: '';
+            position: absolute;
+            inset: -1px;
+            background: linear-gradient(135deg, rgba(var(--accent-rgb), 0.12), transparent 60%);
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .pricing-display:hover {
+            border-color: rgba(var(--accent-rgb), 0.35);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 32px rgba(var(--accent-rgb), 0.08);
+        }
+
+        .pricing-display:hover::before {
+            opacity: 1;
+        }
+
+        .price-original {
+            font-family: var(--font-serif);
+            font-size: 1.6rem;
+            font-weight: 400;
+            color: var(--text-secondary);
+            text-decoration: line-through;
+            text-decoration-color: rgba(var(--accent-rgb), 0.5);
+            text-decoration-thickness: 2px;
+            opacity: 0.7;
+            position: relative;
+        }
+
+        .price-arrow {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            opacity: 0.5;
+            font-weight: 300;
+        }
+
+        .price-current {
+            font-family: var(--font-serif);
+            font-size: 2.75rem;
+            font-weight: 600;
+            color: var(--accent);
+            line-height: 1;
+            letter-spacing: -0.02em;
+            text-shadow: 0 0 30px rgba(var(--accent-rgb), 0.15);
+        }
+
+        .price-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            background: rgba(var(--accent-rgb), 0.1);
+            border: 1px solid rgba(var(--accent-rgb), 0.25);
+            color: var(--accent);
+            font-family: var(--font-sans);
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            padding: 0.35rem 0.85rem;
+            border-radius: 100px;
+            white-space: nowrap;
+            animation: badge-glow 3s ease-in-out infinite;
+        }
+
+        @keyframes badge-glow {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(var(--accent-rgb), 0); }
+            50% { box-shadow: 0 0 12px 2px rgba(var(--accent-rgb), 0.12); }
+        }
+
         /* ==================== RESPONSIVE DESIGN ==================== */
         @media (max-width: 768px) {
             .waitlist-card {
@@ -432,6 +519,25 @@
                 flex-direction: column;
                 gap: 1rem;
                 text-align: center;
+            }
+
+            .pricing-display {
+                gap: 0.6rem;
+                padding: 0.9rem 1.5rem;
+                margin: 1.5rem auto 2rem;
+            }
+
+            .price-current {
+                font-size: 2.25rem;
+            }
+
+            .price-original {
+                font-size: 1.3rem;
+            }
+
+            .price-badge {
+                font-size: 0.6rem;
+                padding: 0.3rem 0.7rem;
             }
         }
 
@@ -455,6 +561,56 @@
             .waitlist-body {
                 font-size: 0.9rem;
                 margin-bottom: 1.75rem;
+            }
+
+            .pricing-display {
+                gap: 0.5rem;
+                padding: 0.85rem 1.25rem;
+                margin: 1.25rem auto 1.75rem;
+            }
+
+            .price-current {
+                font-size: 2rem;
+            }
+
+            .price-original {
+                font-size: 1.15rem;
+            }
+
+            .price-arrow {
+                font-size: 0.9rem;
+            }
+
+            .price-badge {
+                font-size: 0.55rem;
+                padding: 0.25rem 0.6rem;
+                letter-spacing: 0.1em;
+            }
+        }
+
+        /* ── SMALL PHONE (≤360px) ── */
+        @media (max-width: 360px) {
+            .pricing-display {
+                gap: 0.4rem;
+                padding: 0.75rem 1rem;
+                margin: 1rem auto 1.5rem;
+            }
+
+            .price-current {
+                font-size: 1.75rem;
+            }
+
+            .price-original {
+                font-size: 1.05rem;
+            }
+
+            .price-arrow {
+                font-size: 0.8rem;
+            }
+
+            .price-badge {
+                font-size: 0.55rem;
+                padding: 0.2rem 0.5rem;
             }
         }
     </style>
@@ -483,8 +639,14 @@
                     <h2 class="waitlist-title">Comeback: Unrecognizable</h2>
                     <p class="waitlist-subtitle">7 Rules to Change Your Life</p>
                     <p class="waitlist-body">
-                        The free kit is just the warm-up. This is the full 90-day protocol — the exact step-by-step system to build a <span class="waitlist-price">$10k/month</span> income from zero. No guesswork. No fluff. Just the system. Launching soon at <span class="waitlist-price">$17</span>.
+                        The free kit is just the warm-up. This is the full 90-day protocol — the exact step-by-step system to build a <span class="waitlist-price">$10k/month</span> income from zero. No guesswork. No fluff. Just the system.
                     </p>
+                    <div class="pricing-display" id="pricing-waitlist">
+                        <span class="price-original">$67</span>
+                        <span class="price-arrow">→</span>
+                        <span class="price-current">$17</span>
+                        <span class="price-badge">Launch Offer</span>
+                    </div>
 
                     <!-- Waitlist Form State -->
                     <div id="waitlist-form-state" class="waitlist-form-container">
