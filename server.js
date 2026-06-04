@@ -4,7 +4,7 @@ const cors = require('cors');
 const path = require('path');
 const { Resend } = require('resend');
 const { supabase } = require('./lib/supabase');
-const { day0, waitlistConfirmation } = require('./lib/email-templates');
+const { day0, waitlistConfirmation, apologyResend } = require('./lib/email-templates');
 
 // Cron handlers
 const dripHandler   = require('./api/cron/drip');
@@ -256,6 +256,60 @@ app.post('/api/admin/resend-welcome', async (req, res) => {
     } catch (err) {
         console.error('[resend-welcome] Error:', err);
         return res.status(500).json({ error: err.message });
+    }
+});
+
+// ── GET /api/admin/send-apology?token=sendnow ───────────────
+// Browser-triggerable one-time apology blast to all leads
+// Visit: https://adamsxproject.com.ng/api/admin/send-apology?token=sendnow
+app.get('/api/admin/send-apology', async (req, res) => {
+    if (req.query.token !== 'sendnow') {
+        return res.status(401).send('Unauthorized.');
+    }
+    if (!supabase) {
+        return res.status(500).send('Supabase not configured.');
+    }
+
+    try {
+        const { data: leads, error } = await supabase
+            .from('leads')
+            .select('first_name, email')
+            .eq('active', true);
+
+        if (error) throw new Error(error.message);
+        if (!leads || leads.length === 0) {
+            return res.send('No active leads found.');
+        }
+
+        let sent = 0;
+        let failed = [];
+
+        for (const lead of leads) {
+            try {
+                const { subject, html } = apologyResend(lead.first_name);
+                const result = await resend.emails.send({
+                    from: `Adams X Project <${SENDER}>`,
+                    to: lead.email,
+                    subject,
+                    html,
+                    reply_to: 'adams@adamsxproject.com.ng',
+                    tags: [{ name: 'sequence', value: 'apology-resend' }]
+                });
+                if (result.error) throw new Error(result.error.message);
+                sent++;
+                await new Promise(r => setTimeout(r, 300));
+            } catch (e) {
+                console.error(`[send-apology] Failed for ${lead.email}:`, e.message);
+                failed.push(lead.email);
+            }
+        }
+
+        console.log(`[send-apology] ✅ Sent: ${sent}, Failed: ${failed.length}`);
+        return res.send(`✅ Done! Sent: ${sent} | Failed: ${failed.length}${failed.length ? ' | ' + failed.join(', ') : ''}`);
+
+    } catch (err) {
+        console.error('[send-apology] Error:', err);
+        return res.status(500).send(`Error: ${err.message}`);
     }
 });
 
