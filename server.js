@@ -21,7 +21,15 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Serve ebooks directory (PDF files)
+// ── Serve PDF as forced download ────────────────────────────
+// This ensures the browser downloads the file instead of opening it inline
+app.get('/ebooks/the-7-day-starter-kit.pdf', (req, res) => {
+    res.setHeader('Content-Disposition', 'attachment; filename="The-7-Day-Starter-Kit.pdf"');
+    res.setHeader('Content-Type', 'application/pdf');
+    res.sendFile(path.join(__dirname, 'ebooks', 'the-7-day-starter-kit.pdf'));
+});
+
+// Serve remaining ebooks directory (future PDFs)
 app.use('/ebooks', express.static(path.join(__dirname, 'ebooks')));
 
 app.use(express.static(path.join(__dirname)));
@@ -194,6 +202,62 @@ app.post('/api/waitlist', async (req, res) => {
 app.get('/api/cron/drip',   dripHandler);   // Vercel cron: daily 9AM UTC
 app.get('/api/cron/digest', digestHandler); // Vercel cron: daily 8AM UTC
 app.post('/api/cron/blast', blastHandler);  // Manual: POST with CRON_SECRET
+
+// ── POST /api/admin/resend-welcome ───────────────────────────
+// One-time tool: resend Day 0 welcome email to ALL existing leads
+// Requires CRON_SECRET header for protection
+app.post('/api/admin/resend-welcome', async (req, res) => {
+    const secret = req.headers['x-cron-secret'] || req.body?.secret;
+    if (!secret || secret !== process.env.CRON_SECRET) {
+        return res.status(401).json({ error: 'Unauthorized.' });
+    }
+    if (!supabase) {
+        return res.status(500).json({ error: 'Supabase not configured.' });
+    }
+
+    try {
+        const { data: leads, error } = await supabase
+            .from('leads')
+            .select('first_name, email')
+            .eq('active', true);
+
+        if (error) throw new Error(error.message);
+        if (!leads || leads.length === 0) {
+            return res.json({ success: true, sent: 0, message: 'No active leads found.' });
+        }
+
+        let sent = 0;
+        let failed = [];
+
+        for (const lead of leads) {
+            try {
+                const { subject, html } = day0(lead.first_name);
+                const result = await resend.emails.send({
+                    from: `Adams X Project <${SENDER}>`,
+                    to: lead.email,
+                    subject: `📥 Your Starter Kit — Updated Download Link`,
+                    html,
+                    reply_to: 'adams@adamsxproject.com.ng',
+                    tags: [{ name: 'sequence', value: 'resend-welcome' }]
+                });
+                if (result.error) throw new Error(result.error.message);
+                sent++;
+                // Small delay to respect Resend rate limits
+                await new Promise(r => setTimeout(r, 300));
+            } catch (e) {
+                console.error(`[resend-welcome] Failed for ${lead.email}:`, e.message);
+                failed.push(lead.email);
+            }
+        }
+
+        console.log(`[resend-welcome] ✅ Sent: ${sent}, Failed: ${failed.length}`);
+        return res.json({ success: true, sent, failed });
+
+    } catch (err) {
+        console.error('[resend-welcome] Error:', err);
+        return res.status(500).json({ error: err.message });
+    }
+});
 
 // ── Serve waitlist.html for /waitlist ───────────────────────
 app.get('/waitlist', (req, res) => {
