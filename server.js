@@ -20,6 +20,10 @@ const SENDER = process.env.SENDER_EMAIL || 'adams@adamsxproject.com.ng';
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+// Serve ebooks directory (PDF files)
+app.use('/ebooks', express.static(path.join(__dirname, 'ebooks')));
+
 app.use(express.static(path.join(__dirname)));
 
 // ── Health check ────────────────────────────────────────────
