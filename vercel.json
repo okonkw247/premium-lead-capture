@@ -22,24 +22,16 @@
     { "src": "/favicon-32x32.png", "dest": "/favicon-32x32.png" },
     { "src": "/favicon-16x16.png", "dest": "/favicon-16x16.png" },
     { "src": "/apple-touch-icon.png", "dest": "/apple-touch-icon.png" },
-    { "src": "/ebooks/the-7-day-starter-kit.pdf", "dest": "/ebooks/the-7-day-starter-kit.pdf" },
+    {
+      "src": "/ebooks/the-7-day-starter-kit.pdf",
+      "headers": {
+        "Content-Disposition": "attachment; filename=\"The-7-Day-Starter-Kit.pdf\"",
+        "Content-Type": "application/pdf"
+      },
+      "dest": "/ebooks/the-7-day-starter-kit.pdf"
+    },
     { "src": "/waitlist/?", "dest": "/waitlist.html" },
     { "src": "/(.*)", "dest": "/index.html" }
-  ],
-  "headers": [
-    {
-      "source": "/ebooks/the-7-day-starter-kit.pdf",
-      "headers": [
-        {
-          "key": "Content-Disposition",
-          "value": "attachment; filename=\"The-7-Day-Starter-Kit.pdf\""
-        },
-        {
-          "key": "Content-Type",
-          "value": "application/pdf"
-        }
-      ]
-    }
   ],
   "crons": [
     { "path": "/api/cron/digest", "schedule": "0 8 * * *" },
