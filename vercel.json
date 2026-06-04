@@ -26,6 +26,21 @@
     { "src": "/waitlist/?", "dest": "/waitlist.html" },
     { "src": "/(.*)", "dest": "/index.html" }
   ],
+  "headers": [
+    {
+      "source": "/ebooks/the-7-day-starter-kit.pdf",
+      "headers": [
+        {
+          "key": "Content-Disposition",
+          "value": "attachment; filename=\"The-7-Day-Starter-Kit.pdf\""
+        },
+        {
+          "key": "Content-Type",
+          "value": "application/pdf"
+        }
+      ]
+    }
+  ],
   "crons": [
     { "path": "/api/cron/digest", "schedule": "0 8 * * *" },
     { "path": "/api/cron/drip", "schedule": "0 9 * * *" }

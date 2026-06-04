@@ -4,7 +4,7 @@ const cors = require('cors');
 const path = require('path');
 const { Resend } = require('resend');
 const { supabase } = require('./lib/supabase');
-const { day0, waitlistConfirmation, apologyResend } = require('./lib/email-templates');
+const { day0, waitlistConfirmation, apologyResend, paidEbookAccess } = require('./lib/email-templates');
 
 // Cron handlers
 const dripHandler   = require('./api/cron/drip');
@@ -309,6 +309,60 @@ app.get('/api/admin/send-apology', async (req, res) => {
 
     } catch (err) {
         console.error('[send-apology] Error:', err);
+        return res.status(500).send(`Error: ${err.message}`);
+    }
+});
+
+// ── PAID EBOOK CONFIGURATION ────────────────────────────────
+// When your Whop product is live, place the URL here (or define in .env: PAID_EBOOK_URL)
+const PAID_EBOOK_URL = process.env.PAID_EBOOK_URL || 'https://whop.com/adams-x-project/';
+
+// ── GET /api/admin/send-paid-access ─────────────────────────
+// Admin tool: Trigger sending the Paid Ebook Access email to a buyer.
+// Browser URL: https://adamsxproject.com.ng/api/admin/send-paid-access?email=buyer@example.com&name=John&token=send
+app.get('/api/admin/send-paid-access', async (req, res) => {
+    const { email, name, token } = req.query;
+
+    if (token !== 'send') {
+        return res.status(401).send('Unauthorized. Set query param ?token=send');
+    }
+    if (!email || !name) {
+        return res.status(400).send('Missing email or name query parameter. E.g., ?email=test@test.com&name=Alex');
+    }
+
+    try {
+        const { subject, html } = paidEbookAccess(name, PAID_EBOOK_URL);
+        const emailResponse = await resend.emails.send({
+            from: `Adams X Project <${SENDER}>`,
+            to: email,
+            subject,
+            html,
+            reply_to: 'adams@adamsxproject.com.ng',
+            tags: [{ name: 'sequence', value: 'paid-product-delivery' }]
+        });
+
+        if (emailResponse.error) {
+            throw new Error(emailResponse.error.message || 'Resend failed to send product delivery email.');
+        }
+
+        // Update purchased flag in leads table in Supabase if the user is a registered lead
+        if (supabase) {
+            const { error: dbError } = await supabase
+                .from('leads')
+                .update({ purchased: true })
+                .eq('email', email);
+            if (dbError) {
+                console.error('[send-paid-access] Supabase update error:', dbError);
+            } else {
+                console.log(`[send-paid-access] Updated purchased status in Supabase for: ${email}`);
+            }
+        }
+
+        console.log(`[send-paid-access] ✅ Paid ebook access email sent to ${email}`);
+        return res.send(`✅ Success! Paid ebook delivery email sent to ${name} (${email}).`);
+
+    } catch (err) {
+        console.error('[send-paid-access] Error:', err);
         return res.status(500).send(`Error: ${err.message}`);
     }
 });
