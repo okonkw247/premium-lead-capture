@@ -7,6 +7,8 @@
     { "src": "campaign_image_2.png", "use": "@vercel/static" },
     { "src": "index.html", "use": "@vercel/static" },
     { "src": "waitlist.html", "use": "@vercel/static" },
+    { "src": "bonus.html", "use": "@vercel/static" },
+    { "src": "unsubscribe.html", "use": "@vercel/static" },
     { "src": "favicon.ico", "use": "@vercel/static" },
     { "src": "favicon-32x32.png", "use": "@vercel/static" },
     { "src": "favicon-16x16.png", "use": "@vercel/static" },
@@ -31,6 +33,8 @@
       "dest": "/ebooks/the-7-day-starter-kit.pdf"
     },
     { "src": "/waitlist/?", "dest": "/waitlist.html" },
+    { "src": "/bonus/?", "dest": "/bonus.html" },
+    { "src": "/unsubscribe/?", "dest": "/unsubscribe.html" },
     { "src": "/(.*)", "dest": "/index.html" }
   ],
   "crons": [
