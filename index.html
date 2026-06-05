@@ -63,6 +63,8 @@
         html {
             scroll-behavior: smooth;
             font-size: 16px;
+            overflow-x: hidden;
+            width: 100%;
         }
 
         body {
@@ -71,7 +73,13 @@
             font-family: var(--font-sans);
             line-height: 1.6;
             overflow-x: hidden;
+            width: 100%;
             -webkit-font-smoothing: antialiased;
+        }
+
+        body.no-scroll {
+            overflow: hidden;
+            height: 100vh;
         }
 
         a {
@@ -115,11 +123,11 @@
             top: 0;
             left: 0;
             width: 100%;
-            z-index: 100;
+            z-index: 200;
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             border-bottom: 1px solid var(--border-subtle);
-            background-color: rgba(11, 10, 9, 0.7);
+            background-color: rgba(11, 10, 9, 0.85);
         }
 
         .header-wrap {
@@ -127,6 +135,7 @@
             justify-content: space-between;
             align-items: center;
             height: 80px;
+            gap: 1.5rem;
         }
 
         .logo {
@@ -138,12 +147,64 @@
             display: flex;
             align-items: center;
             gap: 0.5rem;
+            flex-shrink: 0;
+            text-decoration: none;
+            cursor: pointer;
         }
 
         .logo span {
             color: var(--accent);
         }
 
+        /* ── DESKTOP NAV ── */
+        .nav-desktop {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+            flex: 1;
+        }
+
+        .nav-link {
+            font-family: var(--font-sans);
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-secondary);
+            padding: 0.45rem 0.85rem;
+            border-radius: 4px;
+            transition: var(--transition-smooth);
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+        .nav-link:hover {
+            color: var(--text-primary);
+            background: rgba(255,255,255,0.04);
+        }
+
+        .nav-cta {
+            margin-left: auto;
+            background-color: var(--accent);
+            color: var(--bg-base);
+            padding: 0.5rem 1.1rem;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            border-radius: 2px;
+            text-decoration: none;
+            white-space: nowrap;
+            transition: var(--transition-smooth);
+            flex-shrink: 0;
+        }
+
+        .nav-cta:hover {
+            background-color: var(--accent-hover);
+            transform: translateY(-1px);
+        }
+
+        /* ── STATUS BADGE (right side of header) ── */
         .status-badge {
             display: flex;
             align-items: center;
@@ -156,6 +217,7 @@
             letter-spacing: 0.08em;
             text-transform: uppercase;
             font-weight: 600;
+            flex-shrink: 0;
         }
 
         .status-dot {
@@ -165,12 +227,126 @@
             border-radius: 50%;
             box-shadow: 0 0 10px var(--accent);
             animation: pulse-glow 2s infinite;
+            flex-shrink: 0;
+        }
+
+        /* ── HAMBURGER BUTTON ── */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+            width: 40px;
+            height: 40px;
+            background: none;
+            border: 1px solid var(--border-subtle);
+            cursor: pointer;
+            padding: 0;
+            flex-shrink: 0;
+            transition: var(--transition-smooth);
+        }
+
+        .hamburger:hover {
+            border-color: var(--accent);
+        }
+
+        .hamburger .bar {
+            width: 18px;
+            height: 2px;
+            background-color: var(--text-primary);
+            border-radius: 1px;
+            transition: var(--transition-smooth);
+            transform-origin: center;
+        }
+
+        .hamburger.active .bar:nth-child(1) {
+            transform: translateY(7px) rotate(45deg);
+            background-color: var(--accent);
+        }
+
+        .hamburger.active .bar:nth-child(2) {
+            opacity: 0;
+            transform: scaleX(0);
+        }
+
+        .hamburger.active .bar:nth-child(3) {
+            transform: translateY(-7px) rotate(-45deg);
+            background-color: var(--accent);
+        }
+
+        /* ── MOBILE MENU DRAWER ── */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background-color: rgba(11, 10, 9, 0.98);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            z-index: 150;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.4s;
+            padding: 2rem;
+        }
+
+        .mobile-menu.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .mobile-nav-link {
+            font-family: var(--font-serif);
+            font-size: 2.25rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            text-decoration: none;
+            padding: 0.75rem 0;
+            width: 100%;
+            text-align: center;
+            border-bottom: 1px solid var(--border-subtle);
+            transition: var(--transition-smooth);
+            letter-spacing: -0.01em;
+        }
+
+        .mobile-nav-link:first-child {
+            border-top: 1px solid var(--border-subtle);
+        }
+
+        .mobile-nav-link:hover,
+        .mobile-nav-link:active {
+            color: var(--accent);
+        }
+
+        .mobile-nav-cta {
+            margin-top: 2rem;
+            background-color: var(--accent);
+            color: var(--bg-base);
+            padding: 1rem 2.5rem;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            text-decoration: none;
+            transition: var(--transition-smooth);
+        }
+
+        .mobile-nav-cta:hover {
+            background-color: var(--accent-hover);
         }
 
         /* ==================== HERO SECTION ==================== */
         .hero {
             padding: 160px 0 100px;
             position: relative;
+            overflow: hidden;
         }
 
         .hero-grid {
@@ -993,9 +1169,26 @@
                 padding: 0 1.5rem;
             }
 
+            /* Hide desktop nav, show hamburger */
+            .nav-desktop {
+                display: none;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .header-wrap {
+                height: 65px;
+            }
+
             .hero-grid {
                 grid-template-columns: 1fr;
                 gap: 3rem;
+            }
+
+            .hero {
+                padding: 120px 0 70px;
             }
 
             .hero-content {
@@ -1023,9 +1216,17 @@
                 text-align: center;
             }
 
+            /* 2-col pillars on tablet, 3rd card centers */
             .pillars-grid {
                 grid-template-columns: 1fr 1fr;
                 gap: 1.5rem;
+            }
+
+            .pillar-card:last-child {
+                grid-column: span 2;
+                max-width: 480px;
+                margin: 0 auto;
+                width: 100%;
             }
 
             .assessment-grid {
@@ -1074,6 +1275,12 @@
             .price-original {
                 font-size: 1.4rem;
             }
+
+            .footer-wrap {
+                flex-direction: column;
+                gap: 1.5rem;
+                text-align: center;
+            }
         }
 
         /* ── TABLET PORTRAIT (≤768px) ── */
@@ -1095,8 +1302,8 @@
                 padding: 0.3rem 0.6rem;
             }
 
-            .hero {
-                padding: 120px 0 70px;
+            .mobile-nav-link {
+                font-size: 1.75rem;
             }
 
             .hero-title {
@@ -1128,6 +1335,11 @@
 
             .pillars-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .pillar-card:last-child {
+                grid-column: span 1;
+                max-width: none;
             }
 
             .pillar-card {
@@ -1264,10 +1476,25 @@
                 font-size: 1rem;
             }
 
+            /* Truncate status badge on small phones */
             .status-badge {
                 font-size: 0.6rem;
                 padding: 0.25rem 0.5rem;
                 letter-spacing: 0.05em;
+            }
+
+            .badge-text {
+                display: none;
+            }
+
+            /* Fix floating label alignment with mobile padding */
+            .form-label {
+                left: 1rem;
+            }
+
+            .mobile-nav-link {
+                font-size: 1.5rem;
+                padding: 0.6rem 0;
             }
 
             .hero {
@@ -1568,6 +1795,11 @@
         @media (max-width: 360px) {
             .container {
                 padding: 0 0.75rem;
+            }
+
+            /* Completely hide status badge text at 360px to save header space */
+            .status-badge .badge-text {
+                display: none;
             }
 
             .hero-title {
@@ -1977,16 +2209,43 @@
 </head>
 <body>
 
+    <!-- ==================== MOBILE MENU DRAWER ==================== -->
+    <div class="mobile-menu" id="mobile-menu" role="dialog" aria-modal="true" aria-label="Navigation menu">
+        <a href="#concept" class="mobile-nav-link" data-menu-link>The Concept</a>
+        <a href="#pillars" class="mobile-nav-link" data-menu-link>Pillars</a>
+        <a href="#timeline" class="mobile-nav-link" data-menu-link>The Curriculum</a>
+        <a href="#waitlist" class="mobile-nav-link" data-menu-link>Waitlist</a>
+        <a href="#optin" class="mobile-nav-cta" data-menu-link>Claim Starter Kit</a>
+    </div>
+
     <!-- ==================== HEADER ==================== -->
     <header>
         <div class="container header-wrap">
-            <div class="logo">
+            <a href="/" class="logo" aria-label="Adams X Project home">
                 ADAMS X <span>PROJECT</span>
-            </div>
+            </a>
+
+            <!-- Desktop Navigation -->
+            <nav class="nav-desktop" aria-label="Main navigation">
+                <a href="#concept" class="nav-link">The Concept</a>
+                <a href="#pillars" class="nav-link">Pillars</a>
+                <a href="#timeline" class="nav-link">Curriculum</a>
+                <a href="#waitlist" class="nav-link">Waitlist</a>
+                <a href="#optin" class="nav-cta">Get Starter Kit</a>
+            </nav>
+
+            <!-- Status Badge (desktop only pill) -->
             <div class="status-badge">
                 <span class="status-dot"></span>
-                Monk Mode: Live Log
+                <span class="badge-text">Monk Mode: Live</span>
             </div>
+
+            <!-- Hamburger Button (mobile) -->
+            <button class="hamburger" id="hamburger-btn" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
         </div>
     </header>
 
@@ -2042,7 +2301,7 @@
     </section>
 
     <!-- ==================== PILLARS ==================== -->
-    <section class="pillars-section">
+    <section class="pillars-section" id="pillars">
         <div class="container">
             <div class="section-header">
                 <span class="section-kicker">The Core Pillars</span>
@@ -2119,7 +2378,7 @@
     </section>
 
     <!-- ==================== THE 7-DAY TIMELINE ==================== -->
-    <section class="timeline-section">
+    <section class="timeline-section" id="timeline">
         <div class="container">
             <div class="section-header">
                 <span class="section-kicker">Program Structure</span>
@@ -2545,6 +2804,43 @@
                 } finally {
                     waitlistSubmitBtn.classList.remove('loading');
                     waitlistSubmitBtn.disabled = false;
+                }
+            });
+
+            // ==================== HAMBURGER MOBILE MENU ====================
+            const hamburgerBtn = document.getElementById('hamburger-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const menuLinks = document.querySelectorAll('[data-menu-link]');
+
+            function toggleMobileMenu() {
+                const isOpen = mobileMenu.classList.toggle('active');
+                hamburgerBtn.classList.toggle('active', isOpen);
+                hamburgerBtn.setAttribute('aria-expanded', String(isOpen));
+                document.body.classList.toggle('no-scroll', isOpen);
+            }
+
+            function closeMobileMenu() {
+                mobileMenu.classList.remove('active');
+                hamburgerBtn.classList.remove('active');
+                hamburgerBtn.setAttribute('aria-expanded', 'false');
+                document.body.classList.remove('no-scroll');
+            }
+
+            if (hamburgerBtn) {
+                hamburgerBtn.addEventListener('click', toggleMobileMenu);
+            }
+
+            // Close menu when any nav link is tapped
+            menuLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    closeMobileMenu();
+                });
+            });
+
+            // Close menu on Escape key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && mobileMenu.classList.contains('active')) {
+                    closeMobileMenu();
                 }
             });
         });
