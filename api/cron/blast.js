@@ -52,7 +52,7 @@ async function handler(req, res) {
     const results = { sent: 0, errors: [] };
 
     for (const entry of waitlist) {
-        const { subject, html } = waitlistBlast(entry.first_name);
+        const { subject, html } = waitlistBlast(entry.first_name, entry.email);
 
         try {
             const emailResponse = await resend.emails.send({

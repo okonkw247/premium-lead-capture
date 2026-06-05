@@ -4,7 +4,7 @@ const cors = require('cors');
 const path = require('path');
 const { Resend } = require('resend');
 const { supabase } = require('./lib/supabase');
-const { day0, waitlistConfirmation, apologyResend, paidEbookAccess } = require('./lib/email-templates');
+const { day0, waitlistConfirmation, apologyResend, paidEbookAccess, bonusDelivery } = require('./lib/email-templates');
 
 // Cron handlers
 const dripHandler   = require('./api/cron/drip');
@@ -79,7 +79,7 @@ app.post('/api/subscribe', async (req, res) => {
         }
 
         // ── 2. Send Day 0 welcome email ──
-        const { subject, html } = day0(firstName);
+        const { subject, html } = day0(firstName, email);
         const emailResponse = await resend.emails.send({
             from: `Adams X Project <${SENDER}>`,
             to: email,
@@ -154,7 +154,7 @@ app.post('/api/waitlist', async (req, res) => {
         }
 
         // ── 2. Send confirmation email ──
-        const { subject, html } = waitlistConfirmation(firstName);
+        const { subject, html } = waitlistConfirmation(firstName, email);
         const emailResponse = await resend.emails.send({
             from: `Adams X Project <${SENDER}>`,
             to: email,
@@ -231,7 +231,7 @@ app.post('/api/admin/resend-welcome', async (req, res) => {
 
         for (const lead of leads) {
             try {
-                const { subject, html } = day0(lead.first_name);
+                const { subject, html } = day0(lead.first_name, lead.email);
                 const result = await resend.emails.send({
                     from: `Adams X Project <${SENDER}>`,
                     to: lead.email,
@@ -286,7 +286,7 @@ app.get('/api/admin/send-apology', async (req, res) => {
 
         for (const lead of leads) {
             try {
-                const { subject, html } = apologyResend(lead.first_name);
+                const { subject, html } = apologyResend(lead.first_name, lead.email);
                 const result = await resend.emails.send({
                     from: `Adams X Project <${SENDER}>`,
                     to: lead.email,
@@ -331,7 +331,7 @@ app.get('/api/admin/send-paid-access', async (req, res) => {
     }
 
     try {
-        const { subject, html } = paidEbookAccess(name, PAID_EBOOK_URL);
+        const { subject, html } = paidEbookAccess(name, PAID_EBOOK_URL, email);
         const emailResponse = await resend.emails.send({
             from: `Adams X Project <${SENDER}>`,
             to: email,
@@ -364,6 +364,158 @@ app.get('/api/admin/send-paid-access', async (req, res) => {
     } catch (err) {
         console.error('[send-paid-access] Error:', err);
         return res.status(500).send(`Error: ${err.message}`);
+    }
+});
+
+// ── GET /api/download/tracker ───────────────────────────────
+// Tracks when a subscriber clicks the download link in the welcome/apology email.
+// Redirects/streams the file to prompt download.
+app.get('/api/download/tracker', async (req, res) => {
+    const { email } = req.query;
+
+    if (email) {
+        try {
+            if (supabase) {
+                const { error: dbError } = await supabase
+                    .from('leads')
+                    .update({
+                        downloaded: true,
+                        downloaded_at: new Date().toISOString()
+                    })
+                    .eq('email', email);
+                
+                if (dbError) {
+                    console.error('[tracker] Supabase error:', dbError);
+                } else {
+                    console.log(`[tracker] Download logged for: ${email}`);
+                }
+            }
+        } catch (err) {
+            console.error('[tracker] Error updating lead:', err.message);
+        }
+    }
+
+    // Force the browser to download the file instead of opening it inline
+    res.setHeader('Content-Disposition', 'attachment; filename="The-7-Day-Starter-Kit.pdf"');
+    res.setHeader('Content-Type', 'application/pdf');
+    res.sendFile(path.join(__dirname, 'ebooks', 'the-7-day-starter-kit.pdf'));
+});
+
+// ── Serve bonus.html for /bonus ─────────────────────────────
+app.get('/bonus', (req, res) => {
+    res.sendFile(path.join(__dirname, 'bonus.html'));
+});
+
+// ── Serve unsubscribe.html for /unsubscribe ─────────────────
+app.get('/unsubscribe', (req, res) => {
+    res.sendFile(path.join(__dirname, 'unsubscribe.html'));
+});
+
+// ── POST /api/claim-bonus ────────────────────────────────────
+// Validates email, updates status, and delivers the bonus gift email
+app.post('/api/claim-bonus', async (req, res) => {
+    const { email } = req.body;
+
+    if (!email) {
+        return res.status(400).json({ error: 'Email address is required.' });
+    }
+    if (!process.env.RESEND_API_KEY) {
+        return res.status(500).json({ error: 'Server configuration error: Missing RESEND_API_KEY.' });
+    }
+
+    try {
+        let firstName = 'Creator';
+
+        // 1. Verify they exist in the leads table first (must have signed up for the kit)
+        if (supabase) {
+            const { data: lead, error: dbError } = await supabase
+                .from('leads')
+                .select('first_name, active')
+                .eq('email', email)
+                .single();
+
+            if (dbError || !lead) {
+                console.warn(`[claim-bonus] Email not found in leads: ${email}`);
+                return res.status(404).json({ error: 'Please subscribe to the 7-Day Monk Mode Starter Kit first before claiming your bonus gift.' });
+            }
+            firstName = lead.first_name;
+
+            // 2. Mark bonus as claimed in DB
+            const { error: updateError } = await supabase
+                .from('leads')
+                .update({
+                    bonus_claimed: true,
+                    bonus_claimed_at: new Date().toISOString()
+                })
+                .eq('email', email);
+
+            if (updateError) {
+                console.error('[claim-bonus] Supabase update error:', updateError);
+            }
+        }
+
+        // 3. Send bonus delivery email
+        const { subject, html } = bonusDelivery(firstName, email);
+        const emailResponse = await resend.emails.send({
+            from: `Adams X Project <${SENDER}>`,
+            to: email,
+            subject,
+            html,
+            reply_to: 'adams@adamsxproject.com.ng',
+            tags: [{ name: 'sequence', value: 'bonus-gift-delivery' }]
+        });
+
+        if (emailResponse.error) {
+            throw new Error(emailResponse.error.message || 'Resend failed to send bonus email.');
+        }
+
+        console.log(`[claim-bonus] ✅ Bonus email sent to ${email}`);
+        return res.status(200).json({ success: true, message: 'Bonus gift dispatched. Check your inbox.' });
+
+    } catch (err) {
+        console.error('[claim-bonus] Error:', err);
+        return res.status(500).json({ error: 'Failed to claim bonus.', details: err.message });
+    }
+});
+
+// ── POST /api/unsubscribe ────────────────────────────────────
+// Deactivates lead and deletes from waitlist to opt-out of all communications
+app.post('/api/unsubscribe', async (req, res) => {
+    const { email } = req.body;
+
+    if (!email) {
+        return res.status(400).json({ error: 'Email address is required.' });
+    }
+
+    try {
+        if (supabase) {
+            // 1. Deactivate in leads
+            const { error: leadsErr } = await supabase
+                .from('leads')
+                .update({ active: false })
+                .eq('email', email);
+            
+            if (leadsErr) {
+                console.error('[unsubscribe] Supabase leads error:', leadsErr);
+            }
+
+            // 2. Delete from waitlist (so they don't receive future launch blasts)
+            const { error: waitlistErr } = await supabase
+                .from('waitlist')
+                .delete()
+                .eq('email', email);
+
+            if (waitlistErr) {
+                console.error('[unsubscribe] Supabase waitlist error:', waitlistErr);
+            }
+        }
+
+        console.log(`[unsubscribe] ✅ Unsubscribed email: ${email}`);
+        return res.status(200).json({ success: true, message: 'Successfully unsubscribed.' });
+
+    } catch (err) {
+        console.error('[unsubscribe] Error:', err);
+        return res.status(500).json({ error: 'Failed to unsubscribe.', details: err.message });
     }
 });
 

@@ -92,7 +92,7 @@ async function handler(req, res) {
             continue;
         }
 
-        const { subject, html } = templateFn(lead.first_name);
+        const { subject, html } = templateFn(lead.first_name, lead.email);
 
         try {
             const emailResponse = await resend.emails.send({

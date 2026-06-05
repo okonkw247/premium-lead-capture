@@ -8,12 +8,17 @@
 -- drip_day tracks which email in the sequence they are on (0–7).
 -- active = false after Day 7 is complete.
 create table if not exists leads (
-    id          uuid primary key default gen_random_uuid(),
-    first_name  text not null,
-    email       text not null unique,
-    drip_day    integer not null default 0,
-    active      boolean not null default true,
-    created_at  timestamptz not null default now()
+    id              uuid primary key default gen_random_uuid(),
+    first_name      text not null,
+    email           text not null unique,
+    drip_day        integer not null default 0,
+    active          boolean not null default true,
+    purchased       boolean not null default false,
+    downloaded      boolean not null default false,
+    downloaded_at   timestamptz,
+    bonus_claimed   boolean not null default false,
+    bonus_claimed_at timestamptz,
+    created_at      timestamptz not null default now()
 );
 
 -- Index for fast daily drip queries
