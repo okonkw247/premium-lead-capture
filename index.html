@@ -1562,6 +1562,66 @@
                 padding: 0 1rem;
             }
 
+            /* Hide terminal widget completely on small phones — too narrow */
+            .terminal-widget {
+                display: none;
+            }
+
+            /* Ensure hero media stack doesn't overflow */
+            .hero-media-stack {
+                width: 100%;
+                max-width: 100%;
+            }
+
+            /* Toolkit tabs scroll horizontally */
+            .toolkit-tabs {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+            .tab-btn {
+                flex: 0 0 auto;
+                padding: 1rem 1.25rem;
+                font-size: 0.72rem;
+            }
+            .toolkit-content {
+                padding: 1.25rem;
+            }
+
+            /* Notion table horizontal scroll */
+            .notion-table-wrap {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            /* Code window font size */
+            .code-window {
+                font-size: 0.8rem;
+                padding: 1rem;
+            }
+
+            /* Assessment grid fix */
+            .assessment-section {
+                padding: 50px 0;
+            }
+
+            /* Pillar desc font fix */
+            .pillar-desc {
+                font-size: 0.85rem;
+            }
+
+            /* Heatmap stats wrap tightly */
+            .heatmap-stats {
+                gap: 1rem;
+                padding-bottom: 1.5rem;
+            }
+            .stat-item { min-width: 80px; }
+            .stat-number { font-size: 1.5rem; }
+
+            /* Metrics card */
+            .metrics-card {
+                padding: 1.75rem 1rem;
+            }
+
             .header-wrap {
                 height: 58px;
             }
@@ -1896,6 +1956,12 @@
             /* Completely hide status badge text at 360px to save header space */
             .status-badge .badge-text {
                 display: none;
+            }
+
+            /* Toolkit tabs on very small phones */
+            .tab-btn {
+                font-size: 0.65rem;
+                padding: 0.85rem 1rem;
             }
 
             .hero-title {
@@ -3059,8 +3125,8 @@
                     </div>
                     <div class="terminal-body">
                         <div class="terminal-output" id="terminal-output">
-                            <div class="terminal-line">Monk Mode Shell v1.0.2</div>
-                            <div class="terminal-line">Type <span class="highlight">help</span> to view available protocol scripts.</div>
+                            <div class="terminal-line">Monk Mode Protocol v1.0.2</div>
+                            <div class="terminal-line">Type <span class="highlight">help</span> to explore focus rules and run a quick audit.</div>
                         </div>
                         <div class="terminal-input-line">
                             <span class="terminal-prompt">adams@monkmode:~$</span>
@@ -3110,25 +3176,28 @@
                 <!-- Tab Contents -->
                 <div class="toolkit-content">
                     
-                    <!-- Blocker Script Tab -->
+                    <!-- Focus Firewall Tab -->
                     <div class="tab-pane active" id="tab-blocker">
                         <div class="pane-header">
-                            <span class="pane-title">focus-firewall.txt</span>
-                            <span class="pane-badge">Focus Protocol</span>
+                            <span class="pane-title">Focus Firewall Setup</span>
+                            <span class="pane-badge">Attention Protocol</span>
                         </div>
                         <div class="pane-body">
-                            <div class="code-window">
-<span class="code-comment"># Digital blacklists to secure attention sovereignty</span>
-<span class="code-keyword">Blacklisted platforms</span>:
-  - youtube.com
-  - twitter.com
-  - reddit.com
+                            <div class="code-window" style="font-family: var(--font-sans); font-size: 0.9rem; line-height: 1.8;">
+<span class="code-comment" style="color: var(--text-secondary); font-style: italic;">// Step 1 — Identify Your Top Distractions</span>
+<span class="code-keyword">Platforms to block:</span>
+  ✕  YouTube (autoplay loops)
+  ✕  Twitter / X (infinite scroll)
+  ✕  Reddit (rabbit hole browsing)
 
-<span class="code-function">Action steps</span>:
-  - Disable notifications at OS level
-  - Lock hosts files to loopback (127.0.0.1)
-  - Perform daily cognitive audits
-<span class="code-keyword">echo</span> <span class="code-string">"[+] Digital firewall active. Focus sequence engaged."</span></div>
+<span class="code-comment" style="color: var(--text-secondary); font-style: italic;">// Step 2 — Action Checklist</span>
+<span class="code-function">Daily Protocol:</span>
+  ✓  Turn off all push notifications on your phone
+  ✓  Delete distraction apps from your home screen
+  ✓  Set app time limits (Screen Time / Digital Wellbeing)
+  ✓  Place your phone face-down during work blocks
+
+<span class="code-string" style="color: var(--accent);">[ Focus Firewall Active — Attention Secured ]</span></div>
                         </div>
                     </div>
                     
@@ -3357,7 +3426,7 @@
                 <span class="section-kicker">Focus Diagnostics</span>
                 <h2 class="section-title" style="margin-bottom: 1.5rem;">Audit Your Mental State</h2>
                 <p style="color: var(--text-secondary); margin-bottom: 2rem; max-width: 480px;">
-                    Move the sliders to reflect your current daily habits. Our interactive script will calculate your Focus Baseline and assess if you need a structural dopamine reset.
+                    Move the sliders to reflect your current daily habits. We will calculate your Focus Baseline and assess if you need a structured dopamine reset.
                 </p>
                 
                 <div class="slider-group">

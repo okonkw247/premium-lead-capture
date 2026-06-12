@@ -1411,7 +1411,15 @@
 
             animateElements.forEach(el => observer.observe(el));
 
-            // ── 2. COUNT-UP ANIMATION for trust metrics ──
+            // ── AUTO-SCROLL TO SIGNUP FORM ON PAGE LOAD ──
+            // When someone visits /waitlist directly, scroll to the sign-up form
+            setTimeout(() => {
+                const signupSection = document.getElementById('waitlist');
+                if (signupSection) {
+                    signupSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            }, 600);
+
             const trustNumbers = document.querySelectorAll('.trust-number[data-count]');
             let countAnimated = false;
 
