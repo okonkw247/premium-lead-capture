@@ -1102,10 +1102,24 @@
             background-color: #080807;
         }
 
-        .footer-wrap {
+        .footer-inner {
+            display: flex;
+            flex-direction: column;
+            gap: 2.5rem;
+        }
+
+        .footer-top {
             display: flex;
             justify-content: space-between;
-            align-items: center;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .footer-brand {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
         }
 
         .footer-logo {
@@ -1118,10 +1132,87 @@
             color: var(--accent);
         }
 
+        .footer-tagline {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            max-width: 240px;
+            line-height: 1.5;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links-col {
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+        }
+
+        .footer-links-col span {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--accent);
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+
+        .footer-links-col a {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            transition: var(--transition-smooth);
+        }
+
+        .footer-links-col a:hover {
+            color: var(--text-primary);
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-subtle);
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
         .footer-copy {
             color: var(--text-secondary);
             font-size: 0.8rem;
             letter-spacing: 0.05em;
+        }
+
+        .footer-socials {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .footer-social-link {
+            width: 34px;
+            height: 34px;
+            border: 1px solid var(--border-subtle);
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            transition: var(--transition-smooth);
+        }
+
+        .footer-social-link:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .footer-social-link svg {
+            width: 14px;
+            height: 14px;
+            fill: currentColor;
         }
 
         /* ==================== ANIMATIONS ==================== */
@@ -2205,6 +2296,653 @@
             display: inline-block;
         }
 
+        /* ==================== SOCIAL LINKS IN PROFILE CARD ==================== */
+        .image-socials {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            border-top: 1px solid var(--border-subtle);
+            padding-top: 1rem;
+            margin-top: 1rem;
+            gap: 0.5rem;
+            width: 100%;
+        }
+        .image-socials a {
+            font-size: 0.7rem;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 600;
+            transition: var(--transition-smooth);
+        }
+        .image-socials a:hover {
+            color: var(--accent);
+        }
+        .image-socials svg {
+            width: 14px;
+            height: 14px;
+            fill: currentColor;
+        }
+
+        /* ==================== INTERACTIVE TERMINAL WIDGET ==================== */
+        .hero-media-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            width: 100%;
+        }
+        .terminal-widget {
+            background: #0E0D0C;
+            border: 1px solid var(--border-subtle);
+            border-radius: 8px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+            overflow: hidden;
+            font-family: monospace;
+            font-size: 0.85rem;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            transition: var(--transition-smooth);
+        }
+        .terminal-widget:hover {
+            border-color: rgba(var(--accent-rgb), 0.25);
+        }
+        .terminal-header {
+            background: #141311;
+            padding: 0.6rem 1rem;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+        .terminal-buttons {
+            display: flex;
+            gap: 6px;
+        }
+        .btn-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+        .btn-dot.red { background-color: #FF5F56; }
+        .btn-dot.yellow { background-color: #FFBD2E; }
+        .btn-dot.green { background-color: #27C93F; }
+        .terminal-title {
+            color: var(--text-secondary);
+            font-size: 0.75rem;
+            margin: 0 auto;
+            transform: translateX(-15px);
+        }
+        .terminal-body {
+            padding: 1.25rem;
+            height: 250px;
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+        }
+        .terminal-output {
+            flex-grow: 1;
+            overflow-y: auto;
+            margin-bottom: 0.5rem;
+            scrollbar-width: thin;
+        }
+        .terminal-line {
+            line-height: 1.5;
+            margin-bottom: 0.4rem;
+            color: var(--text-primary);
+            word-break: break-all;
+        }
+        .terminal-line .highlight {
+            color: var(--accent);
+            font-weight: bold;
+        }
+        .terminal-line .accent {
+            color: var(--accent);
+        }
+        .terminal-line .danger {
+            color: #E86C5D;
+            font-weight: bold;
+        }
+        .terminal-line pre.code-output {
+            margin: 0.5rem 0;
+            font-family: inherit;
+            color: #d4d4d4;
+            white-space: pre-wrap;
+        }
+        .terminal-input-line {
+            display: flex;
+            align-items: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding-top: 0.5rem;
+        }
+        .terminal-prompt {
+            color: var(--accent);
+            margin-right: 0.5rem;
+            white-space: nowrap;
+            font-weight: bold;
+        }
+        .terminal-input {
+            background: transparent;
+            border: none;
+            color: var(--text-primary);
+            font-family: inherit;
+            font-size: inherit;
+            flex-grow: 1;
+            outline: none;
+            caret-color: var(--accent);
+        }
+
+        /* ==================== PROOF OF CONCEPT TOOLKIT ==================== */
+        .proof-section {
+            padding: 100px 0;
+            border-top: 1px solid var(--border-subtle);
+        }
+        .toolkit-container {
+            background-color: var(--bg-surface);
+            border: 1px solid var(--border-subtle);
+            margin-top: 3rem;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+        .toolkit-tabs {
+            display: flex;
+            background-color: #0b0a09;
+            border-bottom: 1px solid var(--border-subtle);
+            overflow-x: auto;
+        }
+        .tab-btn {
+            flex: 1;
+            padding: 1.25rem;
+            font-family: var(--font-sans);
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 0.05em;
+            border-right: 1px solid var(--border-subtle);
+            white-space: nowrap;
+        }
+        .tab-btn:last-child {
+            border-right: none;
+        }
+        .tab-btn.active {
+            color: var(--accent);
+            background-color: var(--bg-surface);
+            border-bottom: 2px solid var(--accent);
+        }
+        .tab-btn:hover:not(.active) {
+            background-color: rgba(255,255,255,0.02);
+            color: var(--text-primary);
+        }
+        .toolkit-content {
+            padding: 2.5rem;
+            min-height: 400px;
+        }
+        .tab-pane {
+            display: none;
+        }
+        .tab-pane.active {
+            display: block;
+            animation: fade-in-up 0.5s ease forwards;
+        }
+        .pane-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-subtle);
+            padding-bottom: 0.75rem;
+        }
+        .pane-title {
+            font-family: var(--font-serif);
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+        .pane-badge {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            background: rgba(var(--accent-rgb), 0.1);
+            border: 1px solid rgba(var(--accent-rgb), 0.2);
+            color: var(--accent);
+            padding: 0.25rem 0.6rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+        }
+        .pane-body {
+            width: 100%;
+        }
+        .code-window {
+            background: #0E0D0C;
+            border: 1px solid var(--border-subtle);
+            padding: 1.5rem;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 0.85rem;
+            color: #d4d4d4;
+            line-height: 1.6;
+            text-align: left;
+            overflow-x: auto;
+        }
+        .code-comment { color: #6a9955; }
+        .code-keyword { color: #569cd6; }
+        .code-string { color: #ce9178; }
+        .code-function { color: #dcdcaa; }
+
+        .notion-window {
+            background: #191816;
+            border: 1px solid var(--border-subtle);
+            border-radius: 6px;
+            padding: 1.5rem;
+            text-align: left;
+        }
+        .notion-header-bar {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-subtle);
+            padding-bottom: 0.75rem;
+        }
+        .notion-icon { font-size: 1.5rem; }
+        .notion-header-bar h4 {
+            font-size: 1rem;
+            font-weight: 600;
+        }
+        .notion-table-wrap { overflow-x: auto; }
+        .notion-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+        }
+        .notion-table th {
+            text-align: left;
+            padding: 0.75rem;
+            color: var(--text-secondary);
+            border-bottom: 1px solid var(--border-subtle);
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.7rem;
+            letter-spacing: 0.05em;
+        }
+        .notion-table td {
+            padding: 0.75rem;
+            border-bottom: 1px solid rgba(255,255,255,0.03);
+            color: var(--text-primary);
+        }
+        .pill {
+            display: inline-block;
+            padding: 0.2rem 0.5rem;
+            font-size: 0.7rem;
+            font-weight: 700;
+            border-radius: 4px;
+        }
+        .pill.green {
+            background-color: rgba(46, 117, 89, 0.2);
+            color: #8fd4b9;
+            border: 1px solid rgba(46, 117, 89, 0.4);
+        }
+        .pill.yellow {
+            background-color: rgba(184, 134, 11, 0.2);
+            color: #ffd700;
+            border: 1px solid rgba(184, 134, 11, 0.4);
+        }
+
+        .pdf-window {
+            display: flex;
+            justify-content: center;
+            padding: 1rem 0;
+        }
+        .pdf-page-mock {
+            background: #FFFFFF;
+            color: #222;
+            max-width: 450px;
+            width: 100%;
+            padding: 3rem 2.5rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            border-radius: 2px;
+            text-align: left;
+            font-family: var(--font-sans);
+        }
+        .pdf-logo {
+            font-family: var(--font-serif);
+            font-size: 0.8rem;
+            font-weight: 800;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 0.5rem;
+            margin-bottom: 2rem;
+            color: #555;
+            letter-spacing: 0.1em;
+        }
+        .pdf-page-title {
+            font-family: var(--font-serif);
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: #111;
+            line-height: 1.2;
+        }
+        .pdf-subtitle {
+            font-size: 0.85rem;
+            color: #666;
+            margin-bottom: 2rem;
+        }
+        .pdf-input-mock {
+            margin-bottom: 1.5rem;
+        }
+        .pdf-input-mock span {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #333;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        .mock-line {
+            border-bottom: 1px solid #ccc;
+            height: 1.5rem;
+        }
+        .pdf-checkboxes {
+            margin-top: 2.5rem;
+            border-top: 1px dashed #ddd;
+            padding-top: 1.5rem;
+        }
+        .mock-cb {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 0.8rem;
+            color: #444;
+            margin-bottom: 0.75rem;
+            font-weight: 500;
+        }
+        .mock-cb span {
+            width: 14px;
+            height: 14px;
+            border: 1px solid #aaa;
+            display: inline-block;
+            flex-shrink: 0;
+        }
+        .mock-cb span.checked {
+            width: 14px;
+            height: 14px;
+            border: 1px solid var(--accent);
+            background: var(--accent);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.6rem;
+        }
+
+        /* ==================== SAAS PROJECTS SHOWCASE ==================== */
+        .saas-section {
+            padding: 100px 0;
+            border-top: 1px solid var(--border-subtle);
+        }
+        .saas-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+        .saas-card {
+            background-color: var(--bg-surface);
+            border: 1px solid var(--border-subtle);
+            padding: 3rem 2.5rem;
+            transition: var(--transition-smooth);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        .saas-card:hover {
+            border-color: rgba(var(--accent-rgb), 0.25);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+        }
+        .saas-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        .tech-tag {
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: var(--accent);
+            background: rgba(var(--accent-rgb), 0.08);
+            padding: 0.25rem 0.65rem;
+            border: 1px solid rgba(var(--accent-rgb), 0.15);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .status-indicator {
+            font-size: 0.7rem;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+        }
+        .status-indicator::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background-color: #27c93f;
+            display: inline-block;
+        }
+        .saas-title {
+            font-family: var(--font-serif);
+            font-size: 1.75rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+        .saas-desc {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+            flex-grow: 1;
+        }
+        .saas-features {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            border-top: 1px solid var(--border-subtle);
+            padding-top: 1.25rem;
+        }
+        .saas-feature-item {
+            font-size: 0.8rem;
+            color: var(--text-primary);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .saas-feature-item::before {
+            content: '→';
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        /* ==================== BUILT IN PUBLIC METRICS ==================== */
+        .built-in-public {
+            padding: 100px 0;
+            border-top: 1px solid var(--border-subtle);
+        }
+        .metrics-card {
+            background-color: var(--bg-surface);
+            border: 1px solid var(--border-subtle);
+            padding: 4rem 3.5rem;
+        }
+        .metrics-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        .metrics-kicker {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.25em;
+            color: var(--accent);
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            display: block;
+        }
+        .metrics-title {
+            font-family: var(--font-serif);
+            font-size: 2.25rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+        .metrics-subtitle {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+        .heatmap-container {
+            display: flex;
+            flex-direction: column;
+            gap: 2.5rem;
+        }
+        .heatmap-stats {
+            display: flex;
+            justify-content: space-around;
+            border-bottom: 1px solid var(--border-subtle);
+            padding-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+        .stat-item {
+            text-align: center;
+            min-width: 120px;
+        }
+        .stat-number {
+            font-family: var(--font-serif);
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--accent);
+            display: block;
+            margin-bottom: 0.25rem;
+        }
+        .stat-label {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 600;
+        }
+        .heatmap-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            width: 100%;
+        }
+        .heatmap-grid {
+            display: grid;
+            grid-template-columns: repeat(20, 1fr);
+            gap: 5px;
+            max-width: 100%;
+            width: auto;
+            padding: 0.5rem;
+        }
+        .heatmap-cell {
+            width: 14px;
+            height: 14px;
+            border-radius: 2px;
+            transition: var(--transition-smooth);
+            cursor: pointer;
+        }
+        .heatmap-cell:hover {
+            transform: scale(1.2);
+            box-shadow: 0 0 8px var(--accent);
+            z-index: 10;
+        }
+        .heatmap-cell.level-0 {
+            background-color: #1a1917;
+            border: 1px solid rgba(255,255,255,0.02);
+        }
+        .heatmap-cell.level-1 { background-color: rgba(var(--accent-rgb), 0.15); }
+        .heatmap-cell.level-2 { background-color: rgba(var(--accent-rgb), 0.4); }
+        .heatmap-cell.level-3 { background-color: rgba(var(--accent-rgb), 0.7); }
+        .heatmap-cell.level-4 {
+            background-color: rgba(var(--accent-rgb), 1.0);
+            box-shadow: 0 0 5px rgba(var(--accent-rgb), 0.4);
+        }
+        .heatmap-legend {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.7rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-top: 1rem;
+        }
+        .legend-cell {
+            width: 10px;
+            height: 10px;
+            border-radius: 2px;
+        }
+        .legend-cell.level-0 { background-color: #1a1917; }
+        .legend-cell.level-1 { background-color: rgba(var(--accent-rgb), 0.15); }
+        .legend-cell.level-2 { background-color: rgba(var(--accent-rgb), 0.4); }
+        .legend-cell.level-3 { background-color: rgba(var(--accent-rgb), 0.7); }
+        .legend-cell.level-4 { background-color: rgba(var(--accent-rgb), 1.0); }
+
+        /* ==================== ADDITIONAL RESPONSIVE ADJUSTMENTS ==================== */
+        @media (min-width: 1200px) {
+            .hero-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 5rem;
+            }
+            .hero-media-stack {
+                flex-direction: row;
+                align-items: stretch;
+                gap: 1.5rem;
+            }
+            .editorial-frame {
+                flex: 0 0 240px;
+            }
+            .terminal-widget {
+                flex: 1;
+            }
+        }
+        @media (max-width: 992px) {
+            .saas-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            .heatmap-grid {
+                grid-template-columns: repeat(14, 1fr); /* wrap on smaller screen width */
+            }
+        }
+        @media (max-width: 576px) {
+            .toolkit-content {
+                padding: 1.5rem;
+            }
+            .pdf-page-mock {
+                padding: 2rem 1.5rem;
+            }
+            .metrics-card {
+                padding: 2rem 1.5rem;
+            }
+            .heatmap-grid {
+                grid-template-columns: repeat(10, 1fr);
+            }
+        }
+
     </style>
 </head>
 <body>
@@ -2212,8 +2950,9 @@
     <!-- ==================== MOBILE MENU DRAWER ==================== -->
     <div class="mobile-menu" id="mobile-menu" role="dialog" aria-modal="true" aria-label="Navigation menu">
         <a href="#concept" class="mobile-nav-link" data-menu-link>The Concept</a>
-        <a href="#pillars" class="mobile-nav-link" data-menu-link>Pillars</a>
-        <a href="#timeline" class="mobile-nav-link" data-menu-link>The Curriculum</a>
+        <a href="#concept-proof" class="mobile-nav-link" data-menu-link>Toolkit</a>
+        <a href="#saas-projects" class="mobile-nav-link" data-menu-link>Projects</a>
+        <a href="#metrics" class="mobile-nav-link" data-menu-link>Metrics</a>
         <a href="#waitlist" class="mobile-nav-link" data-menu-link>Waitlist</a>
         <a href="#optin" class="mobile-nav-cta" data-menu-link>Claim Starter Kit</a>
     </div>
@@ -2228,8 +2967,9 @@
             <!-- Desktop Navigation -->
             <nav class="nav-desktop" aria-label="Main navigation">
                 <a href="#concept" class="nav-link">The Concept</a>
-                <a href="#pillars" class="nav-link">Pillars</a>
-                <a href="#timeline" class="nav-link">Curriculum</a>
+                <a href="#concept-proof" class="nav-link">Toolkit</a>
+                <a href="#saas-projects" class="nav-link">Projects</a>
+                <a href="#metrics" class="nav-link">Metrics</a>
                 <a href="#waitlist" class="nav-link">Waitlist</a>
                 <a href="#optin" class="nav-cta">Get Starter Kit</a>
             </nav>
@@ -2259,7 +2999,7 @@
                     Become <br><em>Unrecognizable</em>.
                 </h1>
                 <p class="hero-desc">
-                    I am documenting my monk mode journey. This is the raw blueprint—a 7-day starter kit designed to audit dopamine loops, structure deep work cycles, and rebuild discipline.
+                    I am documenting my monk mode journey. This is the raw blueprint—a 7-day starter kit designed to audit dopamine loops, structure deep work cycles, and build high-performance software development habits.
                 </p>
                 <div class="hero-ctas">
                     <a href="#optin" class="btn btn-primary">Download Protocol</a>
@@ -2267,7 +3007,7 @@
                 </div>
             </div>
 
-            <div class="hero-image-container">
+            <div class="hero-media-stack">
                 <div class="editorial-frame">
                     <div class="editorial-image-wrapper">
                         <img src="adams-x.jpg" alt="Adams X - Full Stack Developer" class="editorial-image">
@@ -2276,7 +3016,44 @@
                         ADAMS X
                         <span>Developer / Founder</span>
                     </div>
+                    <!-- Social Links -->
+                    <div class="image-socials">
+                        <a href="https://github.com/adamsxproject" target="_blank" rel="noopener noreferrer" aria-label="Adams X on GitHub">
+                            <svg viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+                            GitHub
+                        </a>
+                        <a href="https://x.com/adamsxproject" target="_blank" rel="noopener noreferrer" aria-label="Adams X on Twitter/X">
+                            <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                            Twitter/X
+                        </a>
+                        <a href="https://linkedin.com/in/adamsx" target="_blank" rel="noopener noreferrer" aria-label="Adams X on LinkedIn">
+                            <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0z"/></svg>
+                            LinkedIn
+                        </a>
+                    </div>
                     <div class="image-overlay-glow"></div>
+                </div>
+
+                <!-- Interactive Terminal Widget -->
+                <div class="terminal-widget">
+                    <div class="terminal-header">
+                        <div class="terminal-buttons">
+                            <span class="btn-dot red"></span>
+                            <span class="btn-dot yellow"></span>
+                            <span class="btn-dot green"></span>
+                        </div>
+                        <div class="terminal-title">adams@monkmode:~</div>
+                    </div>
+                    <div class="terminal-body">
+                        <div class="terminal-output" id="terminal-output">
+                            <div class="terminal-line">Monk Mode Shell v1.0.2</div>
+                            <div class="terminal-line">Type <span class="highlight">help</span> to view available protocol scripts.</div>
+                        </div>
+                        <div class="terminal-input-line">
+                            <span class="terminal-prompt">adams@monkmode:~$</span>
+                            <input type="text" id="terminal-input" placeholder="Type command..." autocomplete="off" spellcheck="false">
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -2296,6 +3073,242 @@
                 <p>
                     As a full stack developer, I built the Adams X Project to help creators monetize. But without extreme mental clarity, execution fails. This starter kit is the exact protocol I use to lock in and code SaaS applications with uninterrupted focus.
                 </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== PROOF OF CONCEPT TOOLKIT ==================== -->
+    <section class="proof-section" id="concept-proof">
+        <div class="container">
+            <div class="section-header" style="text-align: center; margin-bottom: 3rem; max-width: 100%;">
+                <span class="section-kicker">Proof of Concept</span>
+                <h2 class="section-title">The Monk Mode Developer Toolkit</h2>
+                <p style="color: var(--text-secondary); margin-top: 0.5rem; font-size: 0.95rem;">Explore the actual resources and scripts distributed inside the Starter Kit.</p>
+            </div>
+            
+            <div class="toolkit-container">
+                <!-- Tab Headers -->
+                <div class="toolkit-tabs">
+                    <button class="tab-btn active" data-tab="tab-blocker">Blocker Script</button>
+                    <button class="tab-btn" data-tab="tab-notion">Notion Dashboard</button>
+                    <button class="tab-btn" data-tab="tab-pdf">Starter Kit Preview</button>
+                </div>
+                
+                <!-- Tab Contents -->
+                <div class="toolkit-content">
+                    
+                    <!-- Blocker Script Tab -->
+                    <div class="tab-pane active" id="tab-blocker">
+                        <div class="pane-header">
+                            <span class="pane-title">focus-firewall.sh</span>
+                            <span class="pane-badge">Shell Script</span>
+                        </div>
+                        <div class="pane-body">
+                            <div class="code-window">
+<span class="code-comment"># System firewall blacklist for dopamine loops</span>
+<span class="code-keyword">set</span> -e
+<span class="code-keyword">export</span> BLOCKED_DOMAINS=(
+  <span class="code-string">"youtube.com"</span>
+  <span class="code-string">"twitter.com"</span>
+  <span class="code-string">"reddit.com"</span>
+)
+
+<span class="code-function">apply_block()</span> {
+  <span class="code-keyword">for</span> domain <span class="code-keyword">in</span> <span class="code-string">"${BLOCKED_DOMAINS[@]}"</span>; <span class="code-keyword">do</span>
+    sudo hostess add <span class="code-string">"127.0.0.1"</span> <span class="code-string">"$domain"</span>
+  <span class="code-keyword">done</span>
+  <span class="code-keyword">echo</span> <span class="code-string">"[+] Digital firewall active. Code loops engaged."</span>
+}
+apply_block</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Notion Dashboard Tab -->
+                    <div class="tab-pane" id="tab-notion">
+                        <div class="pane-header">
+                            <span class="pane-title">Monk Mode Weekly Log</span>
+                            <span class="pane-badge">Notion Dashboard</span>
+                        </div>
+                        <div class="pane-body">
+                            <div class="notion-window">
+                                <div class="notion-header-bar">
+                                    <span class="notion-icon">📓</span>
+                                    <h4>Sprint Logs (Week 24)</h4>
+                                </div>
+                                <div class="notion-table-wrap">
+                                    <table class="notion-table">
+                                        <thead>
+                                            <tr>
+                                                <th>Day</th>
+                                                <th>Deep Work Blocks</th>
+                                                <th>SaaS commits</th>
+                                                <th>Dopamine Status</th>
+                                                <th>Exercise</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Mon</td>
+                                                <td><span class="pill green">4.5 hrs</span></td>
+                                                <td>12 commits</td>
+                                                <td><span class="pill green">Zero screen time</span></td>
+                                                <td>5k Run</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Tue</td>
+                                                <td><span class="pill green">5.0 hrs</span></td>
+                                                <td>8 commits</td>
+                                                <td><span class="pill green">Zero screen time</span></td>
+                                                <td>Gym session</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Wed</td>
+                                                <td><span class="pill yellow">3.5 hrs</span></td>
+                                                <td>4 commits</td>
+                                                <td><span class="pill yellow">Short check (15m)</span></td>
+                                                <td>Rest day</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Thu</td>
+                                                <td><span class="pill green">6.0 hrs</span></td>
+                                                <td>19 commits</td>
+                                                <td><span class="pill green">Zero screen time</span></td>
+                                                <td>Boxing drills</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Fri</td>
+                                                <td><span class="pill green">4.0 hrs</span></td>
+                                                <td>11 commits</td>
+                                                <td><span class="pill green">Zero screen time</span></td>
+                                                <td>Yoga stretch</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Starter Kit PDF Tab -->
+                    <div class="tab-pane" id="tab-pdf">
+                        <div class="pane-header">
+                            <span class="pane-title">The 7-Day Starter Kit (PDF Preview)</span>
+                            <span class="pane-badge">Interactive Worksheets</span>
+                        </div>
+                        <div class="pane-body">
+                            <div class="pdf-window">
+                                <div class="pdf-page-mock">
+                                    <div class="pdf-logo">MONK MODE</div>
+                                    <div class="pdf-page-title">Day 1: The Attention Audit</div>
+                                    <p class="pdf-subtitle">List your current focus drains below and calculate your baseline score.</p>
+                                    <div class="pdf-input-mock">
+                                        <span>Focus Drain #1:</span>
+                                        <div class="mock-line"></div>
+                                    </div>
+                                    <div class="pdf-input-mock">
+                                        <span>Focus Drain #2:</span>
+                                        <div class="mock-line"></div>
+                                    </div>
+                                    <div class="pdf-checkboxes">
+                                        <div class="mock-cb"><span class="checked">✓</span> Audit complete: All screen time notifications toggled off.</div>
+                                        <div class="mock-cb"><span></span> Digital spaces decluttered: Desktop clean, browser cache purged.</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== SAAS SHOWCASE ==================== -->
+    <section class="saas-section" id="saas-projects">
+        <div class="container">
+            <div class="section-header" style="text-align: center; margin-bottom: 3rem; max-width: 100%;">
+                <span class="section-kicker">Shipped in Monk Mode</span>
+                <h2 class="section-title">Applications Built on the Protocol</h2>
+                <p style="color: var(--text-secondary); margin-top: 0.5rem; font-size: 0.95rem;">Proof of execution. These developer assets were shipped during active focus sprints.</p>
+            </div>
+            
+            <div class="saas-grid">
+                <!-- Project 1: FocusBlock CLI -->
+                <div class="saas-card">
+                    <div class="saas-meta">
+                        <span class="tech-tag">Bash / Go</span>
+                        <span class="status-indicator">Active Build</span>
+                    </div>
+                    <h3 class="saas-title">FocusBlock CLI</h3>
+                    <p class="saas-desc">
+                        A local command-line interface to redirect hosts and configure work blocks. Protects attention slots by automating block-out sequences on distraction platforms directly inside your development loop.
+                    </p>
+                    <div class="saas-features">
+                        <div class="saas-feature-item">Domain Loop Redirection</div>
+                        <div class="saas-feature-item">Configurable Deep Work Timers</div>
+                    </div>
+                </div>
+                
+                <!-- Project 2: ZenTab -->
+                <div class="saas-card">
+                    <div class="saas-meta">
+                        <span class="tech-tag">JS / Chrome API</span>
+                        <span class="status-indicator">Beta Release</span>
+                    </div>
+                    <h3 class="saas-title">ZenTab Extension</h3>
+                    <p class="saas-desc">
+                        A minimalist browser new-tab extension built to capture developer logs in markdown. Prevents open browser tab clutter by loading a clean, distraction-free environment whenever you open a new page.
+                    </p>
+                    <div class="saas-features">
+                        <div class="saas-feature-item">Local Markdown Editor</div>
+                        <div class="saas-feature-item">Off-grid: Local storage only</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== BUILT IN PUBLIC METRICS ==================== -->
+    <section class="built-in-public" id="metrics">
+        <div class="container">
+            <div class="metrics-card">
+                <div class="metrics-header">
+                    <span class="metrics-kicker">Built In Public</span>
+                    <h2 class="metrics-title">Development Commit Velocity</h2>
+                    <p class="metrics-subtitle">Daily deep-work coding activity during the Monk Mode cycles.</p>
+                </div>
+                
+                <div class="heatmap-container">
+                    <div class="heatmap-stats">
+                        <div class="stat-item">
+                            <span class="stat-number">482</span>
+                            <span class="stat-label">Total Commits</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">112 Days</span>
+                            <span class="stat-label">Current Streak</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">98.4%</span>
+                            <span class="stat-label">Execution Consistency</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Contribution Chart Layout -->
+                    <div class="heatmap-wrapper">
+                        <div class="heatmap-grid" id="heatmap-grid-element"></div>
+                        
+                        <div class="heatmap-legend">
+                            <span>Less</span>
+                            <span class="legend-cell level-0"></span>
+                            <span class="legend-cell level-1"></span>
+                            <span class="legend-cell level-2"></span>
+                            <span class="legend-cell level-3"></span>
+                            <span class="legend-cell level-4"></span>
+                            <span>More</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -2474,12 +3487,12 @@
         <div class="container capture-grid">
             
             <div class="upsell-info">
-                <span class="upsell-kicker">Coming Soon</span>
-                <h2 class="upsell-title">The Next Stage: "Comeback: Unrecognizable"</h2>
+                <span class="upsell-kicker">What Comes Next</span>
+                <h2 class="upsell-title">The Full Protocol: <em>Comeback: Unrecognizable</em></h2>
                 <p class="upsell-desc">
-                    The 7-Day Starter Kit is the foundational blueprint. It is designed to prepare your mind and work environment. Once complete, you will be invited to join the main curriculum: **Comeback: Unrecognizable — The 7 Rules to Change Your Life**.
+                    The 7-Day Starter Kit is the foundation. Once your focus architecture is built, you will be invited to join the full 90-day curriculum: a structured engineering sprint to write clean code, ship production SaaS, and build developer-grade focus discipline.
                 </p>
-                <div class="upsell-tag">⚡ Limited Access List</div>
+                <div class="upsell-tag">🔒 Early Beta — Limited Seats</div>
             </div>
 
             <div class="form-container">
@@ -2535,15 +3548,15 @@
                 <h2 class="waitlist-title">Comeback: Unrecognizable</h2>
                 <p class="waitlist-subtitle">7 Rules to Change Your Life</p>
                 <p class="waitlist-body">
-                    The free kit is just the warm-up. This is the full 90-day protocol — the exact step-by-step system to build a <span class="waitlist-price">$10k/month</span> income from zero. No guesswork. No fluff. Just the system.
+                    The free starter kit builds your focus foundation. The full 90-day protocol is a structured development blueprint to write clean code, master full-stack engineering, and ship production-ready SaaS projects with relentless consistency. No hype. Just the engineering pipeline.
                 </p>
                 <div class="pricing-display" id="pricing-waitlist">
-                    <span class="price-original">$67</span>
+                    <span class="price-original">$149</span>
                     <span class="price-arrow">→</span>
-                    <span class="price-current">$17</span>
-                    <span class="price-badge">Launch Offer</span>
+                    <span class="price-current">$49</span>
+                    <span class="price-badge">Early Beta License</span>
                 </div>
-                <button class="btn btn-primary" id="open-waitlist-modal">Join the Waitlist — Get Notified at Launch</button>
+                <a href="/waitlist" class="btn btn-primary">Join the Waitlist — Get Notified at Launch</a>
             </div>
         </div>
     </section>
@@ -2606,6 +3619,146 @@
                     const el = document.getElementById('waitlist');
                     if (el) el.scrollIntoView({ behavior: 'smooth' });
                 }, 150);
+            }
+
+            // 1.1 TERMINAL WIDGET LOGIC
+            const terminalInput = document.getElementById('terminal-input');
+            const terminalOutput = document.getElementById('terminal-output');
+
+            const COMMANDS = {
+                help: `Available commands:
+  - <span class="highlight">help</span>: Show this help menu
+  - <span class="highlight">cat blocker.sh</span>: Display the hosts blocker script
+  - <span class="highlight">run audit</span>: Perform focus baseline diagnostic audit
+  - <span class="highlight">clear</span>: Clear terminal console
+  - <span class="highlight">motd</span>: Show the Monk Mode Message of the Day`,
+                
+                'cat blocker.sh': `<pre class="code-output">
+#!/bin/bash
+# FocusBlock Host Redirect Blocker
+BLOCK_LIST=(
+  "facebook.com" "twitter.com" "x.com"
+  "youtube.com" "instagram.com" "reddit.com"
+)
+HOSTS_PATH="/etc/hosts"
+IP_REDIRECT="127.0.0.1"
+
+echo "[*] Initializing host redirect firewall..."
+for DOMAIN in "\${BLOCK_LIST[@]}"; do
+  if ! grep -q "$DOMAIN" "$HOSTS_PATH"; then
+    echo "$IP_REDIRECT $DOMAIN" >> "$HOSTS_PATH"
+    echo "[+] Blocked: $DOMAIN -> Loopback"
+  fi
+done
+echo "[+] Block sequence complete. Attention secured."
+</pre>`,
+                
+                'run audit': `Initializing Focus Audit...
+[<span class="accent">*</span>] Checking notification settings: <span class="danger">FAILING</span>
+[<span class="accent">*</span>] Scanning active social domains: 4 SESSIONS OPEN
+[<span class="accent">*</span>] Measuring attention span: COMPROMISED (Avg 8.4 seconds)
+<span class="danger">WARNING: Dopamine loops overloaded. Reset is critical.</span>
+Recommendation: Download the 7-Day Starter Kit to configure your digital firewall.`,
+
+                motd: `=========================================
+      MONK MODE PROTOCOL v1.0.2
+=========================================
+"Discipline is not restriction. It is absolute
+sovereignty over your attention."
+- Adams X
+=========================================`,
+            };
+
+            function handleTerminalCommand(cmdText) {
+                const trimmed = cmdText.trim();
+                const lowerCmd = trimmed.toLowerCase();
+                
+                // Add command to output
+                const userLine = document.createElement('div');
+                userLine.className = 'terminal-line';
+                userLine.innerHTML = `<span class="terminal-prompt">adams@monkmode:~$</span> ${cmdText}`;
+                terminalOutput.appendChild(userLine);
+                
+                const resultLine = document.createElement('div');
+                resultLine.className = 'terminal-line';
+                
+                if (lowerCmd === 'clear') {
+                    terminalOutput.innerHTML = '';
+                    return;
+                } else if (trimmed === '') {
+                    return;
+                } else if (COMMANDS[lowerCmd]) {
+                    resultLine.innerHTML = COMMANDS[lowerCmd];
+                } else {
+                    resultLine.innerHTML = `bash: ${trimmed}: command not found. Type <span class="highlight">help</span> for a list of valid commands.`;
+                }
+                
+                terminalOutput.appendChild(resultLine);
+                terminalOutput.scrollTop = terminalOutput.scrollHeight;
+            }
+
+            if (terminalInput) {
+                terminalInput.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter') {
+                        const val = terminalInput.value;
+                        handleTerminalCommand(val);
+                        terminalInput.value = '';
+                    }
+                });
+
+                // Focus on terminal input click
+                const termWidget = document.querySelector('.terminal-widget');
+                if (termWidget) {
+                    termWidget.addEventListener('click', () => {
+                        terminalInput.focus();
+                    });
+                }
+            }
+
+            // 1.2 TOOLKIT TAB TOGGLE LOGIC
+            const tabButtons = document.querySelectorAll('.tab-btn');
+            const tabPanes = document.querySelectorAll('.tab-pane');
+
+            tabButtons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const targetTab = btn.getAttribute('data-tab');
+
+                    tabButtons.forEach(b => b.classList.remove('active'));
+                    tabPanes.forEach(p => p.classList.remove('active'));
+
+                    btn.classList.add('active');
+                    const activePane = document.getElementById(targetTab);
+                    if (activePane) activePane.classList.add('active');
+                });
+            });
+
+            // 1.3 HEATMAP GENERATION LOGIC
+            const heatmapGrid = document.getElementById('heatmap-grid-element');
+            if (heatmapGrid) {
+                const totalBlocks = 140; // 20 weeks * 7 days
+                const levelsPattern = [
+                    2, 3, 4, 3, 2, 0, 0, 2, 3, 4, 4, 3, 2, 3, 4, 2, 0, 1, 3, 4,
+                    3, 2, 4, 4, 3, 1, 2, 3, 4, 3, 2, 0, 1, 3, 4, 4, 3, 2, 4, 3,
+                    0, 2, 3, 4, 3, 1, 2, 4, 4, 3, 2, 1, 0, 3, 4, 3, 2, 4, 4, 3,
+                    2, 3, 4, 4, 3, 2, 1, 0, 2, 3, 4, 3, 2, 4, 4, 3, 2, 0, 1, 3,
+                    4, 3, 2, 4, 4, 3, 2, 1, 0, 3, 4, 3, 2, 4, 4, 3, 2, 0, 1, 3,
+                    4, 3, 2, 4, 4, 3, 2, 1, 0, 3, 4, 3, 2, 4, 4, 3, 2, 0, 1, 3,
+                    4, 3, 2, 4, 4, 3, 2, 1, 0, 3, 4, 3, 2, 4, 4, 3, 2, 0, 1, 3
+                ];
+                
+                for (let i = 0; i < totalBlocks; i++) {
+                    const cell = document.createElement('div');
+                    const level = levelsPattern[i % levelsPattern.length];
+                    cell.className = `heatmap-cell level-${level}`;
+                    
+                    const date = new Date();
+                    date.setDate(date.getDate() - (totalBlocks - i));
+                    const dateString = date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+                    const commits = level === 0 ? 'No' : (level * 3 + Math.floor(Math.random() * 3));
+                    cell.setAttribute('title', `${commits} commits on ${dateString}`);
+                    
+                    heatmapGrid.appendChild(cell);
+                }
             }
 
             // 1. DYNAMIC SELF-ASSESSMENT CALCULATOR LOGIC
@@ -2749,8 +3902,12 @@
                 document.body.style.overflow = '';
             }
 
-            openModalBtn.addEventListener('click', openModal);
-            closeModalBtn.addEventListener('click', closeModal);
+            if (openModalBtn) {
+                openModalBtn.addEventListener('click', openModal);
+            }
+            if (closeModalBtn) {
+                closeModalBtn.addEventListener('click', closeModal);
+            }
 
             // Close on overlay click (not card click)
             waitlistModal.addEventListener('click', (e) => {
