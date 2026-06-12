@@ -1099,12 +1099,13 @@
             .price-original { font-size: 1.3rem; }
 
             .back-link { display: none; }
+            .badge-text { display: none; }
         }
 
         @media (max-width: 480px) {
             .container { padding: 0 1rem; }
             .hero-section { padding: 120px 0 50px; }
-            .hero-title { font-size: 2rem; }
+            .hero-title { font-size: 2rem; word-break: break-word; hyphens: auto; }
             .hero-kicker { font-size: 0.7rem; letter-spacing: 0.15em; }
 
             .trust-grid { grid-template-columns: repeat(2, 1fr); gap: 0; }
@@ -1169,7 +1170,7 @@
                 </div>
                 <div class="status-badge">
                     <span class="status-dot"></span>
-                    Monk Mode: Active
+                    <span class="badge-text">Monk Mode: Active</span>
                 </div>
             </div>
         </header>

@@ -1551,6 +1551,9 @@
             .timeline-summary {
                 font-size: 0.85rem;
             }
+            .badge-text {
+                display: none;
+            }
         }
 
         /* ── PHONE LANDSCAPE / LARGE PHONE (≤480px) ── */
@@ -1597,8 +1600,10 @@
             }
 
             .hero-title {
-                font-size: 2.2rem;
+                font-size: 2rem;
                 margin-bottom: 1.5rem;
+                word-break: break-word;
+                hyphens: auto;
             }
 
             .kicker {
@@ -1895,6 +1900,8 @@
 
             .hero-title {
                 font-size: 1.85rem;
+                word-break: break-word;
+                hyphens: auto;
             }
 
             .hero-desc {
@@ -2848,6 +2855,9 @@
             align-items: center;
             gap: 1rem;
             width: 100%;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            padding-bottom: 0.5rem;
         }
         .heatmap-grid {
             display: grid;
@@ -2856,6 +2866,7 @@
             max-width: 100%;
             width: auto;
             padding: 0.5rem;
+            min-width: 380px;
         }
         .heatmap-cell {
             width: 14px;
@@ -2926,6 +2937,7 @@
             }
             .heatmap-grid {
                 grid-template-columns: repeat(14, 1fr); /* wrap on smaller screen width */
+                min-width: auto;
             }
         }
         @media (max-width: 576px) {
@@ -2940,6 +2952,7 @@
             }
             .heatmap-grid {
                 grid-template-columns: repeat(10, 1fr);
+                min-width: auto;
             }
         }
 
@@ -2951,7 +2964,7 @@
     <div class="mobile-menu" id="mobile-menu" role="dialog" aria-modal="true" aria-label="Navigation menu">
         <a href="#concept" class="mobile-nav-link" data-menu-link>The Concept</a>
         <a href="#concept-proof" class="mobile-nav-link" data-menu-link>Toolkit</a>
-        <a href="#saas-projects" class="mobile-nav-link" data-menu-link>Projects</a>
+        <a href="#saas-projects" class="mobile-nav-link" data-menu-link>Systems</a>
         <a href="#metrics" class="mobile-nav-link" data-menu-link>Metrics</a>
         <a href="#waitlist" class="mobile-nav-link" data-menu-link>Waitlist</a>
         <a href="#optin" class="mobile-nav-cta" data-menu-link>Claim Starter Kit</a>
@@ -2968,7 +2981,7 @@
             <nav class="nav-desktop" aria-label="Main navigation">
                 <a href="#concept" class="nav-link">The Concept</a>
                 <a href="#concept-proof" class="nav-link">Toolkit</a>
-                <a href="#saas-projects" class="nav-link">Projects</a>
+                <a href="#saas-projects" class="nav-link">Systems</a>
                 <a href="#metrics" class="nav-link">Metrics</a>
                 <a href="#waitlist" class="nav-link">Waitlist</a>
                 <a href="#optin" class="nav-cta">Get Starter Kit</a>
@@ -2999,7 +3012,7 @@
                     Become <br><em>Unrecognizable</em>.
                 </h1>
                 <p class="hero-desc">
-                    I am documenting my monk mode journey. This is the raw blueprint—a 7-day starter kit designed to audit dopamine loops, structure deep work cycles, and build high-performance software development habits.
+                    I am documenting my monk mode journey. This is the raw blueprint—a 7-day starter kit designed to audit dopamine loops, structure deep work cycles, and build high-performance focus and execution habits.
                 </p>
                 <div class="hero-ctas">
                     <a href="#optin" class="btn btn-primary">Download Protocol</a>
@@ -3010,11 +3023,11 @@
             <div class="hero-media-stack">
                 <div class="editorial-frame">
                     <div class="editorial-image-wrapper">
-                        <img src="adams-x.jpg" alt="Adams X - Full Stack Developer" class="editorial-image">
+                        <img src="adams-x.jpg" alt="Adams X - Creator & Founder" class="editorial-image">
                     </div>
                     <div class="image-caption">
                         ADAMS X
-                        <span>Developer / Founder</span>
+                        <span>Creator / Founder</span>
                     </div>
                     <!-- Social Links -->
                     <div class="image-socials">
@@ -3071,7 +3084,7 @@
                     Monk Mode is a period of intense focus, isolation, and discipline. By stripping away modern cognitive clutter—constant notifications, social comparison, and quick-dopamine hits—you create space to construct something real.
                 </p>
                 <p>
-                    As a full stack developer, I built the Adams X Project to help creators monetize. But without extreme mental clarity, execution fails. This starter kit is the exact protocol I use to lock in and code SaaS applications with uninterrupted focus.
+                    I built the Adams X Project to help creators monetize and execute. But without extreme mental clarity, execution fails. This starter kit is the exact protocol I use to lock in and build projects with uninterrupted focus.
                 </p>
             </div>
         </div>
@@ -3082,15 +3095,15 @@
         <div class="container">
             <div class="section-header" style="text-align: center; margin-bottom: 3rem; max-width: 100%;">
                 <span class="section-kicker">Proof of Concept</span>
-                <h2 class="section-title">The Monk Mode Developer Toolkit</h2>
-                <p style="color: var(--text-secondary); margin-top: 0.5rem; font-size: 0.95rem;">Explore the actual resources and scripts distributed inside the Starter Kit.</p>
+                <h2 class="section-title">The Monk Mode Focus Toolkit</h2>
+                <p style="color: var(--text-secondary); margin-top: 0.5rem; font-size: 0.95rem;">Explore the actual resources and frameworks distributed inside the Starter Kit.</p>
             </div>
             
             <div class="toolkit-container">
                 <!-- Tab Headers -->
                 <div class="toolkit-tabs">
-                    <button class="tab-btn active" data-tab="tab-blocker">Blocker Script</button>
-                    <button class="tab-btn" data-tab="tab-notion">Notion Dashboard</button>
+                    <button class="tab-btn active" data-tab="tab-blocker">Focus Blocker</button>
+                    <button class="tab-btn" data-tab="tab-notion">Grind Log</button>
                     <button class="tab-btn" data-tab="tab-pdf">Starter Kit Preview</button>
                 </div>
                 
@@ -3100,26 +3113,22 @@
                     <!-- Blocker Script Tab -->
                     <div class="tab-pane active" id="tab-blocker">
                         <div class="pane-header">
-                            <span class="pane-title">focus-firewall.sh</span>
-                            <span class="pane-badge">Shell Script</span>
+                            <span class="pane-title">focus-firewall.txt</span>
+                            <span class="pane-badge">Focus Protocol</span>
                         </div>
                         <div class="pane-body">
                             <div class="code-window">
-<span class="code-comment"># System firewall blacklist for dopamine loops</span>
-<span class="code-keyword">set</span> -e
-<span class="code-keyword">export</span> BLOCKED_DOMAINS=(
-  <span class="code-string">"youtube.com"</span>
-  <span class="code-string">"twitter.com"</span>
-  <span class="code-string">"reddit.com"</span>
-)
+<span class="code-comment"># Digital blacklists to secure attention sovereignty</span>
+<span class="code-keyword">Blacklisted platforms</span>:
+  - youtube.com
+  - twitter.com
+  - reddit.com
 
-<span class="code-function">apply_block()</span> {
-  <span class="code-keyword">for</span> domain <span class="code-keyword">in</span> <span class="code-string">"${BLOCKED_DOMAINS[@]}"</span>; <span class="code-keyword">do</span>
-    sudo hostess add <span class="code-string">"127.0.0.1"</span> <span class="code-string">"$domain"</span>
-  <span class="code-keyword">done</span>
-  <span class="code-keyword">echo</span> <span class="code-string">"[+] Digital firewall active. Code loops engaged."</span>
-}
-apply_block</div>
+<span class="code-function">Action steps</span>:
+  - Disable notifications at OS level
+  - Lock hosts files to loopback (127.0.0.1)
+  - Perform daily cognitive audits
+<span class="code-keyword">echo</span> <span class="code-string">"[+] Digital firewall active. Focus sequence engaged."</span></div>
                         </div>
                     </div>
                     
@@ -3141,7 +3150,7 @@ apply_block</div>
                                             <tr>
                                                 <th>Day</th>
                                                 <th>Deep Work Blocks</th>
-                                                <th>SaaS commits</th>
+                                                <th>Daily Targets</th>
                                                 <th>Dopamine Status</th>
                                                 <th>Exercise</th>
                                             </tr>
@@ -3150,35 +3159,35 @@ apply_block</div>
                                             <tr>
                                                 <td>Mon</td>
                                                 <td><span class="pill green">4.5 hrs</span></td>
-                                                <td>12 commits</td>
+                                                <td>4 blocks</td>
                                                 <td><span class="pill green">Zero screen time</span></td>
                                                 <td>5k Run</td>
                                             </tr>
                                             <tr>
                                                 <td>Tue</td>
                                                 <td><span class="pill green">5.0 hrs</span></td>
-                                                <td>8 commits</td>
+                                                <td>5 blocks</td>
                                                 <td><span class="pill green">Zero screen time</span></td>
                                                 <td>Gym session</td>
                                             </tr>
                                             <tr>
                                                 <td>Wed</td>
                                                 <td><span class="pill yellow">3.5 hrs</span></td>
-                                                <td>4 commits</td>
+                                                <td>3 blocks</td>
                                                 <td><span class="pill yellow">Short check (15m)</span></td>
                                                 <td>Rest day</td>
                                             </tr>
                                             <tr>
                                                 <td>Thu</td>
                                                 <td><span class="pill green">6.0 hrs</span></td>
-                                                <td>19 commits</td>
+                                                <td>6 blocks</td>
                                                 <td><span class="pill green">Zero screen time</span></td>
                                                 <td>Boxing drills</td>
                                             </tr>
                                             <tr>
                                                 <td>Fri</td>
                                                 <td><span class="pill green">4.0 hrs</span></td>
-                                                <td>11 commits</td>
+                                                <td>4 blocks</td>
                                                 <td><span class="pill green">Zero screen time</span></td>
                                                 <td>Yoga stretch</td>
                                             </tr>
@@ -3223,66 +3232,66 @@ apply_block</div>
         </div>
     </section>
 
-    <!-- ==================== SAAS SHOWCASE ==================== -->
+    <!-- ==================== FOCUS SYSTEMS SHOWCASE ==================== -->
     <section class="saas-section" id="saas-projects">
         <div class="container">
             <div class="section-header" style="text-align: center; margin-bottom: 3rem; max-width: 100%;">
-                <span class="section-kicker">Shipped in Monk Mode</span>
-                <h2 class="section-title">Applications Built on the Protocol</h2>
-                <p style="color: var(--text-secondary); margin-top: 0.5rem; font-size: 0.95rem;">Proof of execution. These developer assets were shipped during active focus sprints.</p>
+                <span class="section-kicker">Executed in Monk Mode</span>
+                <h2 class="section-title">Habits & Systems Built on the Protocol</h2>
+                <p style="color: var(--text-secondary); margin-top: 0.5rem; font-size: 0.95rem;">Proof of execution. These systems were built during active focus sprints.</p>
             </div>
             
             <div class="saas-grid">
                 <!-- Project 1: FocusBlock CLI -->
                 <div class="saas-card">
                     <div class="saas-meta">
-                        <span class="tech-tag">Bash / Go</span>
-                        <span class="status-indicator">Active Build</span>
+                        <span class="tech-tag">Focus / Attention</span>
+                        <span class="status-indicator">Active Routine</span>
                     </div>
-                    <h3 class="saas-title">FocusBlock CLI</h3>
+                    <h3 class="saas-title">Focus Block Protocol</h3>
                     <p class="saas-desc">
-                        A local command-line interface to redirect hosts and configure work blocks. Protects attention slots by automating block-out sequences on distraction platforms directly inside your development loop.
+                        A customized digital environment configuration to block hosts and lock in deep focus windows. Protects your attention by automating block-out sequences on distraction platforms.
                     </p>
                     <div class="saas-features">
                         <div class="saas-feature-item">Domain Loop Redirection</div>
-                        <div class="saas-feature-item">Configurable Deep Work Timers</div>
+                        <div class="saas-feature-item">Configurable Focus Blocks</div>
                     </div>
                 </div>
                 
                 <!-- Project 2: ZenTab -->
                 <div class="saas-card">
                     <div class="saas-meta">
-                        <span class="tech-tag">JS / Chrome API</span>
-                        <span class="status-indicator">Beta Release</span>
+                        <span class="tech-tag">Log / Tracking</span>
+                        <span class="status-indicator">Established</span>
                     </div>
-                    <h3 class="saas-title">ZenTab Extension</h3>
+                    <h3 class="saas-title">Zen Daily Log</h3>
                     <p class="saas-desc">
-                        A minimalist browser new-tab extension built to capture developer logs in markdown. Prevents open browser tab clutter by loading a clean, distraction-free environment whenever you open a new page.
+                        A minimalist tracking template built to capture daily focus logs. Prevents mental clutter by loading a clean, distraction-free logging interface whenever you start your day.
                     </p>
                     <div class="saas-features">
-                        <div class="saas-feature-item">Local Markdown Editor</div>
-                        <div class="saas-feature-item">Off-grid: Local storage only</div>
+                        <div class="saas-feature-item">Daily Progress Journal</div>
+                        <div class="saas-feature-item">Minimalist & Simple Layout</div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ==================== BUILT IN PUBLIC METRICS ==================== -->
+    <!-- ==================== DAILY GRIND METRICS ==================== -->
     <section class="built-in-public" id="metrics">
         <div class="container">
             <div class="metrics-card">
                 <div class="metrics-header">
-                    <span class="metrics-kicker">Built In Public</span>
-                    <h2 class="metrics-title">Development Commit Velocity</h2>
-                    <p class="metrics-subtitle">Daily deep-work coding activity during the Monk Mode cycles.</p>
+                    <span class="metrics-kicker">Documented Daily</span>
+                    <h2 class="metrics-title">Monk Mode Consistency Heatmap</h2>
+                    <p class="metrics-subtitle">Daily deep-work execution activity during active focus cycles.</p>
                 </div>
                 
                 <div class="heatmap-container">
                     <div class="heatmap-stats">
                         <div class="stat-item">
-                            <span class="stat-number">482</span>
-                            <span class="stat-label">Total Commits</span>
+                            <span class="stat-number">480</span>
+                            <span class="stat-label">Total Focus Blocks</span>
                         </div>
                         <div class="stat-item">
                             <span class="stat-number">112 Days</span>
@@ -3325,12 +3334,12 @@ apply_block</div>
                 <div class="pillar-card">
                     <div class="pillar-num">01</div>
                     <h3 class="pillar-title">Isolation</h3>
-                    <p class="pillar-desc">Minimize superficial social loops. Remove social apps, turn off notification nodes, and create a silent workspace. Solitude is the breeding ground for breakthrough engineering.</p>
+                    <p class="pillar-desc">Minimize superficial social loops. Remove social apps, turn off notification nodes, and create a silent workspace. Solitude is the breeding ground for breakthrough insights.</p>
                 </div>
                 <div class="pillar-card">
                     <div class="pillar-num">02</div>
                     <h3 class="pillar-title">Deep Work</h3>
-                    <p class="pillar-desc">Commit to a minimum of 4 hours of uninterrupted, highly concentrated work blocks every day. No browsing, no chat, just pure building and development.</p>
+                    <p class="pillar-desc">Commit to a minimum of 4 hours of uninterrupted, highly concentrated work blocks every day. No browsing, no chat, just pure focus and building.</p>
                 </div>
                 <div class="pillar-card">
                     <div class="pillar-num">03</div>
@@ -3412,7 +3421,7 @@ apply_block</div>
                 <div class="timeline-row">
                     <div class="timeline-day"><span class="timeline-dot"></span>Day 03</div>
                     <div class="timeline-topic">Time-Blocking Architectures</div>
-                    <div class="timeline-summary">Structuring the developer calendar. How to block 4 hours of uninterrupted build time.</div>
+                    <div class="timeline-summary">Structuring your focus calendar. How to block 4 hours of uninterrupted deep work.</div>
                 </div>
                 <div class="timeline-row">
                     <div class="timeline-day"><span class="timeline-dot"></span>Day 04</div>
@@ -3421,8 +3430,8 @@ apply_block</div>
                 </div>
                 <div class="timeline-row">
                     <div class="timeline-day"><span class="timeline-dot"></span>Day 05</div>
-                    <div class="timeline-topic">Deep Work Engineering</div>
-                    <div class="timeline-summary">Accessing flow states, managing coding fatigue, and utilizing strategic micro-rests.</div>
+                    <div class="timeline-topic">Deep Work Systems</div>
+                    <div class="timeline-summary">Accessing flow states, managing mental fatigue, and utilizing strategic micro-rests.</div>
                 </div>
                 <div class="timeline-row">
                     <div class="timeline-day"><span class="timeline-dot"></span>Day 06</div>
@@ -3459,15 +3468,15 @@ apply_block</div>
                     <div class="benefit-num">02</div>
                     <div>
                         <h3 class="benefit-title">Time Blocking Templates</h3>
-                        <p class="benefit-text">Importable calendar formats and developer scheduling blocks to carve out space for writing code, building products, or editing.</p>
+                        <p class="benefit-text">Importable calendar formats and focused scheduling blocks to carve out space for deep work, planning, or creating.</p>
                     </div>
                 </div>
 
                 <div class="benefit-item">
                     <div class="benefit-num">03</div>
                     <div>
-                        <h3 class="benefit-title">The Local Host Firewall Script</h3>
-                        <p class="benefit-text">A simple script template to blacklist distracting sites directly at the host level, making it physically impossible to open them.</p>
+                        <h3 class="benefit-title">The Attention Shield Guide</h3>
+                        <p class="benefit-text">A step-by-step blueprint to blacklist distracting apps and sites directly on your devices, making it physically impossible to open them.</p>
                     </div>
                 </div>
 
@@ -3490,7 +3499,7 @@ apply_block</div>
                 <span class="upsell-kicker">What Comes Next</span>
                 <h2 class="upsell-title">The Full Protocol: <em>Comeback: Unrecognizable</em></h2>
                 <p class="upsell-desc">
-                    The 7-Day Starter Kit is the foundation. Once your focus architecture is built, you will be invited to join the full 90-day curriculum: a structured engineering sprint to write clean code, ship production SaaS, and build developer-grade focus discipline.
+                    The 7-Day Starter Kit is the foundation. Once your focus architecture is built, you will be invited to join the full 90-day protocol: a structured execution system to build focus habits, establish deep consistency, and achieve absolute life discipline.
                 </p>
                 <div class="upsell-tag">🔒 Early Beta — Limited Seats</div>
             </div>
@@ -3520,7 +3529,7 @@ apply_block</div>
                     
                     <div class="form-credibility">
                         <span class="credibility-icon"></span>
-                        Currently being lived and documented by Adams X, Full Stack Developer.
+                        Currently being lived and documented by Adams X.
                     </div>
                 </div>
 
@@ -3628,29 +3637,23 @@ apply_block</div>
             const COMMANDS = {
                 help: `Available commands:
   - <span class="highlight">help</span>: Show this help menu
-  - <span class="highlight">cat blocker.sh</span>: Display the hosts blocker script
+  - <span class="highlight">cat rules.txt</span>: Display the 7 Rules of Monk Mode
   - <span class="highlight">run audit</span>: Perform focus baseline diagnostic audit
   - <span class="highlight">clear</span>: Clear terminal console
-  - <span class="highlight">motd</span>: Show the Monk Mode Message of the Day`,
+  - <span class="highlight">motd</span>: Show the Message of the Day`,
                 
-                'cat blocker.sh': `<pre class="code-output">
-#!/bin/bash
-# FocusBlock Host Redirect Blocker
-BLOCK_LIST=(
-  "facebook.com" "twitter.com" "x.com"
-  "youtube.com" "instagram.com" "reddit.com"
-)
-HOSTS_PATH="/etc/hosts"
-IP_REDIRECT="127.0.0.1"
-
-echo "[*] Initializing host redirect firewall..."
-for DOMAIN in "\${BLOCK_LIST[@]}"; do
-  if ! grep -q "$DOMAIN" "$HOSTS_PATH"; then
-    echo "$IP_REDIRECT $DOMAIN" >> "$HOSTS_PATH"
-    echo "[+] Blocked: $DOMAIN -> Loopback"
-  fi
-done
-echo "[+] Block sequence complete. Attention secured."
+                'cat rules.txt': `<pre class="code-output">
+=========================================
+      THE 7 RULES OF MONK MODE
+=========================================
+1. No cheap dopamine (feeds, notification feeds)
+2. Minimum 4 hours of focused work daily
+3. Daily physical training & movement
+4. Track daily focus focus & habits
+5. Strict sleep and recovery windows
+6. Complete digital space declutter
+7. Document and review progress weekly
+=========================================
 </pre>`,
                 
                 'run audit': `Initializing Focus Audit...
@@ -3754,8 +3757,8 @@ sovereignty over your attention."
                     const date = new Date();
                     date.setDate(date.getDate() - (totalBlocks - i));
                     const dateString = date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
-                    const commits = level === 0 ? 'No' : (level * 3 + Math.floor(Math.random() * 3));
-                    cell.setAttribute('title', `${commits} commits on ${dateString}`);
+                    const blocks = level === 0 ? 'No' : (level);
+                    cell.setAttribute('title', `${blocks} focus blocks completed on ${dateString}`);
                     
                     heatmapGrid.appendChild(cell);
                 }
@@ -3799,7 +3802,7 @@ sovereignty over your attention."
                 if (score >= 75) {
                     resultStatus.textContent = "High Sovereignty";
                     resultStatus.style.color = "var(--accent)";
-                    resultDesc.textContent = "You maintain a solid grip on your focus. The 7-Day Starter Kit will help you optimize your codebase environment for extreme building.";
+                    resultDesc.textContent = "You maintain a solid grip on your focus. The 7-Day Starter Kit will help you optimize your environment for extreme focus.";
                 } else if (score >= 45) {
                     resultStatus.textContent = "Dopamine Leakage";
                     resultStatus.style.color = "#E3C165";
@@ -3807,7 +3810,7 @@ sovereignty over your attention."
                 } else {
                     resultStatus.textContent = "Attention Hijacked";
                     resultStatus.style.color = "#E86C5D";
-                    resultDesc.textContent = "Your focus loops are fractured. Constant stimulation is stopping you from writing code or shipping. The Starter Kit is highly recommended.";
+                    resultDesc.textContent = "Your focus loops are fractured. Constant stimulation is stopping you from executing your goals. The Starter Kit is highly recommended.";
                 }
             }
 
