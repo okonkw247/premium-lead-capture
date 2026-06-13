@@ -13,10 +13,10 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <meta name="theme-color" content="#0B0A09">
 
-    <!-- Google Fonts: Playfair Display (Serif) and Instrument Sans (Sans-Serif) -->
+    <!-- Google Fonts: Playfair Display (Serif) and Inter (Sans-Serif) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
 
     <style>
         /* DESIGN SYSTEM: Warm Dark Editorial Theme (Matches Homepage & Waitlist) */
@@ -31,8 +31,11 @@
             --accent-hover: #E3C165;  /* Hover state for buttons */
             --accent-rgb: 212, 175, 55;
             --font-serif: 'Playfair Display', Georgia, serif;
-            --font-sans: 'Instrument Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             --transition-smooth: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+            --shadow-md: 0 4px 16px -2px rgba(0, 0, 0, 0.5), 0 2px 6px -1px rgba(0, 0, 0, 0.3);
+            --shadow-lg: 0 12px 32px -4px rgba(0, 0, 0, 0.6), 0 4px 12px -2px rgba(0, 0, 0, 0.4);
         }
 
         /* Basic Reset & Layout */
@@ -172,11 +175,12 @@
             max-width: 640px;
             margin: 0 auto;
             background-color: var(--bg-surface);
-            border: 1px solid var(--border-subtle);
+            border: 1px solid rgba(255, 255, 255, 0.06);
             border-top: 3px solid var(--accent);
-            padding: 4rem 3.5rem;
+            border-radius: 12px;
+            padding: 4.5rem 3.5rem;
             text-align: center;
-            box-shadow: 0 25px 60px rgba(0,0,0,0.4);
+            box-shadow: var(--shadow-lg);
         }
 
         .bonus-kicker {
@@ -192,7 +196,7 @@
         .bonus-title {
             font-family: var(--font-serif);
             font-size: 2.5rem;
-            font-weight: 500;
+            font-weight: 700;
             line-height: 1.15;
             margin-bottom: 0.5rem;
         }
@@ -235,12 +239,13 @@
         .form-input {
             width: 100%;
             background-color: var(--bg-input);
-            border: 1px solid var(--border-subtle);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
             padding: 1.1rem 1.25rem;
             color: var(--text-primary);
             font-family: var(--font-sans);
             font-size: 0.95rem;
-            transition: var(--transition-smooth);
+            transition: all 0.2s ease;
         }
 
         .form-input::placeholder {
@@ -271,22 +276,23 @@
 
         .form-input:focus {
             border-color: var(--accent);
-            box-shadow: 0 0 15px rgba(var(--accent-rgb), 0.1);
+            box-shadow: 0 0 0 1px rgba(var(--accent-rgb), 0.2);
+            background-color: rgba(255, 255, 255, 0.01);
         }
 
         .btn {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            padding: 1.1rem 2rem;
+            padding: 0.9rem 2.25rem;
             font-family: var(--font-sans);
-            font-size: 0.9rem;
-            font-weight: 600;
-            letter-spacing: 0.05em;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
             text-transform: uppercase;
-            border-radius: 0;
+            border-radius: 999px;
             cursor: pointer;
-            transition: var(--transition-smooth);
+            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
             position: relative;
             border: none;
         }
@@ -298,9 +304,9 @@
         }
 
         .btn-primary:hover {
-            background-color: var(--accent-hover);
-            border-color: var(--accent-hover);
-            transform: translateY(-2px);
+            transform: scale(1.02) translateY(-1px);
+            filter: brightness(0.92);
+            box-shadow: 0 4px 16px rgba(var(--accent-rgb), 0.15);
         }
 
         .btn-submit {
