@@ -2231,6 +2231,128 @@
             display: inline-block;
         }
 
+        /* ============================================================
+           WHAT'S INCLUDED FEATURE GRID
+           ============================================================ */
+        .features-section {
+            padding: 100px 0;
+        }
+
+        .features-section .section-header {
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 4rem;
+            max-width: 650px;
+        }
+
+        .features-section .section-subtitle {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            margin-top: 0.75rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background-color: var(--bg-surface);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            padding: 3rem 2.25rem;
+            border-radius: 12px;
+            position: relative;
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            box-shadow: var(--shadow-md);
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+            transform: scaleX(0);
+            transition: all 0.25s ease;
+        }
+
+        .feature-card:hover {
+            border-color: rgba(var(--accent-rgb), 0.25);
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .feature-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            margin-bottom: 1.25rem;
+            display: block;
+            width: 48px;
+            height: 48px;
+            border: 1px solid var(--border-subtle);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(var(--accent-rgb), 0.05);
+            transition: all 0.2s ease;
+        }
+
+        .feature-card:hover .feature-icon {
+            border-color: rgba(var(--accent-rgb), 0.3);
+            background: rgba(var(--accent-rgb), 0.1);
+        }
+
+        .feature-title {
+            font-family: var(--font-serif);
+            font-size: 1.35rem;
+            margin-bottom: 0.75rem;
+            font-weight: 700;
+            text-align: left;
+        }
+
+        .feature-desc {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.65;
+            flex-grow: 1;
+            text-align: left;
+        }
+
+        .feature-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            margin-top: 1.25rem;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--accent);
+            padding: 0.35rem 0.85rem;
+            border: 1px solid rgba(var(--accent-rgb), 0.2);
+            border-radius: 999px;
+            background: rgba(var(--accent-rgb), 0.06);
+            align-self: flex-start;
+        }
+
+        @media (max-width: 992px) {
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+        }
+
     </style>
 </head>
 <body>
@@ -2553,6 +2675,61 @@
         </div>
     </section>
 
+    <!-- ==================== WHAT'S INCLUDED (90-DAY COMEBACK BLUEPRINT) ==================== -->
+    <section class="features-section" id="blueprint-features">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-kicker">What's Inside</span>
+                <h2 class="section-title">Everything in the 90-Day Comeback Blueprint</h2>
+                <p class="section-subtitle">Six components. One complete system. Renamed in plain language so you know exactly what you're getting.</p>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3 class="feature-title">Your Day-by-Day Rebuild Plan</h3>
+                    <p class="feature-desc">You will never wake up wondering what to focus on. 12 modules tell you exactly what to work on — day by day — for the full 90. No planning needed. Just open and execute.</p>
+                    <span class="feature-tag">12 Modules</span>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🛡️</div>
+                    <h3 class="feature-title">How to Stop Losing 4 Hours a Day to Your Phone</h3>
+                    <p class="feature-desc">Every app, habit, and setting that's quietly draining your attention — and exactly how to remove each one. Practical. Specific. Built from Module 2.</p>
+                    <span class="feature-tag">PDF Guide</span>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">👥</div>
+                    <h3 class="feature-title">The Group That Won't Let You Quit</h3>
+                    <p class="feature-desc">A private community of people running the same 90 days alongside you. Weekly check-ins, shared wins, and real people who will notice if you go quiet.</p>
+                    <span class="feature-tag">Live in Whop</span>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3 class="feature-title">Your Daily Scoreboard</h3>
+                    <p class="feature-desc">A pre-built Notion tracker that shows your focus hours, habits, and weekly progress in numbers — not feelings. Every week you either have the numbers or you don't.</p>
+                    <span class="feature-tag">Notion Template</span>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🧬</div>
+                    <h3 class="feature-title">The Energy System That Keeps You Sharp All Day</h3>
+                    <p class="feature-desc">Sleep, movement, and nutrition routines that maintain a high-energy baseline across the full 90 days. The mental work is impossible if the body is running on fumes.</p>
+                    <span class="feature-tag">Lifestyle PDF</span>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🚀</div>
+                    <h3 class="feature-title">12 Weekly Challenges That Force You to Move</h3>
+                    <p class="feature-desc">One real challenge per week with a real deadline. Not a worksheet — an actual task you either completed or didn't. This is where the identity shift happens.</p>
+                    <span class="feature-tag">12 Challenges</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- ==================== WAITLIST SECTION ==================== -->
     <section class="waitlist-section" id="waitlist">
         <div class="container">
@@ -2561,7 +2738,7 @@
                 <h2 class="waitlist-title">Comeback: Unrecognizable</h2>
                 <p class="waitlist-subtitle">7 Rules to Change Your Life</p>
                 <p class="waitlist-body">
-                    The free kit is just the warm-up. This is the full 90-day protocol — the exact step-by-step system to build a <span class="waitlist-price">$10k/month</span> income from zero. No guesswork. No fluff. Just the system.
+                    The free kit is just the warm-up. This is the full 90-day protocol — the exact step-by-step system to build a <span class="waitlist-price">$10k/month</span> income from zero, establish absolute focus, and execute the 7 rules to change your life. No guesswork. No fluff. Just the system.
                 </p>
                 <div class="pricing-display" id="pricing-waitlist">
                     <span class="price-original">$67</span>
