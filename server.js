@@ -4,29 +4,63 @@ const cors = require('cors');
 const path = require('path');
 const { Resend } = require('resend');
 const { supabase } = require('./lib/supabase');
-const { day0, waitlistConfirmation, apologyResend, paidEbookAccess, bonusDelivery } = require('./lib/email-templates');
+const { day0, waitlistConfirmation, apologyResend, paidEbookAccess, bonusDelivery, segAEmail1, segBEmail1 } = require('./lib/email-templates');
 
 // Cron handlers
-const dripHandler   = require('./api/cron/drip');
-const digestHandler = require('./api/cron/digest');
-const blastHandler  = require('./api/cron/blast');
+const dripHandler          = require('./api/cron/drip');
+const digestHandler        = require('./api/cron/digest');
+const blastHandler         = require('./api/cron/blast');
+const segmentBlastHandler  = require('./api/cron/segment-blast');
+const postPurchaseDrip     = require('./api/cron/post-purchase-drip');
+
+// Webhook handlers
+const whopWebhook          = require('./api/webhooks/whop');
+const resendWebhook        = require('./api/webhooks/resend');
 
 const app = express();
 const PORT = process.env.PORT || 8000;
-const resend = new Resend(process.env.RESEND_API_KEY || '');
+const resend = new Resend(process.env.RESEND_API_KEY || 're_dummy');
 const SENDER = process.env.SENDER_EMAIL || 'adams@adamsxproject.com.ng';
 
 // ── Middleware ──────────────────────────────────────────────
 app.use(cors());
-app.use(express.json());
+
+// Raw body capture for Whop HMAC signature verification.
+// Must be set BEFORE express.json() parses the body.
+// We attach the raw buffer as req.rawBody on all requests.
+app.use((req, res, next) => {
+    let data = [];
+    req.on('data', chunk => data.push(chunk));
+    req.on('end', () => {
+        req.rawBody = Buffer.concat(data);
+        // Now let express parse the JSON body too (for all other routes)
+        try {
+            if (req.headers['content-type'] && req.headers['content-type'].includes('application/json')) {
+                req.body = JSON.parse(req.rawBody.toString('utf8'));
+            } else if (req.headers['content-type'] && req.headers['content-type'].includes('application/x-www-form-urlencoded')) {
+                const qs = new URLSearchParams(req.rawBody.toString('utf8'));
+                req.body = Object.fromEntries(qs.entries());
+            }
+        } catch (e) {
+            // leave body unparsed — express middleware will handle it
+        }
+        next();
+    });
+});
 app.use(express.urlencoded({ extended: true }));
 
 // ── Serve PDF as forced download ────────────────────────────
 // This ensures the browser downloads the file instead of opening it inline
 app.get('/ebooks/the-7-day-starter-kit.pdf', (req, res) => {
-    res.setHeader('Content-Disposition', 'attachment; filename="The-7-Day-Starter-Kit.pdf"');
+    res.setHeader('Content-Disposition', 'attachment; filename="Monk-Mode-Starter-Kit.pdf"');
     res.setHeader('Content-Type', 'application/pdf');
-    res.sendFile(path.join(__dirname, 'ebooks', 'the-7-day-starter-kit.pdf'));
+    res.sendFile(path.join(__dirname, 'ebooks', 'monk-mode-starter-kit.pdf'));
+});
+
+// Serve monk-mode-starter-kit.pdf directly (local testing)
+app.get('/monk-mode-starter-kit.pdf', (req, res) => {
+    res.setHeader('Content-Type', 'application/pdf');
+    res.sendFile(path.join(__dirname, 'ebooks', 'monk-mode-starter-kit.pdf'));
 });
 
 // Serve remaining ebooks directory (future PDFs)
@@ -59,10 +93,20 @@ app.post('/api/subscribe', async (req, res) => {
     try {
         // ── 1. Save to Supabase ──
         if (supabase) {
+            const now = new Date().toISOString();
             const { error: dbError } = await supabase
                 .from('leads')
                 .upsert(
-                    { first_name: firstName, email, drip_day: 0, active: true },
+                    {
+                        first_name: firstName,
+                        email,
+                        drip_day: 1,
+                        active: true,
+                        segment: 'B',
+                        sequence_day: 0,      // Email 1 (B-E1) is about to be sent
+                        enrolled_at: now,
+                        last_sent_at: now,
+                    },
                     { onConflict: 'email', ignoreDuplicates: false }
                 );
 
@@ -78,15 +122,15 @@ app.post('/api/subscribe', async (req, res) => {
             }
         }
 
-        // ── 2. Send Day 0 welcome email ──
-        const { subject, html } = day0(firstName, email);
+        // ── 2. Send Segment B Email 1 (replaces old Day 0 welcome) ──
+        const { subject, html } = segBEmail1(firstName, email);
         const emailResponse = await resend.emails.send({
-            from: `Adams X Project <${SENDER}>`,
+            from: `Adams X <${SENDER}>`,
             to: email,
             subject,
             html,
             reply_to: 'adams@adamsxproject.com.ng',
-            tags: [{ name: 'sequence', value: 'monk-mode-drip' }]
+            tags: [{ name: 'sequence', value: 'seg-b-launch' }]
         });
 
         if (emailResponse.error) {
@@ -138,10 +182,20 @@ app.post('/api/waitlist', async (req, res) => {
     try {
         // ── 1. Save to Supabase ──
         if (supabase) {
+            const now = new Date().toISOString();
             const { error: dbError } = await supabase
                 .from('waitlist')
                 .upsert(
-                    { first_name: firstName, email, notified: false },
+                    {
+                        first_name: firstName,
+                        email,
+                        notified: false,
+                        segment: 'A',
+                        sequence_day: 0,      // Email 1 (A-E1) is about to be sent
+                        enrolled_at: now,
+                        last_sent_at: now,
+                        active: true,
+                    },
                     { onConflict: 'email', ignoreDuplicates: false }
                 );
 
@@ -153,15 +207,15 @@ app.post('/api/waitlist', async (req, res) => {
             }
         }
 
-        // ── 2. Send confirmation email ──
-        const { subject, html } = waitlistConfirmation(firstName, email);
+        // ── 2. Send Segment A Email 1 immediately (replaces old waitlist confirmation) ──
+        const { subject, html } = segAEmail1(firstName, email);
         const emailResponse = await resend.emails.send({
-            from: `Adams X Project <${SENDER}>`,
+            from: `Adams X <${SENDER}>`,
             to: email,
             subject,
             html,
             reply_to: 'adams@adamsxproject.com.ng',
-            tags: [{ name: 'list', value: 'unrecognizable-waitlist' }]
+            tags: [{ name: 'sequence', value: 'seg-a-launch' }]
         });
 
         if (emailResponse.error) {
@@ -199,9 +253,17 @@ app.post('/api/waitlist', async (req, res) => {
 });
 
 // ── Cron Routes ─────────────────────────────────────────────
-app.get('/api/cron/drip',   dripHandler);   // Vercel cron: daily 9AM UTC
-app.get('/api/cron/digest', digestHandler); // Vercel cron: daily 8AM UTC
-app.post('/api/cron/blast', blastHandler);  // Manual: POST with CRON_SECRET
+app.get('/api/cron/drip',            dripHandler);          // Vercel cron: daily 9AM UTC
+app.get('/api/cron/digest',          digestHandler);         // Vercel cron: daily 8AM UTC
+app.get('/api/cron/post-purchase-drip', postPurchaseDrip);  // Vercel cron: daily 9AM UTC
+app.post('/api/cron/blast',          blastHandler);          // Legacy blast (waitlist-only)
+
+// ── Admin Routes ──────────────────────────────────────────────
+app.post('/api/admin/segment-blast', segmentBlastHandler);  // One-time two-segment blast
+
+// ── Webhook Routes ────────────────────────────────────────────
+app.post('/api/webhooks/whop',   whopWebhook);   // Whop purchase webhook
+app.post('/api/webhooks/resend', resendWebhook); // Resend reply tracking
 
 // ── POST /api/admin/resend-welcome ───────────────────────────
 // One-time tool: resend Day 0 welcome email to ALL existing leads
@@ -396,9 +458,9 @@ app.get('/api/download/tracker', async (req, res) => {
     }
 
     // Force the browser to download the file instead of opening it inline
-    res.setHeader('Content-Disposition', 'attachment; filename="The-7-Day-Starter-Kit.pdf"');
+    res.setHeader('Content-Disposition', 'attachment; filename="Monk-Mode-Starter-Kit.pdf"');
     res.setHeader('Content-Type', 'application/pdf');
-    res.sendFile(path.join(__dirname, 'ebooks', 'the-7-day-starter-kit.pdf'));
+    res.sendFile(path.join(__dirname, 'ebooks', 'monk-mode-starter-kit.pdf'));
 });
 
 // ── Serve bonus.html for /bonus ─────────────────────────────
@@ -499,14 +561,24 @@ app.post('/api/unsubscribe', async (req, res) => {
                 console.error('[unsubscribe] Supabase leads error:', leadsErr);
             }
 
-            // 2. Delete from waitlist (so they don't receive future launch blasts)
+            // 2. Deactivate in waitlist
             const { error: waitlistErr } = await supabase
                 .from('waitlist')
-                .delete()
+                .update({ active: false })
                 .eq('email', email);
 
             if (waitlistErr) {
                 console.error('[unsubscribe] Supabase waitlist error:', waitlistErr);
+            }
+
+            // 3. Deactivate post-purchase sequence if active
+            const { error: ppErr } = await supabase
+                .from('purchased_subscribers')
+                .update({ active: false })
+                .eq('email', email);
+
+            if (ppErr) {
+                console.error('[unsubscribe] Supabase purchased_subscribers error:', ppErr);
             }
         }
 

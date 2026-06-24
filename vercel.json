@@ -13,7 +13,8 @@
     { "src": "favicon-32x32.png", "use": "@vercel/static" },
     { "src": "favicon-16x16.png", "use": "@vercel/static" },
     { "src": "apple-touch-icon.png", "use": "@vercel/static" },
-    { "src": "ebooks/the-7-day-starter-kit.pdf", "use": "@vercel/static" }
+    { "src": "ebooks/the-7-day-starter-kit.pdf", "use": "@vercel/static" },
+    { "src": "ebooks/monk-mode-starter-kit.pdf", "use": "@vercel/static" }
   ],
   "routes": [
     { "src": "/api/(.*)", "dest": "/server.js" },
@@ -32,13 +33,15 @@
       },
       "dest": "/ebooks/the-7-day-starter-kit.pdf"
     },
+    { "src": "/monk-mode-starter-kit.pdf", "dest": "/ebooks/monk-mode-starter-kit.pdf" },
     { "src": "/waitlist/?", "dest": "/waitlist.html" },
     { "src": "/bonus/?", "dest": "/bonus.html" },
     { "src": "/unsubscribe/?", "dest": "/unsubscribe.html" },
     { "src": "/(.*)", "dest": "/index.html" }
   ],
   "crons": [
-    { "path": "/api/cron/digest", "schedule": "0 8 * * *" },
-    { "path": "/api/cron/drip", "schedule": "0 9 * * *" }
+    { "path": "/api/cron/digest",            "schedule": "0 8 * * *" },
+    { "path": "/api/cron/drip",              "schedule": "0 9 * * *" },
+    { "path": "/api/cron/post-purchase-drip","schedule": "0 9 * * *" }
   ]
 }

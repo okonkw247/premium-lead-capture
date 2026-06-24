@@ -8,7 +8,7 @@ const { Resend } = require('resend');
 const { supabase } = require('../../lib/supabase');
 const { dailyDigest } = require('../../lib/email-templates');
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+const resend = new Resend(process.env.RESEND_API_KEY || 're_dummy');
 const SENDER = process.env.SENDER_EMAIL || 'adams@adamsxproject.com.ng';
 
 async function handler(req, res) {
