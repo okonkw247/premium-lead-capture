@@ -47,7 +47,9 @@ app.use((req, res, next) => {
         next();
     });
 });
-app.use(express.urlencoded({ extended: true }));
+// NOTE: express.urlencoded() removed — the raw body middleware above
+// already parses URL-encoded bodies (lines 40-42). Adding urlencoded()
+// here causes a "stream is not readable" crash on Vercel serverless.
 
 // ── Serve PDF as forced download ────────────────────────────
 // This ensures the browser downloads the file instead of opening it inline
@@ -260,6 +262,7 @@ app.post('/api/cron/blast',          blastHandler);          // Legacy blast (wa
 
 // ── Admin Routes ──────────────────────────────────────────────
 app.post('/api/admin/segment-blast', segmentBlastHandler);  // One-time two-segment blast
+app.get('/api/admin/segment-blast',  segmentBlastHandler);  // Vercel cron GET trigger
 
 // ── Webhook Routes ────────────────────────────────────────────
 app.post('/api/webhooks/whop',   whopWebhook);   // Whop purchase webhook

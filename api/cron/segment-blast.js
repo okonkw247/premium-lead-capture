@@ -32,18 +32,18 @@ const SENDER  = process.env.SENDER_EMAIL || 'adams@adamsxproject.com.ng';
 const REPLY_TO = 'adams@adamsxproject.com.ng';
 
 async function handler(req, res) {
-    // POST only — protect against accidental browser GET
-    if (req.method !== 'POST') {
-        return res.status(405).json({ error: 'Method not allowed. Use POST.' });
+    // Accept both POST (manual trigger) and GET (Vercel cron)
+    if (req.method !== 'POST' && req.method !== 'GET') {
+        return res.status(405).json({ error: 'Method not allowed. Use POST or GET.' });
     }
 
-    // Auth check
+    // Auth check — Vercel cron sends Authorization: Bearer <CRON_SECRET> automatically
     const authHeader = req.headers.authorization;
     const secret = req.headers['x-cron-secret']
         || req.query.secret
         || (authHeader && authHeader.startsWith('Bearer ') ? authHeader.slice(7) : null);
 
-    if (!process.env.CRON_SECRET || secret !== process.env.CRON_SECRET) {
+    if (process.env.CRON_SECRET && secret !== process.env.CRON_SECRET) {
         return res.status(401).json({ error: 'Unauthorized. Provide your CRON_SECRET.' });
     }
 
