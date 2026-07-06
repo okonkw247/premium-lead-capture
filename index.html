@@ -752,16 +752,51 @@
         }
 
         .score-circle {
-            width: 120px;
-            height: 120px;
+            position: relative;
+            width: 130px;
+            height: 130px;
             border-radius: 50%;
-            border: 2px solid rgba(255, 255, 255, 0.08);
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             margin-bottom: 1.5rem;
+            background: rgba(var(--accent-rgb), 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .score-circle svg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            transform: rotate(-90deg);
+        }
+
+        .score-circle-bg {
+            fill: none;
+            stroke: rgba(255, 255, 255, 0.05);
+            stroke-width: 6;
+        }
+
+        .score-circle-progress {
+            fill: none;
+            stroke: var(--accent);
+            stroke-width: 6;
+            stroke-linecap: round;
+            stroke-dasharray: 377;
+            stroke-dashoffset: 377;
+            transition: stroke-dashoffset 0.4s ease;
+        }
+
+        .score-content-wrap {
             position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .score-value {
@@ -809,20 +844,35 @@
             background-color: var(--bg-surface);
             border: 1px solid rgba(255, 255, 255, 0.05);
             border-radius: 12px;
-            padding: 1.5rem 2.25rem;
-            display: grid;
-            grid-template-columns: 0.8fr 1.5fr 2fr;
-            align-items: center;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
             cursor: pointer;
             transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
             box-shadow: var(--shadow-sm);
+            overflow: hidden;
         }
 
         .timeline-row:hover {
             border-color: rgba(var(--accent-rgb), 0.3);
             background-color: rgba(255, 255, 255, 0.01);
-            transform: translateX(4px);
             box-shadow: var(--shadow-md);
+        }
+
+        .timeline-header {
+            display: grid;
+            grid-template-columns: 1fr 2fr auto;
+            align-items: center;
+            padding: 1.5rem 2.25rem;
+            width: 100%;
+        }
+
+        @media (max-width: 768px) {
+            .timeline-header {
+                grid-template-columns: 1fr;
+                gap: 0.5rem;
+                padding: 1.5rem;
+            }
         }
 
         .timeline-day {
@@ -848,15 +898,97 @@
             box-shadow: 0 0 8px var(--accent);
         }
 
+        .timeline-row.active .timeline-dot {
+            background-color: var(--accent);
+            box-shadow: 0 0 8px var(--accent);
+        }
+
         .timeline-topic {
             font-family: var(--font-serif);
             font-size: 1.35rem;
             font-weight: 500;
+            text-align: left;
+        }
+
+        .timeline-chevron {
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .timeline-chevron svg {
+            width: 16px;
+            height: 16px;
+            fill: var(--text-secondary);
+            transition: fill 0.3s ease;
+        }
+
+        .timeline-row:hover .timeline-chevron svg {
+            fill: var(--accent);
+        }
+
+        .timeline-row.active .timeline-chevron {
+            transform: rotate(180deg);
+        }
+
+        .timeline-row.active .timeline-chevron svg {
+            fill: var(--accent);
+        }
+
+        .timeline-details {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            background-color: rgba(0, 0, 0, 0.15);
+            border-top: 1px solid transparent;
+        }
+
+        .timeline-row.active .timeline-details {
+            border-top-color: rgba(255, 255, 255, 0.03);
+        }
+
+        .timeline-details-inner {
+            padding: 1.5rem 2.25rem 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .timeline-details-inner {
+                padding: 1.5rem;
+            }
         }
 
         .timeline-summary {
-            color: var(--text-secondary);
+            color: var(--text-primary);
             font-size: 0.95rem;
+            text-align: left;
+        }
+
+        .timeline-bullets {
+            margin-top: 1rem;
+            padding-left: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            list-style-type: none;
+        }
+
+        .timeline-bullets li {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            position: relative;
+            padding-left: 1.25rem;
+            text-align: left;
+        }
+
+        .timeline-bullets li::before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: bold;
         }
 
         /* ==================== BENEFITS / WHAT'S INSIDE ==================== */
@@ -2068,9 +2200,9 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.75);
-            backdrop-filter: blur(6px);
-            -webkit-backdrop-filter: blur(6px);
+            background-color: rgba(11, 10, 9, 0.6);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             z-index: 1000;
             display: flex;
             align-items: center;
@@ -2087,17 +2219,19 @@
         }
 
         .modal-card {
-            background-color: var(--bg-surface);
-            border: 1px solid rgba(255, 255, 255, 0.06);
+            background-color: rgba(20, 19, 17, 0.75);
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
             border-top: 3px solid var(--accent);
             border-radius: 12px;
             padding: 4rem 3rem;
             max-width: 520px;
             width: 100%;
             position: relative;
-            box-shadow: var(--shadow-lg);
-            transform: translateY(20px) scale(0.97);
-            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+            transform: translateY(30px) scale(0.95);
+            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .modal-overlay.active .modal-card {
@@ -2514,8 +2648,14 @@
             <div>
                 <div class="calculator-result-box">
                     <div class="score-circle">
-                        <span class="score-value" id="focus-score">45</span>
-                        <span class="score-label">Score</span>
+                        <svg>
+                            <circle class="score-circle-bg" cx="65" cy="65" r="60"></circle>
+                            <circle class="score-circle-progress" id="score-ring" cx="65" cy="65" r="60"></circle>
+                        </svg>
+                        <div class="score-content-wrap">
+                            <span class="score-value" id="focus-score">45</span>
+                            <span class="score-label">Score</span>
+                        </div>
                     </div>
                     <h3 class="result-title" id="result-status">Dopamine Leaking</h3>
                     <p class="result-message" id="result-desc">Your focus baseline is heavily compromised by constant digital signals. A structured protocol is recommended.</p>
@@ -2534,40 +2674,151 @@
             </div>
 
             <div class="timeline-container">
-                <div class="timeline-row">
-                    <div class="timeline-day"><span class="timeline-dot"></span>Day 01</div>
-                    <div class="timeline-topic">The Cognitive Audit</div>
-                    <div class="timeline-summary">Mapping your dopamine leaks, screen time metrics, and baseline focus blockers.</div>
+                <!-- Day 01 -->
+                <div class="timeline-row" data-accordion>
+                    <div class="timeline-header">
+                        <div class="timeline-day"><span class="timeline-dot"></span>Day 01</div>
+                        <div class="timeline-topic">The Cognitive Audit</div>
+                        <div class="timeline-chevron">
+                            <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5H7z"/></svg>
+                        </div>
+                    </div>
+                    <div class="timeline-details">
+                        <div class="timeline-details-inner">
+                            <p class="timeline-summary">Mapping your dopamine leaks, screen time metrics, and baseline focus blockers.</p>
+                            <ul class="timeline-bullets">
+                                <li>Auditing phone and desktop usage to identify silent attention vampires.</li>
+                                <li>Determining your custom Focus Baseline score.</li>
+                                <li>Establishing a distraction inventory log sheet.</li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
-                <div class="timeline-row">
-                    <div class="timeline-day"><span class="timeline-dot"></span>Day 02</div>
-                    <div class="timeline-topic">The Dopamine Fast</div>
-                    <div class="timeline-summary">Eliminating notifications, blacklisting social platforms, and clearing sensory noise.</div>
+
+                <!-- Day 02 -->
+                <div class="timeline-row" data-accordion>
+                    <div class="timeline-header">
+                        <div class="timeline-day"><span class="timeline-dot"></span>Day 02</div>
+                        <div class="timeline-topic">The Dopamine Fast</div>
+                        <div class="timeline-chevron">
+                            <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5H7z"/></svg>
+                        </div>
+                    </div>
+                    <div class="timeline-details">
+                        <div class="timeline-details-inner">
+                            <p class="timeline-summary">Eliminating notifications, blacklisting social platforms, and clearing sensory noise.</p>
+                            <ul class="timeline-bullets">
+                                <li>Systematic notifications audit configuration.</li>
+                                <li>Friction triggers setup: hiding distracting icons and setting lock timers.</li>
+                                <li>Setting up focus modes for work/personal context separation.</li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
-                <div class="timeline-row">
-                    <div class="timeline-day"><span class="timeline-dot"></span>Day 03</div>
-                    <div class="timeline-topic">Time-Blocking Architectures</div>
-                    <div class="timeline-summary">Structuring the developer calendar. How to block 4 hours of uninterrupted build time.</div>
+
+                <!-- Day 03 -->
+                <div class="timeline-row" data-accordion>
+                    <div class="timeline-header">
+                        <div class="timeline-day"><span class="timeline-dot"></span>Day 03</div>
+                        <div class="timeline-topic">Time-Blocking Architectures</div>
+                        <div class="timeline-chevron">
+                            <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5H7z"/></svg>
+                        </div>
+                    </div>
+                    <div class="timeline-details">
+                        <div class="timeline-details-inner">
+                            <p class="timeline-summary">Structuring the developer calendar. How to block 4 hours of uninterrupted build time.</p>
+                            <ul class="timeline-bullets">
+                                <li>Time-blocking calendar template for makers and builders.</li>
+                                <li>Configuring deep work blocks around peak cognitive hours.</li>
+                                <li>Setting strict boundaries to eliminate meetings and micro-interruptions.</li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
-                <div class="timeline-row">
-                    <div class="timeline-day"><span class="timeline-dot"></span>Day 04</div>
-                    <div class="timeline-topic">Building The Digital Firewall</div>
-                    <div class="timeline-summary">Technical blocker configurations, locally redirecting distraction domains, setup guide.</div>
+
+                <!-- Day 04 -->
+                <div class="timeline-row" data-accordion>
+                    <div class="timeline-header">
+                        <div class="timeline-day"><span class="timeline-dot"></span>Day 04</div>
+                        <div class="timeline-topic">Building The Digital Firewall</div>
+                        <div class="timeline-chevron">
+                            <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5H7z"/></svg>
+                        </div>
+                    </div>
+                    <div class="timeline-details">
+                        <div class="timeline-details-inner">
+                            <p class="timeline-summary">Technical blocker configurations, locally redirecting distraction domains, setup guide.</p>
+                            <ul class="timeline-bullets">
+                                <li>Editing local hosts configuration to blackhole social domains.</li>
+                                <li>Setting up hard blocks with zero back-door options.</li>
+                                <li>Setting strict app lock schedules to enforce focus firewall.</li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
-                <div class="timeline-row">
-                    <div class="timeline-day"><span class="timeline-dot"></span>Day 05</div>
-                    <div class="timeline-topic">Deep Work Engineering</div>
-                    <div class="timeline-summary">Accessing flow states, managing coding fatigue, and utilizing strategic micro-rests.</div>
+
+                <!-- Day 05 -->
+                <div class="timeline-row" data-accordion>
+                    <div class="timeline-header">
+                        <div class="timeline-day"><span class="timeline-dot"></span>Day 05</div>
+                        <div class="timeline-topic">Deep Work Engineering</div>
+                        <div class="timeline-chevron">
+                            <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5H7z"/></svg>
+                        </div>
+                    </div>
+                    <div class="timeline-details">
+                        <div class="timeline-details-inner">
+                            <p class="timeline-summary">Accessing flow states, managing coding fatigue, and utilizing strategic micro-rests.</p>
+                            <ul class="timeline-bullets">
+                                <li>Flow state trigger cues and environment staging.</li>
+                                <li>Managing physical screen strain and active recovery cycles.</li>
+                                <li>Strategic micro-rests that replenish focus without dopamine resets.</li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
-                <div class="timeline-row">
-                    <div class="timeline-day"><span class="timeline-dot"></span>Day 06</div>
-                    <div class="timeline-topic">The Physical Baseline</div>
-                    <div class="timeline-summary">Nutritional fuel for cognitive longevity, high-focus diet, and daily movement drills.</div>
+
+                <!-- Day 06 -->
+                <div class="timeline-row" data-accordion>
+                    <div class="timeline-header">
+                        <div class="timeline-day"><span class="timeline-dot"></span>Day 06</div>
+                        <div class="timeline-topic">The Physical Baseline</div>
+                        <div class="timeline-chevron">
+                            <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5H7z"/></svg>
+                        </div>
+                    </div>
+                    <div class="timeline-details">
+                        <div class="timeline-details-inner">
+                            <p class="timeline-summary">Nutritional fuel for cognitive longevity, high-focus diet, and daily movement drills.</p>
+                            <ul class="timeline-bullets">
+                                <li>Nutritional guidelines for steady energy delivery (no sugar crashes).</li>
+                                <li>Daily physical baseline routines: posture alignment and movement drills.</li>
+                                <li>Sleep environment optimizations to restore focus performance.</li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
-                <div class="timeline-row">
-                    <div class="timeline-day"><span class="timeline-dot"></span>Day 07</div>
-                    <div class="timeline-topic">The Comeback Blueprint</div>
-                    <div class="timeline-summary">Synthesizing the starter kit into the 7 lifetime rules to become unrecognizable.</div>
+
+                <!-- Day 07 -->
+                <div class="timeline-row" data-accordion>
+                    <div class="timeline-header">
+                        <div class="timeline-day"><span class="timeline-dot"></span>Day 07</div>
+                        <div class="timeline-topic">The Comeback Blueprint</div>
+                        <div class="timeline-chevron">
+                            <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5H7z"/></svg>
+                        </div>
+                    </div>
+                    <div class="timeline-details">
+                        <div class="timeline-details-inner">
+                            <p class="timeline-summary">Synthesizing the starter kit into the 7 lifetime rules to become unrecognizable.</p>
+                            <ul class="timeline-bullets">
+                                <li>Compiling focus habits into a personal monk mode protocol.</li>
+                                <li>The 7 daily rules checklist to maintain long-term execution consistency.</li>
+                                <li>Duplicating and initiating your progress scoring dashboard.</li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -2824,6 +3075,27 @@
             const resultStatus = document.getElementById('result-status');
             const resultDesc = document.getElementById('result-desc');
 
+            let logTimeout;
+            function queueAuditLog(work, screen, gym, score) {
+                clearTimeout(logTimeout);
+                logTimeout = setTimeout(async () => {
+                    try {
+                        await fetch('/api/audit-log', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({
+                                workHours: work,
+                                screenTime: screen,
+                                exerciseDays: gym,
+                                score: score
+                            })
+                        });
+                    } catch (err) {
+                        console.error('Failed to log audit response:', err);
+                    }
+                }, 1200);
+            }
+
             function updateDiagnostics() {
                 const work = parseInt(workSlider.value);
                 const screen = parseInt(screenSlider.value);
@@ -2835,7 +3107,6 @@
                 gymVal.textContent = `${gym} day${gym !== 1 ? 's' : ''}`;
 
                 // Calculate a basic score (0 to 100)
-                // High work = +points, High screen = -points, High gym = +points
                 let score = 20; // baseline
                 score += (work * 8);      // Max 64
                 score -= (screen * 5);    // Max -50
@@ -2844,6 +3115,13 @@
                 // Clamp score between 10 and 100
                 score = Math.max(10, Math.min(100, score));
                 scoreDisplay.textContent = score;
+
+                // Update SVG progress ring
+                const ring = document.getElementById('score-ring');
+                if (ring) {
+                    const offset = 377 - (score / 100) * 377;
+                    ring.style.strokeDashoffset = offset;
+                }
 
                 // Dynamic messages based on score
                 if (score >= 75) {
@@ -2859,6 +3137,9 @@
                     resultStatus.style.color = "#E86C5D";
                     resultDesc.textContent = "Your focus loops are fractured. Constant stimulation is stopping you from writing code or shipping. The Starter Kit is highly recommended.";
                 }
+
+                // Queue debounced analytics logging
+                queueAuditLog(work, screen, gym, score);
             }
 
             // Listeners for sliders
@@ -2868,6 +3149,38 @@
             
             // Run initial calculate
             updateDiagnostics();
+
+            // 1.5 INTERACTIVE ACCORDION TIMELINE LOGIC
+            const accordionRows = document.querySelectorAll('.timeline-row[data-accordion]');
+            accordionRows.forEach(row => {
+                const header = row.querySelector('.timeline-header');
+                const details = row.querySelector('.timeline-details');
+                
+                header.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const isActive = row.classList.contains('active');
+                    
+                    // Close all others
+                    accordionRows.forEach(r => {
+                        r.classList.remove('active');
+                        r.querySelector('.timeline-details').style.maxHeight = null;
+                    });
+                    
+                    if (!isActive) {
+                        row.classList.add('active');
+                        details.style.maxHeight = details.scrollHeight + "px";
+                    }
+                });
+            });
+
+            // Open first Day accordion by default
+            if (accordionRows.length > 0) {
+                const firstRow = accordionRows[0];
+                firstRow.classList.add('active');
+                const firstDetails = firstRow.querySelector('.timeline-details');
+                firstDetails.style.maxHeight = firstDetails.scrollHeight + "px";
+            }
+
 
 
             // 2. LEAD FORM SUBMISSION & RESEND API CONFIGURATION

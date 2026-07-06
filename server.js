@@ -594,6 +594,47 @@ app.post('/api/unsubscribe', async (req, res) => {
     }
 });
 
+// ── POST /api/audit-log ─────────────────────────────────────
+// Logs anonymous slider values from the Dopamine Audit tool for analytics.
+app.post('/api/audit-log', async (req, res) => {
+    const { workHours, screenTime, exerciseDays, score } = req.body;
+
+    const parsedWork = parseInt(workHours, 10);
+    const parsedScreen = parseInt(screenTime, 10);
+    const parsedExercise = parseInt(exerciseDays, 10);
+    const parsedScore = parseInt(score, 10);
+
+    if (isNaN(parsedWork) || isNaN(parsedScreen) || isNaN(parsedExercise) || isNaN(parsedScore)) {
+        return res.status(400).json({ error: 'All fields must be valid numbers.' });
+    }
+
+    try {
+        if (supabase) {
+            const { error: dbError } = await supabase
+                .from('audit_logs')
+                .insert({
+                    work_hours: parsedWork,
+                    screen_time: parsedScreen,
+                    exercise_days: parsedExercise,
+                    calculated_score: parsedScore
+                });
+
+            if (dbError) {
+                console.error('[audit-log] Supabase logging error:', dbError);
+                return res.status(200).json({ success: false, warning: 'Failed to write log to database.' });
+            }
+            console.log(`[audit-log] ✅ Logged dopamine audit: Work=${parsedWork}h, Screen=${parsedScreen}h, Exercise=${parsedExercise}d, Score=${parsedScore}`);
+        } else {
+            console.log(`[audit-log] (Dev) Supabase not configured. Simulated log: Work=${parsedWork}h, Screen=${parsedScreen}h, Exercise=${parsedExercise}d, Score=${parsedScore}`);
+        }
+
+        return res.status(200).json({ success: true });
+    } catch (err) {
+        console.error('[audit-log] Fatal error:', err);
+        return res.status(200).json({ success: false, error: err.message });
+    }
+});
+
 // ── Serve waitlist.html for /waitlist ───────────────────────
 app.get('/waitlist', (req, res) => {
     res.sendFile(path.join(__dirname, 'waitlist.html'));
