@@ -380,7 +380,7 @@ app.get('/api/admin/send-apology', async (req, res) => {
 
 // ── PAID EBOOK CONFIGURATION ────────────────────────────────
 // When your Whop product is live, place the URL here (or define in .env: PAID_EBOOK_URL)
-const PAID_EBOOK_URL = process.env.PAID_EBOOK_URL || 'https://whop.com/adams-x-project/';
+const PAID_EBOOK_URL = process.env.PAID_EBOOK_URL || 'https://whop.com/checkout/plan_vqAyJUoRV3oTP';
 
 // ── GET /api/admin/send-paid-access ─────────────────────────
 // Admin tool: Trigger sending the Paid Ebook Access email to a buyer.
