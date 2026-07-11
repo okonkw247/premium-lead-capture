@@ -81,7 +81,7 @@ app.get('/api/health', (req, res) => {
 });
 
 // ── POST /api/subscribe ─────────────────────────────────────
-// Saves lead to Supabase, sends Day 0 welcome email via Resend
+// Saves lead to Supabase, sends Day 0 welcome email with PDF download link
 app.post('/api/subscribe', async (req, res) => {
     const { firstName, email } = req.body;
 
@@ -105,7 +105,7 @@ app.post('/api/subscribe', async (req, res) => {
                         drip_day: 1,
                         active: true,
                         segment: 'B',
-                        sequence_day: 0,      // Email 1 (B-E1) is about to be sent
+                        sequence_day: 0,      // day0 welcome is about to be sent; drip picks up from day 1
                         enrolled_at: now,
                         last_sent_at: now,
                     },
@@ -124,15 +124,17 @@ app.post('/api/subscribe', async (req, res) => {
             }
         }
 
-        // ── 2. Send Segment B Email 1 (replaces old Day 0 welcome) ──
-        const { subject, html } = segBEmail1(firstName, email);
+        // ── 2. Send Day 0 welcome email with PDF download link ──
+        // day0 contains the "Download Your Starter Kit" button.
+        // segBEmail1 is a RE-ENGAGEMENT email for old users — NOT for new signups.
+        const { subject, html } = day0(firstName, email);
         const emailResponse = await resend.emails.send({
             from: `Adams X <${SENDER}>`,
             to: email,
             subject,
             html,
             reply_to: 'adams@adamsxproject.com.ng',
-            tags: [{ name: 'sequence', value: 'seg-b-launch' }]
+            tags: [{ name: 'sequence', value: 'welcome-day0' }]
         });
 
         if (emailResponse.error) {
@@ -160,7 +162,7 @@ app.post('/api/subscribe', async (req, res) => {
             }
         }
 
-        console.log(`[subscribe] ✅ Welcome email sent to ${email}`);
+        console.log(`[subscribe] ✅ Welcome email (with download link) sent to ${email}`);
         return res.status(200).json({ success: true, message: 'Enrolled. Day 0 email dispatched.' });
 
     } catch (err) {
