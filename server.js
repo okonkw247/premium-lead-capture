@@ -68,6 +68,11 @@ app.get('/monk-mode-starter-kit.pdf', (req, res) => {
 // Serve remaining ebooks directory (future PDFs)
 app.use('/ebooks', express.static(path.join(__dirname, 'ebooks')));
 
+// Serve Privacy Policy
+app.get('/privacy', (req, res) => {
+    res.sendFile(path.join(__dirname, 'privacy.html'));
+});
+
 app.use(express.static(path.join(__dirname)));
 
 // ── Health check ────────────────────────────────────────────

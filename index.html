@@ -2987,9 +2987,9 @@
             <div class="waitlist-card">
                 <span class="waitlist-kicker">Coming Soon</span>
                 <h2 class="waitlist-title">Comeback: Unrecognizable</h2>
-                <p class="waitlist-subtitle">7 Rules to Change Your Life</p>
+                <p class="waitlist-subtitle">A 90-Day System for Discipline, Focus, and Income</p>
                 <p class="waitlist-body">
-                    The free kit is just the warm-up. This is the full 90-day protocol — the exact step-by-step system to build a <span class="waitlist-price">$10k/month</span> income from zero, establish absolute focus, and execute the 7 rules to change your life. No guesswork. No fluff. Just the system.
+                    The free kit is just the warm-up. This is the full 90-day protocol — the exact system to close the gap between who you say you want to be and what you actually do every day. 12 modules, 4 phases, a private community, a scoreboard that tracks real numbers, not excuses. No guesswork. Just the system.
                 </p>
                 <div class="pricing-display" id="pricing-waitlist">
                     <span class="price-original">$67</span>
@@ -3303,6 +3303,11 @@
 
                     if (!response.ok) {
                         throw new Error((data.details ? data.details : data.error) || 'Failed to join waitlist.');
+                    }
+
+                    if (typeof window !== "undefined" && window.whop) {
+                        window.whop.track("lead");
+                        window.whop.track("complete_registration");
                     }
 
                     // Transition to thank you

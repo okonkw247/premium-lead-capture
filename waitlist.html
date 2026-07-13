@@ -1513,6 +1513,11 @@
                         throw new Error((data.details ? data.details : data.error) || 'Failed to join waitlist.');
                     }
 
+                    if (typeof window !== "undefined" && window.whop) {
+                        window.whop.track("lead");
+                        window.whop.track("complete_registration");
+                    }
+
                     // Success - transition UI states
                     waitlistFormState.style.transition = 'opacity 0.4s ease';
                     waitlistFormState.style.opacity = '0';
