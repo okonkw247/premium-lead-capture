@@ -256,7 +256,7 @@ app.post('/api/waitlist', async (req, res) => {
         }
 
         console.log(`[waitlist] ✅ Confirmation sent to ${email}`);
-        const whopUrl = process.env.WHOP_PRODUCT_URL || 'https://whop.com/checkout/plan_vqAyJUoRV3oTP';
+        const whopUrl = process.env.WHOP_PRODUCT_URL || 'https://whop.com/adams-x/comeback-unrecognized/?a=adamsproject';
         return res.status(200).json({ success: true, message: 'Added to waitlist.', redirectUrl: whopUrl });
 
     } catch (err) {
@@ -393,7 +393,7 @@ app.get('/api/admin/send-apology', async (req, res) => {
 
 // ── PAID EBOOK CONFIGURATION ────────────────────────────────
 // When your Whop product is live, place the URL here (or define in .env: PAID_EBOOK_URL)
-const PAID_EBOOK_URL = process.env.PAID_EBOOK_URL || 'https://whop.com/checkout/plan_vqAyJUoRV3oTP';
+const PAID_EBOOK_URL = process.env.PAID_EBOOK_URL || 'https://whop.com/adams-x/comeback-unrecognized/?a=adamsproject';
 
 // ── GET /api/admin/send-paid-access ─────────────────────────
 // Admin tool: Trigger sending the Paid Ebook Access email to a buyer.
