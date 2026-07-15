@@ -2496,7 +2496,7 @@
         <a href="#concept" class="mobile-nav-link" data-menu-link>The Concept</a>
         <a href="#pillars" class="mobile-nav-link" data-menu-link>Pillars</a>
         <a href="#timeline" class="mobile-nav-link" data-menu-link>The Curriculum</a>
-        <a href="#waitlist" class="mobile-nav-link" data-menu-link>Waitlist</a>
+        <a href="#waitlist" class="mobile-nav-link" data-menu-link>The Protocol</a>
         <a href="#optin" class="mobile-nav-cta" data-menu-link>Claim Starter Kit</a>
     </div>
 
@@ -2512,7 +2512,7 @@
                 <a href="#concept" class="nav-link">The Concept</a>
                 <a href="#pillars" class="nav-link">Pillars</a>
                 <a href="#timeline" class="nav-link">Curriculum</a>
-                <a href="#waitlist" class="nav-link">Waitlist</a>
+                <a href="#waitlist" class="nav-link">The Protocol</a>
                 <a href="#optin" class="nav-cta">Get Starter Kit</a>
             </nav>
 
@@ -2985,7 +2985,7 @@
     <section class="waitlist-section" id="waitlist">
         <div class="container">
             <div class="waitlist-card">
-                <span class="waitlist-kicker">Coming Soon</span>
+                <span class="waitlist-kicker">Launch Offer</span>
                 <h2 class="waitlist-title">Comeback: Unrecognizable</h2>
                 <p class="waitlist-subtitle">A 90-Day System for Discipline, Focus, and Income</p>
                 <p class="waitlist-body">
@@ -2997,7 +2997,7 @@
                     <span class="price-current">$17</span>
                     <span class="price-badge">Launch Offer</span>
                 </div>
-                <button class="btn btn-primary" id="open-waitlist-modal">Join the Waitlist — Get Notified at Launch</button>
+                <button class="btn btn-primary" id="open-waitlist-modal">Get Instant Access — $17</button>
             </div>
         </div>
     </section>
@@ -3009,8 +3009,8 @@
 
             <!-- Modal Form State -->
             <div id="waitlist-form-state">
-                <h3 class="modal-heading">You're Early. That's a Good Sign.</h3>
-                <p class="modal-body">Drop your details below and I'll notify you the moment it drops — plus you'll get it at the launch price.</p>
+                <h3 class="modal-heading">Get Instant Access</h3>
+                <p class="modal-body">Drop your details below to claim the $17 launch offer and proceed directly to checkout.</p>
 
                 <form id="waitlist-form" class="modal-form">
                     <div class="form-group">
@@ -3022,7 +3022,7 @@
                         <label for="waitlist-email" class="form-label">Email Address</label>
                     </div>
                     <button type="submit" class="btn btn-primary btn-submit" id="waitlist-submit-btn" style="width:100%;">
-                        <span>Notify Me When It's Ready</span>
+                        <span>Proceed to Checkout — $17</span>
                         <div class="modal-loader"></div>
                     </button>
                 </form>
@@ -3310,13 +3310,14 @@
                         window.whop.track("complete_registration");
                     }
 
-                    // Transition to thank you
-                    waitlistFormState.style.transition = 'opacity 0.4s ease';
-                    waitlistFormState.style.opacity = '0';
+                    // Success - update button and redirect
+                    const buttonText = waitlistSubmitBtn.querySelector('span');
+                    if (buttonText) {
+                        buttonText.textContent = 'Redirecting to Checkout...';
+                    }
 
                     setTimeout(() => {
-                        waitlistFormState.style.display = 'none';
-                        waitlistThankYou.classList.add('active');
+                        window.location.href = data.redirectUrl;
                     }, 400);
 
                 } catch (error) {

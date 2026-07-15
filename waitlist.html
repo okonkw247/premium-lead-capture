@@ -1317,7 +1317,7 @@
                     <!-- Waitlist Form State -->
                     <div id="waitlist-form-state" class="waitlist-form-container">
                         <p style="text-align: center; margin-bottom: 1.75rem; color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6;">
-                            Drop your details below and I'll notify you the moment it drops — plus you'll get it at the launch price.
+                            Drop your details below to claim the $17 launch offer and proceed directly to checkout.
                         </p>
 
                         <form id="waitlist-form">
@@ -1330,7 +1330,7 @@
                                 <label for="waitlist-email" class="form-label">Email Address</label>
                             </div>
                             <button type="submit" class="btn btn-primary btn-submit" id="waitlist-submit-btn">
-                                <span>Notify Me When It's Ready</span>
+                                <span>Proceed to Checkout — $17</span>
                                 <div class="loader"></div>
                             </button>
                         </form>
@@ -1518,16 +1518,14 @@
                         window.whop.track("complete_registration");
                     }
 
-                    // Success - transition UI states
-                    waitlistFormState.style.transition = 'opacity 0.4s ease';
-                    waitlistFormState.style.opacity = '0';
-
+                    // Success - update button and redirect
+                    const buttonText = waitlistSubmitBtn.querySelector('span');
+                    if (buttonText) {
+                        buttonText.textContent = 'Redirecting to Checkout...';
+                    }
+                    
                     setTimeout(() => {
-                        waitlistFormState.style.display = 'none';
-                        waitlistThankYou.style.display = 'flex';
-                        // Force paint to apply animations
-                        waitlistThankYou.offsetHeight;
-                        waitlistThankYou.classList.add('active');
+                        window.location.href = data.redirectUrl;
                     }, 400);
 
                 } catch (error) {

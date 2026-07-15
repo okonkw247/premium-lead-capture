@@ -17,6 +17,9 @@ const postPurchaseDrip     = require('./api/cron/post-purchase-drip');
 const whopWebhook          = require('./api/webhooks/whop');
 const resendWebhook        = require('./api/webhooks/resend');
 
+// Launch Blast handler
+const launchBlastHandler   = require('./api/admin/launch-blast');
+
 const app = express();
 const PORT = process.env.PORT || 8000;
 const resend = new Resend(process.env.RESEND_API_KEY || 're_dummy');
@@ -253,7 +256,8 @@ app.post('/api/waitlist', async (req, res) => {
         }
 
         console.log(`[waitlist] ✅ Confirmation sent to ${email}`);
-        return res.status(200).json({ success: true, message: 'Added to waitlist.' });
+        const whopUrl = process.env.WHOP_PRODUCT_URL || 'https://whop.com/checkout/plan_vqAyJUoRV3oTP';
+        return res.status(200).json({ success: true, message: 'Added to waitlist.', redirectUrl: whopUrl });
 
     } catch (err) {
         console.error('[waitlist] Error:', err);
@@ -270,6 +274,8 @@ app.post('/api/cron/blast',          blastHandler);          // Legacy blast (wa
 // ── Admin Routes ──────────────────────────────────────────────
 app.post('/api/admin/segment-blast', segmentBlastHandler);  // One-time two-segment blast
 app.get('/api/admin/segment-blast',  segmentBlastHandler);  // Vercel cron GET trigger
+app.post('/api/admin/launch-blast',  launchBlastHandler);   // Unified launch blast (POST)
+app.get('/api/admin/launch-blast',   launchBlastHandler);   // Unified launch blast (GET/Cron)
 
 // ── Webhook Routes ────────────────────────────────────────────
 app.post('/api/webhooks/whop',   whopWebhook);   // Whop purchase webhook
