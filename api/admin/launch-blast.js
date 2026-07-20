@@ -46,11 +46,10 @@ async function handler(req, res) {
     let waitlistRows = [];
     let leadsRows = [];
 
-    // 1. Fetch active, unpaid waitlist signups
+    // 1. Fetch unpaid waitlist signups
     let wQuery = supabase
         .from('waitlist')
-        .select('id, first_name, email, notified')
-        .eq('active', true)
+        .select('id, first_name, email, notified, active, sequence_day')
         .eq('purchased', false);
 
     if (!force) {
@@ -64,15 +63,18 @@ async function handler(req, res) {
         return res.status(500).json({ error: 'Failed to fetch waitlist.', details: wErr.message });
     }
     if (wData) {
-        waitlistRows = wData.map(r => ({ ...r, source: 'waitlist' }));
+        // Include currently active OR naturally completed waitlist signups (excludes unsubscribed)
+        const filteredWaitlist = wData.filter(r => 
+            r.active === true || (r.active === false && r.sequence_day >= 9)
+        );
+        waitlistRows = filteredWaitlist.map(r => ({ ...r, source: 'waitlist' }));
     }
 
-    // 2. Fetch active, unpaid leads
+    // 2. Fetch unpaid leads
     // Catch error gracefully if "notified" column has not been added to leads table yet
     let lQuery = supabase
         .from('leads')
-        .select('id, first_name, email, notified')
-        .eq('active', true)
+        .select('id, first_name, email, notified, active, sequence_day, drip_day')
         .eq('purchased', false);
 
     if (!force) {
@@ -83,11 +85,10 @@ async function handler(req, res) {
 
     if (lErr) {
         if (lErr.message.includes('column "notified" does not exist') || lErr.code === 'P0002') {
-            console.warn('[launch-blast] WARNING: "notified" column does not exist on leads table. Please run the SQL migration. Fetching all active unpaid leads without notified filter...');
+            console.warn('[launch-blast] WARNING: "notified" column does not exist on leads table. Please run the SQL migration. Fetching all unpaid leads without notified filter...');
             const { data: lFallback, error: lFallbackErr } = await supabase
                 .from('leads')
-                .select('id, first_name, email')
-                .eq('active', true)
+                .select('id, first_name, email, active, sequence_day, drip_day')
                 .eq('purchased', false);
             
             if (lFallbackErr) {
@@ -101,7 +102,11 @@ async function handler(req, res) {
         }
     }
     if (lData) {
-        leadsRows = lData.map(r => ({ ...r, source: 'leads' }));
+        // Include currently active OR naturally completed leads (excludes unsubscribed)
+        const filteredLeads = lData.filter(r => 
+            r.active === true || (r.active === false && (r.sequence_day >= 9 || r.drip_day >= 7))
+        );
+        leadsRows = filteredLeads.map(r => ({ ...r, source: 'leads' }));
     }
 
     console.log(`[launch-blast] Retrieved waitlist rows: ${waitlistRows.length}, leads rows: ${leadsRows.length}`);
