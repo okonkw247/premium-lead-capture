@@ -582,13 +582,14 @@
             text-align: left;
             box-shadow: var(--shadow-lg);
             position: relative;
-            overflow: hidden;
             opacity: 0;
             transform: translateY(30px);
             display: grid;
             grid-template-columns: 1.15fr 0.85fr;
             gap: 3.5rem;
-            align-items: center;
+            align-items: start;
+            width: 100%;
+            box-sizing: border-box;
         }
 
         .waitlist-card.visible {
@@ -1117,12 +1118,12 @@
             .section-title { font-size: 2rem; }
 
             .waitlist-card {
-                grid-template-columns: 1fr;
-                padding: 3rem 2rem;
-                text-align: center;
-                gap: 2rem;
+                grid-template-columns: 1fr !important;
+                padding: 2.5rem 1.5rem !important;
+                text-align: center !important;
+                gap: 2rem !important;
             }
-            .waitlist-title { font-size: 2rem; }
+            .waitlist-title { font-size: 1.8rem; line-height: 1.15; word-break: break-word; }
 
             .founder-card {
                 flex-direction: column;
@@ -1163,12 +1164,12 @@
             .trust-label { font-size: 0.65rem; }
 
             .waitlist-card {
-                grid-template-columns: 1fr;
-                padding: 2.5rem 1.25rem;
-                text-align: center;
-                gap: 1.5rem;
+                grid-template-columns: 1fr !important;
+                padding: 2.25rem 1.25rem !important;
+                text-align: center !important;
+                gap: 1.5rem !important;
             }
-            .waitlist-title { font-size: 1.75rem; }
+            .waitlist-title { font-size: 1.6rem; line-height: 1.2; word-break: break-word; }
             .waitlist-subtitle { font-size: 1.05rem; }
             .waitlist-body { font-size: 0.9rem; }
 
@@ -1191,10 +1192,10 @@
 
         @media (max-width: 360px) {
             .waitlist-card {
-                grid-template-columns: 1fr;
-                padding: 2.0rem 1rem;
-                text-align: center;
-                gap: 1.25rem;
+                grid-template-columns: 1fr !important;
+                padding: 2rem 1rem !important;
+                text-align: center !important;
+                gap: 1.25rem !important;
             }
             .pricing-display { gap: 0.4rem; padding: 0.75rem 1rem; margin: 0 auto 1.5rem; }
             .price-current { font-size: 1.75rem; }
@@ -1337,7 +1338,7 @@
             <div class="container">
                 <div class="waitlist-card" data-animate>
                     <div class="waitlist-info">
-                        <span class="waitlist-kicker">Coming Soon</span>
+                        <span class="waitlist-kicker">Now Live</span>
                         <h2 class="waitlist-title">Comeback: Unrecognizable</h2>
                         <p class="waitlist-subtitle">A 90-Day System for Discipline, Focus, and Income</p>
                         <p class="waitlist-body">

@@ -2089,8 +2089,62 @@
             display: grid;
             grid-template-columns: 1.15fr 0.85fr;
             gap: 3rem;
-            align-items: center;
+            align-items: start;
             box-sizing: border-box;
+            width: 100%;
+        }
+
+        /* ── MOBILE: stack the launch offer card ── */
+        @media (max-width: 768px) {
+            .waitlist-section {
+                padding: 60px 0;
+            }
+            .waitlist-card {
+                grid-template-columns: 1fr !important;
+                padding: 2.5rem 1.5rem !important;
+                gap: 2rem !important;
+                text-align: center !important;
+            }
+            .waitlist-info,
+            .waitlist-action {
+                width: 100%;
+            }
+            .waitlist-title {
+                font-size: 1.8rem;
+                line-height: 1.15;
+                word-break: break-word;
+            }
+            .waitlist-subtitle {
+                font-size: 1rem;
+            }
+            .waitlist-body {
+                font-size: 0.9rem;
+            }
+            .pricing-display {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 0.5rem;
+                padding: 1rem 1.25rem;
+            }
+            .price-current {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .waitlist-card {
+                grid-template-columns: 1fr !important;
+                padding: 2rem 1.25rem !important;
+                gap: 1.75rem !important;
+                text-align: center !important;
+            }
+            .waitlist-title {
+                font-size: 1.5rem;
+                word-break: break-word;
+            }
+            .price-current {
+                font-size: 1.75rem;
+            }
         }
 
         .waitlist-kicker {
@@ -2909,7 +2963,7 @@
         <div class="container capture-grid">
             
             <div class="upsell-info">
-                <span class="upsell-kicker">Coming Soon</span>
+                <span class="upsell-kicker">Now Live</span>
                 <h2 class="upsell-title">The Next Stage: "Comeback: Unrecognizable"</h2>
                 <p class="upsell-desc">
                     The 7-Day Starter Kit is the foundational blueprint. It is designed to prepare your mind and work environment. Once complete, you will be invited to join the main curriculum: **Comeback: Unrecognizable — The 7 Rules to Change Your Life**.
