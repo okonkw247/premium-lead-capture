@@ -228,7 +228,7 @@
             gap: 0.4rem;
             padding: 0.45rem 1rem;
             border: 1px solid var(--border-subtle);
-            border-radius: 999px;
+            border-radius: 4px;
             transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
@@ -239,18 +239,32 @@
         }
 
         .logo {
-            font-family: var(--font-serif);
-            font-size: 1.15rem;
-            font-weight: 700;
-            letter-spacing: 0.05em;
+            font-family: var(--font-sans);
+            font-size: 0.95rem;
+            font-weight: 800;
+            letter-spacing: 0.22em;
             color: var(--text-primary);
+            text-transform: uppercase;
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.4rem;
             flex-shrink: 0;
+            text-decoration: none;
+            cursor: pointer;
+            transition: var(--transition-smooth);
         }
 
-        .logo span { color: var(--accent); }
+        .logo span {
+            color: var(--accent);
+            border: 1px solid rgba(var(--accent-rgb), 0.3);
+            padding: 0.2rem 0.5rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            margin-left: 0.25rem;
+            border-radius: 2px;
+            background: rgba(var(--accent-rgb), 0.05);
+        }
 
         .status-badge {
             display: flex;
@@ -558,19 +572,23 @@
         }
 
         .waitlist-card {
-            max-width: 640px;
+            max-width: 900px;
             margin: 0 auto;
             background-color: var(--bg-surface);
             border: 1px solid rgba(255, 255, 255, 0.06);
             border-top: 3px solid var(--accent);
             border-radius: 12px;
-            padding: 4.5rem 3.5rem;
-            text-align: center;
+            padding: 4rem;
+            text-align: left;
             box-shadow: var(--shadow-lg);
             position: relative;
             overflow: hidden;
             opacity: 0;
             transform: translateY(30px);
+            display: grid;
+            grid-template-columns: 1.15fr 0.85fr;
+            gap: 3.5rem;
+            align-items: center;
         }
 
         .waitlist-card.visible {
@@ -595,51 +613,57 @@
             letter-spacing: 0.2em;
             color: var(--accent);
             font-weight: 700;
-            margin-bottom: 1.25rem;
+            margin-bottom: 1rem;
             display: block;
         }
 
         .waitlist-title {
             font-family: var(--font-serif);
-            font-size: 2.5rem;
+            font-size: 2.75rem;
             font-weight: 700;
-            line-height: 1.15;
-            margin-bottom: 0.5rem;
+            line-height: 1.1;
+            margin-bottom: 0.75rem;
+            word-break: break-word;
         }
 
         .waitlist-subtitle {
             font-family: var(--font-serif);
-            font-size: 1.35rem;
+            font-size: 1.25rem;
             font-style: italic;
             font-weight: 400;
             color: var(--accent);
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
         }
 
         .waitlist-body {
-            font-size: 1rem;
+            font-size: 0.95rem;
             color: var(--text-secondary);
-            line-height: 1.7;
-            margin-bottom: 2rem;
-            max-width: 480px;
-            margin-left: auto;
-            margin-right: auto;
+            line-height: 1.65;
+            margin: 0;
+        }
+
+        .waitlist-action {
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            width: 100%;
         }
 
         /* ── PREMIUM PRICING DISPLAY ── */
         .pricing-display {
-            display: inline-flex;
+            display: flex;
             align-items: center;
             justify-content: center;
-            border-radius: 12px;
+            border-radius: 4px;
             gap: 0.85rem;
             background: linear-gradient(135deg, rgba(var(--accent-rgb), 0.06) 0%, rgba(var(--accent-rgb), 0.02) 100%);
             border: 1px solid rgba(var(--accent-rgb), 0.18);
             padding: 1.1rem 2rem;
-            margin: 0 auto 2.25rem;
+            margin: 0 auto 1.5rem;
             position: relative;
             transition: all 0.25s ease;
             flex-wrap: wrap;
+            width: 100%;
         }
 
         .pricing-display::before {
@@ -803,7 +827,7 @@
             font-weight: 700;
             letter-spacing: 0.08em;
             text-transform: uppercase;
-            border-radius: 999px;
+            border-radius: 4px;
             cursor: pointer;
             transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
             position: relative;
@@ -1092,7 +1116,12 @@
             .hero-subtitle { font-size: 1rem; }
             .section-title { font-size: 2rem; }
 
-            .waitlist-card { padding: 3rem 2rem; }
+            .waitlist-card {
+                grid-template-columns: 1fr;
+                padding: 3rem 2rem;
+                text-align: center;
+                gap: 2rem;
+            }
             .waitlist-title { font-size: 2rem; }
 
             .founder-card {
@@ -1133,7 +1162,12 @@
             .trust-number { font-size: 1.75rem; }
             .trust-label { font-size: 0.65rem; }
 
-            .waitlist-card { padding: 2.5rem 1.25rem; }
+            .waitlist-card {
+                grid-template-columns: 1fr;
+                padding: 2.5rem 1.25rem;
+                text-align: center;
+                gap: 1.5rem;
+            }
             .waitlist-title { font-size: 1.75rem; }
             .waitlist-subtitle { font-size: 1.05rem; }
             .waitlist-body { font-size: 0.9rem; }
@@ -1141,6 +1175,7 @@
             .pricing-display {
                 gap: 0.5rem;
                 padding: 0.85rem 1.25rem;
+                margin: 0 auto 1.5rem;
             }
             .price-current { font-size: 2rem; }
             .price-original { font-size: 1.15rem; }
@@ -1155,7 +1190,13 @@
         }
 
         @media (max-width: 360px) {
-            .pricing-display { gap: 0.4rem; padding: 0.75rem 1rem; }
+            .waitlist-card {
+                grid-template-columns: 1fr;
+                padding: 2.0rem 1rem;
+                text-align: center;
+                gap: 1.25rem;
+            }
+            .pricing-display { gap: 0.4rem; padding: 0.75rem 1rem; margin: 0 auto 1.5rem; }
             .price-current { font-size: 1.75rem; }
             .price-original { font-size: 1.05rem; }
             .price-badge { font-size: 0.55rem; padding: 0.2rem 0.5rem; }
@@ -1295,51 +1336,55 @@
         <section class="waitlist-section" id="waitlist">
             <div class="container">
                 <div class="waitlist-card" data-animate>
-                    <span class="waitlist-kicker">Coming Soon</span>
-                    <h2 class="waitlist-title">Comeback: Unrecognizable</h2>
-                    <p class="waitlist-subtitle">A 90-Day System for Discipline, Focus, and Income</p>
-                    <p class="waitlist-body">
-                        The free kit is just the warm-up. This is the full 90-day protocol — the exact system to close the gap between who you say you want to be and what you actually do every day. 12 modules, 4 phases, a private community, a scoreboard that tracks real numbers, not excuses. No guesswork. Just the system.
-                    </p>
-
-                    <div class="pricing-display" id="pricing-waitlist">
-                        <span class="price-original">$67</span>
-                        <span class="price-arrow">→</span>
-                        <span class="price-current">$17</span>
-                        <span class="price-badge">Launch Offer</span>
-                    </div>
-
-                    <div class="urgency-bar">
-                        <span class="urgency-dot"></span>
-                        <span>Limited early spots remaining</span>
-                    </div>
-
-                    <!-- Waitlist Form State -->
-                    <div id="waitlist-form-state" class="waitlist-form-container">
-                        <p style="text-align: center; margin-bottom: 1.75rem; color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6;">
-                            Drop your details below to claim the $17 launch offer and proceed directly to checkout.
+                    <div class="waitlist-info">
+                        <span class="waitlist-kicker">Coming Soon</span>
+                        <h2 class="waitlist-title">Comeback: Unrecognizable</h2>
+                        <p class="waitlist-subtitle">A 90-Day System for Discipline, Focus, and Income</p>
+                        <p class="waitlist-body">
+                            The free kit is just the warm-up. This is the full 90-day protocol — the exact system to close the gap between who you say you want to be and what you actually do every day. 12 modules, 4 phases, a private community, a scoreboard that tracks real numbers, not excuses. No guesswork. Just the system.
                         </p>
+                    </div>
 
-                        <form id="waitlist-form">
-                            <div class="form-group">
-                                <input type="text" id="waitlist-first-name" class="form-input" placeholder="First Name" required autocomplete="given-name">
-                                <label for="waitlist-first-name" class="form-label">First Name</label>
-                            </div>
-                            <div class="form-group">
-                                <input type="email" id="waitlist-email" class="form-input" placeholder="Email Address" required autocomplete="email">
-                                <label for="waitlist-email" class="form-label">Email Address</label>
-                            </div>
-                            <button type="submit" class="btn btn-primary btn-submit" id="waitlist-submit-btn">
-                                <span>Proceed to Checkout — $17</span>
-                                <div class="loader"></div>
-                            </button>
-                        </form>
+                    <div class="waitlist-action">
+                        <div class="pricing-display" id="pricing-waitlist">
+                            <span class="price-original">$67</span>
+                            <span class="price-arrow">→</span>
+                            <span class="price-current">$17</span>
+                            <span class="price-badge">Launch Offer</span>
+                        </div>
 
-                        <div class="form-credibility">
-                            <span class="credibility-lock">
-                                <svg viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zM12 17c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1s3.1 1.39 3.1 3.1v2z"/></svg>
-                            </span>
-                            No spam. Unsubscribe anytime. Your data is never shared.
+                        <div class="urgency-bar">
+                            <span class="urgency-dot"></span>
+                            <span>Limited early spots remaining</span>
+                        </div>
+
+                        <!-- Waitlist Form State -->
+                        <div id="waitlist-form-state" class="waitlist-form-container">
+                            <p style="text-align: center; margin-bottom: 1.75rem; color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6;">
+                                Drop your details below to claim the $17 launch offer and proceed directly to checkout.
+                            </p>
+
+                            <form id="waitlist-form">
+                                <div class="form-group">
+                                    <input type="text" id="waitlist-first-name" class="form-input" placeholder="First Name" required autocomplete="given-name">
+                                    <label for="waitlist-first-name" class="form-label">First Name</label>
+                                </div>
+                                <div class="form-group">
+                                    <input type="email" id="waitlist-email" class="form-input" placeholder="Email Address" required autocomplete="email">
+                                    <label for="waitlist-email" class="form-label">Email Address</label>
+                                </div>
+                                <button type="submit" class="btn btn-primary btn-submit" id="waitlist-submit-btn">
+                                    <span>Proceed to Checkout — $17</span>
+                                    <div class="loader"></div>
+                                </button>
+                            </form>
+
+                            <div class="form-credibility">
+                                <span class="credibility-lock">
+                                    <svg viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zM12 17c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1s3.1 1.39 3.1 3.1v2z"/></svg>
+                                </span>
+                                No spam. Unsubscribe anytime. Your data is never shared.
+                            </div>
                         </div>
                     </div>
 
