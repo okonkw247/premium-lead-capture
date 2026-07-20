@@ -39,18 +39,25 @@ async function handler(req, res) {
         return res.status(500).json({ error: 'Supabase not configured.' });
     }
 
-    console.log('[launch-blast] 🚀 Starting unified launch blast...');
+    const force = req.query.force === 'true' || req.body?.force === true;
+
+    console.log(`[launch-blast] 🚀 Starting unified launch blast... (forceMode: ${force})`);
 
     let waitlistRows = [];
     let leadsRows = [];
 
-    // 1. Fetch active, unpaid waitlist signups who haven't been notified
-    const { data: wData, error: wErr } = await supabase
+    // 1. Fetch active, unpaid waitlist signups
+    let wQuery = supabase
         .from('waitlist')
         .select('id, first_name, email, notified')
         .eq('active', true)
-        .eq('purchased', false)
-        .eq('notified', false);
+        .eq('purchased', false);
+
+    if (!force) {
+        wQuery = wQuery.eq('notified', false);
+    }
+
+    const { data: wData, error: wErr } = await wQuery;
 
     if (wErr) {
         console.error('[launch-blast] Waitlist fetch error:', wErr);
@@ -60,14 +67,19 @@ async function handler(req, res) {
         waitlistRows = wData.map(r => ({ ...r, source: 'waitlist' }));
     }
 
-    // 2. Fetch active, unpaid leads who haven't been notified
+    // 2. Fetch active, unpaid leads
     // Catch error gracefully if "notified" column has not been added to leads table yet
-    let { data: lData, error: lErr } = await supabase
+    let lQuery = supabase
         .from('leads')
         .select('id, first_name, email, notified')
         .eq('active', true)
-        .eq('purchased', false)
-        .eq('notified', false);
+        .eq('purchased', false);
+
+    if (!force) {
+        lQuery = lQuery.eq('notified', false);
+    }
+
+    let { data: lData, error: lErr } = await lQuery;
 
     if (lErr) {
         if (lErr.message.includes('column "notified" does not exist') || lErr.code === 'P0002') {
