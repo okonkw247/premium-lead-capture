@@ -620,11 +620,13 @@
 
         .waitlist-title {
             font-family: var(--font-serif);
-            font-size: 2.75rem;
+            font-size: clamp(1.4rem, 4vw, 2.75rem);
             font-weight: 700;
-            line-height: 1.1;
+            line-height: 1.15;
             margin-bottom: 0.75rem;
             word-break: break-word;
+            overflow-wrap: break-word;
+            hyphens: auto;
         }
 
         .waitlist-subtitle {
