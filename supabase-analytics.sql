@@ -16,6 +16,7 @@ create table if not exists audit_logs (
 alter table audit_logs enable row level security;
 
 -- Only service role can read/write
+drop policy if exists "service_role_only_audit_logs" on audit_logs;
 create policy "service_role_only_audit_logs"
     on audit_logs for all
     using (auth.role() = 'service_role');

@@ -3,16 +3,13 @@
 -- Run this ENTIRE script in: Supabase Dashboard → SQL Editor
 -- ============================================================
 
--- Drop old table if it exists (re-run safe)
-drop table if exists public.survey_responses;
-
--- Create fresh table with all 6-question fields
-create table public.survey_responses (
+-- Create table with all 6-question fields (name is optional/nullable)
+create table if not exists public.survey_responses (
     id             uuid primary key default gen_random_uuid(),
     created_at     timestamptz not null default now(),
 
     -- Q1: Contact info
-    name           text not null,
+    name           text,
     whatsapp       text not null,
     email          text,
 
@@ -32,16 +29,21 @@ create table public.survey_responses (
     open_response  text not null
 );
 
+-- Ensure name is nullable if table already existed
+alter table public.survey_responses alter column name drop not null;
+
 -- ── Row Level Security ───────────────────────────────────────
 alter table public.survey_responses enable row level security;
 
 -- Allow anyone (anon key) to INSERT a response
+drop policy if exists "anon_insert_survey_responses" on public.survey_responses;
 create policy "anon_insert_survey_responses"
     on public.survey_responses for insert
     to anon
     with check (true);
 
 -- Prevent public reads (service role can still read for analytics)
+drop policy if exists "service_role_select_survey_responses" on public.survey_responses;
 create policy "service_role_select_survey_responses"
     on public.survey_responses for select
     using (auth.role() = 'service_role');

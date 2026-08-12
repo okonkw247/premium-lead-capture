@@ -58,6 +58,7 @@ CREATE INDEX IF NOT EXISTS idx_purchased_drip
 -- RLS on purchased_subscribers
 ALTER TABLE purchased_subscribers ENABLE ROW LEVEL SECURITY;
 
+DROP POLICY IF EXISTS "service_role_only_purchased" ON purchased_subscribers;
 CREATE POLICY "service_role_only_purchased"
   ON purchased_subscribers FOR ALL
   USING (auth.role() = 'service_role');

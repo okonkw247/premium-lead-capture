@@ -51,10 +51,12 @@ alter table leads   enable row level security;
 alter table waitlist enable row level security;
 
 -- Only the service role (backend) can read/write — no public access
+drop policy if exists "service_role_only_leads" on leads;
 create policy "service_role_only_leads"
     on leads for all
     using (auth.role() = 'service_role');
 
+drop policy if exists "service_role_only_waitlist" on waitlist;
 create policy "service_role_only_waitlist"
     on waitlist for all
     using (auth.role() = 'service_role');
