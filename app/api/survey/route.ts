@@ -1,0 +1,72 @@
+import { NextResponse } from 'next/server';
+import { createClient } from '@supabase/supabase-js';
+
+// Initialize Supabase Client with anon key for server API handler
+const supabaseUrl =
+  process.env.NEXT_PUBLIC_SUPABASE_URL ||
+  process.env.SUPABASE_URL ||
+  '';
+
+const supabaseAnonKey =
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ||
+  process.env.SUPABASE_ANON_KEY ||
+  process.env.SUPABASE_SERVICE_KEY ||
+  '';
+
+export async function POST(request: Request) {
+  try {
+    const body = await request.json();
+    const { status, reason, spend_recency, open_response } = body;
+
+    // Server-side validation: all 4 answers are required
+    if (
+      !status || typeof status !== 'string' || !status.trim() ||
+      !reason || typeof reason !== 'string' || !reason.trim() ||
+      !spend_recency || typeof spend_recency !== 'string' || !spend_recency.trim() ||
+      !open_response || typeof open_response !== 'string' || !open_response.trim()
+    ) {
+      return NextResponse.json(
+        { error: 'All 4 questions must be answered before submitting.' },
+        { status: 400 }
+      );
+    }
+
+    if (!supabaseUrl || !supabaseAnonKey) {
+      console.error('Supabase URL or Anon key is missing in environment variables.');
+      return NextResponse.json(
+        { error: 'Server configuration error: Supabase credentials missing.' },
+        { status: 500 }
+      );
+    }
+
+    const supabase = createClient(supabaseUrl, supabaseAnonKey);
+
+    const { data, error } = await supabase
+      .from('survey_responses')
+      .insert([
+        {
+          status: status.trim(),
+          reason: reason.trim(),
+          spend_recency: spend_recency.trim(),
+          open_response: open_response.trim(),
+        },
+      ])
+      .select();
+
+    if (error) {
+      console.error('Supabase insert error:', error);
+      return NextResponse.json(
+        { error: 'Failed to record response. Please try again.' },
+        { status: 500 }
+      );
+    }
+
+    return NextResponse.json({ success: true, data });
+  } catch (err: any) {
+    console.error('Survey API exception:', err);
+    return NextResponse.json(
+      { error: 'An unexpected error occurred.' },
+      { status: 500 }
+    );
+  }
+}

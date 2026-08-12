@@ -39,6 +39,7 @@
     { "src": "/waitlist/?", "dest": "/waitlist.html" },
     { "src": "/bonus/?", "dest": "/bonus.html" },
     { "src": "/unsubscribe/?", "dest": "/unsubscribe.html" },
+    { "src": "/survey/?", "dest": "/survey" },
     { "src": "/(.*)", "dest": "/index.html" }
   ],
   "crons": [
