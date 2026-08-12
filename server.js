@@ -123,13 +123,17 @@ app.post('/api/survey', async (req, res) => {
 
             if (dbError) {
                 console.error('[survey] Supabase error:', dbError);
-                return res.status(500).json({ error: 'Failed to save survey response to database.' });
+                let userError = dbError.message || 'Failed to save survey response to database.';
+                if (dbError.code === '42P01' || (dbError.message && dbError.message.toLowerCase().includes('relation') && dbError.message.toLowerCase().includes('does not exist'))) {
+                    userError = 'Database setup required: Please run supabase-survey.sql in your Supabase Dashboard SQL Editor.';
+                }
+                return res.status(500).json({ error: userError });
             }
 
             console.log(`[survey] ✅ Response saved to DB`);
             return res.json({ success: true, data });
         } else {
-            return res.status(500).json({ error: 'Supabase client not initialized.' });
+            return res.status(500).json({ error: 'Supabase client not initialized. Check SUPABASE_URL and SUPABASE_SERVICE_KEY in Vercel environment variables.' });
         }
     } catch (err) {
         console.error('[survey] Exception:', err);

@@ -129,12 +129,14 @@ export default function SurveyPage() {
       <div className="fixed inset-0 pointer-events-none bg-[radial-gradient(circle_at_top,_var(--tw-gradient-stops))] from-[#D4AF37]/5 via-transparent to-transparent" />
 
       {/* Top Header / Progress Area */}
-      <header className="w-full max-w-lg mx-auto z-10 flex flex-col items-center">
+      <header className="w-full max-w-lg mx-auto z-10 flex flex-col items-center mb-2">
         {step >= 1 && step <= 4 ? (
-          <div className="w-full space-y-3 animate-slide-fade">
-            <div className="flex justify-between items-center text-xs tracking-widest uppercase font-medium text-[#9E9B95]">
+          <div className="w-full space-y-2.5 animate-slide-fade">
+            <div className="flex justify-between items-center text-xs tracking-wider uppercase font-semibold text-[#9E9B95]">
               <span>Question {step} of 4</span>
-              <span className="text-[#D4AF37] font-semibold">{step * 25}%</span>
+              <span className="text-[#D4AF37] font-bold bg-[#1C1A17] border border-[#2A2824] px-2.5 py-0.5 rounded-full shadow-sm tracking-normal">
+                {step * 25}%
+              </span>
             </div>
             {/* Progress Bar */}
             <div className="w-full bg-[#1C1A17] h-1.5 rounded-full overflow-hidden border border-[#2A2824]">

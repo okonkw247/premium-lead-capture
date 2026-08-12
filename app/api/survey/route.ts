@@ -55,8 +55,12 @@ export async function POST(request: Request) {
 
     if (error) {
       console.error('Supabase insert error:', error);
+      let userError = error.message || 'Failed to record response. Please try again.';
+      if (error.code === '42P01' || (error.message && error.message.toLowerCase().includes('relation') && error.message.toLowerCase().includes('does not exist'))) {
+        userError = 'Database setup required: Please run supabase-survey.sql in your Supabase Dashboard SQL Editor.';
+      }
       return NextResponse.json(
-        { error: 'Failed to record response. Please try again.' },
+        { error: userError },
         { status: 500 }
       );
     }
