@@ -10,6 +10,7 @@
     { "src": "bonus.html", "use": "@vercel/static" },
     { "src": "unsubscribe.html", "use": "@vercel/static" },
     { "src": "privacy.html", "use": "@vercel/static" },
+    { "src": "survey.html", "use": "@vercel/static" },
     { "src": "favicon.ico", "use": "@vercel/static" },
     { "src": "favicon-32x32.png", "use": "@vercel/static" },
     { "src": "favicon-16x16.png", "use": "@vercel/static" },
@@ -39,7 +40,8 @@
     { "src": "/waitlist/?", "dest": "/waitlist.html" },
     { "src": "/bonus/?", "dest": "/bonus.html" },
     { "src": "/unsubscribe/?", "dest": "/unsubscribe.html" },
-    { "src": "/survey/?", "dest": "/survey" },
+    { "src": "/survey/?", "dest": "/survey.html" },
+    { "src": "/survery/?", "dest": "/survey.html" },
     { "src": "/(.*)", "dest": "/index.html" }
   ],
   "crons": [

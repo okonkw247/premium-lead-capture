@@ -78,6 +78,11 @@ app.get('/privacy', (req, res) => {
 
 app.use(express.static(path.join(__dirname)));
 
+// ── GET /survey & /survery — Serve feedback survey ────────────
+app.get(['/survey', '/survery', '/survey.html', '/survery.html'], (req, res) => {
+    res.sendFile(path.join(__dirname, 'survey.html'));
+});
+
 // ── GET /waitlist — redirect to Whop now that product is live ───────────────
 // The ebook PDF has a button linking to /waitlist. Since Comeback: Unrecognizable
 // is live, any visitor (including PDF readers) is sent straight to the purchase page.
@@ -94,6 +99,42 @@ app.get('/api/health', (req, res) => {
         resend: !!process.env.RESEND_API_KEY,
         timestamp: new Date().toISOString()
     });
+});
+
+// ── POST /api/survey — Save survey response ─────────────────
+app.post('/api/survey', async (req, res) => {
+    const { status, reason, spend_recency, open_response } = req.body || {};
+
+    if (!status || !reason || !spend_recency || !open_response) {
+        return res.status(400).json({ error: 'All 4 questions must be answered before submitting.' });
+    }
+
+    try {
+        if (supabase) {
+            const { data, error: dbError } = await supabase
+                .from('survey_responses')
+                .insert([{
+                    status: String(status).trim(),
+                    reason: String(reason).trim(),
+                    spend_recency: String(spend_recency).trim(),
+                    open_response: String(open_response).trim()
+                }])
+                .select();
+
+            if (dbError) {
+                console.error('[survey] Supabase error:', dbError);
+                return res.status(500).json({ error: 'Failed to save survey response to database.' });
+            }
+
+            console.log(`[survey] ✅ Response saved to DB`);
+            return res.json({ success: true, data });
+        } else {
+            return res.status(500).json({ error: 'Supabase client not initialized.' });
+        }
+    } catch (err) {
+        console.error('[survey] Exception:', err);
+        return res.status(500).json({ error: 'An unexpected error occurred.' });
+    }
 });
 
 // ── POST /api/subscribe ─────────────────────────────────────
