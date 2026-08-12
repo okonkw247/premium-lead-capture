@@ -95,7 +95,7 @@
         <div id="progress-content" class="w-full max-w-lg mx-auto space-y-2.5 hidden animate-slide-fade">
             <div class="flex justify-between items-center text-xs tracking-wider uppercase font-semibold text-[#9E9B95]">
                 <span id="progress-step-text">Question 1 of 4</span>
-                <span id="progress-percent-text" class="text-[#D4AF37] font-bold bg-[#1C1A17] border border-[#2A2824] px-2.5 py-0.5 rounded-full shadow-sm tracking-normal">25%</span>
+                <span id="progress-percent-text" class="text-[#D4AF37] font-bold bg-[#1C1A17] border border-[#2A2824] px-2.5 py-0.5 rounded-full shadow-sm tracking-normal ml-3">25%</span>
             </div>
             <!-- Progress Bar -->
             <div class="w-full bg-[#1C1A17] h-1.5 rounded-full overflow-hidden border border-[#2A2824]">
@@ -295,7 +295,8 @@
             if (step >= 1 && step <= 4) {
                 progressContent.classList.remove('hidden');
                 progressStepText.innerText = `Question ${step} of 4`;
-                progressPercentText.innerText = `${step * 25}%`;
+                // At step 4 (100%), show "Complete" instead of "100%" to avoid visual merge
+                progressPercentText.innerText = step === 4 ? '✓ Complete' : `${step * 25}%`;
                 progressBarFill.style.width = `${step * 25}%`;
             } else {
                 progressContent.classList.add('hidden');

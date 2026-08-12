@@ -701,6 +701,52 @@ app.post('/api/audit-log', async (req, res) => {
     }
 });
 
+// ── Survey Response API ─────────────────────────────────────
+app.post('/api/survey', async (req, res) => {
+    try {
+        const { status, reason, spend_recency, open_response } = req.body || {};
+
+        // Server-side validation
+        if (
+            !status || typeof status !== 'string' || !status.trim() ||
+            !reason || typeof reason !== 'string' || !reason.trim() ||
+            !spend_recency || typeof spend_recency !== 'string' || !spend_recency.trim() ||
+            !open_response || typeof open_response !== 'string' || !open_response.trim()
+        ) {
+            return res.status(400).json({ error: 'All 4 questions must be answered before submitting.' });
+        }
+
+        if (!supabase) {
+            console.error('[survey] Supabase client not initialized.');
+            return res.status(500).json({ error: 'Server configuration error: database not connected.' });
+        }
+
+        const { data, error } = await supabase
+            .from('survey_responses')
+            .insert([{
+                status: status.trim(),
+                reason: reason.trim(),
+                spend_recency: spend_recency.trim(),
+                open_response: open_response.trim(),
+            }])
+            .select();
+
+        if (error) {
+            console.error('[survey] Supabase insert error:', error);
+            let userError = error.message || 'Failed to record response. Please try again.';
+            if (error.code === '42P01' || (error.message && error.message.toLowerCase().includes('does not exist'))) {
+                userError = 'Database setup required: Please run supabase-survey.sql in your Supabase Dashboard SQL Editor.';
+            }
+            return res.status(500).json({ error: userError });
+        }
+
+        return res.status(200).json({ success: true, data });
+    } catch (err) {
+        console.error('[survey] Fatal error:', err);
+        return res.status(500).json({ error: 'An unexpected error occurred.' });
+    }
+});
+
 // ── Serve waitlist.html for /waitlist ───────────────────────
 app.get('/waitlist', (req, res) => {
     res.sendFile(path.join(__dirname, 'waitlist.html'));
