@@ -704,16 +704,19 @@ app.post('/api/audit-log', async (req, res) => {
 // ── Survey Response API ─────────────────────────────────────
 app.post('/api/survey', async (req, res) => {
     try {
-        const { status, reason, spend_recency, open_response } = req.body || {};
+        const { name, whatsapp, email, country, status, reason, spend_recency, open_response } = req.body || {};
 
-        // Server-side validation
+        // Server-side validation — all required fields
         if (
-            !status || typeof status !== 'string' || !status.trim() ||
-            !reason || typeof reason !== 'string' || !reason.trim() ||
+            !name          || typeof name          !== 'string' || !name.trim()          ||
+            !whatsapp      || typeof whatsapp      !== 'string' || !whatsapp.trim()      ||
+            !country       || typeof country       !== 'string' || !country.trim()       ||
+            !status        || typeof status        !== 'string' || !status.trim()        ||
+            !reason        || typeof reason        !== 'string' || !reason.trim()        ||
             !spend_recency || typeof spend_recency !== 'string' || !spend_recency.trim() ||
             !open_response || typeof open_response !== 'string' || !open_response.trim()
         ) {
-            return res.status(400).json({ error: 'All 4 questions must be answered before submitting.' });
+            return res.status(400).json({ error: 'All required questions must be answered before submitting.' });
         }
 
         if (!supabase) {
@@ -724,8 +727,12 @@ app.post('/api/survey', async (req, res) => {
         const { data, error } = await supabase
             .from('survey_responses')
             .insert([{
-                status: status.trim(),
-                reason: reason.trim(),
+                name:          name.trim(),
+                whatsapp:      whatsapp.trim(),
+                email:         (email || '').trim() || null,
+                country:       country.trim(),
+                status:        status.trim(),
+                reason:        reason.trim(),
                 spend_recency: spend_recency.trim(),
                 open_response: open_response.trim(),
             }])
