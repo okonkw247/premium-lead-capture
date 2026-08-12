@@ -46,6 +46,13 @@ app.use((req, res, next) => {
 // Must be set BEFORE express.json() parses the body.
 // We attach the raw buffer as req.rawBody on all requests.
 app.use((req, res, next) => {
+    // IMPORTANT: If express.json() already consumed the stream (req._body is set),
+    // do NOT attach stream listeners — the 'end' event will never fire on an already-
+    // consumed stream, causing next() to never be called and the request to hang forever.
+    if (req._body) {
+        return next();
+    }
+
     let data = [];
     req.on('data', chunk => data.push(chunk));
     req.on('end', () => {
