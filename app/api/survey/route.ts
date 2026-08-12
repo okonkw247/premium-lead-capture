@@ -1,4 +1,4 @@
-import { NextResponse } from 'next/server';
+zimport { NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
 
 // Initialize Supabase Client with anon key for server API handler
