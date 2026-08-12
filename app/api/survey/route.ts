@@ -1,4 +1,4 @@
-zimport { NextResponse } from 'next/server';
+import { NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
 
 // Initialize Supabase Client with anon key for server API handler
@@ -16,17 +16,20 @@ const supabaseAnonKey =
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const { status, reason, spend_recency, open_response } = body;
+    const { name, whatsapp, email, country, status, reason, spend_recency, open_response } = body || {};
 
-    // Server-side validation: all 4 answers are required
+    // Server-side validation: all required answers are present
     if (
+      !name || typeof name !== 'string' || !name.trim() ||
+      !whatsapp || typeof whatsapp !== 'string' || !whatsapp.trim() ||
+      !country || typeof country !== 'string' || !country.trim() ||
       !status || typeof status !== 'string' || !status.trim() ||
       !reason || typeof reason !== 'string' || !reason.trim() ||
       !spend_recency || typeof spend_recency !== 'string' || !spend_recency.trim() ||
       !open_response || typeof open_response !== 'string' || !open_response.trim()
     ) {
       return NextResponse.json(
-        { error: 'All 4 questions must be answered before submitting.' },
+        { error: 'All required questions must be answered before submitting.' },
         { status: 400 }
       );
     }
@@ -45,6 +48,10 @@ export async function POST(request: Request) {
       .from('survey_responses')
       .insert([
         {
+          name: name.trim(),
+          whatsapp: whatsapp.trim(),
+          email: typeof email === 'string' && email.trim() ? email.trim() : null,
+          country: country.trim(),
           status: status.trim(),
           reason: reason.trim(),
           spend_recency: spend_recency.trim(),
