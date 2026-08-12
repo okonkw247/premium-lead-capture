@@ -28,6 +28,20 @@ const SENDER = process.env.SENDER_EMAIL || 'adams@adamsxproject.com.ng';
 // ── Middleware ──────────────────────────────────────────────
 app.use(cors());
 
+// express.json() is registered first so Vercel serverless can parse JSON
+// bodies before the raw-body stream middleware (which can fail on serverless
+// if the stream is already consumed). The survey route uses this.
+// NOTE: express.json() must come BEFORE the raw-body middleware so that
+// req._body is set, preventing the raw-body middleware from re-parsing it.
+app.use((req, res, next) => {
+    // Only apply express.json() pre-parse for the survey route
+    // (All other routes still use the raw-body approach below)
+    if (req.path === '/api/survey' && req.method === 'POST') {
+        return express.json({ limit: '1mb' })(req, res, next);
+    }
+    next();
+});
+
 // Raw body capture for Whop HMAC signature verification.
 // Must be set BEFORE express.json() parses the body.
 // We attach the raw buffer as req.rawBody on all requests.
@@ -704,19 +718,48 @@ app.post('/api/audit-log', async (req, res) => {
 // ── Survey Response API ─────────────────────────────────────
 app.post('/api/survey', async (req, res) => {
     try {
-        const { name, whatsapp, email, country, status, reason, spend_recency, open_response } = req.body || {};
+        // Defensive body extraction — handles Vercel serverless quirks
+        // where the stream-based middleware may not populate req.body correctly.
+        let body = req.body;
 
-        // Server-side validation — all required fields
-        if (
-            !name          || typeof name          !== 'string' || !name.trim()          ||
-            !whatsapp      || typeof whatsapp      !== 'string' || !whatsapp.trim()      ||
-            !country       || typeof country       !== 'string' || !country.trim()       ||
-            !status        || typeof status        !== 'string' || !status.trim()        ||
-            !reason        || typeof reason        !== 'string' || !reason.trim()        ||
-            !spend_recency || typeof spend_recency !== 'string' || !spend_recency.trim() ||
-            !open_response || typeof open_response !== 'string' || !open_response.trim()
-        ) {
-            return res.status(400).json({ error: 'All required questions must be answered before submitting.' });
+        // If body is still empty/null, try to parse from rawBody captured earlier
+        if ((!body || Object.keys(body).length === 0) && req.rawBody && req.rawBody.length > 0) {
+            try {
+                body = JSON.parse(req.rawBody.toString('utf8'));
+                console.log('[survey] Parsed body from rawBody fallback');
+            } catch (e) {
+                console.error('[survey] Failed to parse rawBody:', e.message);
+            }
+        }
+
+        body = body || {};
+        console.log('[survey] Received body keys:', Object.keys(body));
+
+        const name          = typeof body.name          === 'string' ? body.name.trim()          : '';
+        const whatsapp      = typeof body.whatsapp      === 'string' ? body.whatsapp.trim()      : '';
+        const email         = typeof body.email         === 'string' ? body.email.trim()         : '';
+        const country       = typeof body.country       === 'string' ? body.country.trim()       : '';
+        const status        = typeof body.status        === 'string' ? body.status.trim()        : '';
+        const reason        = typeof body.reason        === 'string' ? body.reason.trim()        : '';
+        const spend_recency = typeof body.spend_recency === 'string' ? body.spend_recency.trim() : '';
+        const open_response = typeof body.open_response === 'string' ? body.open_response.trim() : '';
+
+        // Server-side validation — all required fields must be non-empty strings
+        const missing = [];
+        if (!name)          missing.push('name');
+        if (!whatsapp)      missing.push('whatsapp');
+        if (!country)       missing.push('country');
+        if (!status)        missing.push('status');
+        if (!reason)        missing.push('reason');
+        if (!spend_recency) missing.push('spend_recency');
+        if (!open_response) missing.push('open_response');
+
+        if (missing.length > 0) {
+            console.warn('[survey] Validation failed — missing fields:', missing);
+            return res.status(400).json({
+                error: 'Please complete all required questions before submitting.',
+                missing
+            });
         }
 
         if (!supabase) {
@@ -727,14 +770,14 @@ app.post('/api/survey', async (req, res) => {
         const { data, error } = await supabase
             .from('survey_responses')
             .insert([{
-                name:          name.trim(),
-                whatsapp:      whatsapp.trim(),
-                email:         (email || '').trim() || null,
-                country:       country.trim(),
-                status:        status.trim(),
-                reason:        reason.trim(),
-                spend_recency: spend_recency.trim(),
-                open_response: open_response.trim(),
+                name,
+                whatsapp,
+                email:         email || null,
+                country,
+                status,
+                reason,
+                spend_recency,
+                open_response,
             }])
             .select();
 
@@ -747,6 +790,7 @@ app.post('/api/survey', async (req, res) => {
             return res.status(500).json({ error: userError });
         }
 
+        console.log('[survey] Response saved successfully, id:', data?.[0]?.id);
         return res.status(200).json({ success: true, data });
     } catch (err) {
         console.error('[survey] Fatal error:', err);
