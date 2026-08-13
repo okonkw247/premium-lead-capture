@@ -20,7 +20,6 @@ export async function POST(request: Request) {
 
     // Server-side validation: all required answers are present
     if (
-      !name || typeof name !== 'string' || !name.trim() ||
       !whatsapp || typeof whatsapp !== 'string' || !whatsapp.trim() ||
       !country || typeof country !== 'string' || !country.trim() ||
       !status || typeof status !== 'string' || !status.trim() ||
@@ -48,7 +47,7 @@ export async function POST(request: Request) {
       .from('survey_responses')
       .insert([
         {
-          name: name.trim(),
+          name: typeof name === 'string' && name.trim() ? name.trim() : null,
           whatsapp: whatsapp.trim(),
           email: typeof email === 'string' && email.trim() ? email.trim() : null,
           country: country.trim(),

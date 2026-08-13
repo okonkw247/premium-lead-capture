@@ -124,10 +124,10 @@ app.get('/api/health', (req, res) => {
 
 // ── POST /api/survey — Save survey response ─────────────────
 app.post('/api/survey', async (req, res) => {
-    const { status, reason, spend_recency, open_response } = req.body || {};
+    const { name, whatsapp, email, country, status, reason, spend_recency, open_response } = req.body || {};
 
-    if (!status || !reason || !spend_recency || !open_response) {
-        return res.status(400).json({ error: 'All 4 questions must be answered before submitting.' });
+    if (!whatsapp || !country || !status || !reason || !spend_recency || !open_response) {
+        return res.status(400).json({ error: 'All required questions must be answered before submitting.' });
     }
 
     try {
@@ -135,6 +135,10 @@ app.post('/api/survey', async (req, res) => {
             const { data, error: dbError } = await supabase
                 .from('survey_responses')
                 .insert([{
+                    name: name && String(name).trim() ? String(name).trim() : null,
+                    whatsapp: String(whatsapp).trim(),
+                    email: email && String(email).trim() ? String(email).trim() : null,
+                    country: String(country).trim(),
                     status: String(status).trim(),
                     reason: String(reason).trim(),
                     spend_recency: String(spend_recency).trim(),
