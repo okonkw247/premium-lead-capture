@@ -43,10 +43,10 @@ SET
 
 
 -- ── Step 4: Verify ────────────────────────────────────────────
-SELECT 'leads' AS source, first_name, email, purchased
+SELECT 'leads' AS source, first_name, email, purchased::text
 FROM leads WHERE email = 'shannonworks75@gmail.com'
 UNION ALL
-SELECT 'waitlist', first_name, email, purchased
+SELECT 'waitlist', first_name, email, purchased::text
 FROM waitlist WHERE email = 'shannonworks75@gmail.com'
 UNION ALL
 SELECT 'purchased_subscribers', first_name, email, active::text
