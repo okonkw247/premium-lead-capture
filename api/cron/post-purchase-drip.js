@@ -26,8 +26,9 @@ const POST_PURCHASE_MAP = {
     // sequence_day 0 = Email 1 already sent. Next email in 2 days.
     0: { fn: tpl.postPurchaseEmail2, minHours: 44  }, // ~2 days
     1: { fn: tpl.postPurchaseEmail3, minHours: 140 }, // ~7 days (5 more days after email 2)
+    2: { fn: tpl.postPurchaseEmailReview, minHours: 312 }, // ~14 days (7 more days after email 3)
 };
-const LAST_DAY = 1; // after sequence_day 1 is processed, deactivate
+const LAST_DAY = 2; // after sequence_day 2 is processed, deactivate
 
 function isDue(lastSentAt, minHours) {
     if (!lastSentAt) return true;
