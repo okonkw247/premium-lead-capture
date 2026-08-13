@@ -145,13 +145,11 @@ async function handler(req, res) {
     // Whop payload structure varies slightly by event type.
     // Common paths: data.user, data.membership.user, data.customer
     const data = payload.data || payload;
-    const user = data.user || data.membership?.user || data.customer || {};
+    const user = data.user || data.membership?.user || data.customer || payload.user || {};
 
-    const email = user.email || data.email;
-    const firstName = user.name?.split(' ')[0]
-        || user.first_name
-        || data.name?.split(' ')[0]
-        || 'Friend';
+    const email = user.email || data.email || data.buyer_email || data.payment?.email || payload.email;
+    const rawName = user.name || user.first_name || data.name || data.first_name || payload.name;
+    const firstName = rawName && String(rawName).trim() ? String(rawName).trim().split(' ')[0] : 'Friend';
 
     if (!email) {
         console.error('[whop-webhook] No email found in payload:', JSON.stringify(payload, null, 2));
