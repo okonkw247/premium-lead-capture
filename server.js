@@ -104,10 +104,8 @@ app.get(['/survey', '/survery', '/survey.html', '/survery.html'], (req, res) => 
     res.sendFile(path.join(__dirname, 'survey.html'));
 });
 
-// ── GET /waitlist — redirect to Whop now that product is live ───────────────
-// The ebook PDF has a button linking to /waitlist. Since Comeback: Unrecognizable
-// is live, any visitor (including PDF readers) is sent straight to the purchase page.
-app.get('/waitlist', (req, res) => {
+// ── GET /waitlist, /join, /checkout — redirect to Whop now that product is live ──
+app.get(['/waitlist', '/join', '/checkout'], (req, res) => {
     const whopUrl = process.env.WHOP_PRODUCT_URL || 'https://whop.com/adams-x/comeback-unrecognized/?a=adamsproject';
     return res.redirect(302, whopUrl);
 });
