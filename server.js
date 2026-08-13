@@ -4,7 +4,7 @@ const cors = require('cors');
 const path = require('path');
 const { Resend } = require('resend');
 const { supabase } = require('./lib/supabase');
-const { day0, waitlistConfirmation, apologyResend, paidEbookAccess, bonusDelivery, segAEmail1, segBEmail1 } = require('./lib/email-templates');
+const { day0, waitlistConfirmation, apologyResend, paidEbookAccess, bonusDelivery, segAEmail1, segBEmail1, postPurchaseEmail1 } = require('./lib/email-templates');
 
 // Cron handlers
 const dripHandler          = require('./api/cron/drip');
@@ -106,7 +106,7 @@ app.get(['/survey', '/survery', '/survey.html', '/survery.html'], (req, res) => 
 
 // ── GET /waitlist, /join, /checkout — redirect to Whop now that product is live ──
 app.get(['/waitlist', '/join', '/checkout'], (req, res) => {
-    const whopUrl = process.env.WHOP_PRODUCT_URL || 'https://whop.com/adams-x/comeback-unrecognized/?a=adamsproject';
+    const whopUrl = process.env.WHOP_PRODUCT_URL || 'https://whop.com/adams-x/comeback-unrecognized';
     return res.redirect(302, whopUrl);
 });
 
@@ -375,7 +375,7 @@ app.post('/api/waitlist', async (req, res) => {
         }
 
         console.log(`[waitlist] ✅ Confirmation sent to ${email}`);
-        const whopUrl = process.env.WHOP_PRODUCT_URL || 'https://whop.com/adams-x/comeback-unrecognized/?a=adamsproject';
+        const whopUrl = process.env.WHOP_PRODUCT_URL || 'https://whop.com/adams-x/comeback-unrecognized';
         return res.status(200).json({ success: true, message: 'Added to waitlist.', redirectUrl: whopUrl });
 
     } catch (err) {
@@ -512,7 +512,7 @@ app.get('/api/admin/send-apology', async (req, res) => {
 
 // ── PAID EBOOK CONFIGURATION ────────────────────────────────
 // When your Whop product is live, place the URL here (or define in .env: PAID_EBOOK_URL)
-const PAID_EBOOK_URL = process.env.PAID_EBOOK_URL || 'https://whop.com/adams-x/comeback-unrecognized/?a=adamsproject';
+const PAID_EBOOK_URL = process.env.PAID_EBOOK_URL || 'https://whop.com/adams-x/comeback-unrecognized';
 
 // ── GET /api/admin/send-paid-access ─────────────────────────
 // Admin tool: Trigger sending the Paid Ebook Access email to a buyer.
@@ -560,6 +560,56 @@ app.get('/api/admin/send-paid-access', async (req, res) => {
 
     } catch (err) {
         console.error('[send-paid-access] Error:', err);
+        return res.status(500).send(`Error: ${err.message}`);
+    }
+});
+
+// ── GET /api/admin/send-shannon-drip1 ─────────────────────────
+// Admin tool: Trigger sending Post-Purchase Email 1 to Shannon
+// URL: https://adamsxproject.com.ng/api/admin/send-shannon-drip1?token=send
+app.get('/api/admin/send-shannon-drip1', async (req, res) => {
+    if (req.query.token !== 'send') {
+        return res.status(401).send('Unauthorized. Set query param ?token=send');
+    }
+    const email = req.query.email || 'shannonworks75@gmail.com';
+    const name = req.query.name || 'Shannon';
+
+    try {
+        const { subject, html } = postPurchaseEmail1(name, email);
+        const emailResponse = await resend.emails.send({
+            from: `Adams X <${SENDER}>`,
+            to: email,
+            subject,
+            html,
+            reply_to: 'adams@adamsxproject.com.ng',
+            tags: [{ name: 'sequence', value: 'post-purchase-email1' }]
+        });
+
+        if (emailResponse.error) {
+            throw new Error(emailResponse.error.message || 'Resend failed to send email.');
+        }
+
+        if (supabase) {
+            const now = new Date().toISOString();
+            await supabase.from('purchased_subscribers').upsert(
+                {
+                    first_name: name,
+                    email: email,
+                    sequence_day: 0,
+                    last_sent_at: now,
+                    enrolled_at: now,
+                    active: true
+                },
+                { onConflict: 'email' }
+            );
+            await supabase.from('leads').update({ purchased: true }).eq('email', email);
+            await supabase.from('waitlist').update({ purchased: true }).eq('email', email);
+        }
+
+        console.log(`[send-shannon-drip1] ✅ Post-Purchase Email 1 sent to ${email}`);
+        return res.send(`✅ Success! Post-Purchase Email 1 ("${subject}") sent to ${name} (${email}).`);
+    } catch (err) {
+        console.error('[send-shannon-drip1] Error:', err);
         return res.status(500).send(`Error: ${err.message}`);
     }
 });
