@@ -156,6 +156,49 @@ app.post('/api/survey', async (req, res) => {
             }
 
             console.log(`[survey] ✅ Response saved to DB`);
+
+            // ── Admin Email Notification ──
+            const adminEmail = process.env.NOTIFICATION_EMAIL || process.env.SENDER_EMAIL;
+            if (adminEmail && process.env.RESEND_API_KEY) {
+                const cleanPhone = String(whatsapp).replace(/[^0-9]/g, '');
+                const waUrl = cleanPhone ? `https://wa.me/${cleanPhone}?text=${encodeURIComponent(`Hey ${name || 'there'}, saw your survey response on Comeback: Unrecognizable!`)}` : '#';
+                
+                try {
+                    await resend.emails.send({
+                        from: `Adams X Survey Alerts <${SENDER}>`,
+                        to: adminEmail,
+                        subject: `📝 New Survey Response from ${name || whatsapp}`,
+                        reply_to: email && String(email).trim() ? String(email).trim() : 'adams@adamsxproject.com.ng',
+                        html: `
+                            <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; padding: 24px; max-width: 600px; background-color: #0B0A09; color: #F5F3EF; border-radius: 12px; border: 1px solid #2A2824;">
+                                <h2 style="color: #D4AF37; margin-top: 0;">📝 New Survey Response</h2>
+                                <hr style="border: 0; border-top: 1px solid #2A2824; margin: 16px 0;" />
+                                
+                                <p style="margin: 8px 0;"><strong>Name:</strong> ${name || 'N/A'}</p>
+                                <p style="margin: 8px 0;"><strong>WhatsApp:</strong> ${whatsapp} ${cleanPhone ? `(<a href="${waUrl}" style="color: #25D366; text-decoration: underline;">Click to open WhatsApp</a>)` : ''}</p>
+                                <p style="margin: 8px 0;"><strong>Email:</strong> ${email || 'N/A'}</p>
+                                <p style="margin: 8px 0;"><strong>Country:</strong> ${country}</p>
+                                <p style="margin: 8px 0;"><strong>Status:</strong> ${status}</p>
+                                <p style="margin: 8px 0;"><strong>Reason Not Joined:</strong> ${reason}</p>
+                                <p style="margin: 8px 0;"><strong>Last $17+ Spend:</strong> ${spend_recency}</p>
+                                
+                                <div style="margin-top: 20px; padding: 16px; background-color: #141311; border: 1px solid #2A2824; border-radius: 8px;">
+                                    <strong style="color: #D4AF37; display: block; margin-bottom: 8px;">What needs to be true to say yes:</strong>
+                                    <p style="margin: 0; font-style: italic; color: #F5F3EF;">"${open_response}"</p>
+                                </div>
+
+                                <div style="margin-top: 24px; text-align: center;">
+                                    ${cleanPhone ? `<a href="${waUrl}" style="display: inline-block; padding: 12px 20px; background-color: #25D366; color: #ffffff; text-decoration: none; font-weight: bold; border-radius: 8px; margin-right: 8px;">Chat on WhatsApp</a>` : ''}
+                                    ${email ? `<a href="mailto:${email}" style="display: inline-block; padding: 12px 20px; background-color: #D4AF37; color: #0B0A09; text-decoration: none; font-weight: bold; border-radius: 8px;">Reply via Email</a>` : ''}
+                                </div>
+                            </div>`
+                    });
+                    console.log(`[survey] ✅ Admin notification email sent to ${adminEmail}`);
+                } catch (emailErr) {
+                    console.error('[survey] Failed to send admin notification email:', emailErr);
+                }
+            }
+
             return res.json({ success: true, data });
         } else {
             return res.status(500).json({ error: 'Supabase client not initialized. Check SUPABASE_URL and SUPABASE_SERVICE_KEY in Vercel environment variables.' });
