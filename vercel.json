@@ -37,7 +37,7 @@
     },
     { "src": "/monk-mode-starter-kit.pdf", "dest": "/ebooks/monk-mode-starter-kit.pdf" },
     { "src": "/privacy/?", "dest": "/privacy.html" },
-    { "src": "/waitlist/?", "dest": "/waitlist.html" },
+    { "src": "/waitlist/?", "dest": "/index.html" },
     { "src": "/join/?", "dest": "/server.js" },
     { "src": "/checkout/?", "dest": "/server.js" },
     { "src": "/bonus/?", "dest": "/bonus.html" },
