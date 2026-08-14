@@ -16,7 +16,8 @@
     { "src": "favicon-16x16.png", "use": "@vercel/static" },
     { "src": "apple-touch-icon.png", "use": "@vercel/static" },
     { "src": "ebooks/the-7-day-starter-kit.pdf", "use": "@vercel/static" },
-    { "src": "ebooks/monk-mode-starter-kit.pdf", "use": "@vercel/static" }
+    { "src": "ebooks/monk-mode-starter-kit.pdf", "use": "@vercel/static" },
+    { "src": "images/**", "use": "@vercel/static" }
   ],
   "routes": [
     { "src": "/api/(.*)", "dest": "/server.js" },
@@ -44,6 +45,7 @@
     { "src": "/unsubscribe/?", "dest": "/unsubscribe.html" },
     { "src": "/survey/?", "dest": "/survey.html" },
     { "src": "/survery/?", "dest": "/survey.html" },
+    { "src": "/images/(.*)", "dest": "/images/$1" },
     { "src": "/(.*)", "dest": "/index.html" }
   ],
   "crons": [

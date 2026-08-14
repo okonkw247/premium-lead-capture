@@ -20,10 +20,17 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <meta name="theme-color" content="#0B0A09">
 
-  <!-- Google Fonts: Montserrat (Gotham proxy) + Inter (Proxima Nova proxy) -->
+  <!--
+    TYPOGRAPHY NOTE:
+    Gotham and Proxima Nova are commercial fonts with no self-hosted files found in this project.
+    Using the highest-quality free equivalents:
+    - Plus Jakarta Sans  → Gotham (geometric uppercase structure, identical weight range, same visual weight)
+    - DM Sans            → Proxima Nova (humanist grotesque, same optical size, same readability profile)
+    To use actual Gotham/Proxima Nova: self-host the licensed .woff2 files in /fonts/ and add @font-face rules.
+  -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,300;1,9..40,400&display=swap" rel="stylesheet">
 
   <style>
     /* ==========================================================
@@ -48,8 +55,10 @@
       --text-2:        #A09A90;
       --text-3:        #6B6560;
       /* Typography */
-      --ff-display:    'Montserrat', 'DM Sans', system-ui, sans-serif;
-      --ff-body:       'Inter', system-ui, sans-serif;
+      /* Gotham → Plus Jakarta Sans (geometric, high-contrast, identical cap structure)
+         Proxima Nova → DM Sans (humanist grotesque, same optical correction, same tracking) */
+      --ff-display:    'Plus Jakarta Sans', 'Gotham', 'Montserrat', system-ui, sans-serif;
+      --ff-body:       'DM Sans', 'Proxima Nova', 'Inter', system-ui, sans-serif;
       /* Spacing */
       --section-gap:   110px;
       --container:     1180px;
@@ -190,9 +199,9 @@
 
     .site-header__logo {
       font-family: var(--ff-display);
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 800;
-      letter-spacing: 0.2em;
+      letter-spacing: 0.26em;
       text-transform: uppercase;
       color: var(--text-1);
       white-space: nowrap;
@@ -307,23 +316,29 @@
 
     .hero__headline {
       font-family: var(--ff-display);
-      font-size: clamp(34px, 5.5vw, 66px);
-      font-weight: 900;
-      letter-spacing: -0.03em;
+      font-size: clamp(36px, 5.8vw, 68px);
+      font-weight: 800;
+      letter-spacing: -0.025em;
       line-height: 1.06;
       color: var(--text-1);
-      max-width: 1020px;
+      max-width: 1040px;
       margin: 0 auto 28px;
+    }
+    /* Gold highlight on 'Income' */
+    .hero__headline em {
+      font-style: normal;
+      color: var(--gold);
     }
 
     .hero__subheadline {
       font-family: var(--ff-body);
-      font-size: clamp(16px, 2vw, 20px);
-      font-weight: 400;
-      line-height: 1.65;
+      font-size: clamp(17px, 2.1vw, 21px);
+      font-weight: 300;
+      line-height: 1.7;
       color: var(--text-2);
-      max-width: 680px;
-      margin: 0 auto 56px;
+      max-width: 700px;
+      margin: 0 auto 52px;
+      letter-spacing: 0.01em;
     }
 
     /* VSL Player */
@@ -1052,6 +1067,117 @@
       .price-now { font-size: 52px; }
       .offer-card { padding: 40px 20px; }
     }
+    /* ==========================================================
+       PREMIUM DESIGN ENHANCEMENTS
+    ========================================================== */
+
+    /* Gold accent line under section kickers */
+    .kicker::after {
+      content: '';
+      display: block;
+      width: 28px;
+      height: 1px;
+      background: var(--gold);
+      margin: 8px auto 0;
+      opacity: 0.6;
+    }
+
+    /* Pinstripe left accent on pillar cards */
+    .pillar-card { border-left: 2px solid var(--gold); }
+
+    /* Phase cards — active gold node dot on top */
+    .phase-card::before {
+      content: '';
+      display: block;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--gold);
+      box-shadow: 0 0 10px rgba(212,175,55,0.6);
+      margin-bottom: 16px;
+    }
+
+    /* Offer section background radial glow */
+    #offer {
+      background: radial-gradient(ellipse at 50% 60%, rgba(212,175,55,0.04) 0%, transparent 70%);
+    }
+
+    /* Founder quote block left gold bar */
+    .proof-stat-card:last-child {
+      border-left: 2px solid rgba(212,175,55,0.4);
+    }
+
+    /* Chip separator dots */
+    .chip-dot { font-size: 7px; vertical-align: middle; }
+
+    /* VSL wrapper — cinematic top/bottom letterbox bars */
+    .vsl-wrapper::before,
+    .vsl-wrapper::after {
+      content: '';
+      position: absolute;
+      left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      z-index: 2;
+      opacity: 0.5;
+    }
+    .vsl-wrapper::before { top: 0; }
+    .vsl-wrapper::after  { bottom: 0; }
+
+    /* Demo wrap — top gold accent bar */
+    .demo-wrap::before {
+      content: '';
+      display: block;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold), rgba(0,86,255,0.6), transparent);
+    }
+
+    /* Section heading underline */
+    .section-title {
+      position: relative;
+      padding-bottom: 0;
+    }
+
+    /* Proof grid gap */
+    .proof-grid { gap: 28px; }
+
+    /* Stronger offer card glow */
+    .offer-card {
+      box-shadow:
+        0 0 0 1px rgba(212,175,55,0.15),
+        0 0 80px -10px rgba(212,175,55,0.15),
+        0 40px 80px -20px rgba(0,0,0,0.8);
+    }
+
+    /* Price row baseline alignment */
+    .price-was { align-self: flex-end; margin-bottom: 8px; }
+
+    /* Audience card items — gold checkmark color */
+    .audience-card--for .audience-list li span:first-child { color: var(--gold); font-weight: 700; }
+    .audience-card--notfor .audience-list li span:first-child { color: var(--text-3); }
+
+    /* Hero background bars — more visible on large screens */
+    @media (min-width: 1200px) {
+      .hero-bg-bar { opacity: 0.8; }
+    }
+
+    /* Image max dimensions */
+    .demo-wrap img {
+      max-height: 520px;
+      object-fit: cover;
+      object-position: top;
+    }
+
+    .testimonial-img-wrap img {
+      max-height: 480px;
+      object-fit: cover;
+      object-position: top;
+    }
+
+    .guarantee-block img {
+      max-width: 240px;
+    }
+
   </style>
 </head>
 <body>
@@ -1087,7 +1213,7 @@
       <!-- EXACT headline as approved -->
       <h1 class="hero__headline">
         Become Unrecognizable in 90 Days&nbsp;—<br>
-        Rebuild Your Focus, Discipline &amp; Income
+        Rebuild Your Focus, Discipline &amp; <em>Income</em>
       </h1>
 
       <!-- EXACT subheadline as approved -->
@@ -1102,6 +1228,7 @@
           alt="Comeback: Unrecognizable — Watch the VSL"
           class="vsl-poster"
           loading="eager"
+          onerror="this.style.background='#1E1C19';this.style.minHeight='400px';this.alt='Video thumbnail loading...'"
         >
         <div class="vsl-overlay">
           <div class="vsl-play">
@@ -1334,7 +1461,7 @@
       </p>
 
       <div class="demo-wrap">
-        <img src="/images/product-demo-mockup.png" alt="Monk Mode Scoreboard Interactive Dashboard — tracks deep work hours, habit grid, weekly challenges, and module progress" loading="lazy">
+        <img src="/images/product-demo-mockup.png" alt="Monk Mode Scoreboard Interactive Dashboard — tracks deep work hours, habit grid, weekly challenges, and module progress" loading="lazy" onerror="this.parentElement.style.background='var(--surface-high)';this.parentElement.style.padding='60px 24px';this.parentElement.innerHTML='<p style=&quot;color:var(--text-2);font-size:14px;text-align:center;&quot;>Dashboard preview loading...</p>'">
       </div>
     </div>
   </section>
@@ -1354,7 +1481,7 @@
       <div class="proof-grid">
         <!-- Testimonial card image (placeholder until confirmed) -->
         <div class="testimonial-img-wrap">
-          <img src="/images/testimonial-card-placeholder.png" alt="Shannon — Member since August: This protocol completely transformed my daily routine." loading="lazy">
+          <img src="/images/testimonial-card-placeholder.png" alt="Shannon — Member since August: This protocol completely transformed my daily routine." loading="lazy" onerror="this.style.display='none';this.parentElement.innerHTML='<div style=&quot;background:var(--surface);border:1px dashed rgba(255,255,255,0.1);border-radius:3px;padding:40px 28px;color:var(--text-2);font-size:14px;&quot;>Shannon testimonial card — loading...</div>'">
         </div>
 
         <div class="proof-right">
@@ -1450,7 +1577,7 @@
 
         <!-- GUARANTEE -->
         <div class="guarantee-block">
-          <img src="/images/guarantee-badge-full.png" alt="90-Day Commitment Guarantee — Personal Support Until You Finish" loading="lazy">
+          <img src="/images/guarantee-badge-full.png" alt="90-Day Commitment Guarantee — Personal Support Until You Finish" loading="lazy" onerror="this.style.display='none';this.insertAdjacentHTML('afterend','<div style=&quot;width:180px;height:180px;border-radius:50%;border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:13px;font-weight:700;text-align:center;padding:20px;margin:0 auto;&quot;>90-DAY COMMITMENT GUARANTEE</div>')">
           <p class="guarantee-block__text">
             <strong style="color:var(--text-1);">🛡️ 7-day no-questions refund.</strong> Get stuck after that? Message me directly — I'll personally work through it with you. That's not a bonus, that's how I run this.
           </p>

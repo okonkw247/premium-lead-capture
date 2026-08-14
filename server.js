@@ -97,6 +97,9 @@ app.get('/privacy', (req, res) => {
     res.sendFile(path.join(__dirname, 'privacy.html'));
 });
 
+// Serve /images/ static assets explicitly (before wildcard)
+app.use('/images', express.static(path.join(__dirname, 'images')));
+
 app.use(express.static(path.join(__dirname)));
 
 // ── GET /survey & /survery — Serve feedback survey ────────────
