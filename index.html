@@ -117,17 +117,23 @@
       position: fixed;
       top: 0; left: 0; width: 100%;
       z-index: 990;
-      background: rgba(6, 6, 6, 0.9);
-      backdrop-filter: blur(20px) saturate(1.4);
-      -webkit-backdrop-filter: blur(20px) saturate(1.4);
+      background: rgba(6, 6, 6, 0.95);
+      backdrop-filter: blur(24px) saturate(1.5);
+      -webkit-backdrop-filter: blur(24px) saturate(1.5);
       border-bottom: 1px solid var(--border);
     }
 
     .site-nav__inner {
-      display: grid;
-      grid-template-columns: 1fr auto 1fr;
+      display: flex;
+      justify-content: space-between;
       align-items: center;
-      height: 64px;
+      height: 74px;
+    }
+
+    .site-nav__left-group {
+      display: flex;
+      align-items: center;
+      gap: 20px;
     }
 
     .site-nav__brand {
@@ -135,25 +141,25 @@
       align-items: center;
       gap: 10px;
       font-family: var(--ff-display);
-      font-size: 15px;
-      font-weight: 700;
-      letter-spacing: -0.01em;
-      color: var(--text-main);
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: #FFFFFF;
     }
     .brand-mark {
       color: #0088ff;
-      font-size: 20px;
+      font-size: 24px;
       font-weight: 900;
       letter-spacing: -2px;
     }
 
     .site-nav__status {
       font-family: var(--ff-display);
-      font-size: 10.5px;
-      font-weight: 700;
-      letter-spacing: 0.22em;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 0.15em;
       text-transform: uppercase;
-      color: var(--text-muted);
+      color: #FFFFFF;
     }
 
     .site-nav__cta {
@@ -377,25 +383,38 @@
 
     /* Benefit Features */
     .hero-features {
-      margin-top: 24px;
+      margin-top: 28px;
+      width: 100%;
+      overflow: hidden;
+      position: relative;
+      -webkit-mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+      mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+    }
+    .marquee-track {
       display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 10px;
+      width: max-content;
+      animation: scrollMarquee 25s linear infinite;
+    }
+    .marquee-track:hover {
+      animation-play-state: paused;
+    }
+    @keyframes scrollMarquee {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
     }
     .features-row { 
       display: flex; 
-      flex-wrap: wrap; 
-      justify-content: center; 
-      gap: 20px 28px; 
+      flex-wrap: nowrap;
+      gap: 28px;
+      padding-right: 28px;
     }
     .feat-item {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
+      gap: 10px;
       font-family: var(--ff-body);
-      font-size: 13.5px;
-      font-weight: 500;
+      font-size: 15px;
+      font-weight: 700;
       color: #FFFFFF;
       white-space: nowrap;
       letter-spacing: -0.01em;
@@ -2185,16 +2204,17 @@
         margin: 0 auto;
       }
 
-      .hero-features { margin-top: 14px; gap: 6px; }
-      .features-row { gap: 6px 12px; justify-content: center; }
-      .feat-item { font-size: 11px; gap: 5px; color: #FFFFFF; }
-      .feat-svg { width: 14px; height: 14px; }
+      .site-nav__inner { height: auto; padding: 14px 0; align-items: center; }
+      .site-nav__left-group { flex-direction: column; align-items: flex-start; gap: 4px; }
+      .site-nav__brand { font-size: 17px; gap: 6px; }
+      .brand-mark { font-size: 20px; }
+      .site-nav__status { display: block; font-size: 11.5px; }
+      .btn-pill-sm { padding: 9px 16px; font-size: 10.5px; }
 
-      .site-nav__inner { grid-template-columns: 1fr auto; height: 52px; }
-      .site-nav__brand { font-size: 13.5px; gap: 6px; }
-      .brand-mark { font-size: 16px; }
-      .site-nav__status { display: none; }
-      .btn-pill-sm { padding: 7px 14px; font-size: 9.5px; }
+      .hero-features { margin-top: 20px; }
+      .features-row { gap: 20px; padding-right: 20px; }
+      .feat-item { font-size: 14px; gap: 8px; font-weight: 800; }
+      .feat-svg { width: 16px; height: 16px; }
 
       .wins-card-wrap { padding: 24px 14px; border-radius: var(--radius-md); margin-top: 32px; }
       .wins-grid { grid-template-columns: 1fr; gap: 18px; }
@@ -2267,10 +2287,12 @@
   ============================================================ -->
   <nav class="site-nav" id="site-nav">
     <div class="container site-nav__inner">
-      <div class="site-nav__brand">
-        <span class="brand-mark">//</span> ADAMS X PROJECT
+      <div class="site-nav__left-group">
+        <div class="site-nav__brand">
+          <span class="brand-mark">//</span> ADAMS X PROJECT
+        </div>
+        <div class="site-nav__status">THE 90-DAY MONK MODE PROTOCOL</div>
       </div>
-      <div class="site-nav__status">THE 90-DAY MONK MODE PROTOCOL</div>
       <div class="site-nav__cta">
         <a href="#offer" class="btn-pill-sm">GET ACCESS — $17</a>
       </div>
@@ -2323,35 +2345,27 @@
         </a>
       </div>
 
-      <!-- Benefit Features (Monetise Cyan Vector Iconography) -->
+      <!-- Benefit Features (Monetise Marquee Iconography) -->
       <div class="hero-features" aria-label="Key features">
-        <div class="features-row">
-          <span class="feat-item">
-            <svg class="feat-svg" viewBox="0 0 24 24"><path d="M20 6h-4V4c0-1.11-.89-2-2-2h-4c-1.11 0-2 .89-2 2v2H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-6 0h-4V4h4v2z"/></svg>
-            90-Day Protocol
-          </span>
-          <span class="feat-item">
-            <svg class="feat-svg" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-3.5 7.5c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5S7 11.83 7 11s.67-1.5 1.5-1.5zm7 0c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5-1.5-.67-1.5-1.5.67-1.5 1.5-1.5zm-3.5 8c-2.33 0-4.31-1.46-5.11-3.5h10.22c-.8 2.04-2.78 3.5-5.11 3.5z"/></svg>
-            12 Full Modules
-          </span>
-          <span class="feat-item">
-            <svg class="feat-svg" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm0-14c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm0 9c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3z"/></svg>
-            Daily Scoreboard App
-          </span>
-        </div>
-        <div class="features-row">
-          <span class="feat-item">
-            <svg class="feat-svg" viewBox="0 0 24 24"><path d="M19 7h-3V6c0-1.65-1.35-3-3-3h-2c-1.65 0-3 1.35-3 3v1H5c-1.1 0-2 .9-2 2v2h18V9c0-1.1-.9-2-2-2zm-8-1c0-.55.45-1 1-1h2c.55 0 1 .45 1 1v1h-4V6zm-8 7v6c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-6H3zm9 4H8v-2h4v2zm4 0h-2v-2h2v2z"/></svg>
-            Private Community
-          </span>
-          <span class="feat-item">
-            <svg class="feat-svg" viewBox="0 0 24 24"><path d="M21 3H3c-1.11 0-2 .89-2 2v12c0 1.1.89 2 2 2h5v2h8v-2h5c1.1 0 1.99-.9 1.99-2L23 5c0-1.11-.9-2-2-2zm0 14H3V5h18v12zm-11-2l6-4-6-4v8z"/></svg>
-            12 Weekly Milestones
-          </span>
-          <span class="feat-item">
-            <svg class="feat-svg" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 14.5v1.5h-2v-1.5c-1.66-.35-2.8-1.5-2.95-3h1.75c.15.75.75 1.45 2.2 1.45 1.5 0 2-.75 2-1.35 0-.8-.7-1.15-2.35-1.65C9.6 11.35 8 10.45 8 8.65c0-1.4 1.1-2.6 2.75-2.95V4.2h2v1.5c1.4.3 2.35 1.3 2.5 2.55h-1.75c-.15-.65-.65-1.2-1.75-1.2-1.2 0-1.75.6-1.75 1.15 0 .65.55 1 2.05 1.45C13.5 10.15 15 11 15 12.85c0 1.5-1.15 2.85-3 3.15z"/></svg>
-            Focus Firewall System
-          </span>
+        <div class="marquee-track">
+          <!-- First Set -->
+          <div class="features-row">
+            <span class="feat-item"><svg class="feat-svg" viewBox="0 0 24 24"><path d="M20 6h-4V4c0-1.11-.89-2-2-2h-4c-1.11 0-2 .89-2 2v2H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-6 0h-4V4h4v2z"/></svg> 90-Day Protocol</span>
+            <span class="feat-item"><svg class="feat-svg" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-3.5 7.5c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5S7 11.83 7 11s.67-1.5 1.5-1.5zm7 0c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5-1.5-.67-1.5-1.5.67-1.5 1.5-1.5zm-3.5 8c-2.33 0-4.31-1.46-5.11-3.5h10.22c-.8 2.04-2.78 3.5-5.11 3.5z"/></svg> 12 Full Modules</span>
+            <span class="feat-item"><svg class="feat-svg" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm0-14c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm0 9c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3z"/></svg> Daily Scoreboard App</span>
+            <span class="feat-item"><svg class="feat-svg" viewBox="0 0 24 24"><path d="M19 7h-3V6c0-1.65-1.35-3-3-3h-2c-1.65 0-3 1.35-3 3v1H5c-1.1 0-2 .9-2 2v2h18V9c0-1.1-.9-2-2-2zm-8-1c0-.55.45-1 1-1h2c.55 0 1 .45 1 1v1h-4V6zm-8 7v6c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-6H3zm9 4H8v-2h4v2zm4 0h-2v-2h2v2z"/></svg> Private Community</span>
+            <span class="feat-item"><svg class="feat-svg" viewBox="0 0 24 24"><path d="M21 3H3c-1.11 0-2 .89-2 2v12c0 1.1.89 2 2 2h5v2h8v-2h5c1.1 0 1.99-.9 1.99-2L23 5c0-1.11-.9-2-2-2zm0 14H3V5h18v12zm-11-2l6-4-6-4v8z"/></svg> 12 Weekly Milestones</span>
+            <span class="feat-item"><svg class="feat-svg" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 14.5v1.5h-2v-1.5c-1.66-.35-2.8-1.5-2.95-3h1.75c.15.75.75 1.45 2.2 1.45 1.5 0 2-.75 2-1.35 0-.8-.7-1.15-2.35-1.65C9.6 11.35 8 10.45 8 8.65c0-1.4 1.1-2.6 2.75-2.95V4.2h2v1.5c1.4.3 2.35 1.3 2.5 2.55h-1.75c-.15-.65-.65-1.2-1.75-1.2-1.2 0-1.75.6-1.75 1.15 0 .65.55 1 2.05 1.45C13.5 10.15 15 11 15 12.85c0 1.5-1.15 2.85-3 3.15z"/></svg> Focus Firewall System</span>
+          </div>
+          <!-- Second Set (Duplicate for Marquee) -->
+          <div class="features-row" aria-hidden="true">
+            <span class="feat-item"><svg class="feat-svg" viewBox="0 0 24 24"><path d="M20 6h-4V4c0-1.11-.89-2-2-2h-4c-1.11 0-2 .89-2 2v2H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-6 0h-4V4h4v2z"/></svg> 90-Day Protocol</span>
+            <span class="feat-item"><svg class="feat-svg" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-3.5 7.5c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5S7 11.83 7 11s.67-1.5 1.5-1.5zm7 0c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5-1.5-.67-1.5-1.5.67-1.5 1.5-1.5zm-3.5 8c-2.33 0-4.31-1.46-5.11-3.5h10.22c-.8 2.04-2.78 3.5-5.11 3.5z"/></svg> 12 Full Modules</span>
+            <span class="feat-item"><svg class="feat-svg" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm0-14c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm0 9c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3z"/></svg> Daily Scoreboard App</span>
+            <span class="feat-item"><svg class="feat-svg" viewBox="0 0 24 24"><path d="M19 7h-3V6c0-1.65-1.35-3-3-3h-2c-1.65 0-3 1.35-3 3v1H5c-1.1 0-2 .9-2 2v2h18V9c0-1.1-.9-2-2-2zm-8-1c0-.55.45-1 1-1h2c.55 0 1 .45 1 1v1h-4V6zm-8 7v6c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-6H3zm9 4H8v-2h4v2zm4 0h-2v-2h2v2z"/></svg> Private Community</span>
+            <span class="feat-item"><svg class="feat-svg" viewBox="0 0 24 24"><path d="M21 3H3c-1.11 0-2 .89-2 2v12c0 1.1.89 2 2 2h5v2h8v-2h5c1.1 0 1.99-.9 1.99-2L23 5c0-1.11-.9-2-2-2zm0 14H3V5h18v12zm-11-2l6-4-6-4v8z"/></svg> 12 Weekly Milestones</span>
+            <span class="feat-item"><svg class="feat-svg" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 14.5v1.5h-2v-1.5c-1.66-.35-2.8-1.5-2.95-3h1.75c.15.75.75 1.45 2.2 1.45 1.5 0 2-.75 2-1.35 0-.8-.7-1.15-2.35-1.65C9.6 11.35 8 10.45 8 8.65c0-1.4 1.1-2.6 2.75-2.95V4.2h2v1.5c1.4.3 2.35 1.3 2.5 2.55h-1.75c-.15-.65-.65-1.2-1.75-1.2-1.2 0-1.75.6-1.75 1.15 0 .65.55 1 2.05 1.45C13.5 10.15 15 11 15 12.85c0 1.5-1.15 2.85-3 3.15z"/></svg> Focus Firewall System</span>
+          </div>
         </div>
       </div>
 
