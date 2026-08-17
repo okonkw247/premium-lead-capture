@@ -139,27 +139,13 @@
     .site-nav__brand {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 12px;
       font-family: var(--ff-display);
-      font-size: 18px;
+      font-size: 26px;
       font-weight: 800;
-      letter-spacing: -0.02em;
+      letter-spacing: 0.02em;
       color: #FFFFFF;
-    }
-    .brand-mark {
-      color: #0088ff;
-      font-size: 24px;
-      font-weight: 900;
-      letter-spacing: -2px;
-    }
-
-    .site-nav__status {
-      font-family: var(--ff-display);
-      font-size: 13px;
-      font-weight: 800;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: #FFFFFF;
+      text-decoration: none;
     }
 
     .site-nav__cta {
@@ -170,14 +156,14 @@
     /* Monetise Refined Glass Gold Button */
     .btn-pill-sm {
       font-family: var(--ff-display);
-      font-size: 11px;
+      font-size: 13.5px;
       font-weight: 800;
       letter-spacing: 0.05em;
       text-transform: uppercase;
       color: #000000;
       background: linear-gradient(180deg, #FFF75A 0%, #FFE600 50%, #F5CE00 100%);
       border: 1px solid rgba(255, 255, 255, 0.4);
-      padding: 9px 20px;
+      padding: 12px 28px;
       border-radius: 12px;
       cursor: pointer;
       box-shadow: 
@@ -275,28 +261,6 @@
       text-align: center;
       background: #050505 url('/images/hero-bg.png') no-repeat center 20% / cover;
       overflow: hidden;
-    }
-    
-    /* Monetise Cotton Blue Curved Side Glows */
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: 10%; bottom: 10%; left: -60px; width: 100px;
-      border-right: 2.5px solid rgba(91, 183, 219, 0.4);
-      border-radius: 50%;
-      box-shadow: 30px 0 80px rgba(91, 183, 219, 0.25);
-      pointer-events: none;
-      z-index: 0;
-    }
-    .hero::after {
-      content: '';
-      position: absolute;
-      top: 10%; bottom: 10%; right: -60px; width: 100px;
-      border-left: 2.5px solid rgba(91, 183, 219, 0.4);
-      border-radius: 50%;
-      box-shadow: -30px 0 80px rgba(91, 183, 219, 0.25);
-      pointer-events: none;
-      z-index: 0;
     }
 
     .hero__content {
@@ -2236,11 +2200,9 @@
       }
 
       .site-nav__inner { height: auto; padding: 12px 0; align-items: center; }
-      .site-nav__left-group { flex-direction: column; align-items: flex-start; gap: 2px; }
-      .site-nav__brand { font-size: 18px; font-weight: 700; gap: 6px; letter-spacing: -0.01em; }
-      .brand-mark { font-size: 20px; }
-      .site-nav__status { display: block; font-size: 11px; font-weight: 800; letter-spacing: 0.05em; color: var(--text-main); margin-top: 1px; }
-      .btn-pill-sm { padding: 10px 18px; font-size: 12px; font-weight: 800; border-radius: 10px; }
+      .site-nav__left-group { flex-direction: row; align-items: center; }
+      .site-nav__brand { font-size: 20px; font-weight: 800; gap: 8px; letter-spacing: -0.01em; }
+      .btn-pill-sm { padding: 12px 20px; font-size: 13px; font-weight: 800; border-radius: 10px; }
 
       .hero-features { margin-top: 24px; gap: 18px; }
       .features-row { gap: 24px; padding-right: 24px; }
@@ -2320,10 +2282,9 @@
     <div class="container site-nav__inner">
       <div class="site-nav__left-group">
         <div class="site-nav__brand">
-          <img src="/favicon-32x32.png" alt="Adams X Logo" style="width: 22px; height: 22px; border-radius: 4px; flex-shrink: 0;">
-          <span class="brand-mark">//</span> ADAMS X PROJECT
+          <img src="/favicon-32x32.png" alt="Adams X Logo" style="width: 32px; height: 32px; border-radius: 6px; flex-shrink: 0; object-fit: contain;">
+          ADAMS X PROJECT
         </div>
-        <div class="site-nav__status">THE 90-DAY MONK MODE PROTOCOL</div>
       </div>
       <div class="site-nav__cta">
         <a href="#offer" class="btn-pill-sm">GET ACCESS — $17</a>
