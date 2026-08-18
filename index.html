@@ -1540,21 +1540,26 @@
       content: '';
       position: absolute;
       inset: 0;
+      z-index: 0;
       background: linear-gradient(180deg,
-        rgba(4, 8, 18, 0.92) 0%,
-        rgba(4, 8, 18, 0.78) 30%,
-        rgba(4, 8, 18, 0.72) 60%,
-        rgba(4, 8, 18, 0.88) 100%
+        rgba(4, 8, 18, 0.88) 0%,
+        rgba(4, 8, 18, 0.72) 35%,
+        rgba(4, 8, 18, 0.68) 60%,
+        rgba(4, 8, 18, 0.85) 100%
       );
       pointer-events: none;
     }
+    /* All content inside the section must sit above the overlay */
+    .stack-card-section .container {
+      position: relative;
+      z-index: 1;
+    }
     .stack-card-section .sec-title {
-      color: #FFFFFF;
-      text-shadow: 0 2px 24px rgba(0, 0, 0, 0.8);
+      color: #FFFFFF !important;
+      -webkit-text-fill-color: #FFFFFF !important;
     }
     .stack-card-section .sec-sub {
-      color: rgba(255, 255, 255, 0.75);
-      text-shadow: 0 1px 12px rgba(0, 0, 0, 0.9);
+      color: rgba(255, 255, 255, 0.85) !important;
     }
     .stack-card-section .sec-kicker {
       position: relative;
