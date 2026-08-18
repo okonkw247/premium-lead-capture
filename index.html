@@ -2285,13 +2285,25 @@
     .floating-whatsapp svg { width: 28px; height: 28px; fill: #FFFFFF; }
 
     /* Footer */
-    .site-footer { padding: 44px 0 32px; background: #020408; border-top: 1px solid var(--border); text-align: center; }
-    .site-footer__brand { font-family: var(--ff-display); font-size: 12px; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; color: var(--text-faint); margin-bottom: 14px; }
-    .site-footer__brand span { color: var(--accent-yellow); }
-    .site-footer__copy { font-size: 12px; color: var(--text-faint); line-height: 1.6; margin-bottom: 16px; }
-    .site-footer__links { display: flex; justify-content: center; gap: 24px; }
-    .site-footer__links a { font-size: 11.5px; color: var(--text-faint); text-decoration: underline; text-underline-offset: 3px; }
-    .site-footer__links a:hover { color: var(--text-muted); }
+    .site-footer { padding: 48px 0 36px; background: #020408; border-top: 1px solid var(--border); text-align: center; }
+    .site-footer__brand {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      font-family: var(--ff-display);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--text-faint);
+      margin-bottom: 16px;
+    }
+    .site-footer__brand span { color: #0088FF; font-weight: 900; }
+    .site-footer__copy { font-size: 12.5px; color: var(--text-faint); line-height: 1.65; margin-bottom: 16px; }
+    .site-footer__links { display: flex; justify-content: center; gap: 28px; }
+    .site-footer__links a { font-size: 12px; color: var(--text-muted); text-decoration: underline; text-underline-offset: 3px; transition: color 0.2s ease; }
+    .site-footer__links a:hover { color: #FFFFFF; }
 
     /* ==========================================================
        RESPONSIVE DESIGN (All Screen Sizes)
@@ -3799,7 +3811,10 @@
   ============================================================ -->
   <footer class="site-footer">
     <div class="container">
-      <div class="site-footer__brand">// ADAMS X PROJECT</div>
+      <div class="site-footer__brand">
+        <img src="/favicon-32x32.png" alt="Adams X Logo" style="width: 22px; height: 22px; border-radius: 5px; object-fit: contain;">
+        <span>//</span> ADAMS X PROJECT
+      </div>
       <p class="site-footer__copy">
         &copy; 2026 Adams X Project &middot; All rights reserved.<br>
         Built for creators, developers, and builders ready to execute.

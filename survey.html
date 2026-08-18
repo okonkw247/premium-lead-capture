@@ -1,466 +1,716 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Comeback: Unrecognizable — Feedback Survey</title>
-    
-    <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="/favicon.ico">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <meta name="theme-color" content="#0B0A09">
-    <meta name="description" content="Quick feedback survey for Comeback: Unrecognizable.">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Comeback: Unrecognizable — Feedback Survey</title>
+  <meta name="description" content="Quick feedback survey for Comeback: Unrecognizable.">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <meta name="theme-color" content="#050505">
 
-    <!-- Google Fonts: Inter -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        brand: {
-                            bg:        '#0B0A09',
-                            surface:   '#141311',
-                            input:     '#1C1A17',
-                            border:    '#2A2824',
-                            primary:   '#F5F3EF',
-                            secondary: '#9E9B95',
-                            gold:      '#D4AF37',
-                            goldHover: '#E3C165',
-                        }
-                    },
-                    fontFamily: {
-                        sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
-                    }
-                }
-            }
-        }
-    </script>
-    
-    <style>
-        body {
-            background-color: #0B0A09;
-            color: #F5F3EF;
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            -webkit-font-smoothing: antialiased;
-            min-height: 100vh;
-        }
+  <!-- Google Fonts: Montserrat -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500&display=swap" rel="stylesheet">
 
-        @keyframes slideFadeIn {
-            from { opacity: 0; transform: translateY(14px); }
-            to   { opacity: 1; transform: translateY(0); }
-        }
+  <style>
+    :root {
+      --bg: #050505;
+      --surface-navy: #060D1E;
+      --surface-card: #0A162C;
+      --surface-input: #040814;
+      --border-blue: rgba(0, 136, 255, 0.28);
+      --border-subtle: rgba(255, 255, 255, 0.08);
+      --text-main: #F8FAFC;
+      --text-muted: #94A3B8;
+      --text-faint: #64748B;
+      --accent-cyan: #00D2FF;
+      --accent-blue: #0088FF;
+      --accent-gold: #FFE600;
+      --gold-gradient: linear-gradient(180deg, #FFF75A 0%, #FFE600 50%, #F5CE00 100%);
+      --ff-display: 'Montserrat', system-ui, -apple-system, sans-serif;
+      --ff-body: 'Montserrat', system-ui, -apple-system, sans-serif;
+      --ease: cubic-bezier(0.16, 1, 0.3, 1);
+    }
 
-        .animate-slide-fade {
-            animation: slideFadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-        }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; outline: none; }
+    html { scroll-behavior: smooth; font-size: 16px; overflow-x: hidden; }
+    body {
+      background-color: var(--bg);
+      color: var(--text-main);
+      font-family: var(--ff-body);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
 
-        textarea::-webkit-scrollbar { width: 6px; }
-        textarea::-webkit-scrollbar-track { background: #141311; }
-        textarea::-webkit-scrollbar-thumb { background: #2A2824; border-radius: 3px; }
-        textarea::-webkit-scrollbar-thumb:hover { background: #D4AF37; }
+    .container {
+      width: 100%;
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
 
-        /* Input focus style */
-        .survey-input:focus {
-            outline: none;
-            border-color: #D4AF37;
-            box-shadow: 0 0 0 1px #D4AF37;
-        }
+    /* Fixed Navigation */
+    .site-nav {
+      position: fixed;
+      top: 0; left: 0; width: 100%;
+      z-index: 990;
+      background: rgba(6, 6, 6, 0.95);
+      backdrop-filter: blur(24px) saturate(1.5);
+      -webkit-backdrop-filter: blur(24px) saturate(1.5);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .site-nav__inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 76px;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    .site-nav__brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: var(--ff-display);
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      color: #FFFFFF;
+      text-decoration: none !important;
+    }
+    .nav-badge {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(0, 136, 255, 0.1);
+      border: 1px solid rgba(0, 210, 255, 0.3);
+      padding: 6px 14px;
+      border-radius: 100px;
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--accent-cyan);
+    }
+    .status-dot {
+      width: 6px;
+      height: 6px;
+      background-color: var(--accent-cyan);
+      border-radius: 50%;
+      box-shadow: 0 0 8px var(--accent-cyan);
+    }
 
-        /* Radio option base */
-        .opt-btn {
-            width: 100%;
-            text-align: left;
-            padding: 1rem;
-            border-radius: 0.75rem;
-            border: 1px solid #2A2824;
-            background: #1C1A17;
-            color: #F5F3EF;
-            font-size: 1rem;
-            font-weight: 500;
-            transition: all 0.18s ease;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-        .opt-btn:hover { border-color: rgba(212,175,55,0.55); }
-        .opt-btn.selected {
-            background: rgba(212,175,55,0.09);
-            border-color: #D4AF37;
-            box-shadow: 0 0 18px rgba(212,175,55,0.08);
-        }
-    </style>
+    /* Progress Header */
+    .progress-wrap {
+      width: 100%;
+      margin-bottom: 24px;
+    }
+    .progress-labels {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+    .progress-badge {
+      color: var(--accent-cyan);
+      background: rgba(0, 136, 255, 0.12);
+      border: 1px solid rgba(0, 210, 255, 0.3);
+      padding: 2px 10px;
+      border-radius: 100px;
+      font-weight: 800;
+    }
+    .progress-track {
+      width: 100%;
+      height: 6px;
+      background: var(--surface-input);
+      border: 1px solid rgba(0, 136, 255, 0.2);
+      border-radius: 100px;
+      overflow: hidden;
+    }
+    .progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, #0088FF 0%, #00D2FF 100%);
+      border-radius: 100px;
+      transition: width 0.4s var(--ease);
+      box-shadow: 0 0 10px rgba(0, 210, 255, 0.5);
+    }
+
+    /* Main Container */
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 120px 0 60px;
+    }
+
+    .survey-card {
+      background: linear-gradient(180deg, #0A162C 0%, #060D1E 100%);
+      border: 1px solid var(--border-blue);
+      border-radius: 24px;
+      padding: 48px 40px;
+      box-shadow: 0 30px 80px -10px rgba(0, 0, 0, 0.95);
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+    }
+    .survey-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, transparent 5%, #0088FF 30%, #00D2FF 70%, transparent 95%);
+    }
+
+    .sec-kicker {
+      display: inline-block;
+      font-family: var(--ff-display);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent-cyan);
+      margin-bottom: 12px;
+    }
+    .survey-title {
+      font-family: var(--ff-display);
+      font-size: clamp(24px, 3.5vw, 32px);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.25;
+      color: #FFFFFF;
+      margin-bottom: 12px;
+    }
+    .survey-desc {
+      font-size: 14.5px;
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin-bottom: 28px;
+    }
+
+    /* Option base */
+    .opt-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+    .opt-btn {
+      width: 100%;
+      text-align: left;
+      padding: 16px 20px;
+      border-radius: 14px;
+      border: 1px solid rgba(0, 136, 255, 0.22);
+      background: var(--surface-input);
+      color: #FFFFFF;
+      font-family: var(--ff-body);
+      font-size: 14.5px;
+      font-weight: 600;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+    }
+    .opt-btn:hover {
+      border-color: rgba(0, 210, 255, 0.6);
+      background: rgba(0, 136, 255, 0.08);
+      transform: translateY(-1px);
+    }
+    .opt-btn.selected {
+      background: rgba(0, 210, 255, 0.12);
+      border-color: var(--accent-cyan);
+      box-shadow: 0 0 20px rgba(0, 210, 255, 0.2);
+    }
+    .radio-dot {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      border: 1.5px solid rgba(255, 255, 255, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .opt-btn.selected .radio-dot {
+      border-color: var(--accent-cyan);
+      background: var(--accent-cyan);
+    }
+    .opt-btn.selected .radio-dot span {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #040814;
+    }
+
+    /* Form Fields */
+    .field-group {
+      margin-bottom: 18px;
+      text-align: left;
+    }
+    .field-label {
+      display: block;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+    .field-label span { color: var(--accent-cyan); }
+    .survey-input {
+      width: 100%;
+      background: var(--surface-input);
+      border: 1px solid rgba(0, 136, 255, 0.28);
+      border-radius: 12px;
+      padding: 14px 18px;
+      color: #FFFFFF;
+      font-family: var(--ff-body);
+      font-size: 14.5px;
+      transition: all 0.2s ease;
+    }
+    .survey-input:focus {
+      border-color: var(--accent-cyan);
+      box-shadow: 0 0 0 1px var(--accent-cyan);
+    }
+
+    /* Buttons */
+    .btn-pill-main {
+      font-family: var(--ff-display);
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: #000000;
+      background: var(--gold-gradient);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      padding: 15px 28px;
+      border-radius: 12px;
+      cursor: pointer;
+      width: 100%;
+      transition: transform 0.2s var(--ease), filter 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      box-shadow: 0 4px 20px rgba(255, 230, 0, 0.25);
+    }
+    .btn-pill-main:hover:not(:disabled) {
+      transform: translateY(-2px);
+      filter: brightness(1.05);
+    }
+    .btn-pill-main:disabled {
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--text-faint);
+      border-color: transparent;
+      cursor: not-allowed;
+      box-shadow: none;
+    }
+
+    .btn-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-faint);
+      background: none;
+      border: none;
+      cursor: pointer;
+      margin-top: 14px;
+      transition: color 0.2s ease;
+    }
+    .btn-back:hover { color: #FFFFFF; }
+
+    .error-box {
+      color: #F87171;
+      font-size: 13px;
+      font-weight: 600;
+      margin-top: 12px;
+      margin-bottom: 12px;
+    }
+    .hidden { display: none !important; }
+
+    /* Footer */
+    .site-footer {
+      padding: 40px 0 28px;
+      background: #020408;
+      border-top: 1px solid var(--border-subtle);
+      text-align: center;
+      margin-top: auto;
+    }
+    .site-footer__brand {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      font-family: var(--ff-display);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--text-faint);
+      margin-bottom: 14px;
+    }
+    .site-footer__brand span { color: #0088FF; font-weight: 900; }
+    .site-footer__copy { font-size: 12px; color: var(--text-faint); line-height: 1.6; }
+
+    @media (max-width: 640px) {
+      .survey-card { padding: 32px 20px; border-radius: 16px; }
+      .site-nav__brand { font-size: 17px; }
+      .nav-badge { font-size: 10px; padding: 4px 10px; }
+    }
+  </style>
 </head>
-<body class="bg-[#0B0A09] text-[#F5F3EF] antialiased min-h-screen flex flex-col justify-between items-center px-4 py-8 md:py-12 selection:bg-[#D4AF37]/20">
-    
-    <!-- Background Glow -->
-    <div class="fixed inset-0 pointer-events-none bg-[radial-gradient(circle_at_top,_var(--tw-gradient-stops))] from-[#D4AF37]/5 via-transparent to-transparent"></div>
+<body>
 
-    <!-- Progress Header -->
-    <header class="w-full max-w-lg mx-auto z-10 flex flex-col items-center mb-2" id="progress-container">
-        <div id="progress-content" class="w-full space-y-2.5 hidden animate-slide-fade">
-            <div class="flex justify-between items-center text-xs tracking-wider uppercase font-semibold text-[#9E9B95]">
-                <span id="progress-step-text">Question 1 of 6</span>
-                <span id="progress-percent-text" class="text-[#D4AF37] font-bold bg-[#1C1A17] border border-[#2A2824] px-2.5 py-0.5 rounded-full shadow-sm tracking-normal ml-3">17%</span>
-            </div>
-            <div class="w-full bg-[#1C1A17] h-1.5 rounded-full overflow-hidden border border-[#2A2824]">
-                <div id="progress-bar-fill" class="bg-[#D4AF37] h-full transition-all duration-500 ease-out rounded-full shadow-[0_0_10px_rgba(212,175,55,0.4)]" style="width: 17%"></div>
-            </div>
+  <!-- Navigation Header -->
+  <nav class="site-nav" id="site-nav">
+    <div class="site-nav__inner">
+      <div class="site-nav__left-group">
+        <a href="/" class="site-nav__brand">
+          <img src="/favicon-32x32.png" alt="Adams X Logo" style="width: 28px; height: 28px; border-radius: 6px; object-fit: contain;">
+          ADAMS X PROJECT
+        </a>
+      </div>
+      <div class="site-nav__cta">
+        <div class="nav-badge">
+          <span class="status-dot"></span>
+          Feedback Survey
         </div>
-    </header>
+      </div>
+    </div>
+  </nav>
 
-    <!-- Main Content -->
-    <main class="w-full max-w-lg mx-auto my-auto py-6 z-10">
+  <!-- Main Content -->
+  <main>
+    <div class="container">
 
-        <!-- STEP 0: INTRO -->
-        <div id="step-0" class="bg-[#141311] border border-[#2A2824] rounded-2xl p-6 sm:p-8 shadow-[0_12px_32px_-4px_rgba(0,0,0,0.6)] animate-slide-fade space-y-6">
-            <div class="space-y-3">
-                <span class="text-xs font-semibold uppercase tracking-widest text-[#D4AF37]">Comeback: Unrecognizable</span>
-                <h1 class="text-3xl sm:text-4xl font-bold tracking-tight text-[#F5F3EF]">Real talk —</h1>
-            </div>
-            <p class="text-[#9E9B95] text-base sm:text-lg leading-relaxed">
-                if you saw Comeback: Unrecognizable and didn't join, I want to know why. No judgment, no pitch after this. Just trying to understand where you actually are. Takes 2 minutes.
-            </p>
-            <button id="btn-start" type="button" class="w-full py-4 px-6 bg-[#D4AF37] hover:bg-[#E3C165] active:scale-[0.99] text-[#0B0A09] font-bold rounded-xl transition-all duration-200 text-lg shadow-[0_4px_16px_rgba(212,175,55,0.25)] flex items-center justify-center gap-2">
-                <span>Start</span>
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
-            </button>
+      <!-- Progress Header -->
+      <div class="progress-wrap hidden" id="progress-container">
+        <div class="progress-labels">
+          <span id="progress-step-text">Question 1 of 6</span>
+          <span id="progress-percent-text" class="progress-badge">17%</span>
         </div>
-
-        <!-- STEP 1: CONTACT INFO -->
-        <div id="step-1" class="hidden bg-[#141311] border border-[#2A2824] rounded-2xl p-6 sm:p-8 shadow-[0_12px_32px_-4px_rgba(0,0,0,0.6)] animate-slide-fade space-y-6">
-            <div class="space-y-1">
-                <h2 class="text-xl sm:text-2xl font-bold text-[#F5F3EF] leading-snug">What's your name and WhatsApp number?</h2>
-                <p class="text-[#9E9B95] text-sm">So I can actually follow up — not just collect data.</p>
-            </div>
-            <div class="space-y-4">
-                <div class="space-y-1.5">
-                    <label class="text-xs font-semibold uppercase tracking-wider text-[#9E9B95]">Name <span class="text-[#D4AF37]">*</span></label>
-                    <input id="input-name" type="text" placeholder="Your first name" autocomplete="given-name"
-                        class="survey-input w-full p-4 rounded-xl bg-[#1C1A17] border border-[#2A2824] text-[#F5F3EF] placeholder-[#9E9B95]/50 transition-all text-base">
-                </div>
-                <div class="space-y-1.5">
-                    <label class="text-xs font-semibold uppercase tracking-wider text-[#9E9B95]">WhatsApp Number <span class="text-[#D4AF37]">*</span></label>
-                    <input id="input-whatsapp" type="tel" placeholder="+234 800 000 0000" autocomplete="tel"
-                        class="survey-input w-full p-4 rounded-xl bg-[#1C1A17] border border-[#2A2824] text-[#F5F3EF] placeholder-[#9E9B95]/50 transition-all text-base">
-                </div>
-                <div class="space-y-1.5">
-                    <label class="text-xs font-semibold uppercase tracking-wider text-[#9E9B95]">Email <span class="text-[#9E9B95]/60 normal-case font-normal">(optional)</span></label>
-                    <input id="input-email" type="email" placeholder="your@email.com" autocomplete="email"
-                        class="survey-input w-full p-4 rounded-xl bg-[#1C1A17] border border-[#2A2824] text-[#F5F3EF] placeholder-[#9E9B95]/50 transition-all text-base">
-                </div>
-            </div>
-            <p id="error-q1" class="hidden text-red-400 text-sm font-medium"></p>
-            <button id="btn-q1-next" type="button" class="w-full py-4 px-6 bg-[#D4AF37] hover:bg-[#E3C165] active:scale-[0.99] text-[#0B0A09] font-bold rounded-xl transition-all duration-200 text-lg shadow-[0_4px_16px_rgba(212,175,55,0.25)]">
-                Next →
-            </button>
+        <div class="progress-track">
+          <div class="progress-bar" id="progress-bar-fill" style="width: 17%;"></div>
         </div>
+      </div>
 
-        <!-- STEP 2: COUNTRY -->
-        <div id="step-2" class="hidden bg-[#141311] border border-[#2A2824] rounded-2xl p-6 sm:p-8 shadow-[0_12px_32px_-4px_rgba(0,0,0,0.6)] animate-slide-fade space-y-6">
-            <div class="space-y-1">
-                <h2 class="text-xl sm:text-2xl font-bold text-[#F5F3EF] leading-snug">Where are you from?</h2>
-            </div>
-            <div class="space-y-1.5">
-                <label class="text-xs font-semibold uppercase tracking-wider text-[#9E9B95]">Country <span class="text-[#D4AF37]">*</span></label>
-                <input id="input-country" type="text" placeholder="e.g. Nigeria, Ghana, UK..." autocomplete="country-name"
-                    class="survey-input w-full p-4 rounded-xl bg-[#1C1A17] border border-[#2A2824] text-[#F5F3EF] placeholder-[#9E9B95]/50 transition-all text-base">
-            </div>
-            <p id="error-q2" class="hidden text-red-400 text-sm font-medium"></p>
-            <div class="space-y-3">
-                <button id="btn-q2-next" type="button" class="w-full py-4 px-6 bg-[#D4AF37] hover:bg-[#E3C165] active:scale-[0.99] text-[#0B0A09] font-bold rounded-xl transition-all duration-200 text-lg shadow-[0_4px_16px_rgba(212,175,55,0.25)]">
-                    Next →
-                </button>
-                <button type="button" class="btn-back text-xs font-semibold uppercase tracking-wider text-[#9E9B95] hover:text-[#F5F3EF] transition-colors flex items-center gap-1 pt-1">
-                    ← Back
-                </button>
-            </div>
+      <!-- STEP 0: INTRO -->
+      <div id="step-0" class="survey-card">
+        <span class="sec-kicker">Comeback: Unrecognizable</span>
+        <h1 class="survey-title">Real talk &mdash;</h1>
+        <p class="survey-desc">
+          If you saw Comeback: Unrecognizable and didn't join, I want to know why. No judgment, no pitch after this. Just trying to understand where you actually are. Takes 2 minutes.
+        </p>
+        <button id="btn-start" type="button" class="btn-pill-main">
+          <span>Start Survey &rarr;</span>
+        </button>
+      </div>
+
+      <!-- STEP 1: CONTACT INFO -->
+      <div id="step-1" class="survey-card hidden">
+        <span class="sec-kicker">Step 01 / 06</span>
+        <h2 class="survey-title">What's your name and WhatsApp number?</h2>
+        <p class="survey-desc">So I can actually follow up &mdash; not just collect data.</p>
+        <div class="field-group">
+          <label class="field-label">Name <span>*</span></label>
+          <input id="input-name" type="text" placeholder="Your first name" autocomplete="given-name" class="survey-input">
         </div>
-
-        <!-- STEP 3: Q3 — STATUS -->
-        <div id="step-3" class="hidden bg-[#141311] border border-[#2A2824] rounded-2xl p-6 sm:p-8 shadow-[0_12px_32px_-4px_rgba(0,0,0,0.6)] animate-slide-fade space-y-6">
-            <h2 class="text-xl sm:text-2xl font-bold text-[#F5F3EF] leading-snug">Where are you right now?</h2>
-            <div class="space-y-3" id="q3-options">
-                <button type="button" data-val="Student"                          class="opt-btn q3-btn"><span>Student</span><span class="radio-dot w-5 h-5 rounded-full border border-[#2A2824] flex items-center justify-center"></span></button>
-                <button type="button" data-val="Working full-time"                class="opt-btn q3-btn"><span>Working full-time</span><span class="radio-dot w-5 h-5 rounded-full border border-[#2A2824] flex items-center justify-center"></span></button>
-                <button type="button" data-val="Working part-time / freelancing"  class="opt-btn q3-btn"><span>Working part-time / freelancing</span><span class="radio-dot w-5 h-5 rounded-full border border-[#2A2824] flex items-center justify-center"></span></button>
-                <button type="button" data-val="Currently unemployed"             class="opt-btn q3-btn"><span>Currently unemployed</span><span class="radio-dot w-5 h-5 rounded-full border border-[#2A2824] flex items-center justify-center"></span></button>
-            </div>
-            <button type="button" class="btn-back text-xs font-semibold uppercase tracking-wider text-[#9E9B95] hover:text-[#F5F3EF] transition-colors flex items-center gap-1 pt-2">← Back</button>
+        <div class="field-group">
+          <label class="field-label">WhatsApp Number <span>*</span></label>
+          <input id="input-whatsapp" type="tel" placeholder="+234 800 000 0000" autocomplete="tel" class="survey-input">
         </div>
-
-        <!-- STEP 4: Q4 — REASON -->
-        <div id="step-4" class="hidden bg-[#141311] border border-[#2A2824] rounded-2xl p-6 sm:p-8 shadow-[0_12px_32px_-4px_rgba(0,0,0,0.6)] animate-slide-fade space-y-6">
-            <div class="space-y-1">
-                <h2 class="text-xl sm:text-2xl font-bold text-[#F5F3EF] leading-snug">Real reason you haven't joined yet — no sugarcoating</h2>
-            </div>
-            <div class="space-y-3" id="q4-options">
-                <button type="button" data-val="Money is tight right now"                  class="opt-btn q4-btn"><span>Money is tight right now</span><span class="radio-dot w-5 h-5 rounded-full border border-[#2A2824] flex items-center justify-center"></span></button>
-                <button type="button" data-val="Not sure it's actually for me"             class="opt-btn q4-btn"><span>Not sure it's actually for me</span><span class="radio-dot w-5 h-5 rounded-full border border-[#2A2824] flex items-center justify-center"></span></button>
-                <button type="button" data-val="Wanted to see more proof it works first"   class="opt-btn q4-btn"><span>Wanted to see more proof it works first</span><span class="radio-dot w-5 h-5 rounded-full border border-[#2A2824] flex items-center justify-center"></span></button>
-                <button type="button" data-val="Just haven't gotten around to it"          class="opt-btn q4-btn"><span>Just haven't gotten around to it</span><span class="radio-dot w-5 h-5 rounded-full border border-[#2A2824] flex items-center justify-center"></span></button>
-            </div>
-            <button type="button" class="btn-back text-xs font-semibold uppercase tracking-wider text-[#9E9B95] hover:text-[#F5F3EF] transition-colors flex items-center gap-1 pt-2">← Back</button>
+        <div class="field-group">
+          <label class="field-label">Email (optional)</label>
+          <input id="input-email" type="email" placeholder="your@email.com" autocomplete="email" class="survey-input">
         </div>
+        <p id="error-q1" class="error-box hidden"></p>
+        <button id="btn-q1-next" type="button" class="btn-pill-main">Next &rarr;</button>
+      </div>
 
-        <!-- STEP 5: Q5 — SPEND RECENCY -->
-        <div id="step-5" class="hidden bg-[#141311] border border-[#2A2824] rounded-2xl p-6 sm:p-8 shadow-[0_12px_32px_-4px_rgba(0,0,0,0.6)] animate-slide-fade space-y-6">
-            <div class="space-y-1">
-                <h2 class="text-xl sm:text-2xl font-bold text-[#F5F3EF] leading-snug">Last thing you spent $17+ on for yourself (not bills)</h2>
-            </div>
-            <div class="space-y-3" id="q5-options">
-                <button type="button" data-val="This week"              class="opt-btn q5-btn"><span>This week</span><span class="radio-dot w-5 h-5 rounded-full border border-[#2A2824] flex items-center justify-center"></span></button>
-                <button type="button" data-val="This month"             class="opt-btn q5-btn"><span>This month</span><span class="radio-dot w-5 h-5 rounded-full border border-[#2A2824] flex items-center justify-center"></span></button>
-                <button type="button" data-val="A few months back"      class="opt-btn q5-btn"><span>A few months back</span><span class="radio-dot w-5 h-5 rounded-full border border-[#2A2824] flex items-center justify-center"></span></button>
-                <button type="button" data-val="Honestly can't remember" class="opt-btn q5-btn"><span>Honestly can't remember</span><span class="radio-dot w-5 h-5 rounded-full border border-[#2A2824] flex items-center justify-center"></span></button>
-            </div>
-            <button type="button" class="btn-back text-xs font-semibold uppercase tracking-wider text-[#9E9B95] hover:text-[#F5F3EF] transition-colors flex items-center gap-1 pt-2">← Back</button>
+      <!-- STEP 2: COUNTRY -->
+      <div id="step-2" class="survey-card hidden">
+        <span class="sec-kicker">Step 02 / 06</span>
+        <h2 class="survey-title">Where are you from?</h2>
+        <p class="survey-desc">Enter your country of residence.</p>
+        <div class="field-group">
+          <label class="field-label">Country <span>*</span></label>
+          <input id="input-country" type="text" placeholder="e.g. Nigeria, Ghana, UK, USA..." autocomplete="country-name" class="survey-input">
         </div>
+        <p id="error-q2" class="error-box hidden"></p>
+        <button id="btn-q2-next" type="button" class="btn-pill-main">Next &rarr;</button>
+        <button type="button" class="btn-back">&larr; Back</button>
+      </div>
 
-        <!-- STEP 6: Q6 — OPEN RESPONSE -->
-        <form id="step-6-form" class="hidden bg-[#141311] border border-[#2A2824] rounded-2xl p-6 sm:p-8 shadow-[0_12px_32px_-4px_rgba(0,0,0,0.6)] animate-slide-fade space-y-6">
-            <div class="space-y-1">
-                <h2 class="text-xl sm:text-2xl font-bold text-[#F5F3EF] leading-snug">What would actually need to be true for you to say yes right now?</h2>
-                <p class="text-[#9E9B95] text-sm">Be real with me.</p>
-            </div>
-
-            <textarea id="open-response" required rows="4" placeholder="Tell me honestly..."
-                class="w-full p-4 rounded-xl bg-[#1C1A17] border border-[#2A2824] text-[#F5F3EF] placeholder-[#9E9B95]/50 focus:outline-none focus:border-[#D4AF37] focus:ring-1 focus:ring-[#D4AF37] transition-all resize-none text-base"></textarea>
-
-            <p id="error-msg" class="hidden text-red-400 text-sm font-medium"></p>
-
-            <div class="space-y-3 pt-1">
-                <button id="btn-submit" type="submit" disabled
-                    class="w-full py-4 px-6 rounded-xl font-bold transition-all duration-200 text-lg flex items-center justify-center gap-2 bg-[#2A2824] text-[#9E9B95] cursor-not-allowed">
-                    <span id="submit-text">Submit Response</span>
-                </button>
-                <button type="button" class="btn-back text-xs font-semibold uppercase tracking-wider text-[#9E9B95] hover:text-[#F5F3EF] transition-colors flex items-center gap-1 pt-1">← Back</button>
-            </div>
-        </form>
-
-        <!-- STEP 7: FINAL SCREEN -->
-        <div id="step-7" class="hidden bg-[#141311] border border-[#2A2824] rounded-2xl p-6 sm:p-8 shadow-[0_12px_32px_-4px_rgba(0,0,0,0.6)] animate-slide-fade space-y-6 text-center">
-            <div class="w-12 h-12 rounded-full bg-[#D4AF37]/10 border border-[#D4AF37] flex items-center justify-center mx-auto shadow-[0_0_20px_rgba(212,175,55,0.2)]">
-                <svg class="w-6 h-6 text-[#D4AF37]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/>
-                </svg>
-            </div>
-            <div class="space-y-4">
-                <h1 class="text-2xl sm:text-3xl font-bold tracking-tight text-[#F5F3EF]">Appreciate you being real with me.</h1>
-                <p class="text-[#9E9B95] text-base leading-relaxed max-w-md mx-auto">
-                    I read every one of these myself. If what you shared means I need to build a payment plan or a smaller entry point — I'll do it. Talk soon.
-                </p>
-            </div>
-            <div class="pt-2 border-t border-[#2A2824]/60">
-                <span class="text-xs uppercase tracking-widest text-[#D4AF37] font-semibold">Comeback: Unrecognizable</span>
-            </div>
+      <!-- STEP 3: STATUS -->
+      <div id="step-3" class="survey-card hidden">
+        <span class="sec-kicker">Step 03 / 06</span>
+        <h2 class="survey-title">Where are you right now?</h2>
+        <div class="opt-list" id="q3-options">
+          <button type="button" data-val="Student" class="opt-btn q3-btn"><span>Student</span><div class="radio-dot"><span></span></div></button>
+          <button type="button" data-val="Working full-time" class="opt-btn q3-btn"><span>Working full-time</span><div class="radio-dot"><span></span></div></button>
+          <button type="button" data-val="Working part-time / freelancing" class="opt-btn q3-btn"><span>Working part-time / freelancing</span><div class="radio-dot"><span></span></div></button>
+          <button type="button" data-val="Currently unemployed" class="opt-btn q3-btn"><span>Currently unemployed</span><div class="radio-dot"><span></span></div></button>
         </div>
+        <button type="button" class="btn-back">&larr; Back</button>
+      </div>
 
-    </main>
+      <!-- STEP 4: REASON -->
+      <div id="step-4" class="survey-card hidden">
+        <span class="sec-kicker">Step 04 / 06</span>
+        <h2 class="survey-title">Real reason you haven't joined yet &mdash; no sugarcoating</h2>
+        <div class="opt-list" id="q4-options">
+          <button type="button" data-val="Money is tight right now" class="opt-btn q4-btn"><span>Money is tight right now</span><div class="radio-dot"><span></span></div></button>
+          <button type="button" data-val="Not sure it's actually for me" class="opt-btn q4-btn"><span>Not sure it's actually for me</span><div class="radio-dot"><span></span></div></button>
+          <button type="button" data-val="Wanted to see more proof it works first" class="opt-btn q4-btn"><span>Wanted to see more proof it works first</span><div class="radio-dot"><span></span></div></button>
+          <button type="button" data-val="Just haven't gotten around to it" class="opt-btn q4-btn"><span>Just haven't gotten around to it</span><div class="radio-dot"><span></span></div></button>
+        </div>
+        <button type="button" class="btn-back">&larr; Back</button>
+      </div>
 
-    <!-- Footer -->
-    <footer class="w-full max-w-lg mx-auto z-10 text-center py-4">
-        <p class="text-xs text-[#9E9B95]/60 tracking-wider">Adams X Project © 2026</p>
-    </footer>
+      <!-- STEP 5: SPEND RECENCY -->
+      <div id="step-5" class="survey-card hidden">
+        <span class="sec-kicker">Step 05 / 06</span>
+        <h2 class="survey-title">Last thing you spent $17+ on for yourself (not bills)</h2>
+        <div class="opt-list" id="q5-options">
+          <button type="button" data-val="This week" class="opt-btn q5-btn"><span>This week</span><div class="radio-dot"><span></span></div></button>
+          <button type="button" data-val="This month" class="opt-btn q5-btn"><span>This month</span><div class="radio-dot"><span></span></div></button>
+          <button type="button" data-val="A few months back" class="opt-btn q5-btn"><span>A few months back</span><div class="radio-dot"><span></span></div></button>
+          <button type="button" data-val="Honestly can't remember" class="opt-btn q5-btn"><span>Honestly can't remember</span><div class="radio-dot"><span></span></div></button>
+        </div>
+        <button type="button" class="btn-back">&larr; Back</button>
+      </div>
 
-    <script>
-        // ── State ──────────────────────────────────────────────────
-        let currentStep = 0;
-        const TOTAL_Q = 6;
+      <!-- STEP 6: OPEN RESPONSE -->
+      <form id="step-6-form" class="survey-card hidden">
+        <span class="sec-kicker">Step 06 / 06</span>
+        <h2 class="survey-title">What would actually need to be true for you to say yes right now?</h2>
+        <p class="survey-desc">Be real with me.</p>
+        <div class="field-group">
+          <textarea id="open-response" required rows="4" placeholder="Tell me honestly..." class="survey-input" style="resize: vertical; min-height: 120px;"></textarea>
+        </div>
+        <p id="error-msg" class="error-box hidden"></p>
+        <button id="btn-submit" type="submit" disabled class="btn-pill-main">
+          <span id="submit-text">Submit Response &rarr;</span>
+        </button>
+        <button type="button" class="btn-back">&larr; Back</button>
+      </form>
 
-        const answers = {
-            name:          '',
-            whatsapp:      '',
-            email:         '',
-            country:       '',
-            status:        '',
-            reason:        '',
-            spend_recency: '',
-            open_response: ''
-        };
+      <!-- STEP 7: FINAL SCREEN -->
+      <div id="step-7" class="survey-card hidden" style="text-align: center;">
+        <div style="width: 64px; height: 64px; border-radius: 50%; background: rgba(0, 210, 255, 0.12); border: 1.5px solid var(--accent-cyan); display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; box-shadow: 0 0 25px rgba(0, 210, 255, 0.35);">
+          <svg style="width: 28px; height: 28px; color: var(--accent-cyan);" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/>
+          </svg>
+        </div>
+        <h2 class="survey-title">Appreciate you being real with me.</h2>
+        <p class="survey-desc" style="max-width: 480px; margin: 0 auto 24px;">
+          I read every one of these myself. If what you shared means I need to build a payment plan or a smaller entry point &mdash; I'll do it. Talk soon.
+        </p>
+        <a href="/" class="btn-pill-main" style="max-width: 220px; margin: 0 auto;">Return Home</a>
+      </div>
 
-        // ── DOM refs ───────────────────────────────────────────────
-        const progressContent   = document.getElementById('progress-content');
-        const progressStepText  = document.getElementById('progress-step-text');
-        const progressPercentText = document.getElementById('progress-percent-text');
-        const progressBarFill   = document.getElementById('progress-bar-fill');
-        const openResponseInput = document.getElementById('open-response');
-        const btnSubmit         = document.getElementById('btn-submit');
-        const submitText        = document.getElementById('submit-text');
-        const errorMsg          = document.getElementById('error-msg');
+    </div>
+  </main>
 
-        // ── Step navigation ────────────────────────────────────────
-        function setStep(step) {
-            currentStep = step;
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="site-footer__brand">
+        <img src="/favicon-32x32.png" alt="Adams X Logo" style="width: 22px; height: 22px; border-radius: 5px; object-fit: contain;">
+        <span>//</span> ADAMS X PROJECT
+      </div>
+      <p class="site-footer__copy">
+        &copy; 2026 Adams X Project &middot; All rights reserved.<br>
+        Built for creators, developers, and builders ready to execute.
+      </p>
+    </div>
+  </footer>
 
-            // Hide everything
-            document.querySelectorAll('[id^="step-"]').forEach(el => el.classList.add('hidden'));
-            document.getElementById('step-6-form') && document.getElementById('step-6-form').classList.add('hidden');
-            document.getElementById('step-7')      && document.getElementById('step-7').classList.add('hidden');
+  <!-- Survey Script -->
+  <script>
+    let currentStep = 0;
+    const TOTAL_Q = 6;
 
-            // Progress bar: steps 1–6
-            if (step >= 1 && step <= TOTAL_Q) {
-                progressContent.classList.remove('hidden');
-                progressStepText.innerText = `Question ${step} of ${TOTAL_Q}`;
-                const pct = Math.round((step / TOTAL_Q) * 100);
-                progressPercentText.innerText = step === TOTAL_Q ? '✓ Complete' : `${pct}%`;
-                progressBarFill.style.width = `${pct}%`;
-            } else {
-                progressContent.classList.add('hidden');
-            }
+    const answers = {
+      name: '',
+      whatsapp: '',
+      email: '',
+      country: '',
+      status: '',
+      reason: '',
+      spend_recency: '',
+      open_response: ''
+    };
 
-            // Show target step
-            if (step === 6) {
-                document.getElementById('step-6-form').classList.remove('hidden');
-            } else if (step === 7) {
-                document.getElementById('step-7').classList.remove('hidden');
-            } else {
-                const el = document.getElementById(`step-${step}`);
-                if (el) el.classList.remove('hidden');
-            }
+    const progressContainer = document.getElementById('progress-container');
+    const progressStepText = document.getElementById('progress-step-text');
+    const progressPercentText = document.getElementById('progress-percent-text');
+    const progressBarFill = document.getElementById('progress-bar-fill');
+    const openResponseInput = document.getElementById('open-response');
+    const btnSubmit = document.getElementById('btn-submit');
+    const submitText = document.getElementById('submit-text');
+    const errorMsg = document.getElementById('error-msg');
 
-            // Scroll to top of page smoothly
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
+    function setStep(step) {
+      currentStep = step;
 
-        // ── Intro ──────────────────────────────────────────────────
-        document.getElementById('btn-start').addEventListener('click', () => setStep(1));
+      document.querySelectorAll('[id^="step-"]').forEach(el => el.classList.add('hidden'));
+      document.getElementById('step-6-form') && document.getElementById('step-6-form').classList.add('hidden');
+      document.getElementById('step-7') && document.getElementById('step-7').classList.add('hidden');
 
-        // ── Q1: Contact ────────────────────────────────────────────
-        document.getElementById('btn-q1-next').addEventListener('click', () => {
-            const name     = document.getElementById('input-name').value.trim();
-            const whatsapp = document.getElementById('input-whatsapp').value.trim();
-            const errEl    = document.getElementById('error-q1');
+      if (step >= 1 && step <= TOTAL_Q) {
+        progressContainer.classList.remove('hidden');
+        progressStepText.innerText = `Question ${step} of ${TOTAL_Q}`;
+        const pct = Math.round((step / TOTAL_Q) * 100);
+        progressPercentText.innerText = step === TOTAL_Q ? '✓ Final' : `${pct}%`;
+        progressBarFill.style.width = `${pct}%`;
+      } else {
+        progressContainer.classList.add('hidden');
+      }
 
-            if (!name || !whatsapp) {
-                errEl.innerText = 'Please enter your name and WhatsApp number to continue.';
-                errEl.classList.remove('hidden');
-                return;
-            }
-            errEl.classList.add('hidden');
-            answers.name     = name;
-            answers.whatsapp = whatsapp;
-            answers.email    = document.getElementById('input-email').value.trim();
-            setStep(2);
+      if (step === 6) {
+        document.getElementById('step-6-form').classList.remove('hidden');
+      } else if (step === 7) {
+        document.getElementById('step-7').classList.remove('hidden');
+      } else {
+        const el = document.getElementById(`step-${step}`);
+        if (el) el.classList.remove('hidden');
+      }
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    document.getElementById('btn-start').addEventListener('click', () => setStep(1));
+
+    document.getElementById('btn-q1-next').addEventListener('click', () => {
+      const name = document.getElementById('input-name').value.trim();
+      const whatsapp = document.getElementById('input-whatsapp').value.trim();
+      const errEl = document.getElementById('error-q1');
+
+      if (!name || !whatsapp) {
+        errEl.innerText = 'Please enter your name and WhatsApp number to continue.';
+        errEl.classList.remove('hidden');
+        return;
+      }
+      errEl.classList.add('hidden');
+      answers.name = name;
+      answers.whatsapp = whatsapp;
+      answers.email = document.getElementById('input-email').value.trim();
+      setStep(2);
+    });
+
+    document.getElementById('btn-q2-next').addEventListener('click', () => {
+      const country = document.getElementById('input-country').value.trim();
+      const errEl = document.getElementById('error-q2');
+
+      if (!country) {
+        errEl.innerText = 'Please enter your country to continue.';
+        errEl.classList.remove('hidden');
+        return;
+      }
+      errEl.classList.add('hidden');
+      answers.country = country;
+      setStep(3);
+    });
+
+    document.querySelectorAll('.q3-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        answers.status = btn.getAttribute('data-val');
+        highlightOption('.q3-btn', btn);
+        setTimeout(() => setStep(4), 160);
+      });
+    });
+
+    document.querySelectorAll('.q4-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        answers.reason = btn.getAttribute('data-val');
+        highlightOption('.q4-btn', btn);
+        setTimeout(() => setStep(5), 160);
+      });
+    });
+
+    document.querySelectorAll('.q5-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        answers.spend_recency = btn.getAttribute('data-val');
+        highlightOption('.q5-btn', btn);
+        setTimeout(() => setStep(6), 160);
+      });
+    });
+
+    openResponseInput.addEventListener('input', (e) => {
+      const val = e.target.value.trim();
+      answers.open_response = val;
+      btnSubmit.disabled = (val.length === 0);
+    });
+
+    document.querySelectorAll('.btn-back').forEach(btn => {
+      btn.addEventListener('click', () => {
+        if (currentStep > 0) setStep(currentStep - 1);
+      });
+    });
+
+    function highlightOption(selector, activeBtn) {
+      document.querySelectorAll(selector).forEach(btn => {
+        btn.classList.remove('selected');
+      });
+      activeBtn.classList.add('selected');
+    }
+
+    document.getElementById('step-6-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      errorMsg.classList.add('hidden');
+
+      if (!answers.name || !answers.whatsapp || !answers.country || !answers.status || !answers.reason || !answers.spend_recency || !answers.open_response) {
+        errorMsg.innerText = 'Please complete all questions before submitting.';
+        errorMsg.classList.remove('hidden');
+        return;
+      }
+
+      btnSubmit.disabled = true;
+      submitText.innerText = 'Submitting...';
+
+      try {
+        const res = await fetch('/api/survey', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(answers)
         });
 
-        // ── Q2: Country ────────────────────────────────────────────
-        document.getElementById('btn-q2-next').addEventListener('click', () => {
-            const country = document.getElementById('input-country').value.trim();
-            const errEl   = document.getElementById('error-q2');
+        const data = await res.json();
+        if (!res.ok || data.error) throw new Error(data.error || 'Submission failed');
 
-            if (!country) {
-                errEl.innerText = 'Please enter your country to continue.';
-                errEl.classList.remove('hidden');
-                return;
-            }
-            errEl.classList.add('hidden');
-            answers.country = country;
-            setStep(3);
-        });
-
-        // ── Q3: Status (auto-advance) ──────────────────────────────
-        document.querySelectorAll('.q3-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                answers.status = btn.getAttribute('data-val');
-                highlightOption('.q3-btn', btn);
-                setTimeout(() => setStep(4), 160);
-            });
-        });
-
-        // ── Q4: Reason (auto-advance) ──────────────────────────────
-        document.querySelectorAll('.q4-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                answers.reason = btn.getAttribute('data-val');
-                highlightOption('.q4-btn', btn);
-                setTimeout(() => setStep(5), 160);
-            });
-        });
-
-        // ── Q5: Spend recency (auto-advance) ──────────────────────
-        document.querySelectorAll('.q5-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                answers.spend_recency = btn.getAttribute('data-val');
-                highlightOption('.q5-btn', btn);
-                setTimeout(() => setStep(6), 160);
-            });
-        });
-
-        // ── Q6: Open text ──────────────────────────────────────────
-        openResponseInput.addEventListener('input', (e) => {
-            const val = e.target.value.trim();
-            answers.open_response = val;
-            if (val.length > 0) {
-                btnSubmit.disabled = false;
-                btnSubmit.className = "w-full py-4 px-6 rounded-xl font-bold transition-all duration-200 text-lg flex items-center justify-center gap-2 bg-[#D4AF37] hover:bg-[#E3C165] active:scale-[0.99] text-[#0B0A09] shadow-[0_4px_16px_rgba(212,175,55,0.25)] cursor-pointer";
-            } else {
-                btnSubmit.disabled = true;
-                btnSubmit.className = "w-full py-4 px-6 rounded-xl font-bold transition-all duration-200 text-lg flex items-center justify-center gap-2 bg-[#2A2824] text-[#9E9B95] cursor-not-allowed";
-            }
-        });
-
-        // ── Back buttons ───────────────────────────────────────────
-        document.querySelectorAll('.btn-back').forEach(btn => {
-            btn.addEventListener('click', () => {
-                if (currentStep > 0) setStep(currentStep - 1);
-            });
-        });
-
-        // ── Radio highlight helper ─────────────────────────────────
-        function highlightOption(selector, activeBtn) {
-            document.querySelectorAll(selector).forEach(btn => {
-                btn.classList.remove('selected');
-                const dot = btn.querySelector('.radio-dot');
-                if (dot) { dot.className = 'radio-dot w-5 h-5 rounded-full border border-[#2A2824] flex items-center justify-center'; dot.innerHTML = ''; }
-            });
-            activeBtn.classList.add('selected');
-            const activeDot = activeBtn.querySelector('.radio-dot');
-            if (activeDot) {
-                activeDot.className = 'radio-dot w-5 h-5 rounded-full border border-[#D4AF37] bg-[#D4AF37] flex items-center justify-center';
-                activeDot.innerHTML = '<span class="w-2 h-2 rounded-full bg-[#0B0A09]"></span>';
-            }
-        }
-
-        // ── Submit ─────────────────────────────────────────────────
-        document.getElementById('step-6-form').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            errorMsg.classList.add('hidden');
-
-            if (!answers.name || !answers.whatsapp || !answers.country || !answers.status || !answers.reason || !answers.spend_recency || !answers.open_response) {
-                errorMsg.innerText = 'Please complete all questions before submitting.';
-                errorMsg.classList.remove('hidden');
-                return;
-            }
-
-            btnSubmit.disabled = true;
-            submitText.innerText = 'Submitting...';
-
-            try {
-                const res = await fetch('/api/survey', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(answers)
-                });
-
-                const data = await res.json();
-                if (!res.ok || data.error) throw new Error(data.error || 'Submission failed');
-
-                setStep(7);
-            } catch (err) {
-                console.error(err);
-                errorMsg.innerText = err.message || 'Something went wrong. Please try again.';
-                errorMsg.classList.remove('hidden');
-                btnSubmit.disabled = false;
-                submitText.innerText = 'Submit Response';
-            }
-        });
-    </script>
+        setStep(7);
+      } catch (err) {
+        console.error(err);
+        errorMsg.innerText = err.message || 'Something went wrong. Please try again.';
+        errorMsg.classList.remove('hidden');
+        btnSubmit.disabled = false;
+        submitText.innerText = 'Submit Response';
+      }
+    });
+  </script>
 </body>
 </html>

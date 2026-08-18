@@ -1,615 +1,435 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Unlock Your Secret Bonus Gift | Adams X Project</title>
-    <meta name="description" content="Enter your email to unlock the secret bonus templates and habit trackers included with the 7-Day Monk Mode Starter Kit.">
-    
-    <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="/favicon.ico">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <meta name="theme-color" content="#0B0A09">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Unlock Your Secret Bonus Gift — Adams X Project</title>
+  <meta name="description" content="Enter your email to unlock the secret bonus templates and habit trackers included with the Adams X Project.">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <meta name="theme-color" content="#050505">
 
-    <!-- Google Fonts: Playfair Display (Serif) and Inter (Sans-Serif) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+  <!-- Google Fonts: Montserrat -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500&display=swap" rel="stylesheet">
 
-    <style>
-        /* DESIGN SYSTEM: Warm Dark Editorial Theme (Matches Homepage & Waitlist) */
-        :root {
-            --bg-base: #0B0A09;      /* Deep obsidian with warm undertones */
-            --bg-surface: #141311;   /* Rich warm charcoal for cards */
-            --bg-input: #1C1A17;     /* Darker input field background */
-            --border-subtle: #2A2824; /* Refined thin borders */
-            --text-primary: #F5F3EF;  /* Warm bone white for high readability */
-            --text-secondary: #9E9B95; /* Muted stone grey for secondary copy */
-            --accent: #D4AF37;        /* Subtle metallic gold/amber */
-            --accent-hover: #E3C165;  /* Hover state for buttons */
-            --accent-rgb: 212, 175, 55;
-            --font-serif: 'Playfair Display', Georgia, serif;
-            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            --transition-smooth: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-            --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
-            --shadow-md: 0 4px 16px -2px rgba(0, 0, 0, 0.5), 0 2px 6px -1px rgba(0, 0, 0, 0.3);
-            --shadow-lg: 0 12px 32px -4px rgba(0, 0, 0, 0.6), 0 4px 12px -2px rgba(0, 0, 0, 0.4);
-        }
+  <style>
+    :root {
+      --bg: #050505;
+      --surface-navy: #060D1E;
+      --surface-card: #0A162C;
+      --surface-input: #040814;
+      --border-blue: rgba(0, 136, 255, 0.28);
+      --border-subtle: rgba(255, 255, 255, 0.08);
+      --text-main: #F8FAFC;
+      --text-muted: #94A3B8;
+      --text-faint: #64748B;
+      --accent-cyan: #00D2FF;
+      --accent-blue: #0088FF;
+      --accent-gold: #FFE600;
+      --gold-gradient: linear-gradient(180deg, #FFF75A 0%, #FFE600 50%, #F5CE00 100%);
+      --ff-display: 'Montserrat', system-ui, -apple-system, sans-serif;
+      --ff-body: 'Montserrat', system-ui, -apple-system, sans-serif;
+      --ease: cubic-bezier(0.16, 1, 0.3, 1);
+    }
 
-        /* Basic Reset & Layout */
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            outline: none;
-        }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; outline: none; }
+    html { scroll-behavior: smooth; font-size: 16px; overflow-x: hidden; }
+    body {
+      background-color: var(--bg);
+      color: var(--text-main);
+      font-family: var(--ff-body);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
 
-        html {
-            scroll-behavior: smooth;
-            font-size: 16px;
-            overflow-x: hidden;
-            width: 100%;
-        }
+    .container {
+      width: 100%;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
 
-        body {
-            background-color: var(--bg-base);
-            color: var(--text-primary);
-            font-family: var(--font-sans);
-            line-height: 1.6;
-            overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
+    /* Fixed Navigation */
+    .site-nav {
+      position: fixed;
+      top: 0; left: 0; width: 100%;
+      z-index: 990;
+      background: rgba(6, 6, 6, 0.95);
+      backdrop-filter: blur(24px) saturate(1.5);
+      -webkit-backdrop-filter: blur(24px) saturate(1.5);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .site-nav__inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 76px;
+    }
+    .site-nav__brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: var(--ff-display);
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      color: #FFFFFF;
+      text-decoration: none !important;
+    }
+    .nav-badge {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(0, 136, 255, 0.1);
+      border: 1px solid rgba(0, 210, 255, 0.3);
+      padding: 6px 14px;
+      border-radius: 100px;
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--accent-cyan);
+    }
+    .status-dot {
+      width: 6px;
+      height: 6px;
+      background-color: var(--accent-cyan);
+      border-radius: 50%;
+      box-shadow: 0 0 8px var(--accent-cyan);
+    }
 
-        a {
-            color: inherit;
-            text-decoration: none;
-            transition: var(--transition-smooth);
-        }
+    /* Main Content */
+    main {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 130px 0 80px;
+    }
 
-        /* Selection Color */
-        ::selection {
-            background-color: rgba(var(--accent-rgb), 0.2);
-            color: var(--text-primary);
-        }
+    .bonus-card {
+      max-width: 620px;
+      width: 100%;
+      margin: 0 auto;
+      background: linear-gradient(180deg, #0A162C 0%, #060D1E 100%);
+      border: 1px solid var(--border-blue);
+      border-radius: 24px;
+      padding: 56px 44px;
+      text-align: center;
+      box-shadow: 0 30px 80px -10px rgba(0, 0, 0, 0.95);
+      position: relative;
+      overflow: hidden;
+    }
+    .bonus-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, transparent 5%, #0088FF 30%, #00D2FF 70%, transparent 95%);
+    }
 
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: var(--bg-base);
-        }
-        ::-webkit-scrollbar-thumb {
-            background: var(--border-subtle);
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--accent);
-        }
+    .sec-kicker {
+      display: inline-block;
+      font-family: var(--ff-display);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent-cyan);
+      margin-bottom: 12px;
+    }
+    .bonus-title {
+      font-family: var(--ff-display);
+      font-size: clamp(26px, 3.5vw, 36px);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      color: #FFFFFF;
+      margin-bottom: 8px;
+    }
+    .bonus-sub {
+      font-size: 14px;
+      color: var(--accent-gold);
+      margin-bottom: 18px;
+      font-weight: 600;
+    }
+    .bonus-body {
+      font-size: 14.5px;
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin-bottom: 28px;
+    }
+    .bonus-highlight {
+      color: #FFFFFF;
+      font-weight: 600;
+    }
 
-        /* Global Layout Container */
-        .container {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
+    .form-group {
+      margin-bottom: 20px;
+      text-align: left;
+    }
+    .form-input {
+      width: 100%;
+      background: var(--surface-input);
+      border: 1px solid rgba(0, 136, 255, 0.3);
+      border-radius: 12px;
+      padding: 15px 18px;
+      color: #FFFFFF;
+      font-family: var(--ff-body);
+      font-size: 14.5px;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+      text-align: center;
+    }
+    .form-input:focus {
+      border-color: var(--accent-cyan);
+      box-shadow: 0 0 0 1px var(--accent-cyan);
+    }
 
-        /* ==================== HEADER ==================== */
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 100;
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-bottom: 1px solid var(--border-subtle);
-            background-color: rgba(11, 10, 9, 0.7);
-        }
+    .btn-pill-main {
+      font-family: var(--ff-display);
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: #000000;
+      background: var(--gold-gradient);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      padding: 15px 28px;
+      border-radius: 12px;
+      cursor: pointer;
+      width: 100%;
+      transition: transform 0.2s var(--ease), filter 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      box-shadow: 0 4px 20px rgba(255, 230, 0, 0.25);
+    }
+    .btn-pill-main:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.05);
+    }
 
-        .header-wrap {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            height: 80px;
-        }
+    /* Loader */
+    .loader {
+      display: none;
+      width: 18px;
+      height: 18px;
+      border: 2px solid #000000;
+      border-radius: 50%;
+      border-top-color: transparent;
+      animation: spin 0.8s linear infinite;
+    }
+    .btn-pill-main.loading .loader { display: inline-block; }
+    .btn-pill-main.loading span { opacity: 0.7; }
+    @keyframes spin { to { transform: rotate(360deg); } }
 
-        .logo {
-            font-family: var(--font-sans);
-            font-size: 0.95rem;
-            font-weight: 800;
-            letter-spacing: 0.22em;
-            color: var(--text-primary);
-            text-transform: uppercase;
-            display: flex;
-            align-items: center;
-            gap: 0.4rem;
-            flex-shrink: 0;
-            text-decoration: none;
-            cursor: pointer;
-            transition: var(--transition-smooth);
-        }
+    /* Success State */
+    .bonus-thank-you {
+      display: none;
+      opacity: 0;
+      text-align: center;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.4s var(--ease);
+    }
+    .bonus-thank-you.active {
+      display: flex;
+      opacity: 1;
+    }
+    .thank-you-icon {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: rgba(0, 210, 255, 0.12);
+      border: 1.5px solid var(--accent-cyan);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent-cyan);
+      font-size: 28px;
+      font-weight: 800;
+      margin-bottom: 20px;
+      box-shadow: 0 0 25px rgba(0, 210, 255, 0.35);
+    }
+    .thank-you-title {
+      font-family: var(--ff-display);
+      font-size: 24px;
+      font-weight: 700;
+      color: #FFFFFF;
+      margin-bottom: 10px;
+    }
+    .thank-you-desc {
+      font-size: 14px;
+      color: var(--text-muted);
+      max-width: 400px;
+      margin-bottom: 24px;
+      line-height: 1.6;
+    }
 
-        .logo span {
-            color: var(--accent);
-            border: 1px solid rgba(var(--accent-rgb), 0.3);
-            padding: 0.2rem 0.5rem;
-            font-size: 0.75rem;
-            font-weight: 600;
-            letter-spacing: 0.1em;
-            margin-left: 0.25rem;
-            border-radius: 2px;
-            background: rgba(var(--accent-rgb), 0.05);
-        }
+    /* Footer */
+    .site-footer {
+      padding: 48px 0 36px;
+      background: #020408;
+      border-top: 1px solid var(--border-subtle);
+      text-align: center;
+      margin-top: auto;
+    }
+    .site-footer__brand {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      font-family: var(--ff-display);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--text-faint);
+      margin-bottom: 16px;
+    }
+    .site-footer__brand span { color: #0088FF; font-weight: 900; }
+    .site-footer__copy { font-size: 12.5px; color: var(--text-faint); line-height: 1.65; margin-bottom: 16px; }
+    .site-footer__links { display: flex; justify-content: center; gap: 28px; }
+    .site-footer__links a { font-size: 12px; color: var(--text-muted); text-decoration: underline; text-underline-offset: 3px; transition: color 0.2s ease; }
+    .site-footer__links a:hover { color: #FFFFFF; }
 
-        .status-badge {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: rgba(var(--accent-rgb), 0.08);
-            border: 1px solid rgba(var(--accent-rgb), 0.2);
-            padding: 0.35rem 0.75rem;
-            border-radius: 100px;
-            font-size: 0.75rem;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            font-weight: 600;
-        }
-
-        .status-dot {
-            width: 6px;
-            height: 6px;
-            background-color: var(--accent);
-            border-radius: 50%;
-            display: inline-block;
-            box-shadow: 0 0 8px var(--accent);
-        }
-
-        /* ==================== MAIN CONTENT ==================== */
-        main {
-            flex: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 140px 0 80px;
-        }
-
-        .bonus-section {
-            width: 100%;
-        }
-
-        .bonus-card {
-            max-width: 640px;
-            margin: 0 auto;
-            background-color: var(--bg-surface);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            border-top: 3px solid var(--accent);
-            border-radius: 12px;
-            padding: 4.5rem 3.5rem;
-            text-align: center;
-            box-shadow: var(--shadow-lg);
-        }
-
-        .bonus-kicker {
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.2em;
-            color: var(--accent);
-            font-weight: 700;
-            margin-bottom: 1.25rem;
-            display: block;
-        }
-
-        .bonus-title {
-            font-family: var(--font-serif);
-            font-size: 2.5rem;
-            font-weight: 700;
-            line-height: 1.15;
-            margin-bottom: 0.5rem;
-        }
-
-        .bonus-subtitle {
-            font-family: var(--font-serif);
-            font-size: 1.35rem;
-            font-style: italic;
-            font-weight: 400;
-            color: var(--accent);
-            margin-bottom: 2rem;
-        }
-
-        .bonus-body {
-            font-size: 1.02rem;
-            color: var(--text-secondary);
-            line-height: 1.7;
-            margin-bottom: 2.5rem;
-        }
-
-        .bonus-highlight {
-            color: var(--text-primary);
-            font-weight: 600;
-        }
-
-        /* ==================== FORM STYLES ==================== */
-        .bonus-form-container {
-            max-width: 440px;
-            margin: 0 auto;
-            text-align: left;
-            opacity: 1;
-            transition: var(--transition-smooth);
-        }
-
-        .form-group {
-            position: relative;
-            margin-bottom: 2rem;
-        }
-
-        .form-input {
-            width: 100%;
-            background-color: var(--bg-input);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 12px;
-            padding: 1.1rem 1.25rem;
-            color: var(--text-primary);
-            font-family: var(--font-sans);
-            font-size: 0.95rem;
-            transition: all 0.2s ease;
-        }
-
-        .form-input::placeholder {
-            color: transparent;
-        }
-
-        .form-label {
-            position: absolute;
-            left: 1.25rem;
-            top: 1.1rem;
-            color: var(--text-secondary);
-            pointer-events: none;
-            transition: var(--transition-smooth);
-            font-size: 0.95rem;
-        }
-
-        /* Floating Label Animation */
-        .form-input:focus ~ .form-label,
-        .form-input:not(:placeholder-shown) ~ .form-label {
-            top: -0.6rem;
-            left: 0.75rem;
-            font-size: 0.75rem;
-            background-color: var(--bg-surface);
-            padding: 0 0.5rem;
-            color: var(--accent);
-            font-weight: 600;
-        }
-
-        .form-input:focus {
-            border-color: var(--accent);
-            box-shadow: 0 0 0 1px rgba(var(--accent-rgb), 0.2);
-            background-color: rgba(255, 255, 255, 0.01);
-        }
-
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 0.9rem 2.25rem;
-            font-family: var(--font-sans);
-            font-size: 0.8rem;
-            font-weight: 700;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-            position: relative;
-            border: none;
-        }
-
-        .btn-primary {
-            background-color: var(--accent);
-            color: var(--bg-base);
-            border: 1px solid var(--accent);
-        }
-
-        .btn-primary:hover {
-            transform: scale(1.02) translateY(-1px);
-            filter: brightness(0.92);
-            box-shadow: 0 4px 16px rgba(var(--accent-rgb), 0.15);
-        }
-
-        .btn-submit {
-            width: 100%;
-            margin-top: 1rem;
-        }
-
-        /* Loader Animation */
-        .loader {
-            display: none;
-            width: 20px;
-            height: 20px;
-            border: 2px solid var(--bg-base);
-            border-radius: 50%;
-            border-top-color: transparent;
-            animation: spin 0.8s linear infinite;
-            margin-left: 0.5rem;
-        }
-
-        .btn-submit.loading .loader {
-            display: inline-block;
-        }
-        
-        .btn-submit.loading span {
-            opacity: 0.7;
-        }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-
-        /* ==================== THANK YOU STATE ==================== */
-        .bonus-thank-you {
-            display: none;
-            opacity: 0;
-            text-align: center;
-            transition: var(--transition-smooth);
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .bonus-thank-you.active {
-            display: flex;
-            opacity: 1;
-            animation: fade-in-scale 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-        }
-
-        .thank-you-icon {
-            width: 70px;
-            height: 70px;
-            border-radius: 50%;
-            border: 1px solid var(--accent);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--accent);
-            font-size: 2rem;
-            margin-bottom: 1.5rem;
-            animation: pulse-ring 2s infinite ease-in-out;
-        }
-
-        .thank-you-title {
-            font-family: var(--font-serif);
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
-            font-weight: 500;
-        }
-
-        .thank-you-desc {
-            color: var(--text-secondary);
-            font-size: 1rem;
-            max-width: 380px;
-            margin-bottom: 1.5rem;
-        }
-
-        .signature {
-            color: var(--accent);
-            font-family: var(--font-serif);
-            font-style: italic;
-            font-size: 1.25rem;
-            margin-top: 1rem;
-        }
-
-        @keyframes fade-in-scale {
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
-
-        @keyframes pulse-ring {
-            0% { box-shadow: 0 0 0 0 rgba(var(--accent-rgb), 0.2); }
-            70% { box-shadow: 0 0 0 15px rgba(var(--accent-rgb), 0); }
-            100% { box-shadow: 0 0 0 0 rgba(var(--accent-rgb), 0); }
-        }
-
-        /* ==================== FOOTER ==================== */
-        footer {
-            padding: 40px 0 30px;
-            border-top: 1px solid var(--border-subtle);
-            background-color: #080807;
-        }
-
-        .footer-wrap {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .footer-logo {
-            font-family: var(--font-serif);
-            font-size: 1.1rem;
-            font-weight: 700;
-            letter-spacing: 0.05em;
-        }
-
-        .footer-logo span {
-            color: var(--accent);
-        }
-
-        .footer-copy {
-            font-size: 0.8rem;
-            color: var(--text-secondary);
-        }
-
-        /* ==================== RESPONSIVE DESIGN ==================== */
-        @media (max-width: 768px) {
-            .bonus-card {
-                padding: 3rem 2rem;
-            }
-
-            .bonus-title {
-                font-size: 2rem;
-            }
-
-            .footer-wrap {
-                flex-direction: column;
-                gap: 1rem;
-                text-align: center;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .container {
-                padding: 0 1rem;
-            }
-
-            .bonus-card {
-                width: 100%;
-                padding: 2.5rem 1.25rem;
-            }
-
-            .bonus-title {
-                font-size: 1.75rem;
-            }
-
-            .bonus-subtitle {
-                font-size: 1.05rem;
-            }
-
-            .bonus-body {
-                font-size: 0.9rem;
-                margin-bottom: 1.75rem;
-            }
-        }
-    </style>
+    @media (max-width: 640px) {
+      .bonus-card { padding: 36px 20px; border-radius: 16px; }
+      .site-nav__brand { font-size: 17px; }
+      .nav-badge { font-size: 10px; padding: 4px 10px; }
+    }
+  </style>
 </head>
 <body>
 
-    <!-- ==================== HEADER ==================== -->
-    <header>
-        <div class="container header-wrap">
-            <div class="logo">
-                <a href="/">ADAMS X <span>PROJECT</span></a>
-            </div>
-            <div class="status-badge">
-                <span class="status-dot"></span>
-                Secret Bonus: Active
-            </div>
+  <!-- Navigation Header -->
+  <nav class="site-nav" id="site-nav">
+    <div class="container site-nav__inner">
+      <div class="site-nav__left-group">
+        <a href="/" class="site-nav__brand">
+          <img src="/favicon-32x32.png" alt="Adams X Logo" style="width: 28px; height: 28px; border-radius: 6px; object-fit: contain;">
+          ADAMS X PROJECT
+        </a>
+      </div>
+      <div class="site-nav__cta">
+        <div class="nav-badge">
+          <span class="status-dot"></span>
+          Secret Bonus
         </div>
-    </header>
+      </div>
+    </div>
+  </nav>
 
-    <!-- ==================== MAIN CONTENT ==================== -->
-    <main>
-        <div class="container">
-            <section class="bonus-section">
-                <div class="bonus-card">
-                    <span class="bonus-kicker">Reader Exclusive</span>
-                    <h2 class="bonus-title">The Secret Protocol</h2>
-                    <p class="bonus-subtitle">Weekly Log Web Tracker &amp; scripts</p>
-                    <p class="bonus-body">
-                        You finished reading the kit. Excellent. Enter your registered email address below, and I will dispatch the <span class="bonus-highlight">Secret Bonus Pack</span> directly to your inbox.
-                    </p>
+  <!-- Main Content -->
+  <main>
+    <div class="container">
+      <div class="bonus-card">
+        <span class="sec-kicker">Reader Exclusive</span>
+        <h1 class="bonus-title">The Secret Protocol</h1>
+        <p class="bonus-sub">Weekly Log Web Tracker &amp; Execution Scripts</p>
+        <p class="bonus-body">
+          Enter your registered email address below, and the <span class="bonus-highlight">Secret Bonus Pack</span> will be dispatched directly to your inbox.
+        </p>
 
-                    <!-- Bonus Form State -->
-                    <div id="bonus-form-state" class="bonus-form-container">
-                        <form id="bonus-form">
-                            <div class="form-group">
-                                <input type="email" id="bonus-email" class="form-input" placeholder="Email Address" required autocomplete="email">
-                                <label for="bonus-email" class="form-label">Email Address</label>
-                            </div>
-                            <button type="submit" class="btn btn-primary btn-submit" id="bonus-submit-btn">
-                                <span>Unlock Bonus Pack</span>
-                                <div class="loader"></div>
-                            </button>
-                        </form>
-                    </div>
-
-                    <!-- Bonus Thank You State -->
-                    <div id="bonus-thank-you" class="bonus-thank-you">
-                        <div class="thank-you-icon">✓</div>
-                        <h3 class="thank-you-title">Bonus Unlocked.</h3>
-                        <p class="thank-you-desc">
-                            We have verified your registration and dispatched the secret files to your inbox.
-                        </p>
-                        <p class="signature">— Adams</p>
-                    </div>
-                </div>
-            </section>
-        </div>
-    </main>
-
-    <!-- ==================== FOOTER ==================== -->
-    <footer>
-        <div class="container footer-wrap">
-            <div class="footer-logo">
-                <a href="/">ADAMS X <span>PROJECT</span></a>
+        <!-- Form State -->
+        <div id="bonus-form-state">
+          <form id="bonus-form">
+            <div class="form-group">
+              <input type="email" id="bonus-email" class="form-input" placeholder="Enter your email address" required autocomplete="email">
             </div>
-            <div class="footer-copy">
-                &copy; 2026 Adams X Project. Built for Builders, Dreamers, and Creators.
-            </div>
+            <button type="submit" class="btn-pill-main" id="bonus-submit-btn">
+              <span>Unlock Bonus Pack &rarr;</span>
+              <div class="loader"></div>
+            </button>
+          </form>
         </div>
-    </footer>
 
-    <!-- ==================== JAVASCRIPT ==================== -->
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const bonusForm = document.getElementById('bonus-form');
-            const bonusSubmitBtn = document.getElementById('bonus-submit-btn');
-            const bonusFormState = document.getElementById('bonus-form-state');
-            const bonusThankYou = document.getElementById('bonus-thank-you');
+        <!-- Success State -->
+        <div id="bonus-thank-you" class="bonus-thank-you">
+          <div class="thank-you-icon">✓</div>
+          <h2 class="thank-you-title">Bonus Unlocked</h2>
+          <p class="thank-you-desc">
+            We have verified your registration and dispatched the secret files to your inbox.
+          </p>
+          <a href="/" class="btn-pill-main" style="max-width: 220px;">Return Home</a>
+        </div>
+      </div>
+    </div>
+  </main>
 
-            bonusForm.addEventListener('submit', async (e) => {
-                e.preventDefault();
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="site-footer__brand">
+        <img src="/favicon-32x32.png" alt="Adams X Logo" style="width: 22px; height: 22px; border-radius: 5px; object-fit: contain;">
+        <span>//</span> ADAMS X PROJECT
+      </div>
+      <p class="site-footer__copy">
+        &copy; 2026 Adams X Project &middot; All rights reserved.<br>
+        Built for creators, developers, and builders ready to execute.
+      </p>
+      <nav class="site-footer__links" aria-label="Footer navigation">
+        <a href="/privacy">Privacy Policy</a>
+        <a href="/unsubscribe">Unsubscribe</a>
+      </nav>
+    </div>
+  </footer>
 
-                const email = document.getElementById('bonus-email').value.trim();
+  <!-- Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const bonusForm = document.getElementById('bonus-form');
+      const bonusSubmitBtn = document.getElementById('bonus-submit-btn');
+      const bonusFormState = document.getElementById('bonus-form-state');
+      const bonusThankYou = document.getElementById('bonus-thank-you');
 
-                if (!email) return;
+      bonusForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
 
-                // Show loading state
-                bonusSubmitBtn.classList.add('loading');
-                bonusSubmitBtn.disabled = true;
+        const email = document.getElementById('bonus-email').value.trim();
+        if (!email) return;
 
-                try {
-                    const response = await fetch('/api/claim-bonus', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify({ email })
-                    });
+        bonusSubmitBtn.classList.add('loading');
+        bonusSubmitBtn.disabled = true;
 
-                    const data = await response.json();
+        try {
+          const response = await fetch('/api/claim-bonus', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email })
+          });
 
-                    if (!response.ok) {
-                        throw new Error(data.error || 'Failed to claim bonus gift.');
-                    }
+          const data = await response.json();
 
-                    // Success - transition UI states
-                    bonusFormState.style.transition = 'opacity 0.4s ease';
-                    bonusFormState.style.opacity = '0';
+          if (!response.ok) {
+            throw new Error(data.error || 'Failed to claim bonus gift.');
+          }
 
-                    setTimeout(() => {
-                        bonusFormState.style.display = 'none';
-                        bonusThankYou.style.display = 'flex';
-                        // Force paint to apply anims
-                        bonusThankYou.offsetHeight;
-                        bonusThankYou.classList.add('active');
-                    }, 400);
+          bonusFormState.style.display = 'none';
+          bonusThankYou.classList.add('active');
 
-                } catch (error) {
-                    console.error('Bonus claim error:', error);
-                    alert('Unlock Error: ' + error.message);
-                } finally {
-                    bonusSubmitBtn.classList.remove('loading');
-                    bonusSubmitBtn.disabled = false;
-                }
-            });
-        });
-    </script>
+        } catch (error) {
+          console.error('Bonus claim error:', error);
+          alert('Unlock Error: ' + error.message);
+        } finally {
+          bonusSubmitBtn.classList.remove('loading');
+          bonusSubmitBtn.disabled = false;
+        }
+      });
+    });
+  </script>
 </body>
 </html>
