@@ -306,8 +306,8 @@
     .hero__sub-italic {
       font-family: 'Montserrat', sans-serif;
       font-size: clamp(15px, 1.8vw, 20px);
-      font-weight: 500;
-      color: var(--accent-yellow);
+      font-weight: 600;
+      color: #38BDF8;
       line-height: 1.4;
       max-width: 680px;
       margin: 0 auto 12px;
@@ -788,17 +788,24 @@
     }
 
     /* ==========================================================
-       PROBLEM, PILLARS, PHASES
+       PROBLEM, PILLARS, PHASES & SECTION PILL BADGES (Monetise Style)
     ========================================================== */
     .sec-kicker {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
       font-family: var(--ff-display);
-      font-size: 10px;
+      font-size: 11px;
       font-weight: 700;
-      letter-spacing: 0.28em;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
-      color: var(--accent-yellow);
-      display: block;
-      margin-bottom: 12px;
+      color: #38BDF8;
+      background: #08142C;
+      border: 1px solid rgba(0, 210, 255, 0.38);
+      padding: 6px 20px;
+      border-radius: 100px;
+      margin: 0 auto 16px;
+      box-shadow: 0 0 20px rgba(0, 136, 255, 0.18), inset 0 1px 1px rgba(255, 255, 255, 0.12);
     }
 
     .sec-title {
@@ -1034,9 +1041,9 @@
     }
     .offer-pill-badge {
       display: inline-block;
-      background: rgba(0, 136, 255, 0.12);
-      border: 1px solid rgba(0, 136, 255, 0.4);
-      color: #FFFFFF;
+      background: #08142C;
+      border: 1px solid rgba(0, 210, 255, 0.4);
+      color: #38BDF8;
       font-family: var(--ff-display);
       font-size: 11px;
       font-weight: 700;
@@ -1045,7 +1052,7 @@
       padding: 5px 16px;
       border-radius: 100px;
       margin-bottom: 16px;
-      box-shadow: 0 0 14px rgba(0, 136, 255, 0.25);
+      box-shadow: 0 0 16px rgba(0, 136, 255, 0.25), inset 0 1px 1px rgba(255, 255, 255, 0.12);
     }
     .offer-pill-badge.gold {
       background: rgba(255, 230, 0, 0.12);
@@ -1067,9 +1074,12 @@
       font-family: var(--ff-display);
       font-size: 15px;
       font-weight: 800;
-      color: var(--accent-yellow);
+      color: #38BDF8;
       margin-bottom: 16px;
       letter-spacing: 0.02em;
+    }
+    .offer-value-tag.gold {
+      color: var(--accent-yellow);
     }
     .offer-desc {
       font-size: 14px;
@@ -1516,11 +1526,20 @@
     .av-pos-8 { top: 38px; left: 18%; }
 
     /* ==========================================================
-       MONETISE "EVERYTHING YOU GET" STACK BREAKDOWN CARD (Image 1)
+       MONETISE "EVERYTHING YOU GET" STACK BREAKDOWN CARD (Cotton Dark Waves Background)
     ========================================================== */
     .stack-card-section {
-      padding: 80px 0 40px;
+      padding: 100px 0 60px;
       position: relative;
+      background: #040812 url('/images/cotton-dark-horizontal.jpg') no-repeat center center / cover;
+      overflow: hidden;
+    }
+    .stack-card-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 50% 50%, rgba(4, 8, 18, 0.45) 0%, rgba(4, 8, 18, 0.9) 100%);
+      pointer-events: none;
     }
     .stack-breakdown-card {
       background: linear-gradient(180deg, #0A162C 0%, #060D1E 100%);
@@ -1834,19 +1853,15 @@
     ========================================================== */
     .wa-fullbleed-section {
       position: relative;
-      width: 100%;
-      background: #030814 url('/images/cotton-blue-v-mobile.jpg') no-repeat center 65% / cover;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      background: #030814 url('/images/cotton-blue-v-mobile.jpg') no-repeat center center / cover;
       overflow: hidden;
-      padding: 60px 0;
+      padding: 90px 0;
     }
     .wa-fullbleed-section::before {
       content: '';
       position: absolute;
       inset: 0;
-      background: radial-gradient(circle at 50% 50%, rgba(3, 8, 20, 0.75) 0%, rgba(2, 5, 12, 0.93) 100%);
+      background: radial-gradient(circle at 50% 50%, rgba(3, 8, 20, 0.72) 0%, rgba(2, 5, 12, 0.96) 100%);
       pointer-events: none;
       z-index: 0;
     }
@@ -1866,7 +1881,7 @@
       position: relative;
       z-index: 1;
       width: 100%;
-      max-width: 900px;
+      max-width: 1040px;
       margin: 0 auto;
       display: flex;
       align-items: center;
@@ -1874,19 +1889,19 @@
       padding: 0 20px;
     }
     .wa-fullbleed-card {
-      background: rgba(6, 15, 32, 0.82);
-      border: 1px solid rgba(0, 210, 255, 0.22);
-      border-radius: var(--radius-md);
-      padding: 38px 44px;
-      max-width: 840px;
+      background: rgba(6, 15, 32, 0.88);
+      border: 1px solid rgba(0, 210, 255, 0.32);
+      border-radius: 28px;
+      padding: 60px 48px;
+      max-width: 980px;
       width: 100%;
       text-align: center;
       box-shadow: 
-        0 0 0 1px rgba(0, 210, 255, 0.1),
-        0 20px 60px -10px rgba(0,0,0,0.95),
-        0 0 50px rgba(0, 210, 255, 0.1);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
+        0 0 0 1px rgba(0, 210, 255, 0.15),
+        0 30px 80px -10px rgba(0,0,0,0.95),
+        0 0 60px rgba(0, 210, 255, 0.15);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
       position: relative;
       overflow: hidden;
     }
@@ -1894,28 +1909,28 @@
       content: '';
       position: absolute;
       top: 0; left: 0; right: 0;
-      height: 2px;
+      height: 2.5px;
       background: linear-gradient(90deg, transparent 0%, #00d2ff 35%, #25D366 50%, #00d2ff 65%, transparent 100%);
     }
     .wa-fullbleed-title {
       font-family: var(--ff-display);
-      font-size: clamp(24px, 3.6vw, 36px);
-      font-weight: 700;
+      font-size: clamp(28px, 4vw, 44px);
+      font-weight: 800;
       letter-spacing: -0.02em;
       color: #FFFFFF;
-      margin-bottom: 10px;
+      margin-bottom: 12px;
       line-height: 1.15;
     }
     .wa-fullbleed-sub {
-      font-size: clamp(14px, 1.8vw, 16px);
+      font-size: clamp(15px, 2vw, 17px);
       color: #94A3B8;
-      margin-bottom: 6px;
+      margin-bottom: 8px;
       line-height: 1.5;
     }
     .wa-fullbleed-phone {
-      font-size: 13px;
+      font-size: 14px;
       color: #64748B;
-      margin-bottom: 24px;
+      margin-bottom: 32px;
     }
     .wa-fullbleed-phone strong {
       color: #A0B8D0;
@@ -1929,17 +1944,17 @@
       background: linear-gradient(135deg, #2EEB72 0%, #25D366 50%, #1DA851 100%);
       color: #000000;
       font-family: var(--ff-display);
-      font-size: 14px;
+      font-size: 14.5px;
       font-weight: 800;
       letter-spacing: 0.06em;
       text-transform: uppercase;
       text-decoration: none;
-      padding: 16px 36px;
+      padding: 18px 42px;
       border-radius: 100px;
       border: 1px solid rgba(255, 255, 255, 0.4);
       cursor: pointer;
       box-shadow:
-        0 4px 20px rgba(37, 211, 102, 0.4),
+        0 6px 24px rgba(37, 211, 102, 0.45),
         inset 0 1px 1px rgba(255, 255, 255, 0.8),
         0 2px 4px rgba(0,0,0,0.5);
       transition: transform 0.2s var(--ease), box-shadow 0.2s ease, filter 0.2s ease;
@@ -2115,12 +2130,12 @@
       background: linear-gradient(90deg, transparent 5%, #334155 30%, #64748B 70%, transparent 95%);
     }
     .aud-card__title { font-family: var(--ff-display); font-size: 20px; font-weight: 700; margin-bottom: 22px; }
-    .aud-card--yes .aud-card__title { color: var(--accent-yellow); }
+    .aud-card--yes .aud-card__title { color: #38BDF8; }
     .aud-card--no  .aud-card__title { color: var(--text-muted); }
     .aud-list { list-style: none; display: flex; flex-direction: column; gap: 14px; }
     .aud-list li { display: flex; gap: 12px; font-size: 14.5px; line-height: 1.55; color: var(--text-muted); align-items: flex-start; }
     .aud-list li .bullet { flex-shrink: 0; margin-top: 1px; font-weight: 700; }
-    .aud-card--yes .bullet { color: var(--accent-yellow); }
+    .aud-card--yes .bullet { color: #38BDF8; }
     .aud-card--no  .bullet { color: var(--text-faint); }
 
     /* ==========================================================
@@ -2157,20 +2172,21 @@
     }
     .offer-pill {
       position: absolute;
-      top: -13px;
+      top: -14px;
       left: 50%;
       transform: translateX(-50%);
-      background: var(--gold-gradient);
-      color: #000;
+      background: #08142C;
+      border: 1px solid rgba(0, 210, 255, 0.45);
+      color: #38BDF8;
       font-family: var(--ff-display);
-      font-size: 10px;
+      font-size: 11px;
       font-weight: 700;
-      letter-spacing: 0.2em;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
-      padding: 6px 20px;
+      padding: 6px 22px;
       border-radius: var(--radius-pill);
       white-space: nowrap;
-      box-shadow: 0 0 16px rgba(255,230,0,0.4);
+      box-shadow: 0 0 20px rgba(0, 136, 255, 0.25), inset 0 1px 1px rgba(255, 255, 255, 0.15);
       z-index: 2;
     }
     .offer-card__title {
@@ -3427,6 +3443,7 @@
 
       <div class="stack-breakdown-card">
         <div class="stack-brand-badge">
+          <img src="/favicon-32x32.png" alt="Adams X Logo" style="width: 22px; height: 22px; border-radius: 5px; object-fit: contain;">
           <span>//</span> ADAMS X PROJECT
         </div>
 
@@ -3514,9 +3531,7 @@
         </div>
 
         <div>
-          <a href="https://whop.com/adams-x/comeback-unrecognized" target="_blank" rel="noopener noreferrer" class="btn-pill-main">
-            JOIN WAITLIST / GET INSTANT ACCESS — $17
-          </a>
+          <a href="https://whop.com/adams-x/comeback-unrecognized" target="_blank" rel="noopener noreferrer" class="btn-pill-main">GET INSTANT ACCESS — $17</a>
         </div>
       </div>
     </div>
