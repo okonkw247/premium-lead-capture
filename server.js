@@ -12,6 +12,7 @@ const digestHandler        = require('./api/cron/digest');
 const blastHandler         = require('./api/cron/blast');
 const segmentBlastHandler  = require('./api/cron/segment-blast');
 const postPurchaseDrip     = require('./api/cron/post-purchase-drip');
+const segmentCDrip         = require('./api/cron/segment-c-drip');
 
 // Webhook handlers
 const whopWebhook          = require('./api/webhooks/whop');
@@ -391,6 +392,7 @@ app.post('/api/waitlist', async (req, res) => {
 app.get('/api/cron/drip',            dripHandler);          // Vercel cron: daily 9AM UTC
 app.get('/api/cron/digest',          digestHandler);         // Vercel cron: daily 8AM UTC
 app.get('/api/cron/post-purchase-drip', postPurchaseDrip);  // Vercel cron: daily 9AM UTC
+app.get('/api/cron/segment-c-drip',   segmentCDrip);        // Vercel cron: daily 9AM UTC (Segment C $17->$68)
 app.post('/api/cron/blast',          blastHandler);          // Legacy blast (waitlist-only)
 
 // ── Admin Routes ──────────────────────────────────────────────

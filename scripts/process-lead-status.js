@@ -97,9 +97,16 @@ const args = process.argv.slice(2);
 const emailArg = args.find(a => a.startsWith('--email='))?.split('=')[1];
 const statusArg = args.find(a => a.startsWith('--status='))?.split('=')[1];
 const nameArg = args.find(a => a.startsWith('--name='))?.split('=')[1] || 'Friend';
+const isSegmentC = args.includes('--segment-c') || args.includes('--enroll-segment-c');
 
-if (emailArg && statusArg) {
+if (isSegmentC || args.includes('--dry-run')) {
+    require('./enroll-segment-c');
+} else if (emailArg && statusArg) {
     processLead({ name: nameArg, email: emailArg, status: statusArg });
 } else {
-    console.log('Script loaded. Run with --email=... --status=... --name=...');
+    console.log('Script loaded.');
+    console.log('Usage:');
+    console.log('  node scripts/process-lead-status.js --email=... --status=... --name=...');
+    console.log('  node scripts/process-lead-status.js --segment-c --dry-run');
+    console.log('  node scripts/process-lead-status.js --segment-c --execute');
 }
