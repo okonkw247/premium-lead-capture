@@ -1735,23 +1735,29 @@
     .stack-row-item {
       display: flex;
       align-items: center;
+      justify-content: space-between;
       width: 100%;
       padding: 13px 0;
       border-bottom: 1px solid rgba(255,255,255,0.06);
       gap: 0;
+      box-sizing: border-box;
     }
     .stack-row-item:last-child { border-bottom: none; }
     .stack-item-left {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
       color: #D1D5DB;
       font-size: 14.5px;
       font-weight: 400;
-      white-space: nowrap;
-      flex-shrink: 0;
+      flex: 0 1 auto;
+      min-width: 0;
     }
-    .stack-item-left span { white-space: normal; line-height: 1.4; }
+    .stack-item-left span {
+      white-space: normal;
+      line-height: 1.4;
+      word-break: normal;
+    }
     .stack-check-svg {
       width: 14px;
       height: 14px;
@@ -1761,7 +1767,7 @@
     /* Full-width dotted leader like Monetise */
     .stack-dots-leader {
       flex: 1 1 auto;
-      min-width: 24px;
+      min-width: 16px;
       border-bottom: 2px dotted rgba(255,255,255,0.15);
       margin: 0 10px;
       position: relative;
@@ -1780,6 +1786,33 @@
       color: #A78BFA;
       font-weight: 800;
       text-decoration: none;
+    }
+
+    /* Monetise Yellow CTA Button */
+    .btn-monetise-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: #F5CE00;
+      color: #000000 !important;
+      font-family: var(--ff-display);
+      font-weight: 900;
+      letter-spacing: 0.06em;
+      padding: 16px 40px;
+      border-radius: 8px;
+      font-size: 15px;
+      text-decoration: none !important;
+      border: none;
+      cursor: pointer;
+      text-transform: uppercase;
+      box-sizing: border-box;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+      box-shadow: 0 4px 14px rgba(245, 206, 0, 0.3);
+    }
+    .btn-monetise-cta:hover {
+      background: #FFE033;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(245, 206, 0, 0.45);
     }
 
     /* Total box — Monetise style: large centered total with strikethrough */
@@ -2614,19 +2647,100 @@
       .sec-sub { font-size: 14px; margin-top: 10px; }
 
       .stack-breakdown-card, .guarantee-gold-card, .whatsapp-cyber-card {
-        padding: 28px 16px 24px;
-        border-radius: var(--radius-md);
+        padding: 28px 16px 24px !important;
+        border-radius: var(--radius-md) !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+      }
+      .stack-brand-badge {
+        font-size: 14px !important;
+        margin-bottom: 22px !important;
+        gap: 8px !important;
+      }
+      .stack-brand-badge img {
+        width: 20px !important;
+        height: 20px !important;
+      }
+      .stack-list-wrap {
+        margin-bottom: 22px !important;
       }
       .stack-row-item {
-        font-size: 13px;
-        gap: 8px;
+        font-size: 13px !important;
+        padding: 10px 0 !important;
+        align-items: flex-start !important;
+        justify-content: space-between !important;
+        gap: 8px !important;
       }
-      .stack-dots-leader { display: none; }
+      .stack-item-left {
+        font-size: 12.5px !important;
+        gap: 8px !important;
+        flex: 1 1 auto !important;
+        min-width: 0 !important;
+        align-items: flex-start !important;
+      }
+      .stack-item-left span {
+        font-size: 12.5px !important;
+        line-height: 1.4 !important;
+      }
+      .stack-check-svg {
+        width: 13px !important;
+        height: 13px !important;
+        margin-top: 2px !important;
+        flex-shrink: 0 !important;
+      }
+      .stack-dots-leader {
+        display: none !important;
+      }
       .stack-item-val {
-        font-size: 13px;
+        font-size: 12.5px !important;
+        margin-left: auto !important;
+        flex-shrink: 0 !important;
+        margin-top: 1px !important;
       }
-      .stack-total-line { font-size: 17px; }
-      .stack-today-price { font-size: 30px; }
+      .stack-total-box {
+        padding-top: 20px !important;
+        margin-bottom: 20px !important;
+        gap: 6px !important;
+      }
+      .stack-total-line {
+        font-size: 18px !important;
+      }
+      .stack-total-strike {
+        font-size: 20px !important;
+        margin-left: 6px !important;
+      }
+      .stack-today-price {
+        font-size: 26px !important;
+      }
+      .btn-monetise-cta {
+        display: flex !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 15px 16px !important;
+        font-size: 13px !important;
+        letter-spacing: 0.04em !important;
+        text-align: center !important;
+        box-sizing: border-box !important;
+      }
+
+      .guarantee-gold-card {
+        padding: 34px 16px 26px !important;
+      }
+      .gold-medal-seal {
+        max-width: 140px !important;
+        margin: 0 auto 16px !important;
+      }
+      .guarantee-gold-title {
+        font-size: 21px !important;
+        margin-bottom: 14px !important;
+      }
+      .guarantee-gold-body {
+        font-size: 13px !important;
+        line-height: 1.65 !important;
+        max-width: 100% !important;
+        margin: 0 auto 22px !important;
+        padding: 0 !important;
+      }
 
       .offer-shell { padding-top: 14px; }
       .offer-card { padding: 36px 16px 28px; border-radius: var(--radius-md); }
@@ -3868,8 +3982,8 @@
         </div>
 
         <!-- CTA -->
-        <div style="text-align:center;">
-          <a href="https://whop.com/adams-x/comeback-unrecognized" target="_blank" rel="noopener noreferrer" class="btn-pill-main" style="display:inline-block; background:#F5CE00; color:#000000; font-weight:900; letter-spacing:0.06em; padding:17px 40px; border-radius:8px; font-size:15px; text-decoration:none; border:none; cursor:pointer;">GET INSTANT ACCESS — $17</a>
+        <div style="text-align:center; width:100%; box-sizing:border-box;">
+          <a href="https://whop.com/adams-x/comeback-unrecognized" target="_blank" rel="noopener noreferrer" class="btn-monetise-cta">GET INSTANT ACCESS — $17</a>
         </div>
       </div>
     </div>
@@ -4037,8 +4151,8 @@
         </div>
 
         <!-- Yellow CTA like Monetise -->
-        <div style="text-align:center; position:relative; z-index:1;">
-          <a href="https://whop.com/adams-x/comeback-unrecognized" target="_blank" rel="noopener noreferrer" style="display:inline-block; background:#F5CE00; color:#000000; font-family:var(--ff-display); font-weight:900; letter-spacing:0.08em; padding:17px 44px; border-radius:8px; font-size:15px; text-decoration:none; cursor:pointer; text-transform:uppercase;">GET INSTANT ACCESS — $17</a>
+        <div style="text-align:center; position:relative; z-index:1; width:100%; box-sizing:border-box;">
+          <a href="https://whop.com/adams-x/comeback-unrecognized" target="_blank" rel="noopener noreferrer" class="btn-monetise-cta">GET INSTANT ACCESS — $17</a>
         </div>
       </div>
     </div>
