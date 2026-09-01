@@ -1559,62 +1559,81 @@
     .node-3 { bottom: 35px; left: 28%; }
     .node-4 { bottom: 30px; right: 24%; }
 
-    /* Mockup 8: Dedicated Support (Headset in Glowing Orbit of 8 Avatars - Image 3 Reference) */
+    /* Mockup 8: Dedicated Support (Monetise Gold Card with Faded Team Avatars - Image 2 Reference) */
+    .monetise-offer-card.gold-theme {
+      background: radial-gradient(circle at 50% 0%, #1c1406 0%, #080602 100%);
+      border: 1.5px solid rgba(245, 158, 11, 0.45);
+      box-shadow: 0 0 60px rgba(245, 158, 11, 0.15), 0 30px 80px rgba(0, 0, 0, 0.9);
+    }
+    .monetise-offer-card.gold-theme::before {
+      background: linear-gradient(90deg, transparent 5%, #F59E0B 30%, #FFE600 70%, transparent 95%);
+    }
+    .offer-visual-frame.gold-bg {
+      background: radial-gradient(circle at 50% 50%, rgba(65, 45, 10, 0.7) 0%, #080602 100%);
+      border: 2px solid rgba(245, 158, 11, 0.55);
+      border-radius: 28px;
+      box-shadow: inset 0 0 40px rgba(245, 158, 11, 0.15), 0 0 45px rgba(245, 158, 11, 0.2);
+    }
     .support-orbit-wrap {
       position: relative;
       width: 100%;
       height: 100%;
-      min-height: 290px;
+      min-height: 310px;
       display: flex;
       align-items: center;
       justify-content: center;
-    }
-    .support-gold-disk {
-      width: 160px;
-      height: 160px;
-      border-radius: 50%;
-      background: radial-gradient(circle, #EAB308 0%, #A16207 40%, rgba(113, 63, 18, 0.2) 80%);
-      border: 2px solid rgba(255, 230, 0, 0.4);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 0 45px rgba(234, 179, 8, 0.5), inset 0 0 25px rgba(255, 255, 255, 0.3);
-      position: relative;
-      z-index: 3;
-    }
-    .support-headset-icon {
-      width: 72px;
-      height: 72px;
-      fill: #FFFFFF;
-      filter: drop-shadow(0 4px 8px rgba(0,0,0,0.5));
-    }
-    .support-avatar-bubble {
-      position: absolute;
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
-      background: #1E293B;
-      border: 1.5px solid rgba(255, 230, 0, 0.5);
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      border-radius: 24px;
       overflow: hidden;
-      box-shadow: 0 4px 14px rgba(0,0,0,0.7);
+    }
+    .support-team-backdrop {
+      position: absolute;
+      inset: 0;
+      background: url('/images/support-team.jpg') no-repeat center center / cover;
+      opacity: 0.38;
+      filter: contrast(1.15) brightness(0.85);
+      mix-blend-mode: luminosity;
+      pointer-events: none;
+      z-index: 1;
+    }
+    .support-team-vignette {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 50% 50%, transparent 20%, rgba(8, 6, 2, 0.85) 85%);
+      pointer-events: none;
       z-index: 2;
     }
-    .support-avatar-bubble img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+    .support-gold-outer-halo {
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      border: 1.5px solid rgba(245, 158, 11, 0.45);
+      background: radial-gradient(circle, rgba(245, 158, 11, 0.25) 0%, rgba(120, 53, 15, 0.1) 60%, transparent 80%);
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      z-index: 3;
+      box-shadow: 0 0 40px rgba(245, 158, 11, 0.35), inset 0 0 25px rgba(245, 158, 11, 0.25);
     }
-    .av-pos-1 { top: 15px; left: calc(50% - 22px); }
-    .av-pos-2 { top: 38px; right: 18%; }
-    .av-pos-3 { top: calc(50% - 22px); right: 8%; }
-    .av-pos-4 { bottom: 38px; right: 18%; }
-    .av-pos-5 { bottom: 15px; left: calc(50% - 22px); }
-    .av-pos-6 { bottom: 38px; left: 18%; }
-    .av-pos-7 { top: calc(50% - 22px); left: 8%; }
-    .av-pos-8 { top: 38px; left: 18%; }
+    .support-gold-inner-disk {
+      width: 135px;
+      height: 135px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 30%, #FBBF24 0%, #D97706 45%, #78350F 90%);
+      border: 2px solid rgba(255, 255, 255, 0.45);
+      box-shadow: 0 0 50px rgba(245, 158, 11, 0.8), inset 0 2px 4px rgba(255, 255, 255, 0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .support-headset-svg {
+      width: 62px;
+      height: 62px;
+      fill: #FFFFFF;
+      filter: drop-shadow(0 4px 10px rgba(0,0,0,0.6));
+    }
 
     /* ==========================================================
        MONETISE "EVERYTHING YOU GET" STACK BREAKDOWN CARD (Cotton Dark Waves Background)
@@ -3674,29 +3693,28 @@
           </div>
         </div>
 
-        <!-- BONUS 4: Dedicated Support (Gold Card - Image 3 Reference) -->
+        <!-- BONUS 4: Dedicated Support (Monetise Gold Card with Faded Team Avatars) -->
         <div class="monetise-offer-card reverse gold-theme">
           <div class="offer-visual-frame gold-bg">
             <div class="support-orbit-wrap">
-              <div class="support-avatar-bubble av-pos-1"><div style="font-weight:700;font-size:12px;color:#FDE68A;">A</div></div>
-              <div class="support-avatar-bubble av-pos-2"><div style="font-weight:700;font-size:12px;color:#FDE68A;">R</div></div>
-              <div class="support-avatar-bubble av-pos-3"><div style="font-weight:700;font-size:12px;color:#FDE68A;">S</div></div>
-              <div class="support-avatar-bubble av-pos-4"><div style="font-weight:700;font-size:12px;color:#FDE68A;">J</div></div>
-              <div class="support-avatar-bubble av-pos-5"><div style="font-weight:700;font-size:12px;color:#FDE68A;">M</div></div>
-              <div class="support-avatar-bubble av-pos-6"><div style="font-weight:700;font-size:12px;color:#FDE68A;">K</div></div>
-              <div class="support-avatar-bubble av-pos-7"><div style="font-weight:700;font-size:12px;color:#FDE68A;">E</div></div>
-              <div class="support-avatar-bubble av-pos-8"><div style="font-weight:700;font-size:12px;color:#FDE68A;">D</div></div>
+              <div class="support-team-backdrop"></div>
+              <div class="support-team-vignette"></div>
               
-              <div class="support-gold-disk">
-                <svg class="support-headset-icon" viewBox="0 0 24 24"><path d="M12 1a9 9 0 0 0-9 9v7c0 1.66 1.34 3 3 3h3v-8H5v-2c0-3.87 3.13-7 7-7s7 3.13 7 7v2h-4v8h3c1.66 0 3-1.34 3-3v-7a9 9 0 0 0-9-9z"/></svg>
+              <div class="support-gold-outer-halo">
+                <div class="support-gold-inner-disk">
+                  <svg class="support-headset-svg" viewBox="0 0 24 24">
+                    <path d="M12 2C6.48 2 2 6.48 2 12v6c0 1.66 1.34 3 3 3h2c.55 0 1-.45 1-1v-6c0-.55-.45-1-1-1H4v-2c0-4.41 3.59-8 8-8s8 3.59 8 8v2h-3c-.55 0-1 .45-1 1v6c0 .55.45 1 1 1h2c1.66 0 3-1.34 3-3v-6c0-5.52-4.48-10-10-10zM19 19c0 .55-.45 1-1 1h-1v-4h2v3zM5 16h2v4H5c-.55 0-1-.45-1-1v-3z"/>
+                    <path d="M19 18v2a3 3 0 0 1-3 3h-3" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"/>
+                  </svg>
+                </div>
               </div>
             </div>
           </div>
 
           <div class="offer-content-col">
             <span class="offer-pill-badge gold">BONUS 4</span>
-            <h3 class="offer-item-title">Dedicated Support: You're Never Alone</h3>
-            <div class="offer-value-tag" style="color:#FFE600;">Value: $7,800</div>
+            <h3 class="offer-item-title">Dedicated Support<br><span style="color:#F59E0B; display:inline-block; margin-top:3px;">You're Never Alone</span></h3>
+            <div class="offer-value-tag gold">Value: $7,800</div>
             <p class="offer-desc">
               No being left alone to figure things out like you're just a number in a system. Inside Adams X Project, you have a team whose only job is making sure you succeed.
             </p>
