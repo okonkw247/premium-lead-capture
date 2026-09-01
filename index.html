@@ -1638,8 +1638,9 @@
     /* ==========================================================
        MONETISE "EVERYTHING YOU GET" STACK BREAKDOWN CARD (Cotton Dark Waves Background)
     ========================================================== */
+    /* === STACK BREAKDOWN CARD — Monetise Style === */
     .stack-card-section {
-      padding: 100px 0 60px;
+      padding: 100px 0 80px;
       position: relative;
       background: #040812 url('/images/cotton-dark-horizontal.jpg') no-repeat center center / cover;
       overflow: hidden;
@@ -1657,7 +1658,6 @@
       );
       pointer-events: none;
     }
-    /* All content inside the section must sit above the overlay */
     .stack-card-section .container {
       position: relative;
       z-index: 1;
@@ -1673,183 +1673,200 @@
       position: relative;
       z-index: 1;
     }
+
+    /* Card shell — dark with subtle top-left corner highlight like Monetise */
     .stack-breakdown-card {
-      background: linear-gradient(180deg, #111118 0%, #0A0A10 100%);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: var(--radius-lg);
-      padding: 50px 38px 42px;
-      max-width: 780px;
+      background: linear-gradient(160deg, #181820 0%, #0E0E14 60%, #090910 100%);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 18px;
+      padding: 48px 44px 44px;
+      max-width: 800px;
       width: 100%;
       margin: 0 auto;
       position: relative;
       overflow: hidden;
-      box-shadow: 
-        0 0 0 1px rgba(255, 255, 255, 0.04),
-        0 30px 80px -10px rgba(0, 0, 0, 0.98),
-        0 0 80px rgba(0, 0, 0, 0.8);
+      box-shadow:
+        0 0 0 1px rgba(255,255,255,0.04),
+        0 4px 6px rgba(0,136,255,0.08),
+        0 40px 100px -20px rgba(0,0,0,0.98);
     }
+    /* Cyan/blue top-left corner accent — Monetise signature */
     .stack-breakdown-card::before {
       content: '';
       position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 2.5px;
-      background: linear-gradient(90deg, transparent 5%, #0088FF 30%, #00D2FF 70%, transparent 95%);
+      top: 0; left: 0;
+      width: 160px; height: 4px;
+      background: linear-gradient(90deg, #0088FF 0%, #00D2FF 60%, transparent 100%);
+      border-radius: 18px 0 0 0;
+    }
+    .stack-breakdown-card::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 4px; height: 120px;
+      background: linear-gradient(180deg, #0088FF 0%, #00D2FF 50%, transparent 100%);
+      border-radius: 18px 0 0 0;
     }
 
+    /* Brand badge at top center */
     .stack-brand-badge {
-      display: inline-flex;
+      display: flex;
       align-items: center;
-      gap: 8px;
+      justify-content: center;
+      gap: 10px;
       font-family: var(--ff-display);
-      font-size: 15px;
-      font-weight: 800;
-      letter-spacing: -0.01em;
+      font-size: 16px;
+      font-weight: 900;
+      letter-spacing: 0.06em;
       color: #FFFFFF;
-      margin-bottom: 28px;
+      margin-bottom: 36px;
+      text-align: center;
     }
-    .stack-brand-badge span { color: #0088FF; font-weight: 900; }
+    .stack-brand-badge span { color: #0088FF; font-weight: 900; margin: 0 2px; }
 
+    /* List */
     .stack-list-wrap {
       display: flex;
       flex-direction: column;
-      gap: 16px;
-      margin-bottom: 34px;
-      text-align: left;
+      gap: 0;
+      margin-bottom: 32px;
       width: 100%;
     }
     .stack-row-item {
       display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 12px;
-      font-size: 14px;
-      line-height: 1.45;
+      align-items: center;
       width: 100%;
+      padding: 13px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      gap: 0;
     }
+    .stack-row-item:last-child { border-bottom: none; }
     .stack-item-left {
       display: flex;
-      align-items: flex-start;
-      gap: 10px;
-      color: #E2E8F0;
-      font-weight: 500;
-      flex: 1 1 auto;
-      min-width: 0;
-      word-break: break-word;
-    }
-    .stack-item-left span {
-      flex: 1;
-      min-width: 0;
-    }
-    .stack-check-svg {
-      width: 15px;
-      height: 15px;
-      fill: #00D2FF;
+      align-items: center;
+      gap: 12px;
+      color: #D1D5DB;
+      font-size: 14.5px;
+      font-weight: 400;
+      white-space: nowrap;
       flex-shrink: 0;
-      margin-top: 3px;
     }
+    .stack-item-left span { white-space: normal; line-height: 1.4; }
+    .stack-check-svg {
+      width: 14px;
+      height: 14px;
+      fill: #6B7280;
+      flex-shrink: 0;
+    }
+    /* Full-width dotted leader like Monetise */
     .stack-dots-leader {
-      flex-grow: 1;
-      border-bottom: 1px dotted rgba(255, 255, 255, 0.12);
-      margin: 0 6px 6px;
-      height: 1px;
-      min-width: 12px;
-      flex-shrink: 1;
+      flex: 1 1 auto;
+      min-width: 24px;
+      border-bottom: 2px dotted rgba(255,255,255,0.15);
+      margin: 0 10px;
+      position: relative;
+      top: 1px;
     }
     .stack-item-val {
       font-family: var(--ff-display);
-      font-size: 14px;
+      font-size: 14.5px;
       font-weight: 700;
-      color: #64748B;
+      color: #6B7280;
       white-space: nowrap;
       text-decoration: line-through;
       flex-shrink: 0;
     }
     .stack-item-val.priceless {
-      color: var(--accent-yellow);
+      color: #A78BFA;
       font-weight: 800;
       text-decoration: none;
     }
 
+    /* Total box — Monetise style: large centered total with strikethrough */
     .stack-total-box {
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
-      padding-top: 24px;
-      margin-bottom: 28px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding-top: 28px;
+      margin-bottom: 30px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 8px;
+      gap: 16px;
       width: 100%;
     }
     .stack-total-line {
       font-family: var(--ff-display);
-      font-size: clamp(18px, 2.5vw, 26px);
+      font-size: clamp(22px, 3vw, 32px);
       font-weight: 700;
       color: #FFFFFF;
+      letter-spacing: -0.02em;
     }
     .stack-total-strike {
-      color: #94A3B8;
+      color: #9CA3AF;
       text-decoration: line-through;
-      margin-left: 8px;
+      margin-left: 10px;
+      font-size: clamp(24px, 3.5vw, 38px);
+      font-weight: 800;
     }
     .stack-today-price {
       font-family: var(--ff-display);
-      font-size: clamp(26px, 3.8vw, 40px);
+      font-size: clamp(28px, 4vw, 44px);
       font-weight: 800;
       background: var(--gold-gradient);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+      letter-spacing: -0.03em;
     }
 
     /* ==========================================================
        LUXURY GOLD "WORK-WITH-YOU-UNTIL-YOU-WIN" GUARANTEE CARD (Image 2)
     ========================================================== */
+    /* === GUARANTEE CARD — Monetise Style === */
     .guarantee-gold-section {
-      padding: 50px 0 80px;
+      padding: 60px 0 100px;
     }
     .guarantee-gold-card {
-      background: radial-gradient(circle at 50% 10%, rgba(90, 60, 5, 0.7) 0%, #0D0A03 85%);
-      border: 1.5px solid rgba(255, 230, 0, 0.5);
-      border-radius: var(--radius-lg);
-      padding: 60px 44px;
-      max-width: 740px;
+      background: radial-gradient(ellipse at 50% 0%, rgba(120, 80, 5, 0.85) 0%, rgba(60, 40, 2, 0.9) 40%, #0D0801 100%);
+      border: 1.5px solid rgba(212, 166, 38, 0.55);
+      border-radius: 20px;
+      padding: 72px 52px 60px;
+      max-width: 680px;
       margin: 0 auto;
       text-align: center;
       position: relative;
-      box-shadow: 
-        0 0 0 1px rgba(255, 230, 0, 0.2),
-        0 30px 80px -10px rgba(0, 0, 0, 0.95),
-        0 0 50px rgba(255, 230, 0, 0.18);
+      overflow: hidden;
+      box-shadow:
+        0 0 0 1px rgba(255, 210, 0, 0.15),
+        0 40px 100px -20px rgba(0, 0, 0, 0.98),
+        0 0 80px rgba(180, 130, 0, 0.2),
+        inset 0 1px 0 rgba(255, 230, 0, 0.12);
     }
+    /* Subtle gold shimmer top edge */
     .guarantee-gold-card::before {
       content: '';
       position: absolute;
-      inset: 0;
-      border-radius: inherit;
-      padding: 1.5px;
-      background: conic-gradient(
-        from var(--beam-angle, 0deg) at 50% 50%,
-        transparent 0deg,
-        transparent 280deg,
-        rgba(234, 179, 8, 0.25) 310deg,
-        rgba(255, 230, 0, 0.95) 345deg,
-        #FFFFFF 355deg,
-        rgba(255, 230, 0, 0.95) 360deg
-      );
-      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-      -webkit-mask-composite: xor;
-      mask-composite: exclude;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, transparent 5%, #C8950A 25%, #FFD700 50%, #C8950A 75%, transparent 95%);
+      border-radius: 20px 20px 0 0;
+    }
+    /* Warm inner ambient glow */
+    .guarantee-gold-card::after {
+      content: '';
+      position: absolute;
+      top: -60px; left: 50%; transform: translateX(-50%);
+      width: 400px; height: 250px;
+      background: radial-gradient(ellipse, rgba(200, 150, 10, 0.2) 0%, transparent 70%);
       pointer-events: none;
-      z-index: 2;
-      animation: beamRotate 6s linear infinite;
-      filter: drop-shadow(0 0 6px rgba(255, 230, 0, 0.8));
+      z-index: 0;
     }
 
     .gold-medal-seal {
       width: 100%;
-      max-width: 140px;
+      max-width: 180px;
       height: auto;
-      margin: 0 auto 20px;
+      margin: 0 auto 28px;
       position: relative;
+      z-index: 1;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -1857,29 +1874,37 @@
     .gold-medal-svg {
       width: 100%;
       height: auto;
-      max-height: 140px;
+      max-height: 180px;
       display: block;
-      filter: drop-shadow(0 8px 24px rgba(0,0,0,0.85)) drop-shadow(0 0 25px rgba(255, 230, 0, 0.35));
+      filter:
+        drop-shadow(0 10px 30px rgba(0,0,0,0.9))
+        drop-shadow(0 0 40px rgba(255, 210, 0, 0.5))
+        drop-shadow(0 0 12px rgba(255, 180, 0, 0.6));
     }
 
     .guarantee-gold-title {
       font-family: var(--ff-display);
-      font-size: clamp(24px, 3.2vw, 36px);
+      font-size: clamp(26px, 3.5vw, 40px);
       font-weight: 800;
       letter-spacing: -0.02em;
-      line-height: 1.2;
-      color: #FFFFFF;
-      margin-bottom: 20px;
+      line-height: 1.15;
+      color: #F5A623;
+      margin-bottom: 24px;
+      position: relative;
+      z-index: 1;
     }
     .guarantee-gold-body {
-      font-size: 14.5px;
-      line-height: 1.7;
-      color: #E2E8F0;
-      max-width: 580px;
-      margin: 0 auto 28px;
+      font-size: 15px;
+      line-height: 1.8;
+      color: rgba(255,255,255,0.88);
+      max-width: 520px;
+      margin: 0 auto 32px;
+      position: relative;
+      z-index: 1;
     }
-    .guarantee-gold-body p { margin-bottom: 14px; }
-    .guarantee-gold-body p strong { color: #FFFFFF; }
+    .guarantee-gold-body p { margin-bottom: 16px; }
+    .guarantee-gold-body p:last-child { margin-bottom: 0; }
+    .guarantee-gold-body p strong { color: #FFFFFF; font-weight: 700; }
 
     /* ==========================================================
        WHATSAPP SUPPORT CYBER SECTION (Image 4)
@@ -3749,12 +3774,15 @@
       <p class="sec-sub" style="margin-bottom: 40px;">Here is everything unlocked the second you join the protocol today:</p>
 
       <div class="stack-breakdown-card">
+        <!-- Brand Header — centered like Monetise -->
         <div class="stack-brand-badge">
-          <img src="/favicon-32x32.png" alt="Adams X Logo" style="width: 22px; height: 22px; border-radius: 5px; object-fit: contain;">
+          <img src="/favicon-32x32.png" alt="Adams X Logo" style="width: 26px; height: 26px; border-radius: 6px; object-fit: contain;">
           <span>//</span> ADAMS X PROJECT
         </div>
 
+        <!-- Item Rows -->
         <div class="stack-list-wrap">
+
           <div class="stack-row-item">
             <div class="stack-item-left">
               <svg class="stack-check-svg" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
@@ -3826,19 +3854,22 @@
             <div class="stack-dots-leader"></div>
             <div class="stack-item-val">$27</div>
           </div>
+
         </div>
 
+        <!-- Total — Monetise style: "Total: $256" large centered -->
         <div class="stack-total-box">
           <div class="stack-total-line">
-            Total Value: <span class="stack-total-strike">$256</span>
+            Total: <span class="stack-total-strike">$256</span>
           </div>
           <div class="stack-today-price">
             Today Only: $17
           </div>
         </div>
 
-        <div>
-          <a href="https://whop.com/adams-x/comeback-unrecognized" target="_blank" rel="noopener noreferrer" class="btn-pill-main">GET INSTANT ACCESS — $17</a>
+        <!-- CTA -->
+        <div style="text-align:center;">
+          <a href="https://whop.com/adams-x/comeback-unrecognized" target="_blank" rel="noopener noreferrer" class="btn-pill-main" style="display:inline-block; background:#F5CE00; color:#000000; font-weight:900; letter-spacing:0.06em; padding:18px 40px; border-radius:100px; font-size:15px; text-decoration:none; border:none; cursor:pointer;">GET INSTANT ACCESS — $17</a>
         </div>
       </div>
     </div>
@@ -3850,59 +3881,92 @@
   <section class="guarantee-gold-section" id="guarantee-gold" aria-label="10X Guarantee">
     <div class="container centered">
       <div class="guarantee-gold-card">
-        
-        <!-- Gold Medallion Badge -->
+
+        <!-- Large Gold Medallion Badge — Monetise style -->
         <div class="gold-medal-seal">
-          <svg class="gold-medal-svg" viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <svg class="gold-medal-svg" viewBox="0 0 200 220" fill="none" xmlns="http://www.w3.org/2000/svg">
             <defs>
-              <radialGradient id="sealGlow" cx="50%" cy="50%" r="50%">
-                <stop offset="65%" stop-color="#FFE600" stop-opacity="0.3"/>
-                <stop offset="100%" stop-color="#FFE600" stop-opacity="0"/>
+              <!-- Outer glow -->
+              <radialGradient id="gg_aura" cx="50%" cy="40%" r="55%">
+                <stop offset="0%" stop-color="#FFD700" stop-opacity="0.5"/>
+                <stop offset="100%" stop-color="#FFD700" stop-opacity="0"/>
               </radialGradient>
-              <linearGradient id="goldRimGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stop-color="#FFF75A"/>
-                <stop offset="35%" stop-color="#F5CE00"/>
-                <stop offset="70%" stop-color="#A16207"/>
-                <stop offset="100%" stop-color="#FACC15"/>
+              <!-- Gold coin gradient -->
+              <linearGradient id="gg_coin" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#FFF9A0"/>
+                <stop offset="20%" stop-color="#F5CE00"/>
+                <stop offset="50%" stop-color="#C8950A"/>
+                <stop offset="75%" stop-color="#F5CE00"/>
+                <stop offset="100%" stop-color="#8B6200"/>
               </linearGradient>
-              <linearGradient id="goldInnerDisc" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stop-color="#241704"/>
-                <stop offset="100%" stop-color="#0A0701"/>
+              <!-- Inner disc -->
+              <radialGradient id="gg_inner" cx="40%" cy="35%" r="60%">
+                <stop offset="0%" stop-color="#3D2500"/>
+                <stop offset="100%" stop-color="#0D0700"/>
+              </radialGradient>
+              <!-- Ribbon gradient -->
+              <linearGradient id="gg_ribbon" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#1434A4"/>
+                <stop offset="50%" stop-color="#1a56db"/>
+                <stop offset="100%" stop-color="#1434A4"/>
               </linearGradient>
-              <linearGradient id="blueRibbonGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stop-color="#1E40AF"/>
-                <stop offset="50%" stop-color="#2563EB"/>
-                <stop offset="100%" stop-color="#1E40AF"/>
+              <!-- Star ring -->
+              <linearGradient id="gg_stars" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#FFD700"/>
+                <stop offset="100%" stop-color="#FFF75A"/>
               </linearGradient>
             </defs>
-            <!-- Soft Outer Aura -->
-            <circle cx="80" cy="80" r="76" fill="url(#sealGlow)"/>
-            <!-- Outer Gold Rim -->
-            <circle cx="80" cy="80" r="68" fill="url(#goldRimGrad)" stroke="#FFE600" stroke-width="1.5"/>
-            <!-- Dark Ring Inset -->
-            <circle cx="80" cy="80" r="62" fill="#0D0A03" stroke="#F5CE00" stroke-width="1.2"/>
-            <!-- Inner Disc with Dashed Stitching -->
-            <circle cx="80" cy="80" r="57" fill="url(#goldInnerDisc)" stroke="#EAB308" stroke-width="1.2" stroke-dasharray="3.5 2.5"/>
-            
-            <!-- Top Text -->
-            <text x="80" y="44" font-family="'Montserrat', sans-serif" font-size="7.5" font-weight="800" fill="#FFE600" text-anchor="middle" letter-spacing="1">★ WORK-WITH-YOU ★</text>
-            
-            <!-- 10X Hero Text -->
-            <text x="80" y="74" font-family="'Montserrat', sans-serif" font-size="28" font-weight="900" fill="#FFFFFF" text-anchor="middle" letter-spacing="-0.5">10X</text>
-            
-            <!-- Sub Text -->
-            <text x="80" y="89" font-family="'Montserrat', sans-serif" font-size="7" font-weight="800" fill="#FDE047" text-anchor="middle" letter-spacing="0.8">YOUR INVESTMENT</text>
-            
-            <!-- Ribbon Badge -->
-            <rect x="22" y="97" width="116" height="23" rx="4" fill="url(#blueRibbonGrad)" stroke="#60A5FA" stroke-width="1.2"/>
-            <text x="80" y="113" font-family="'Montserrat', sans-serif" font-size="10.5" font-weight="900" fill="#FFFFFF" text-anchor="middle" letter-spacing="1.8">GUARANTEE</text>
+
+            <!-- Ambient aura -->
+            <ellipse cx="100" cy="95" rx="92" ry="90" fill="url(#gg_aura)"/>
+
+            <!-- Outer coin ring -->
+            <circle cx="100" cy="95" r="82" fill="url(#gg_coin)"/>
+            <!-- Gear/sunburst teeth (24 points) -->
+            <g fill="#C8950A">
+              <animateTransform attributeName="transform" type="rotate" from="0 100 95" to="360 100 95" dur="30s" repeatCount="indefinite"/>
+            </g>
+            <!-- Mid ring -->
+            <circle cx="100" cy="95" r="75" fill="#0D0700" stroke="#C8950A" stroke-width="1.5"/>
+            <!-- Star dots ring -->
+            <circle cx="100" cy="95" r="70" fill="none" stroke="#FFD700" stroke-width="1" stroke-dasharray="4 4"/>
+            <!-- Inner disc -->
+            <circle cx="100" cy="95" r="63" fill="url(#gg_inner)"/>
+            <!-- Inner disc border -->
+            <circle cx="100" cy="95" r="63" fill="none" stroke="#C8950A" stroke-width="1.2"/>
+
+            <!-- Circular arc text: WORK-WITH-YOU-UNTIL-YOU-WIN -->
+            <path id="gg_arc_top" d="M 25,95 A 75,75 0 0,1 175,95" fill="none"/>
+            <text font-family="'Montserrat',sans-serif" font-size="8" font-weight="900" fill="#FFD700" letter-spacing="1.5">
+              <textPath href="#gg_arc_top" startOffset="50%" text-anchor="middle">★ WORK-WITH-YOU-UNTIL-YOU-WIN ★</textPath>
+            </text>
+
+            <!-- 10X -->
+            <text x="100" y="85" font-family="'Montserrat',sans-serif" font-size="38" font-weight="900" fill="#FFFFFF" text-anchor="middle" letter-spacing="-1">10X</text>
+
+            <!-- YOUR INVESTMENT -->
+            <text x="100" y="103" font-family="'Montserrat',sans-serif" font-size="8.5" font-weight="800" fill="#FFD700" text-anchor="middle" letter-spacing="1">YOUR INVESTMENT</text>
+
+            <!-- Blue ribbon banner -->
+            <rect x="20" y="115" width="160" height="28" rx="4" fill="url(#gg_ribbon)"/>
+            <!-- Ribbon notch left -->
+            <polygon points="20,115 8,129 20,143" fill="#0F2A82"/>
+            <!-- Ribbon notch right -->
+            <polygon points="180,115 192,129 180,143" fill="#0F2A82"/>
+            <!-- Ribbon text -->
+            <text x="100" y="134" font-family="'Montserrat',sans-serif" font-size="12" font-weight="900" fill="#FFFFFF" text-anchor="middle" letter-spacing="2">GUARANTEE</text>
+
+            <!-- Stars below ribbon -->
+            <text x="100" y="158" font-family="'Montserrat',sans-serif" font-size="10" fill="#FFD700" text-anchor="middle" letter-spacing="6">★ ★ ★</text>
           </svg>
         </div>
 
+        <!-- Title — amber/gold like Monetise -->
         <h3 class="guarantee-gold-title">
           Our &ldquo;Work-With-You-Until-You-Win&rdquo; Guarantee
         </h3>
 
+        <!-- Body text -->
         <div class="guarantee-gold-body">
           <p>
             Apart from the regular <strong>7-Day No-Questions-Asked Money-Back Guarantee</strong>, we have an even better guarantee in place:
@@ -3915,10 +3979,9 @@
           </p>
         </div>
 
-        <div>
-          <a href="https://whop.com/adams-x/comeback-unrecognized" target="_blank" rel="noopener noreferrer" class="btn-pill-main">
-            GET INSTANT ACCESS — $17
-          </a>
+        <!-- Yellow CTA like Monetise -->
+        <div style="text-align:center; position:relative; z-index:1;">
+          <a href="https://whop.com/adams-x/comeback-unrecognized" target="_blank" rel="noopener noreferrer" style="display:inline-block; background:#F5CE00; color:#000000; font-family:var(--ff-display); font-weight:900; letter-spacing:0.08em; padding:18px 44px; border-radius:100px; font-size:15px; text-decoration:none; cursor:pointer; text-transform:uppercase;">GET INSTANT ACCESS — $17</a>
         </div>
       </div>
     </div>
