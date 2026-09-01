@@ -3869,7 +3869,7 @@
 
         <!-- CTA -->
         <div style="text-align:center;">
-          <a href="https://whop.com/adams-x/comeback-unrecognized" target="_blank" rel="noopener noreferrer" class="btn-pill-main" style="display:inline-block; background:#F5CE00; color:#000000; font-weight:900; letter-spacing:0.06em; padding:18px 40px; border-radius:100px; font-size:15px; text-decoration:none; border:none; cursor:pointer;">GET INSTANT ACCESS — $17</a>
+          <a href="https://whop.com/adams-x/comeback-unrecognized" target="_blank" rel="noopener noreferrer" class="btn-pill-main" style="display:inline-block; background:#F5CE00; color:#000000; font-weight:900; letter-spacing:0.06em; padding:17px 40px; border-radius:8px; font-size:15px; text-decoration:none; border:none; cursor:pointer;">GET INSTANT ACCESS — $17</a>
         </div>
       </div>
     </div>
@@ -3884,80 +3884,137 @@
 
         <!-- Large Gold Medallion Badge — Monetise style -->
         <div class="gold-medal-seal">
-          <svg class="gold-medal-svg" viewBox="0 0 200 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <svg class="gold-medal-svg" viewBox="0 0 240 260" fill="none" xmlns="http://www.w3.org/2000/svg">
             <defs>
-              <!-- Outer glow -->
-              <radialGradient id="gg_aura" cx="50%" cy="40%" r="55%">
-                <stop offset="0%" stop-color="#FFD700" stop-opacity="0.5"/>
+              <!-- Outer ambient glow -->
+              <radialGradient id="gg2_aura" cx="50%" cy="45%" r="50%">
+                <stop offset="0%" stop-color="#FFD700" stop-opacity="0.55"/>
                 <stop offset="100%" stop-color="#FFD700" stop-opacity="0"/>
               </radialGradient>
-              <!-- Gold coin gradient -->
-              <linearGradient id="gg_coin" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stop-color="#FFF9A0"/>
-                <stop offset="20%" stop-color="#F5CE00"/>
-                <stop offset="50%" stop-color="#C8950A"/>
-                <stop offset="75%" stop-color="#F5CE00"/>
-                <stop offset="100%" stop-color="#8B6200"/>
+              <!-- Outer gold ring gradient -->
+              <linearGradient id="gg2_outer" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#FFF5A0"/>
+                <stop offset="18%" stop-color="#F5CE00"/>
+                <stop offset="40%" stop-color="#D4A017"/>
+                <stop offset="62%" stop-color="#F5CE00"/>
+                <stop offset="80%" stop-color="#A07800"/>
+                <stop offset="100%" stop-color="#C8950A"/>
               </linearGradient>
-              <!-- Inner disc -->
-              <radialGradient id="gg_inner" cx="40%" cy="35%" r="60%">
-                <stop offset="0%" stop-color="#3D2500"/>
-                <stop offset="100%" stop-color="#0D0700"/>
+              <!-- Inner dark disc -->
+              <radialGradient id="gg2_inner" cx="42%" cy="35%" r="62%">
+                <stop offset="0%" stop-color="#2A1800"/>
+                <stop offset="55%" stop-color="#100A00"/>
+                <stop offset="100%" stop-color="#060300"/>
               </radialGradient>
-              <!-- Ribbon gradient -->
-              <linearGradient id="gg_ribbon" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stop-color="#1434A4"/>
-                <stop offset="50%" stop-color="#1a56db"/>
-                <stop offset="100%" stop-color="#1434A4"/>
+              <!-- Blue ribbon -->
+              <linearGradient id="gg2_ribbon" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#0D2694"/>
+                <stop offset="30%" stop-color="#1845D4"/>
+                <stop offset="50%" stop-color="#2356E8"/>
+                <stop offset="70%" stop-color="#1845D4"/>
+                <stop offset="100%" stop-color="#0D2694"/>
               </linearGradient>
-              <!-- Star ring -->
-              <linearGradient id="gg_stars" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stop-color="#FFD700"/>
-                <stop offset="100%" stop-color="#FFF75A"/>
+              <!-- Ribbon shadow sides -->
+              <linearGradient id="gg2_rfold" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#081670"/>
+                <stop offset="100%" stop-color="#0A1E86"/>
               </linearGradient>
             </defs>
 
-            <!-- Ambient aura -->
-            <ellipse cx="100" cy="95" rx="92" ry="90" fill="url(#gg_aura)"/>
+            <!-- === AMBIENT GLOW === -->
+            <ellipse cx="120" cy="112" rx="110" ry="108" fill="url(#gg2_aura)"/>
 
-            <!-- Outer coin ring -->
-            <circle cx="100" cy="95" r="82" fill="url(#gg_coin)"/>
-            <!-- Gear/sunburst teeth (24 points) -->
-            <g fill="#C8950A">
-              <animateTransform attributeName="transform" type="rotate" from="0 100 95" to="360 100 95" dur="30s" repeatCount="indefinite"/>
+            <!-- === SUNBURST / GEAR TEETH RING (36 teeth) === -->
+            <!-- Each tooth is a narrow tall rect rotated around center -->
+            <g transform="translate(120,112)">
+              <rect x="-5" y="-98" width="10" height="18" rx="3" fill="#C8950A"/>
+              <rect x="-5" y="-98" width="10" height="18" rx="3" fill="#C8950A" transform="rotate(10)"/>
+              <rect x="-5" y="-98" width="10" height="18" rx="3" fill="#D4AA20" transform="rotate(20)"/>
+              <rect x="-5" y="-98" width="10" height="18" rx="3" fill="#C8950A" transform="rotate(30)"/>
+              <rect x="-5" y="-98" width="10" height="18" rx="3" fill="#C8950A" transform="rotate(40)"/>
+              <rect x="-5" y="-98" width="10" height="18" rx="3" fill="#D4AA20" transform="rotate(50)"/>
+              <rect x="-5" y="-98" width="10" height="18" rx="3" fill="#C8950A" transform="rotate(60)"/>
+              <rect x="-5" y="-98" width="10" height="18" rx="3" fill="#C8950A" transform="rotate(70)"/>
+              <rect x="-5" y="-98" width="10" height="18" rx="3" fill="#D4AA20" transform="rotate(80)"/>
+              <rect x="-5" y="-98" width="10" height="18" rx="3" fill="#C8950A" transform="rotate(90)"/>
+              <rect x="-5" y="-98" width="10" height="18" rx="3" fill="#C8950A" transform="rotate(100)"/>
+              <rect x="-5" y="-98" width="10" height="18" rx="3" fill="#D4AA20" transform="rotate(110)"/>
+              <rect x="-5" y="-98" width="10" height="18" rx="3" fill="#C8950A" transform="rotate(120)"/>
+              <rect x="-5" y="-98" width="10" height="18" rx="3" fill="#C8950A" transform="rotate(130)"/>
+              <rect x="-5" y="-98" width="10" height="18" rx="3" fill="#D4AA20" transform="rotate(140)"/>
+              <rect x="-5" y="-98" width="10" height="18" rx="3" fill="#C8950A" transform="rotate(150)"/>
+              <rect x="-5" y="-98" width="10" height="18" rx="3" fill="#C8950A" transform="rotate(160)"/>
+              <rect x="-5" y="-98" width="10" height="18" rx="3" fill="#D4AA20" transform="rotate(170)"/>
+              <rect x="-5" y="-98" width="10" height="18" rx="3" fill="#C8950A" transform="rotate(180)"/>
+              <rect x="-5" y="-98" width="10" height="18" rx="3" fill="#C8950A" transform="rotate(190)"/>
+              <rect x="-5" y="-98" width="10" height="18" rx="3" fill="#D4AA20" transform="rotate(200)"/>
+              <rect x="-5" y="-98" width="10" height="18" rx="3" fill="#C8950A" transform="rotate(210)"/>
+              <rect x="-5" y="-98" width="10" height="18" rx="3" fill="#C8950A" transform="rotate(220)"/>
+              <rect x="-5" y="-98" width="10" height="18" rx="3" fill="#D4AA20" transform="rotate(230)"/>
+              <rect x="-5" y="-98" width="10" height="18" rx="3" fill="#C8950A" transform="rotate(240)"/>
+              <rect x="-5" y="-98" width="10" height="18" rx="3" fill="#C8950A" transform="rotate(250)"/>
+              <rect x="-5" y="-98" width="10" height="18" rx="3" fill="#D4AA20" transform="rotate(260)"/>
+              <rect x="-5" y="-98" width="10" height="18" rx="3" fill="#C8950A" transform="rotate(270)"/>
+              <rect x="-5" y="-98" width="10" height="18" rx="3" fill="#C8950A" transform="rotate(280)"/>
+              <rect x="-5" y="-98" width="10" height="18" rx="3" fill="#D4AA20" transform="rotate(290)"/>
+              <rect x="-5" y="-98" width="10" height="18" rx="3" fill="#C8950A" transform="rotate(300)"/>
+              <rect x="-5" y="-98" width="10" height="18" rx="3" fill="#C8950A" transform="rotate(310)"/>
+              <rect x="-5" y="-98" width="10" height="18" rx="3" fill="#D4AA20" transform="rotate(320)"/>
+              <rect x="-5" y="-98" width="10" height="18" rx="3" fill="#C8950A" transform="rotate(330)"/>
+              <rect x="-5" y="-98" width="10" height="18" rx="3" fill="#C8950A" transform="rotate(340)"/>
+              <rect x="-5" y="-98" width="10" height="18" rx="3" fill="#D4AA20" transform="rotate(350)"/>
             </g>
-            <!-- Mid ring -->
-            <circle cx="100" cy="95" r="75" fill="#0D0700" stroke="#C8950A" stroke-width="1.5"/>
-            <!-- Star dots ring -->
-            <circle cx="100" cy="95" r="70" fill="none" stroke="#FFD700" stroke-width="1" stroke-dasharray="4 4"/>
-            <!-- Inner disc -->
-            <circle cx="100" cy="95" r="63" fill="url(#gg_inner)"/>
-            <!-- Inner disc border -->
-            <circle cx="100" cy="95" r="63" fill="none" stroke="#C8950A" stroke-width="1.2"/>
 
-            <!-- Circular arc text: WORK-WITH-YOU-UNTIL-YOU-WIN -->
-            <path id="gg_arc_top" d="M 25,95 A 75,75 0 0,1 175,95" fill="none"/>
-            <text font-family="'Montserrat',sans-serif" font-size="8" font-weight="900" fill="#FFD700" letter-spacing="1.5">
-              <textPath href="#gg_arc_top" startOffset="50%" text-anchor="middle">★ WORK-WITH-YOU-UNTIL-YOU-WIN ★</textPath>
+            <!-- === OUTER GOLD COIN RING === -->
+            <circle cx="120" cy="112" r="90" fill="url(#gg2_outer)"/>
+            <!-- Thin light ring highlight -->
+            <circle cx="120" cy="112" r="90" fill="none" stroke="rgba(255,255,200,0.4)" stroke-width="1"/>
+
+            <!-- === DARK BORDER RING === -->
+            <circle cx="120" cy="112" r="83" fill="#0C0700" stroke="#C8950A" stroke-width="1.8"/>
+
+            <!-- === DASHED STITCH RING === -->
+            <circle cx="120" cy="112" r="79" fill="none" stroke="#D4A800" stroke-width="1.2" stroke-dasharray="4.5 3"/>
+
+            <!-- === INNER DARK DISC === -->
+            <circle cx="120" cy="112" r="74" fill="url(#gg2_inner)"/>
+            <circle cx="120" cy="112" r="74" fill="none" stroke="rgba(180,130,0,0.5)" stroke-width="0.8"/>
+
+            <!-- === ARC TEXT: WORK-WITH-YOU-UNTIL-YOU-WIN === -->
+            <path id="gg2_arc" d="M 38,112 A 82,82 0 0,1 202,112" fill="none"/>
+            <text font-family="'Montserrat','Arial',sans-serif" font-size="9.5" font-weight="900" fill="#FFD700" letter-spacing="1.8">
+              <textPath href="#gg2_arc" startOffset="50%" text-anchor="middle">WORK-WITH-YOU-UNTIL-YOU-WIN</textPath>
             </text>
 
-            <!-- 10X -->
-            <text x="100" y="85" font-family="'Montserrat',sans-serif" font-size="38" font-weight="900" fill="#FFFFFF" text-anchor="middle" letter-spacing="-1">10X</text>
+            <!-- Stars at ends of arc text -->
+            <text x="43" y="108" font-family="serif" font-size="9" fill="#FFD700" text-anchor="middle">★</text>
+            <text x="197" y="108" font-family="serif" font-size="9" fill="#FFD700" text-anchor="middle">★</text>
 
-            <!-- YOUR INVESTMENT -->
-            <text x="100" y="103" font-family="'Montserrat',sans-serif" font-size="8.5" font-weight="800" fill="#FFD700" text-anchor="middle" letter-spacing="1">YOUR INVESTMENT</text>
+            <!-- === 10X HERO TEXT === -->
+            <text x="120" y="108" font-family="'Montserrat','Arial',sans-serif" font-size="44" font-weight="900" fill="#FFFFFF" text-anchor="middle" letter-spacing="-1">10X</text>
 
-            <!-- Blue ribbon banner -->
-            <rect x="20" y="115" width="160" height="28" rx="4" fill="url(#gg_ribbon)"/>
-            <!-- Ribbon notch left -->
-            <polygon points="20,115 8,129 20,143" fill="#0F2A82"/>
-            <!-- Ribbon notch right -->
-            <polygon points="180,115 192,129 180,143" fill="#0F2A82"/>
-            <!-- Ribbon text -->
-            <text x="100" y="134" font-family="'Montserrat',sans-serif" font-size="12" font-weight="900" fill="#FFFFFF" text-anchor="middle" letter-spacing="2">GUARANTEE</text>
+            <!-- Thin divider line -->
+            <line x1="84" y1="116" x2="156" y2="116" stroke="rgba(255,210,0,0.4)" stroke-width="1"/>
 
-            <!-- Stars below ribbon -->
-            <text x="100" y="158" font-family="'Montserrat',sans-serif" font-size="10" fill="#FFD700" text-anchor="middle" letter-spacing="6">★ ★ ★</text>
+            <!-- === YOUR INVESTMENT === -->
+            <text x="120" y="130" font-family="'Montserrat','Arial',sans-serif" font-size="9.5" font-weight="800" fill="#FFD700" text-anchor="middle" letter-spacing="1.2">YOUR INVESTMENT</text>
+
+            <!-- === BLUE RIBBON BANNER === -->
+            <!-- Main ribbon body -->
+            <rect x="22" y="148" width="196" height="34" rx="3" fill="url(#gg2_ribbon)"/>
+            <!-- Left fold shadow triangle -->
+            <polygon points="22,148 6,165 22,182" fill="#061060" opacity="0.9"/>
+            <!-- Right fold shadow triangle -->
+            <polygon points="218,148 234,165 218,182" fill="#061060" opacity="0.9"/>
+            <!-- Top ribbon highlight stripe -->
+            <rect x="22" y="148" width="196" height="6" rx="3" fill="rgba(255,255,255,0.12)"/>
+            <!-- GUARANTEE text -->
+            <text x="120" y="172" font-family="'Montserrat','Arial',sans-serif" font-size="14" font-weight="900" fill="#FFFFFF" text-anchor="middle" letter-spacing="3">GUARANTEE</text>
+
+            <!-- === STARS BELOW RIBBON === -->
+            <text x="78" y="198" font-family="serif" font-size="11" fill="#FFD700" text-anchor="middle">★</text>
+            <text x="120" y="198" font-family="serif" font-size="11" fill="#FFD700" text-anchor="middle">★</text>
+            <text x="162" y="198" font-family="serif" font-size="11" fill="#FFD700" text-anchor="middle">★</text>
           </svg>
         </div>
 
@@ -3981,7 +4038,7 @@
 
         <!-- Yellow CTA like Monetise -->
         <div style="text-align:center; position:relative; z-index:1;">
-          <a href="https://whop.com/adams-x/comeback-unrecognized" target="_blank" rel="noopener noreferrer" style="display:inline-block; background:#F5CE00; color:#000000; font-family:var(--ff-display); font-weight:900; letter-spacing:0.08em; padding:18px 44px; border-radius:100px; font-size:15px; text-decoration:none; cursor:pointer; text-transform:uppercase;">GET INSTANT ACCESS — $17</a>
+          <a href="https://whop.com/adams-x/comeback-unrecognized" target="_blank" rel="noopener noreferrer" style="display:inline-block; background:#F5CE00; color:#000000; font-family:var(--ff-display); font-weight:900; letter-spacing:0.08em; padding:17px 44px; border-radius:8px; font-size:15px; text-decoration:none; cursor:pointer; text-transform:uppercase;">GET INSTANT ACCESS — $17</a>
         </div>
       </div>
     </div>
