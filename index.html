@@ -2504,13 +2504,47 @@
       letter-spacing: 0.22em;
       text-transform: uppercase;
       color: var(--text-faint);
-      margin-bottom: 16px;
+      margin-bottom: 20px;
     }
     .site-footer__brand span { color: #0088FF; font-weight: 900; }
-    .site-footer__copy { font-size: 12.5px; color: var(--text-faint); line-height: 1.65; margin-bottom: 16px; }
-    .site-footer__links { display: flex; justify-content: center; gap: 28px; }
-    .site-footer__links a { font-size: 12px; color: var(--text-muted); text-decoration: underline; text-underline-offset: 3px; transition: color 0.2s ease; }
-    .site-footer__links a:hover { color: #FFFFFF; }
+    .site-footer__links {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 20px;
+    }
+    .site-footer__links a {
+      font-family: var(--ff-display);
+      font-size: 13px;
+      font-weight: 500;
+      color: #c8b99c;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    .site-footer__links a:hover {
+      color: #FFFFFF;
+      text-decoration: underline;
+    }
+    .site-footer__sep {
+      color: rgba(200, 185, 156, 0.4);
+      font-size: 13px;
+    }
+    .site-footer__disclaimer {
+      font-size: 12px;
+      color: #8c909e;
+      line-height: 1.65;
+      max-width: 680px;
+      margin: 0 auto 20px;
+      text-align: center;
+    }
+    .site-footer__copy {
+      font-size: 12px;
+      color: var(--text-faint);
+      line-height: 1.65;
+      margin: 0;
+    }
 
     /* ==========================================================
        RESPONSIVE DESIGN (All Screen Sizes)
@@ -4371,14 +4405,23 @@
         <img src="/favicon-32x32.png" alt="Adams X Logo" style="width: 22px; height: 22px; border-radius: 5px; object-fit: contain;">
         <span>//</span> ADAMS X PROJECT
       </div>
+
+      <nav class="site-footer__links" aria-label="Footer navigation">
+        <a href="/privacy">Privacy Policy</a>
+        <span class="site-footer__sep">|</span>
+        <a href="/terms">Terms &amp; Conditions</a>
+        <span class="site-footer__sep">|</span>
+        <a href="/unsubscribe">Unsubscribe</a>
+      </nav>
+
+      <p class="site-footer__disclaimer">
+        This site is not a part of the Facebook website or Facebook Inc. Additionally, This site is NOT endorsed by Facebook in any way. FACEBOOK is a trademark of FACEBOOK, Inc.
+      </p>
+
       <p class="site-footer__copy">
         &copy; 2026 Adams X Project &middot; All rights reserved.<br>
         Built for creators, developers, and builders ready to execute.
       </p>
-      <nav class="site-footer__links" aria-label="Footer navigation">
-        <a href="/privacy">Privacy Policy</a>
-        <a href="/unsubscribe">Unsubscribe</a>
-      </nav>
     </div>
   </footer>
 

@@ -98,6 +98,11 @@ app.get('/privacy', (req, res) => {
     res.sendFile(path.join(__dirname, 'privacy.html'));
 });
 
+// Serve Terms & Conditions
+app.get(['/terms', '/terms-and-conditions', '/terms.html'], (req, res) => {
+    res.sendFile(path.join(__dirname, 'terms.html'));
+});
+
 // Serve /images/ static assets explicitly (before wildcard)
 app.use('/images', express.static(path.join(__dirname, 'images')));
 
