@@ -1073,43 +1073,35 @@
     }
 
     .monetise-offer-card {
-      background: radial-gradient(circle at 50% 0%, rgba(14, 30, 68, 0.6) 0%, #060B18 90%);
-      border: 1px solid rgba(0, 136, 255, 0.24);
-      border-radius: 28px;
-      padding: 44px;
+      background: #080A11;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 30px;
+      padding: 46px 42px;
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 44px;
+      gap: 46px;
       align-items: center;
       position: relative;
       overflow: hidden;
-      box-shadow: 0 25px 60px -10px rgba(0, 0, 0, 0.85);
+      box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.85);
       transition: transform 0.3s var(--ease), border-color 0.3s ease;
     }
     .monetise-offer-card:hover {
-      transform: translateY(-3px);
-      border-color: rgba(0, 210, 255, 0.4);
+      transform: translateY(-2px);
+      border-color: rgba(255, 255, 255, 0.16);
     }
     .monetise-offer-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 3px;
-      background: linear-gradient(90deg, transparent 5%, #0088FF 30%, #00D2FF 70%, transparent 95%);
+      display: none !important;
     }
 
     /* Gold Card Variant for Dedicated Support */
     .monetise-offer-card.gold-theme {
-      background: radial-gradient(circle at 50% 0%, rgba(85, 60, 10, 0.5) 0%, #100C04 90%);
-      border: 1px solid rgba(255, 230, 0, 0.32);
-      box-shadow: 0 25px 60px -10px rgba(0, 0, 0, 0.9), 0 0 35px rgba(255, 230, 0, 0.08);
+      background: #080A11;
+      border: 1px solid rgba(255, 230, 0, 0.22);
+      box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.85);
     }
     .monetise-offer-card.gold-theme::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 3px;
-      background: linear-gradient(90deg, transparent 5%, #FFE600 30%, #F5CE00 70%, transparent 95%);
+      display: none !important;
     }
 
     /* Alternating layout */
@@ -1131,55 +1123,57 @@
       align-items: flex-start;
     }
     .offer-pill-badge {
-      display: inline-block;
-      background: #08142C;
-      border: 1px solid rgba(0, 210, 255, 0.4);
-      color: #38BDF8;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0, 102, 255, 0.14);
+      border: 1px solid rgba(0, 195, 255, 0.4);
+      color: #FFFFFF;
       font-family: var(--ff-display);
       font-size: 11px;
       font-weight: 700;
-      letter-spacing: 0.15em;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
-      padding: 5px 16px;
-      border-radius: 100px;
+      padding: 6px 18px;
+      border-radius: 999px;
       margin-bottom: 16px;
-      box-shadow: 0 0 16px rgba(0, 136, 255, 0.25), inset 0 1px 1px rgba(255, 255, 255, 0.12);
+      box-shadow: 0 0 16px rgba(0, 136, 255, 0.25);
     }
     .offer-pill-badge.gold {
-      background: rgba(255, 230, 0, 0.12);
-      border: 1px solid rgba(255, 230, 0, 0.45);
+      background: rgba(255, 230, 0, 0.08);
+      border: 1px solid rgba(255, 230, 0, 0.4);
       color: #FFE600;
-      box-shadow: 0 0 14px rgba(255, 230, 0, 0.25);
+      box-shadow: 0 0 14px rgba(255, 230, 0, 0.16);
     }
 
     .offer-item-title {
       font-family: var(--ff-display);
-      font-size: clamp(24px, 2.8vw, 34px);
+      font-size: clamp(24px, 2.6vw, 34px);
       font-weight: 700;
       letter-spacing: -0.02em;
-      line-height: 1.15;
+      line-height: 1.18;
       color: #FFFFFF;
       margin-bottom: 8px;
     }
     .offer-value-tag {
       font-family: var(--ff-display);
-      font-size: 15px;
-      font-weight: 800;
-      color: #38BDF8;
-      margin-bottom: 16px;
-      letter-spacing: 0.02em;
+      font-size: 16px;
+      font-weight: 700;
+      color: #FFE600 !important; /* Exact Monetise vibrant yellow */
+      margin-bottom: 18px;
+      letter-spacing: 0.01em;
     }
     .offer-value-tag.gold {
-      color: var(--accent-yellow);
+      color: #FFE600 !important;
     }
     .offer-desc {
-      font-size: 14px;
+      font-size: 14.5px;
       line-height: 1.65;
-      color: var(--text-muted);
+      color: #94A3B8;
       margin-bottom: 14px;
     }
     .offer-hook {
-      font-size: 13.5px;
+      font-size: 14px;
       line-height: 1.6;
       color: #CBD5E1;
       margin-bottom: 20px;
@@ -1189,89 +1183,63 @@
       list-style: none;
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 13px;
       width: 100%;
     }
     .offer-checklist li {
       display: flex;
       align-items: flex-start;
-      gap: 10px;
-      font-size: 13.5px;
+      gap: 12px;
+      font-size: 14px;
       line-height: 1.55;
       color: #E2E8F0;
     }
     .offer-check-icon {
-      width: 16px;
-      height: 16px;
-      fill: #10B981;
+      width: 17px;
+      height: 17px;
+      fill: #22C55E !important; /* Monetise crisp emerald green */
       flex-shrink: 0;
       margin-top: 2px;
-      filter: drop-shadow(0 0 5px rgba(16, 185, 129, 0.5));
+      filter: none !important;
     }
     .offer-check-icon.gold {
-      fill: #FFE600;
-      filter: drop-shadow(0 0 5px rgba(255, 230, 0, 0.5));
+      fill: #22C55E !important;
+      filter: none !important;
     }
     .offer-closing-note {
-      font-size: 12.5px;
+      font-size: 13px;
       line-height: 1.6;
-      color: var(--text-faint);
-      margin-top: 18px;
+      color: #64748B;
+      margin-top: 20px;
     }
 
-    /* Visual Mockup Frames (Monetise Signature Animated Glowing Border Beam) */
+    /* Visual Mockup Frames (Monetise Deep Dark Well with Centered Radial Spotlight) */
     .offer-visual-frame {
-      background: radial-gradient(circle at 50% 30%, rgba(20, 45, 95, 0.5) 0%, #040813 95%);
-      border: 1px solid rgba(0, 136, 255, 0.22);
-      border-radius: 20px;
-      padding: 30px 20px;
+      background: #030408;
+      background-image: radial-gradient(circle at 50% 50%, rgba(0, 102, 255, 0.18) 0%, rgba(2, 4, 10, 0.95) 75%);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      border-radius: 24px;
+      padding: 36px 24px;
       height: 100%;
-      min-height: 340px;
+      min-height: 350px;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       position: relative;
-      box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.7);
+      overflow: hidden;
+      box-shadow: inset 0 2px 14px rgba(0, 0, 0, 0.85);
     }
     .offer-visual-frame::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      border-radius: inherit;
-      padding: 1.5px;
-      background: conic-gradient(
-        from var(--beam-angle, 0deg) at 50% 50%,
-        transparent 0deg,
-        transparent 280deg,
-        rgba(0, 136, 255, 0.2) 310deg,
-        rgba(0, 210, 255, 0.95) 345deg,
-        #FFFFFF 355deg,
-        rgba(0, 210, 255, 0.95) 360deg
-      );
-      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-      -webkit-mask-composite: xor;
-      mask-composite: exclude;
-      pointer-events: none;
-      z-index: 2;
-      animation: beamRotate 5s linear infinite;
-      filter: drop-shadow(0 0 8px rgba(0, 210, 255, 0.9));
+      display: none !important; /* Remove rotating conic beam streak */
     }
     .offer-visual-frame.gold-bg {
-      background: radial-gradient(circle at 50% 30%, rgba(70, 50, 10, 0.6) 0%, #080602 95%);
-      border-color: rgba(255, 230, 0, 0.28);
+      background: #030408;
+      background-image: radial-gradient(circle at 50% 50%, rgba(255, 230, 0, 0.12) 0%, rgba(10, 8, 2, 0.95) 75%);
+      border-color: rgba(255, 230, 0, 0.18);
     }
     .offer-visual-frame.gold-bg::before {
-      background: conic-gradient(
-        from var(--beam-angle, 0deg) at 50% 50%,
-        transparent 0deg,
-        transparent 280deg,
-        rgba(234, 179, 8, 0.25) 310deg,
-        rgba(255, 230, 0, 0.95) 345deg,
-        #FFFFFF 355deg,
-        rgba(255, 230, 0, 0.95) 360deg
-      );
-      filter: drop-shadow(0 0 8px rgba(255, 230, 0, 0.9));
+      display: none !important;
     }
 
     /* Mockup 1: Glowing Graph & Floating Squircle */
@@ -1454,27 +1422,28 @@
       justify-content: center;
     }
     .firewall-shield-core {
-      width: 120px;
-      height: 140px;
-      background: radial-gradient(circle, rgba(0, 210, 255, 0.2) 0%, rgba(6, 26, 64, 0.8) 100%);
-      border: 2px solid #00D2FF;
-      border-radius: 16px 16px 60px 60px;
+      width: 128px;
+      height: 148px;
+      background: radial-gradient(circle at 50% 35%, rgba(0, 102, 255, 0.22) 0%, rgba(6, 14, 30, 0.95) 100%);
+      border: 1.5px solid rgba(0, 210, 255, 0.45);
+      border-radius: 18px 18px 64px 64px;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 0 35px rgba(0, 210, 255, 0.5), inset 0 0 20px rgba(0, 210, 255, 0.3);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.7), 0 0 24px rgba(0, 136, 255, 0.25);
       position: relative;
       z-index: 2;
     }
     .firewall-shield-core svg { width: 44px; height: 44px; fill: #FFFFFF; }
     .firewall-scan-beam {
       position: absolute;
-      width: 220px;
-      height: 2px;
-      background: linear-gradient(90deg, transparent, #00D2FF, transparent);
-      box-shadow: 0 0 12px #00D2FF;
-      animation: scanAnim 3s infinite ease-in-out;
+      width: 200px;
+      height: 1.5px;
+      background: linear-gradient(90deg, transparent, rgba(0, 210, 255, 0.8), transparent);
+      box-shadow: 0 0 8px rgba(0, 210, 255, 0.6);
+      animation: scanAnim 3.5s infinite ease-in-out;
+      opacity: 0.6;
     }
     @keyframes scanAnim {
       0%, 100% { transform: translateY(-40px); opacity: 0.3; }
@@ -1559,21 +1528,7 @@
     .node-3 { bottom: 35px; left: 28%; }
     .node-4 { bottom: 30px; right: 24%; }
 
-    /* Mockup 8: Dedicated Support (Monetise Gold Card with Faded Team Avatars - Image 2 Reference) */
-    .monetise-offer-card.gold-theme {
-      background: radial-gradient(circle at 50% 0%, #1c1406 0%, #080602 100%);
-      border: 1.5px solid rgba(245, 158, 11, 0.45);
-      box-shadow: 0 0 60px rgba(245, 158, 11, 0.15), 0 30px 80px rgba(0, 0, 0, 0.9);
-    }
-    .monetise-offer-card.gold-theme::before {
-      background: linear-gradient(90deg, transparent 5%, #F59E0B 30%, #FFE600 70%, transparent 95%);
-    }
-    .offer-visual-frame.gold-bg {
-      background: radial-gradient(circle at 50% 50%, rgba(65, 45, 10, 0.7) 0%, #080602 100%);
-      border: 2px solid rgba(245, 158, 11, 0.55);
-      border-radius: 28px;
-      box-shadow: inset 0 0 40px rgba(245, 158, 11, 0.15), 0 0 45px rgba(245, 158, 11, 0.2);
-    }
+    /* Mockup 8: Dedicated Support (Monetise Gold Card Layout) */
     .support-orbit-wrap {
       position: relative;
       width: 100%;
@@ -2254,37 +2209,27 @@
     ========================================================== */
     .mtz-icon-frame {
       width: 100%;
-      aspect-ratio: 1 / 1;
-      max-width: 280px;
+      max-width: 320px;
       margin: 0 auto;
-      border-radius: 24px;
-      background: radial-gradient(ellipse at 40% 30%, #16213a 0%, #0a1120 55%, #060c18 100%);
-      border: 1.5px solid rgba(255, 230, 0, 0.28);
-      box-shadow:
-        0 0 0 1px rgba(0,0,0,0.8),
-        0 0 40px rgba(255, 230, 0, 0.08),
-        inset 0 1px 0 rgba(255, 230, 0, 0.12),
-        0 24px 48px rgba(0, 0, 0, 0.7);
+      background: transparent !important;
+      border: none !important;
+      box-shadow: none !important;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 20px;
+      padding: 0;
       position: relative;
-      overflow: hidden;
     }
     .mtz-icon-frame::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      border-radius: 22px;
-      background: radial-gradient(ellipse at 30% 20%, rgba(255,230,0,0.06) 0%, transparent 60%);
-      pointer-events: none;
+      display: none !important;
     }
     .mtz-svg-art {
       width: 100%;
-      height: 100%;
-      max-width: 180px;
-      max-height: 180px;
+      height: auto;
+      max-width: 240px;
+      max-height: 240px;
+      display: block;
+      filter: drop-shadow(0 12px 28px rgba(0, 0, 0, 0.7));
     }
 
     /* Scoreboard Demo */
