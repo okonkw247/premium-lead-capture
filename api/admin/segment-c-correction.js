@@ -32,8 +32,8 @@ const SENDER   = process.env.SENDER_EMAIL || 'adams@adamsxproject.com.ng';
 const REPLY_TO = 'adams@adamsxproject.com.ng';
 
 async function handler(req, res) {
-    if (req.method !== 'POST') {
-        return res.status(405).json({ error: 'Method not allowed. Use POST.' });
+    if (req.method !== 'POST' && req.method !== 'GET') {
+        return res.status(405).json({ error: 'Method not allowed. Use GET or POST.' });
     }
 
     const authHeader = req.headers.authorization;

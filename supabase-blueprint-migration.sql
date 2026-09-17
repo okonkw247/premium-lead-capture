@@ -22,8 +22,12 @@ CREATE TABLE IF NOT EXISTS blueprint_leads (
   enrolled_at   timestamptz NOT NULL DEFAULT now(),
   active        boolean     NOT NULL DEFAULT true,
   purchased     boolean     NOT NULL DEFAULT false,
+  downloaded    boolean     NOT NULL DEFAULT false,
   created_at    timestamptz NOT NULL DEFAULT now()
 );
+
+-- Ensure downloaded column exists if table was already created
+ALTER TABLE blueprint_leads ADD COLUMN IF NOT EXISTS downloaded boolean DEFAULT false;
 
 -- Index for fast drip queries
 CREATE INDEX IF NOT EXISTS idx_blueprint_leads_drip

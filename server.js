@@ -30,6 +30,7 @@ const app = express();
 const PORT = process.env.PORT || 8000;
 const resend = new Resend(process.env.RESEND_API_KEY || 're_dummy');
 const SENDER = process.env.SENDER_EMAIL || 'adams@adamsxproject.com.ng';
+const REPLY_TO = process.env.REPLY_TO_EMAIL || 'adams@adamsxproject.com.ng';
 
 // ── Middleware ──────────────────────────────────────────────
 app.use(cors());
@@ -411,8 +412,10 @@ app.post('/api/admin/segment-blast',        segmentBlastHandler);   // One-time 
 app.get('/api/admin/segment-blast',         segmentBlastHandler);   // Vercel cron GET trigger
 app.post('/api/admin/launch-blast',         launchBlastHandler);    // Unified launch blast (POST)
 app.get('/api/admin/launch-blast',          launchBlastHandler);    // Unified launch blast (GET/Cron)
-app.post('/api/admin/segment-c-correction', segCCorrection);        // One-time Seg C correction email
-app.post('/api/admin/old-lead-reactivation', oldLeadReactivation);  // One-time old-lead reactivation email
+app.post('/api/admin/segment-c-correction', segCCorrection);        // One-time Seg C correction email (POST)
+app.get('/api/admin/segment-c-correction',  segCCorrection);        // One-time Seg C correction email (Browser GET)
+app.post('/api/admin/old-lead-reactivation', oldLeadReactivation);  // One-time old-lead reactivation email (POST)
+app.get('/api/admin/old-lead-reactivation',  oldLeadReactivation);  // One-time old-lead reactivation email (Browser GET)
 
 // ── Webhook Routes ────────────────────────────────────────────
 app.post('/api/webhooks/whop',   whopWebhook);   // Whop purchase webhook

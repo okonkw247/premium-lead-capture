@@ -1035,6 +1035,7 @@
           // Redirect to thank-you page
           window.location.href = '/thank-you';
         } else {
+          console.error('[blueprint-register failed]', data);
           const msg = data.error || 'Something went wrong. Please try again.';
           if (statusEl) {
             statusEl.textContent = msg;
