@@ -34,7 +34,7 @@
        DESIGN TOKENS — Full Monetise Dark Luxury System
     ========================================================== */
     :root {
-      --bg:             #020409;
+      --bg:             #060606;
       --surface:        #0B0E14;
       --surface-navy:   #071126;
       --surface-card:   #0C162E;
@@ -95,13 +95,7 @@
     html { scroll-behavior: smooth; overflow-x: hidden; }
     body {
       font-family: var(--ff-body);
-      background-color: #020409;
-      background-image: 
-        radial-gradient(ellipse 90% 65% at 50% -5%, rgba(14, 38, 88, 0.55) 0%, rgba(6, 18, 44, 0.35) 45%, transparent 80%),
-        radial-gradient(ellipse 80% 50% at 50% 50%, rgba(10, 26, 62, 0.3) 0%, transparent 75%),
-        radial-gradient(ellipse 90% 65% at 50% 105%, rgba(13, 34, 78, 0.5) 0%, rgba(4, 11, 26, 0.85) 55%, transparent 90%);
-      background-attachment: fixed;
-      background-repeat: no-repeat;
+      background: var(--bg);
       color: var(--text-main);
       -webkit-font-smoothing: antialiased;
       overflow-x: hidden;
@@ -1648,7 +1642,13 @@
     .stack-card-section {
       padding: 100px 0 80px;
       position: relative;
-      background: #040812 url('/images/cotton-dark-horizontal.jpg') no-repeat center center / cover;
+      background-color: #020409;
+      background-image: 
+        radial-gradient(ellipse 85% 65% at 50% 35%, rgba(14, 38, 88, 0.65) 0%, rgba(6, 18, 44, 0.4) 45%, #020409 85%),
+        url('/bg-glow.png');
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: cover;
       overflow: hidden;
     }
     .stack-card-section::before {
@@ -1656,12 +1656,7 @@
       position: absolute;
       inset: 0;
       z-index: 0;
-      background: linear-gradient(180deg,
-        rgba(4, 8, 18, 0.88) 0%,
-        rgba(4, 8, 18, 0.72) 35%,
-        rgba(4, 8, 18, 0.68) 60%,
-        rgba(4, 8, 18, 0.85) 100%
-      );
+      background: radial-gradient(circle at 50% 35%, rgba(0, 136, 255, 0.1) 0%, transparent 65%);
       pointer-events: none;
     }
     .stack-card-section .container {
@@ -1859,9 +1854,17 @@
     /* ==========================================================
        LUXURY GOLD "WORK-WITH-YOU-UNTIL-YOU-WIN" GUARANTEE CARD (Image 2)
     ========================================================== */
-    /* === GUARANTEE CARD — Monetise Style === */
     .guarantee-gold-section {
-      padding: 60px 0 100px;
+      padding: 70px 0 100px;
+      position: relative;
+      background-color: #020409;
+      background-image: 
+        radial-gradient(ellipse 75% 55% at 50% 50%, rgba(14, 38, 88, 0.45) 0%, rgba(6, 16, 40, 0.25) 50%, transparent 80%),
+        url('/bg-glow.png');
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: cover;
+      overflow: hidden;
     }
     .guarantee-gold-card {
       background: radial-gradient(ellipse at 50% 0%, rgba(120, 80, 5, 0.85) 0%, rgba(60, 40, 2, 0.9) 40%, #0D0801 100%);
@@ -2050,7 +2053,13 @@
     ========================================================== */
     .wa-fullbleed-section {
       position: relative;
-      background: #030814 url('/images/cotton-blue-v-mobile.jpg') no-repeat center center / cover;
+      background-color: #020409;
+      background-image: 
+        radial-gradient(ellipse 90% 70% at 50% 50%, rgba(14, 38, 88, 0.6) 0%, rgba(5, 15, 38, 0.4) 45%, #020409 85%),
+        url('/bg-glow.png');
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: cover;
       overflow: hidden;
       padding: 90px 0;
     }
