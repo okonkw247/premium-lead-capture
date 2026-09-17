@@ -34,7 +34,7 @@
        DESIGN TOKENS — Full Monetise Dark Luxury System
     ========================================================== */
     :root {
-      --bg:             #060606;
+      --bg:             #020409;
       --surface:        #0B0E14;
       --surface-navy:   #071126;
       --surface-card:   #0C162E;
@@ -95,7 +95,13 @@
     html { scroll-behavior: smooth; overflow-x: hidden; }
     body {
       font-family: var(--ff-body);
-      background: var(--bg);
+      background-color: #020409;
+      background-image: 
+        radial-gradient(ellipse 90% 65% at 50% -5%, rgba(14, 38, 88, 0.55) 0%, rgba(6, 18, 44, 0.35) 45%, transparent 80%),
+        radial-gradient(ellipse 80% 50% at 50% 50%, rgba(10, 26, 62, 0.3) 0%, transparent 75%),
+        radial-gradient(ellipse 90% 65% at 50% 105%, rgba(13, 34, 78, 0.5) 0%, rgba(4, 11, 26, 0.85) 55%, transparent 90%);
+      background-attachment: fixed;
+      background-repeat: no-repeat;
       color: var(--text-main);
       -webkit-font-smoothing: antialiased;
       overflow-x: hidden;
