@@ -59,16 +59,25 @@ async function handler(req, res) {
     // Fetch all active, unpurchased Segment C subscribers
     const { data: leads, error: fetchErr } = await supabase
         .from('segment_c_urgency')
-        .select('id, first_name, email, purchased, active')
-        .eq('active', true)
-        .eq('purchased', false);
+        .select('id, first_name, email, purchased, active');
 
     if (fetchErr) {
+        // If table doesn't exist, no Segment C leads were ever created
+        if (fetchErr.code === '42P01' || fetchErr.message?.includes('schema cache') || fetchErr.message?.includes('does not exist')) {
+            console.log('[seg-c-correction] segment_c_urgency table does not exist. No action needed.');
+            return res.status(200).json({
+                success: true,
+                message: 'No Segment C urgency table exists in your database. No leads ever received outdated price-increase emails.',
+                sent: 0
+            });
+        }
         console.error('[seg-c-correction] DB fetch error:', fetchErr);
         return res.status(500).json({ error: 'Failed to fetch segment_c_urgency.', details: fetchErr.message });
     }
 
-    console.log(`[seg-c-correction] Found ${leads.length} active Segment C lead(s) to correct.`);
+    const eligibleLeads = (leads || []).filter(l => l.email && l.active !== false && l.purchased !== true);
+
+    console.log(`[seg-c-correction] Found ${eligibleLeads.length} active Segment C lead(s) to correct.`);
 
     // Cross-check purchased_subscribers for suppression
     const { data: buyers } = await supabase
@@ -76,7 +85,7 @@ async function handler(req, res) {
         .select('email');
     const buyerSet = new Set((buyers || []).map(b => b.email.toLowerCase().trim()));
 
-    for (const lead of leads) {
+    for (const lead of eligibleLeads) {
         const leadEmail = lead.email.toLowerCase().trim();
 
         // Skip buyers — they don't need the correction email, they already own the product

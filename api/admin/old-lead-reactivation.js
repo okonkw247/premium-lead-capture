@@ -68,19 +68,24 @@ async function handler(req, res) {
     console.log('[old-lead-reactivation] Starting old-lead reactivation run...');
     const results = { sent: 0, skipped_buyers: 0, errors: [] };
 
-    // Fetch active waitlist leads who have NOT purchased
+    // Fetch all waitlist leads (filter in JS to handle nulls in active/purchased columns)
     const { data: waitlistLeads, error: fetchErr } = await supabase
         .from('waitlist')
-        .select('id, first_name, email, purchased, active')
-        .eq('active', true)
-        .eq('purchased', false);
+        .select('id, first_name, email, purchased, active');
 
     if (fetchErr) {
         console.error('[old-lead-reactivation] DB fetch error:', fetchErr);
         return res.status(500).json({ error: 'Failed to fetch waitlist.', details: fetchErr.message });
     }
 
-    console.log(`[old-lead-reactivation] Found ${waitlistLeads.length} active waitlist lead(s).`);
+    const eligibleLeads = (waitlistLeads || []).filter(lead => {
+        if (!lead.email) return false;
+        if (lead.active === false) return false;
+        if (lead.purchased === true) return false;
+        return true;
+    });
+
+    console.log(`[old-lead-reactivation] Found ${eligibleLeads.length} active waitlist lead(s).`);
 
     // Cross-check purchased_subscribers for suppression
     const { data: buyers } = await supabase
@@ -88,7 +93,7 @@ async function handler(req, res) {
         .select('email');
     const buyerSet = new Set((buyers || []).map(b => b.email.toLowerCase().trim()));
 
-    for (const lead of waitlistLeads) {
+    for (const lead of eligibleLeads) {
         const leadEmail = lead.email.toLowerCase().trim();
 
         // Skip existing customers — they don't need a reactivation email
