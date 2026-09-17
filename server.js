@@ -4,7 +4,7 @@ const cors = require('cors');
 const path = require('path');
 const { Resend } = require('resend');
 const { supabase } = require('./lib/supabase');
-const { day0, waitlistConfirmation, apologyResend, paidEbookAccess, bonusDelivery, segAEmail1, segBEmail1, postPurchaseEmail1 } = require('./lib/email-templates');
+const { day0, waitlistConfirmation, apologyResend, paidEbookAccess, bonusDelivery, segAEmail1, segBEmail1, postPurchaseEmail1, blueprintEmail1 } = require('./lib/email-templates');
 
 // Cron handlers
 const dripHandler          = require('./api/cron/drip');
@@ -13,6 +13,11 @@ const blastHandler         = require('./api/cron/blast');
 const segmentBlastHandler  = require('./api/cron/segment-blast');
 const postPurchaseDrip     = require('./api/cron/post-purchase-drip');
 const segmentCDrip         = require('./api/cron/segment-c-drip');
+const blueprintDrip        = require('./api/cron/blueprint-drip');
+
+// Admin handlers
+const segCCorrection       = require('./api/admin/segment-c-correction');
+const oldLeadReactivation  = require('./api/admin/old-lead-reactivation');
 
 // Webhook handlers
 const whopWebhook          = require('./api/webhooks/whop');
@@ -394,17 +399,20 @@ app.post('/api/waitlist', async (req, res) => {
 });
 
 // ── Cron Routes ─────────────────────────────────────────────
-app.get('/api/cron/drip',            dripHandler);          // Vercel cron: daily 9AM UTC
-app.get('/api/cron/digest',          digestHandler);         // Vercel cron: daily 8AM UTC
-app.get('/api/cron/post-purchase-drip', postPurchaseDrip);  // Vercel cron: daily 9AM UTC
-app.get('/api/cron/segment-c-drip',   segmentCDrip);        // Vercel cron: daily 9AM UTC (Segment C $17->$68)
-app.post('/api/cron/blast',          blastHandler);          // Legacy blast (waitlist-only)
+app.get('/api/cron/drip',              dripHandler);          // Vercel cron: daily 9AM UTC (Seg A/B — existing)
+app.get('/api/cron/digest',            digestHandler);        // Vercel cron: daily 8AM UTC
+app.get('/api/cron/post-purchase-drip', postPurchaseDrip);   // Vercel cron: daily 9AM UTC
+app.get('/api/cron/segment-c-drip',    segmentCDrip);        // DEACTIVATED — preserved for reference only
+app.get('/api/cron/blueprint-drip',    blueprintDrip);       // Vercel cron: daily 9AM UTC (Segment D)
+app.post('/api/cron/blast',            blastHandler);        // Legacy blast (waitlist-only)
 
 // ── Admin Routes ──────────────────────────────────────────────
-app.post('/api/admin/segment-blast', segmentBlastHandler);  // One-time two-segment blast
-app.get('/api/admin/segment-blast',  segmentBlastHandler);  // Vercel cron GET trigger
-app.post('/api/admin/launch-blast',  launchBlastHandler);   // Unified launch blast (POST)
-app.get('/api/admin/launch-blast',   launchBlastHandler);   // Unified launch blast (GET/Cron)
+app.post('/api/admin/segment-blast',        segmentBlastHandler);   // One-time two-segment blast
+app.get('/api/admin/segment-blast',         segmentBlastHandler);   // Vercel cron GET trigger
+app.post('/api/admin/launch-blast',         launchBlastHandler);    // Unified launch blast (POST)
+app.get('/api/admin/launch-blast',          launchBlastHandler);    // Unified launch blast (GET/Cron)
+app.post('/api/admin/segment-c-correction', segCCorrection);        // One-time Seg C correction email
+app.post('/api/admin/old-lead-reactivation', oldLeadReactivation);  // One-time old-lead reactivation email
 
 // ── Webhook Routes ────────────────────────────────────────────
 app.post('/api/webhooks/whop',   whopWebhook);   // Whop purchase webhook
@@ -658,6 +666,40 @@ app.get('/api/download/tracker', async (req, res) => {
     res.sendFile(path.join(__dirname, 'ebooks', 'monk-mode-starter-kit.pdf'));
 });
 
+// ── GET /api/download/blueprint ─────────────────────────────
+// Serves the Comeback: Unrecognizable Blueprint PDF for download.
+// Blueprint file location: /blueprint.pdf (project root)
+// ⚠️  Drop your real blueprint.pdf into the project root to activate this.
+//     The file currently exists as an empty placeholder.
+app.get('/api/download/blueprint', async (req, res) => {
+    const { email } = req.query;
+
+    // Track the download event (non-blocking)
+    if (email && supabase) {
+        supabase
+            .from('blueprint_leads')
+            .update({ downloaded: true })
+            .eq('email', email)
+            .then(({ error }) => {
+                if (error) console.error('[blueprint-download] Track error:', error.message);
+                else console.log(`[blueprint-download] Download tracked for: ${email}`);
+            })
+            .catch(() => {});
+    }
+
+    const blueprintPath = path.join(__dirname, 'blueprint.pdf');
+    res.setHeader('Content-Disposition', 'attachment; filename="Comeback-Unrecognizable-Blueprint.pdf"');
+    res.setHeader('Content-Type', 'application/pdf');
+    res.sendFile(blueprintPath, (err) => {
+        if (err) {
+            console.error('[blueprint-download] File send error:', err.message);
+            if (!res.headersSent) {
+                res.status(404).send('Blueprint file not yet available. Please check back shortly.');
+            }
+        }
+    });
+});
+
 // ── Serve bonus.html for /bonus ─────────────────────────────
 app.get('/bonus', (req, res) => {
     res.sendFile(path.join(__dirname, 'bonus.html'));
@@ -766,7 +808,17 @@ app.post('/api/unsubscribe', async (req, res) => {
                 console.error('[unsubscribe] Supabase waitlist error:', waitlistErr);
             }
 
-            // 3. Deactivate post-purchase sequence if active
+            // 3. Deactivate in blueprint_leads (Segment D)
+            const { error: bpErr } = await supabase
+                .from('blueprint_leads')
+                .update({ active: false })
+                .eq('email', email);
+
+            if (bpErr) {
+                console.error('[unsubscribe] Supabase blueprint_leads error:', bpErr);
+            }
+
+            // 4. Deactivate post-purchase sequence if active
             const { error: ppErr } = await supabase
                 .from('purchased_subscribers')
                 .update({ active: false })
@@ -913,6 +965,165 @@ app.post('/api/survey', async (req, res) => {
 // ── Serve waitlist.html for /waitlist ───────────────────────
 app.get('/waitlist', (req, res) => {
     res.sendFile(path.join(__dirname, 'waitlist.html'));
+});
+
+// ── Serve blueprint.html for /blueprint ─────────────────────
+app.get(['/blueprint', '/blueprint.html'], (req, res) => {
+    res.sendFile(path.join(__dirname, 'blueprint.html'));
+});
+
+// ── Serve thank-you.html for /thank-you ─────────────────────
+app.get(['/thank-you', '/thank-you.html', '/thankyou'], (req, res) => {
+    res.sendFile(path.join(__dirname, 'thank-you.html'));
+});
+
+// ── POST /api/blueprint-register ────────────────────────────
+// Segment D — Comeback Blueprint Funnel registration.
+// Accepts firstName + email, upserts into blueprint_leads,
+// sends Email 1 (blueprint delivery) immediately.
+app.post('/api/blueprint-register', async (req, res) => {
+    const rawFirst = (req.body && req.body.firstName) ? String(req.body.firstName).trim() : '';
+    const rawEmail = (req.body && req.body.email)     ? String(req.body.email).trim()     : '';
+
+    // ── Input validation ───────────────────────────────────
+    if (!rawFirst) {
+        return res.status(400).json({ error: 'First name is required.' });
+    }
+    if (!rawEmail || !rawEmail.includes('@') || !rawEmail.includes('.')) {
+        return res.status(400).json({ error: 'A valid email address is required.' });
+    }
+    if (!process.env.RESEND_API_KEY) {
+        return res.status(500).json({ error: 'Server configuration error: Missing RESEND_API_KEY.' });
+    }
+
+    // ── Normalize ──────────────────────────────────────────
+    const firstName = rawFirst.charAt(0).toUpperCase() + rawFirst.slice(1);
+    const email     = rawEmail.toLowerCase();
+
+    try {
+        // ── 1. Purchase suppression — check if already a customer ──
+        if (supabase) {
+            const { data: buyer } = await supabase
+                .from('purchased_subscribers')
+                .select('id')
+                .eq('email', email)
+                .maybeSingle();
+
+            if (buyer) {
+                // They are already a customer. Do not enroll in sales sequence.
+                // Return success so the frontend can redirect to /thank-you,
+                // but do not send any Blueprint sales email.
+                console.log(`[blueprint-register] ⚠️ Existing customer registered at /blueprint: ${email} — skipping Seg D enrollment.`);
+                return res.status(200).json({
+                    success: true,
+                    message: 'Already a customer — redirecting to thank you page.',
+                    alreadyPurchased: true
+                });
+            }
+        }
+
+        // ── 2. Upsert into blueprint_leads ─────────────────────
+        // IDEMPOTENCY: If the email already exists, update name and
+        // reactivate only if they were deactivated without having purchased.
+        // Do NOT reset sequence_day if they are mid-sequence.
+        let alreadyEnrolled = false;
+
+        if (supabase) {
+            // Check for existing record
+            const { data: existing } = await supabase
+                .from('blueprint_leads')
+                .select('id, sequence_day, active, purchased, last_sent_at')
+                .eq('email', email)
+                .maybeSingle();
+
+            if (existing) {
+                if (existing.purchased) {
+                    // Already purchased — same as customer path above
+                    console.log(`[blueprint-register] ⚠️ Blueprint lead already purchased: ${email}`);
+                    return res.status(200).json({ success: true, alreadyPurchased: true });
+                }
+
+                if (existing.sequence_day > 0 && existing.last_sent_at) {
+                    // Already mid-sequence — do NOT resend Email 1 or reset state.
+                    // Just reactivate if they somehow went inactive.
+                    alreadyEnrolled = true;
+                    if (!existing.active) {
+                        await supabase
+                            .from('blueprint_leads')
+                            .update({ active: true, first_name: firstName })
+                            .eq('id', existing.id);
+                    }
+                    console.log(`[blueprint-register] ℹ️ Duplicate registration (mid-sequence): ${email} — no resend.`);
+                    return res.status(200).json({ success: true, message: 'Already enrolled in Blueprint sequence.' });
+                }
+
+                // Existing record but Email 1 was never sent (sequence_day = 0, no last_sent_at)
+                // — fall through and send Email 1 now.
+            }
+
+            const now = new Date().toISOString();
+            const { error: dbError } = await supabase
+                .from('blueprint_leads')
+                .upsert(
+                    {
+                        first_name:   firstName,
+                        email,
+                        sequence_day: 0,
+                        last_sent_at: now,
+                        enrolled_at:  now,
+                        active:       true,
+                        purchased:    false,
+                    },
+                    { onConflict: 'email', ignoreDuplicates: false }
+                );
+
+            if (dbError) {
+                console.error('[blueprint-register] Supabase upsert error:', dbError);
+                // Non-fatal — still attempt to send the email
+            } else {
+                console.log(`[blueprint-register] ✅ Blueprint lead saved: ${email}`);
+            }
+        }
+
+        // ── 3. Send Email 1 — Blueprint Delivery ────────────────
+        const { subject, html } = blueprintEmail1(firstName, email);
+        const emailResult = await resend.emails.send({
+            from:     `Adams X <${SENDER}>`,
+            to:       email,
+            subject,
+            html,
+            reply_to: REPLY_TO,
+            tags:     [{ name: 'sequence', value: 'blueprint-email-1' }]
+        });
+
+        if (emailResult.error) {
+            throw new Error(emailResult.error.message || 'Resend failed to send Blueprint Email 1.');
+        }
+
+        // ── 4. Admin notification ───────────────────────────────
+        if (process.env.NOTIFICATION_EMAIL) {
+            resend.emails.send({
+                from:     `Adams X Lead Alerts <${SENDER}>`,
+                to:       process.env.NOTIFICATION_EMAIL,
+                subject:  `🗺️ New Blueprint Lead: ${firstName}`,
+                reply_to: REPLY_TO,
+                html: `<div style="font-family:sans-serif;padding:24px;max-width:500px;">
+                    <h3 style="margin:0 0 16px;">🗺️ New Segment D — Blueprint Lead</h3>
+                    <p><strong>Name:</strong> ${firstName}</p>
+                    <p><strong>Email:</strong> ${email}</p>
+                    <p><strong>Funnel:</strong> Segment D — Comeback Blueprint</p>
+                    <p><strong>Time:</strong> ${new Date().toISOString()}</p>
+                </div>`
+            }).catch(e => console.error('[blueprint-register] Admin notify failed:', e.message));
+        }
+
+        console.log(`[blueprint-register] ✅ Email 1 sent to ${email}`);
+        return res.status(200).json({ success: true, message: 'Registered. Blueprint Email 1 dispatched.' });
+
+    } catch (err) {
+        console.error('[blueprint-register] Error:', err);
+        return res.status(500).json({ error: 'Registration failed.', details: err.message });
+    }
 });
 
 // ── Serve index.html for all other routes ───────────────────

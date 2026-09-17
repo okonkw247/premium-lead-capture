@@ -89,14 +89,28 @@ async function enrollBuyer(firstName, email) {
 }
 
 // ── Suppress from active drip sequences ──────────────────────
+// Called on confirmed purchase. Stops all active marketing sequences.
+// IMPORTANT: When adding new funnels/tables, always extend this function.
 async function suppressFromDrips(email) {
     if (!supabase) return;
 
+    // Segment B (free kit leads)
     await supabase.from('leads')
         .update({ purchased: true, active: false })
         .eq('email', email);
 
+    // Segment A (waitlist leads)
     await supabase.from('waitlist')
+        .update({ purchased: true, active: false })
+        .eq('email', email);
+
+    // Segment D (Blueprint funnel leads) — CRITICAL: stop education/sales sequence
+    await supabase.from('blueprint_leads')
+        .update({ purchased: true, active: false })
+        .eq('email', email);
+
+    // Segment C urgency (deactivated but suppress just in case)
+    await supabase.from('segment_c_urgency')
         .update({ purchased: true, active: false })
         .eq('email', email);
 }

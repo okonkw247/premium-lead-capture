@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>You're In — Comeback: Unrecognizable Blueprint | Adams X Project</title>
+  <meta name="description" content="Your Comeback: Unrecognizable Blueprint is on its way. Check your inbox.">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <meta name="theme-color" content="#060606">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+
+  <style>
+    /* ============================================================
+       DESIGN TOKENS — Matching full site system
+    ============================================================ */
+    :root {
+      --bg:             #060606;
+      --surface:        #0B0E14;
+      --surface-navy:   #071126;
+      --surface-card:   #0C162E;
+      --border:         rgba(255, 255, 255, 0.08);
+      --border-blue:    rgba(0, 136, 255, 0.22);
+      --border-gold:    rgba(255, 230, 0, 0.35);
+      --gold-gradient:  linear-gradient(135deg, #FFE600 0%, #F5D033 60%, #E0B420 100%);
+      --accent-yellow:  #FFE600;
+      --accent-dim:     rgba(255, 230, 0, 0.12);
+      --text-main:      #FFFFFF;
+      --text-muted:     #A6B4C9;
+      --text-faint:     #5E6E85;
+      --radius-lg:      32px;
+      --radius-md:      20px;
+      --radius-sm:      12px;
+      --radius-pill:    100px;
+      --ff:             'Montserrat', system-ui, -apple-system, sans-serif;
+      --ease:           cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* ============================================================
+       RESET & BASE
+    ============================================================ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { overflow-x: hidden; height: 100%; }
+    body {
+      font-family: var(--ff);
+      background: var(--bg);
+      color: var(--text-main);
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; height: auto; }
+
+    /* ============================================================
+       LAYOUT
+    ============================================================ */
+    .container    { width: 100%; max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+    .container--sm { width: 100%; max-width: 680px; margin: 0 auto; padding: 0 24px; }
+    .flex-grow    { flex: 1; }
+
+    /* ============================================================
+       NAV
+    ============================================================ */
+    .site-nav {
+      background: rgba(6, 6, 6, 0.95);
+      backdrop-filter: blur(24px) saturate(1.5);
+      -webkit-backdrop-filter: blur(24px) saturate(1.5);
+      border-bottom: 1px solid var(--border);
+    }
+    .site-nav__inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 72px;
+    }
+    .site-nav__brand {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      color: #fff;
+    }
+    .nav-logo { width: 32px; height: 32px; border-radius: 8px; object-fit: cover; }
+
+    /* ============================================================
+       CONFIRMATION HERO
+    ============================================================ */
+    .confirm-section {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      padding: 80px 0 60px;
+      position: relative;
+      overflow: hidden;
+    }
+    /* Background glow */
+    .confirm-section::before {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 700px; height: 500px;
+      background: radial-gradient(ellipse at center, rgba(255, 230, 0, 0.05) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .confirm-inner {
+      width: 100%;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Check mark animation */
+    .confirm-icon {
+      width: 80px;
+      height: 80px;
+      background: var(--accent-dim);
+      border: 1px solid var(--border-gold);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 32px;
+      animation: popIn 0.55s var(--ease) forwards;
+      transform: scale(0.6);
+      opacity: 0;
+    }
+    @keyframes popIn {
+      to { transform: scale(1); opacity: 1; }
+    }
+    .confirm-icon svg {
+      width: 36px; height: 36px;
+      stroke: var(--accent-yellow);
+      stroke-width: 2.5;
+    }
+
+    .confirm-eyebrow {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent-yellow);
+      opacity: 0.85;
+      text-align: center;
+      margin-bottom: 14px;
+    }
+
+    .confirm-headline {
+      font-size: clamp(40px, 7vw, 80px);
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      line-height: 0.98;
+      text-align: center;
+      margin-bottom: 24px;
+      color: #fff;
+      animation: fadeUp 0.6s 0.15s var(--ease) both;
+    }
+    .confirm-headline .accent {
+      display: block;
+      background: var(--gold-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .confirm-sub {
+      font-size: 18px;
+      font-weight: 400;
+      color: var(--text-muted);
+      line-height: 1.65;
+      text-align: center;
+      max-width: 520px;
+      margin: 0 auto 48px;
+      animation: fadeUp 0.6s 0.25s var(--ease) both;
+    }
+    .confirm-sub strong { color: #fff; font-weight: 600; }
+
+    /* ============================================================
+       SPAM NOTICE CARD
+    ============================================================ */
+    .spam-notice {
+      background: var(--surface-navy);
+      border: 1px solid var(--border-blue);
+      border-radius: var(--radius-md);
+      padding: 28px 32px;
+      display: flex;
+      gap: 18px;
+      align-items: flex-start;
+      margin-bottom: 48px;
+      animation: fadeUp 0.6s 0.35s var(--ease) both;
+    }
+    .spam-notice__icon {
+      font-size: 24px;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .spam-notice__title {
+      font-size: 15px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+    .spam-notice__body {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+    .spam-notice__body strong { color: #fff; }
+
+    /* ============================================================
+       WHAT'S COMING — sequence teaser
+    ============================================================ */
+    .sequence-teaser {
+      animation: fadeUp 0.6s 0.45s var(--ease) both;
+      margin-bottom: 48px;
+    }
+    .sequence-teaser__label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-faint);
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .sequence-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+    }
+    .sequence-list__item {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 16px 24px;
+      border-bottom: 1px solid var(--border);
+      transition: background 0.2s;
+    }
+    .sequence-list__item:last-child { border-bottom: none; }
+    .sequence-list__item:hover { background: rgba(255, 255, 255, 0.02); }
+    .seq-day {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent-yellow);
+      background: var(--accent-dim);
+      border: 1px solid var(--border-gold);
+      border-radius: var(--radius-pill);
+      padding: 3px 10px;
+      white-space: nowrap;
+      flex-shrink: 0;
+      min-width: 56px;
+      text-align: center;
+    }
+    .seq-day--now {
+      color: #000;
+      background: var(--accent-yellow);
+      border-color: transparent;
+    }
+    .seq-content {}
+    .seq-title {
+      font-size: 14.5px;
+      font-weight: 600;
+      color: #fff;
+      line-height: 1.35;
+    }
+    .seq-desc {
+      font-size: 12.5px;
+      color: var(--text-faint);
+      margin-top: 2px;
+      line-height: 1.4;
+    }
+
+    /* ============================================================
+       CTA / NEXT STEP
+    ============================================================ */
+    .next-step {
+      text-align: center;
+      animation: fadeUp 0.6s 0.55s var(--ease) both;
+      padding-bottom: 20px;
+    }
+    .next-step__title {
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+    .next-step__sub {
+      font-size: 14.5px;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+      line-height: 1.55;
+    }
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 32px;
+      border: 1px solid var(--border-blue);
+      border-radius: var(--radius-sm);
+      background: rgba(0, 136, 255, 0.08);
+      font-family: var(--ff);
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      color: #fff;
+      cursor: pointer;
+      transition: background 0.2s, border-color 0.2s, transform 0.2s var(--ease);
+      text-decoration: none;
+    }
+    .btn-secondary:hover {
+      background: rgba(0, 136, 255, 0.14);
+      border-color: rgba(0, 136, 255, 0.45);
+      transform: translateY(-1px);
+    }
+
+    /* ============================================================
+       FOOTER
+    ============================================================ */
+    .site-footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 0;
+      text-align: center;
+    }
+    .site-footer__links {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+    }
+    .site-footer__links a {
+      font-size: 12px;
+      color: var(--text-faint);
+      transition: color 0.2s;
+    }
+    .site-footer__links a:hover { color: var(--text-muted); }
+    .site-footer__copy { font-size: 11.5px; color: var(--text-faint); }
+
+    /* ============================================================
+       RESPONSIVE
+    ============================================================ */
+    @media (max-width: 600px) {
+      .confirm-headline { font-size: 40px; }
+      .spam-notice { flex-direction: column; gap: 12px; }
+      .sequence-list__item { padding: 14px 16px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── NAV ─────────────────────────────────────────────── -->
+  <nav class="site-nav">
+    <div class="container">
+      <div class="site-nav__inner">
+        <a href="/" class="site-nav__brand">
+          <img src="/favicon-32x32.png" alt="Adams X Project" class="nav-logo">
+          Adams X Project
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ── CONFIRMATION ─────────────────────────────────────── -->
+  <section class="confirm-section flex-grow">
+    <div class="container--sm">
+      <div class="confirm-inner">
+
+        <!-- Animated check icon -->
+        <div class="confirm-icon" role="img" aria-label="Success">
+          <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="20 6 9 17 4 12"/>
+          </svg>
+        </div>
+
+        <p class="confirm-eyebrow">Blueprint Sent</p>
+
+        <h1 class="confirm-headline">
+          YOU'RE IN.
+          <span class="accent">Check your inbox.</span>
+        </h1>
+
+        <p class="confirm-sub">
+          The <strong>Comeback: Unrecognizable Blueprint</strong> is on its way to your inbox right now. Open it, go through the framework, and sit with it for a few minutes.
+        </p>
+
+        <!-- Spam notice -->
+        <div class="spam-notice" role="note">
+          <div class="spam-notice__icon">📬</div>
+          <div>
+            <p class="spam-notice__title">Don't see it yet?</p>
+            <p class="spam-notice__body">
+              Check your <strong>Promotions</strong> or <strong>Spam</strong> folder — the first email sometimes lands there. Mark <strong>adams@adamsxproject.com.ng</strong> as safe so you don't miss the follow-up emails.
+            </p>
+          </div>
+        </div>
+
+        <!-- What's coming next -->
+        <div class="sequence-teaser">
+          <p class="sequence-teaser__label">What you'll receive over the next two weeks</p>
+          <ul class="sequence-list" role="list">
+            <li class="sequence-list__item">
+              <span class="seq-day seq-day--now">Now</span>
+              <div class="seq-content">
+                <p class="seq-title">Your Blueprint Is Here</p>
+                <p class="seq-desc">The Comeback: Unrecognizable Blueprint — your free framework download</p>
+              </div>
+            </li>
+            <li class="sequence-list__item">
+              <span class="seq-day">Day 2</span>
+              <div class="seq-content">
+                <p class="seq-title">The Cost of Staying Stuck</p>
+                <p class="seq-desc">What the starting-over cycle actually costs you</p>
+              </div>
+            </li>
+            <li class="sequence-list__item">
+              <span class="seq-day">Day 4</span>
+              <div class="seq-content">
+                <p class="seq-title">Why Motivation Isn't Enough</p>
+                <p class="seq-desc">Systems vs. relying entirely on motivation</p>
+              </div>
+            </li>
+            <li class="sequence-list__item">
+              <span class="seq-day">Day 6</span>
+              <div class="seq-content">
+                <p class="seq-title">The Comeback Framework</p>
+                <p class="seq-desc">The three phases of the 90-day Comeback system</p>
+              </div>
+            </li>
+            <li class="sequence-list__item">
+              <span class="seq-day">Day 8</span>
+              <div class="seq-content">
+                <p class="seq-title">What 90 Days Actually Looks Like</p>
+                <p class="seq-desc">Week-by-week walkthrough of the system</p>
+              </div>
+            </li>
+            <li class="sequence-list__item">
+              <span class="seq-day">Day 10</span>
+              <div class="seq-content">
+                <p class="seq-title">The One Thing Stopping You</p>
+                <p class="seq-desc">The execution gap — and how to close it</p>
+              </div>
+            </li>
+            <li class="sequence-list__item">
+              <span class="seq-day">Day 12</span>
+              <div class="seq-content">
+                <p class="seq-title">Let's Talk About the $17</p>
+                <p class="seq-desc">A direct, honest conversation about what the system costs and why</p>
+              </div>
+            </li>
+            <li class="sequence-list__item">
+              <span class="seq-day">Day 14</span>
+              <div class="seq-content">
+                <p class="seq-title">This Is the Moment</p>
+                <p class="seq-desc">The direct offer — $17, permanent price, no deadline</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Return to site -->
+        <div class="next-step">
+          <p class="next-step__title">While you wait for the Blueprint</p>
+          <p class="next-step__sub">Learn more about Comeback: Unrecognizable on the main site.</p>
+          <a href="/" class="btn-secondary">
+            ← Back to Adams X Project
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ─────────────────────────────────────────────── -->
+  <footer class="site-footer">
+    <div class="container">
+      <nav class="site-footer__links" aria-label="Footer links">
+        <a href="/privacy">Privacy Policy</a>
+        <a href="/terms">Terms &amp; Conditions</a>
+        <a href="/unsubscribe">Unsubscribe</a>
+      </nav>
+      <p class="site-footer__copy">
+        &copy; 2026 Adams X Project &middot; All rights reserved. &middot; Built for creators, developers, and builders ready to execute.
+      </p>
+    </div>
+  </footer>
+
+</body>
+</html>
