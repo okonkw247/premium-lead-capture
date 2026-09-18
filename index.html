@@ -1074,7 +1074,8 @@
 
     .monetise-offer-card {
       background: #080A11;
-      border: 1px solid rgba(255, 255, 255, 0.09);
+      /* Crisp, visible base border */
+      border: 1.5px solid rgba(255, 255, 255, 0.14);
       border-radius: 30px;
       padding: 46px 42px;
       display: grid;
@@ -1088,21 +1089,26 @@
     }
     .monetise-offer-card:hover {
       transform: translateY(-2px);
-      border-color: rgba(255, 255, 255, 0.18);
+      border-color: rgba(255, 255, 255, 0.24);
     }
-    /* Outer card has NO beam — beam lives only on inner .offer-visual-frame */
     .monetise-offer-card::before { display: none !important; }
 
-    /* Gold Card Variant for Bonus 3 & 4 — Monetise warm dark gold style */
+    /* Gold Card Variant — thick Monetise-style warm gold border */
     .monetise-offer-card.gold-theme {
       background-color: #0c0800;
-      border: 1.5px solid rgba(190, 130, 0, 0.72);
+      /* Thick, strong gold border matching Monetise reference */
+      border: 2px solid rgba(200, 142, 0, 0.88);
       box-shadow:
-        0 0 50px rgba(180, 120, 0, 0.2),
+        0 0 0 1px rgba(0,0,0,0.5),
+        0 0 60px rgba(185, 128, 0, 0.28),
         0 20px 50px -10px rgba(0, 0, 0, 0.92);
     }
     .monetise-offer-card.gold-theme:hover {
-      border-color: rgba(225, 165, 0, 0.92);
+      border-color: rgba(230, 170, 0, 0.96);
+      box-shadow:
+        0 0 0 1px rgba(0,0,0,0.5),
+        0 0 70px rgba(200, 140, 0, 0.36),
+        0 20px 50px -10px rgba(0, 0, 0, 0.92);
     }
     .monetise-offer-card.gold-theme::before { display: none !important; }
 
@@ -1215,13 +1221,12 @@
       margin-top: 20px;
     }
 
-    /* Visual Mockup Frames — Monetise: dark well + real border + rotating spotlight mask */
+    /* Visual Mockup Frames — Monetise: dark well + BIGGER radius + real border + rotating spotlight */
     .offer-visual-frame {
       background: #020307;
       background-image: radial-gradient(circle at 50% 45%, rgba(0, 80, 220, 0.16) 0%, rgba(1, 2, 8, 0.98) 70%);
-      /* Solid always-visible base border */
-      border: 1.5px solid rgba(255, 255, 255, 0.11);
-      border-radius: 24px;
+      border: 2px solid rgba(255, 255, 255, 0.13);
+      border-radius: 28px; /* bigger — matches Monetise large rounded inner frame */
       padding: 36px 24px;
       height: 100%;
       min-height: 350px;
@@ -1233,13 +1238,13 @@
       overflow: hidden;
       box-shadow: inset 0 2px 18px rgba(0, 0, 0, 0.9), 0 8px 32px rgba(0,0,0,0.6);
     }
-    /* Monetise rotating border spotlight — conic gradient masked to border-only ring */
+    /* Rotating cyan spotlight masked to inner frame border ring */
     .offer-visual-frame::before {
       content: '';
       position: absolute;
-      inset: -1.5px;
+      inset: -2px;
       border-radius: inherit;
-      padding: 1.5px;
+      padding: 2px;
       background: conic-gradient(
         from var(--beam-angle, 0deg) at 50% 50%,
         transparent 0deg,
@@ -1259,14 +1264,14 @@
       animation: beamRotate 7s linear infinite;
     }
 
-    /* Gold variant — warm dark amber bg + gold border + gold beam */
+    /* Gold inner frame — thick Monetise-style amber/gold border + gold spotlight */
     .offer-visual-frame.gold-bg {
-      background: #050300;
-      background-image: radial-gradient(circle at 50% 45%, rgba(190, 120, 0, 0.22) 0%, rgba(5, 3, 0, 0.98) 70%);
-      border: 1.5px solid rgba(190, 130, 0, 0.7);
+      background: #040200;
+      background-image: radial-gradient(circle at 50% 45%, rgba(200, 130, 0, 0.28) 0%, rgba(4, 2, 0, 0.98) 70%);
+      border: 2px solid rgba(198, 140, 0, 0.82);
       box-shadow:
-        inset 0 2px 18px rgba(0, 0, 0, 0.95),
-        0 0 40px rgba(160, 100, 0, 0.18),
+        inset 0 2px 20px rgba(0, 0, 0, 0.95),
+        0 0 50px rgba(170, 110, 0, 0.22),
         0 8px 32px rgba(0,0,0,0.7);
     }
     .offer-visual-frame.gold-bg::before {
@@ -1274,10 +1279,10 @@
         from var(--beam-angle, 0deg) at 50% 50%,
         transparent 0deg,
         transparent 290deg,
-        rgba(160, 100, 0, 0.18) 315deg,
-        rgba(210, 155, 0, 0.72) 348deg,
-        rgba(255, 220, 0, 0.92) 356deg,
-        rgba(210, 155, 0, 0.72) 360deg
+        rgba(160, 100, 0, 0.2) 315deg,
+        rgba(215, 160, 0, 0.78) 348deg,
+        rgba(255, 225, 0, 0.96) 356deg,
+        rgba(215, 160, 0, 0.78) 360deg
       );
     }
 
