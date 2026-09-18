@@ -1074,8 +1074,7 @@
 
     .monetise-offer-card {
       background: #080A11;
-      /* Visible crisp base border — always shown underneath the beam */
-      border: 1.5px solid rgba(0, 110, 255, 0.28);
+      border: 1px solid rgba(255, 255, 255, 0.09);
       border-radius: 30px;
       padding: 46px 42px;
       display: grid;
@@ -1084,40 +1083,15 @@
       align-items: center;
       position: relative;
       overflow: hidden;
-      box-shadow:
-        0 0 40px rgba(0, 80, 220, 0.08),
-        0 20px 50px -10px rgba(0, 0, 0, 0.85);
+      box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.85);
       transition: transform 0.3s var(--ease), border-color 0.3s ease;
     }
     .monetise-offer-card:hover {
       transform: translateY(-2px);
-      border-color: rgba(0, 180, 255, 0.5);
+      border-color: rgba(255, 255, 255, 0.18);
     }
-    /* Rotating cyan/blue spotlight on outer card border */
-    .monetise-offer-card::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      border-radius: inherit;
-      padding: 1.5px;
-      background: conic-gradient(
-        from var(--beam-angle, 0deg) at 50% 50%,
-        transparent 0deg,
-        transparent 290deg,
-        rgba(0, 110, 255, 0.12) 315deg,
-        rgba(0, 190, 255, 0.62) 350deg,
-        rgba(255, 255, 255, 0.88) 357deg,
-        rgba(0, 190, 255, 0.62) 360deg
-      );
-      -webkit-mask:
-        linear-gradient(#fff 0 0) content-box,
-        linear-gradient(#fff 0 0);
-      -webkit-mask-composite: xor;
-      mask-composite: exclude;
-      pointer-events: none;
-      z-index: 1;
-      animation: beamRotate 9s linear infinite;
-    }
+    /* Outer card has NO beam — beam lives only on inner .offer-visual-frame */
+    .monetise-offer-card::before { display: none !important; }
 
     /* Gold Card Variant for Bonus 3 & 4 — Monetise warm dark gold style */
     .monetise-offer-card.gold-theme {
@@ -1130,19 +1104,7 @@
     .monetise-offer-card.gold-theme:hover {
       border-color: rgba(225, 165, 0, 0.92);
     }
-    /* Override with gold rotating beam */
-    .monetise-offer-card.gold-theme::before {
-      background: conic-gradient(
-        from var(--beam-angle, 0deg) at 50% 50%,
-        transparent 0deg,
-        transparent 290deg,
-        rgba(160, 100, 0, 0.18) 315deg,
-        rgba(215, 158, 0, 0.75) 350deg,
-        rgba(255, 222, 0, 0.96) 357deg,
-        rgba(215, 158, 0, 0.75) 360deg
-      );
-      animation: beamRotate 9s linear infinite;
-    }
+    .monetise-offer-card.gold-theme::before { display: none !important; }
 
     /* Alternating layout */
     .monetise-offer-card.reverse {
