@@ -1093,22 +1093,17 @@
     }
     .monetise-offer-card::before { display: none !important; }
 
-    /* Gold Card Variant — thick Monetise-style warm gold border */
+    /* Gold Card Variant — crisp Monetise-style dark bronze background & thick gold border (NO fuzzy glow) */
     .monetise-offer-card.gold-theme {
-      background-color: #0c0800;
+      background-color: #0A0702;
+      background-image: radial-gradient(ellipse at 85% 15%, rgba(130, 85, 15, 0.16) 0%, transparent 65%);
       /* Thick, strong gold border matching Monetise reference */
-      border: 2px solid rgba(200, 142, 0, 0.88);
-      box-shadow:
-        0 0 0 1px rgba(0,0,0,0.5),
-        0 0 60px rgba(185, 128, 0, 0.28),
-        0 20px 50px -10px rgba(0, 0, 0, 0.92);
+      border: 2px solid rgba(195, 138, 15, 0.88);
+      box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.95);
     }
     .monetise-offer-card.gold-theme:hover {
-      border-color: rgba(230, 170, 0, 0.96);
-      box-shadow:
-        0 0 0 1px rgba(0,0,0,0.5),
-        0 0 70px rgba(200, 140, 0, 0.36),
-        0 20px 50px -10px rgba(0, 0, 0, 0.92);
+      border-color: rgba(225, 165, 25, 0.96);
+      box-shadow: 0 24px 60px -10px rgba(0, 0, 0, 0.95);
     }
     .monetise-offer-card.gold-theme::before { display: none !important; }
 
@@ -1148,10 +1143,10 @@
       box-shadow: 0 0 16px rgba(0, 136, 255, 0.25);
     }
     .offer-pill-badge.gold {
-      background: rgba(255, 230, 0, 0.08);
-      border: 1px solid rgba(255, 230, 0, 0.4);
-      color: #FFE600;
-      box-shadow: 0 0 14px rgba(255, 230, 0, 0.16);
+      background: rgba(140, 95, 15, 0.2);
+      border: 1px solid rgba(220, 160, 20, 0.45);
+      color: #FBBF24;
+      box-shadow: none;
     }
 
     .offer-item-title {
@@ -1267,15 +1262,14 @@
       animation: beamRotate 6s linear infinite;
     }
 
-    /* Gold inner frame — thick Monetise-style amber/gold border + gold spotlight */
+    /* Gold inner frame — thick Monetise-style amber/gold border + warm bottom-right illumination (NO outer glow) */
     .offer-visual-frame.gold-bg {
-      background: #040200;
-      background-image: radial-gradient(circle at 50% 45%, rgba(200, 130, 0, 0.28) 0%, rgba(4, 2, 0, 0.98) 70%);
-      border: 2px solid rgba(198, 140, 0, 0.82);
+      background: #050302;
+      background-image: radial-gradient(circle at 85% 85%, rgba(185, 115, 18, 0.42) 0%, rgba(95, 55, 8, 0.18) 45%, #050302 78%);
+      border: 2.5px solid rgba(215, 155, 20, 0.95);
       box-shadow:
         inset 0 2px 20px rgba(0, 0, 0, 0.95),
-        0 0 50px rgba(170, 110, 0, 0.22),
-        0 8px 32px rgba(0,0,0,0.7);
+        0 8px 32px rgba(0, 0, 0, 0.7);
     }
     .offer-visual-frame.gold-bg::before {
       background: conic-gradient(
@@ -1420,6 +1414,15 @@
       object-fit: contain;
       border-radius: 8px;
       filter: none;
+    }
+    .gold-bg .radar-ring { border-color: rgba(215, 155, 20, 0.16); }
+    .gold-bg .radar-ring-1 { background: rgba(215, 155, 20, 0.05); }
+    .gold-bg .radar-ring-2 { border-color: rgba(215, 155, 20, 0.12); }
+    .gold-bg .radar-ring-3 { border-color: rgba(215, 155, 20, 0.08); }
+    .gold-bg .radar-avatar-center {
+      background: radial-gradient(circle at 35% 35%, #2a1c04 0%, #0c0801 100%);
+      border: 1.5px solid rgba(215, 155, 20, 0.55);
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.85);
     }
 
     /* Mockup 4: Blueprint 4-Phase Step Matrix */
@@ -1608,8 +1611,8 @@
       width: 220px;
       height: 220px;
       border-radius: 50%;
-      border: 1.5px solid rgba(245, 158, 11, 0.45);
-      background: radial-gradient(circle, rgba(245, 158, 11, 0.25) 0%, rgba(120, 53, 15, 0.1) 60%, transparent 80%);
+      border: 1.5px solid rgba(215, 155, 20, 0.35);
+      background: radial-gradient(circle, rgba(215, 155, 20, 0.18) 0%, rgba(120, 70, 10, 0.08) 60%, transparent 80%);
       backdrop-filter: blur(5px);
       -webkit-backdrop-filter: blur(5px);
       display: flex;
@@ -1617,7 +1620,7 @@
       justify-content: center;
       position: relative;
       z-index: 3;
-      box-shadow: 0 0 40px rgba(245, 158, 11, 0.35), inset 0 0 25px rgba(245, 158, 11, 0.25);
+      box-shadow: inset 0 0 15px rgba(215, 155, 20, 0.2);
     }
     .support-gold-inner-disk {
       width: 135px;
@@ -1625,7 +1628,7 @@
       border-radius: 50%;
       background: radial-gradient(circle at 35% 30%, #FBBF24 0%, #D97706 45%, #78350F 90%);
       border: 2px solid rgba(255, 255, 255, 0.45);
-      box-shadow: 0 0 50px rgba(245, 158, 11, 0.8), inset 0 2px 4px rgba(255, 255, 255, 0.6);
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.6), inset 0 2px 4px rgba(255, 255, 255, 0.6);
       display: flex;
       align-items: center;
       justify-content: center;
