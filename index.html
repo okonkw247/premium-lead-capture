@@ -1396,8 +1396,8 @@
     .radar-ring-2 { width: 210px; height: 210px; border-color: rgba(0, 136, 255, 0.10); }
     .radar-ring-3 { width: 280px; height: 280px; border-color: rgba(0, 136, 255, 0.06); }
     .radar-avatar-center {
-      width: 84px;
-      height: 84px;
+      width: 76px;
+      height: 76px;
       border-radius: 50%;
       background: radial-gradient(circle at 35% 35%, #12244a 0%, #060E21 100%);
       border: 1.5px solid rgba(0, 170, 255, 0.5);
@@ -1407,13 +1407,14 @@
       justify-content: center;
       z-index: 4;
       overflow: hidden;
+      padding: 0;
     }
     .radar-avatar-center img {
-      width: 44px;
-      height: 44px;
-      object-fit: contain;
-      border-radius: 8px;
-      filter: none;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+      filter: drop-shadow(0 0 8px rgba(0, 195, 255, 0.3));
     }
     .gold-bg .radar-ring { border-color: rgba(215, 155, 20, 0.16); }
     .gold-bg .radar-ring-1 { background: rgba(215, 155, 20, 0.05); }
@@ -1423,6 +1424,9 @@
       background: radial-gradient(circle at 35% 35%, #2a1c04 0%, #0c0801 100%);
       border: 1.5px solid rgba(215, 155, 20, 0.55);
       box-shadow: 0 12px 32px rgba(0, 0, 0, 0.85);
+    }
+    .gold-bg .radar-avatar-center img {
+      filter: drop-shadow(0 0 8px rgba(215, 155, 20, 0.35));
     }
 
     /* Mockup 4: Blueprint 4-Phase Step Matrix */
@@ -1649,8 +1653,8 @@
       position: relative;
       background-color: #020409;
       background-image: 
-        radial-gradient(ellipse 85% 65% at 50% 35%, rgba(14, 38, 88, 0.65) 0%, rgba(6, 18, 44, 0.4) 45%, #020409 85%),
-        url('/bg-glow.png');
+        radial-gradient(ellipse 85% 65% at 50% 35%, rgba(14, 38, 88, 0.35) 0%, rgba(6, 18, 44, 0.15) 45%, #020409 85%),
+        url('/images/stack-breakdown-bg.png');
       background-repeat: no-repeat;
       background-position: center center;
       background-size: cover;
@@ -3844,7 +3848,7 @@
               <div class="radar-ring radar-ring-2"></div>
               <div class="radar-ring radar-ring-1"></div>
               <div class="radar-avatar-center">
-                <img src="/favicon-32x32.png" alt="Adams X AI Logo" width="44" height="44">
+                <img src="/apple-touch-icon.png" alt="Adams X AI Logo" width="76" height="76">
               </div>
             </div>
           </div>
