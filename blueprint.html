@@ -3,286 +3,455 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Get the Free Comeback Blueprint — Adams X Project</title>
-  <meta name="description" content="A practical framework for rebuilding your focus, discipline, productivity, and execution. Get the Comeback: Unrecognizable Blueprint for free.">
+  <title>Comeback: Unrecognizable Blueprint & Masterclass — Adams X Project</title>
+  <meta name="description" content="Here's everything you need to know to rebuild your focus, discipline, and execution in 90 days. Get the free Blueprint or upgrade to the VIP Executive Fast-Track.">
   <meta name="author" content="Adams X Project">
-  <meta property="og:title" content="Get the Free Comeback: Unrecognizable Blueprint">
-  <meta property="og:description" content="Stop starting over. Get the free framework for rebuilding your focus, discipline, and execution.">
+  <meta property="og:title" content="Comeback: Unrecognizable Blueprint & Masterclass — Adams X Project">
+  <meta property="og:description" content="Stop starting over. Get the exact 90-day framework for rebuilding your focus, discipline, and execution.">
   <meta property="og:image" content="/adams-x.jpg">
   <meta property="og:url" content="https://adamsxproject.com.ng/blueprint">
   <meta property="og:type" content="website">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Get the Free Comeback: Unrecognizable Blueprint">
-  <meta name="twitter:description" content="Stop starting over. Get the free framework for rebuilding your focus, discipline, and execution.">
+  <meta name="twitter:title" content="Comeback: Unrecognizable Blueprint & Masterclass">
+  <meta name="twitter:description" content="Stop starting over. Get the exact 90-day framework for rebuilding your focus, discipline, and execution.">
   <meta name="twitter:image" content="/adams-x.jpg">
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-  <meta name="theme-color" content="#060606">
+  <meta name="theme-color" content="#03070d">
 
+  <!-- Google Fonts: Montserrat & Inter -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600;1,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <style>
     /* ============================================================
-       DESIGN TOKENS — Matching Comeback: Unrecognizable System
+       DESIGN TOKENS — Monetise & Summit Emerald/Gold Luxury
     ============================================================ */
     :root {
-      --bg:             #020409;
-      --surface:        #0B0E14;
-      --surface-navy:   #071126;
-      --surface-card:   #0C162E;
-      --surface-hi:     #122040;
+      --bg-dark:        #03070d;
+      --bg-surface:     #070d18;
+      --bg-card:        rgba(10, 19, 36, 0.72);
+      --bg-card-hover:  rgba(14, 26, 50, 0.85);
+      --bg-glass:       rgba(8, 16, 32, 0.65);
+      --bg-input:       rgba(255, 255, 255, 0.045);
 
-      --border:         rgba(255, 255, 255, 0.08);
-      --border-blue:    rgba(0, 136, 255, 0.22);
-      --border-gold:    rgba(255, 230, 0, 0.35);
+      --border-subtle:  rgba(255, 255, 255, 0.08);
+      --border-emerald: rgba(0, 245, 155, 0.28);
+      --border-gold:    rgba(255, 230, 0, 0.32);
+      --border-blue:    rgba(0, 140, 255, 0.24);
 
-      --gold-gradient:  linear-gradient(135deg, #FFE600 0%, #F5D033 60%, #E0B420 100%);
-      --accent-yellow:  #FFE600;
-      --accent-dim:     rgba(255, 230, 0, 0.12);
-      --accent-glow:    rgba(255, 230, 0, 0.35);
+      --emerald-glow:   #00F59B;
+      --emerald-dim:    rgba(0, 245, 155, 0.12);
+      --emerald-dark:   #008f5a;
+      --emerald-grad:   linear-gradient(135deg, #00F59B 0%, #00C875 50%, #009955 100%);
 
-      --blue-satin:     #061a40;
-      --cyan-accent:    #00d2ff;
+      --gold-primary:   #FFE600;
+      --gold-dim:       rgba(255, 230, 0, 0.12);
+      --gold-grad:      linear-gradient(135deg, #FFF75A 0%, #FFE600 50%, #F5CE00 100%);
+
+      --cyan-bright:    #00E5FF;
+      --cyan-dim:       rgba(0, 229, 255, 0.12);
 
       --text-main:      #FFFFFF;
-      --text-muted:     #A6B4C9;
-      --text-faint:     #5E6E85;
+      --text-muted:     #98A7BD;
+      --text-faint:     #52627A;
+      --text-bright:    #E2EDF8;
 
-      --radius-lg:      32px;
-      --radius-md:      20px;
-      --radius-sm:      12px;
-      --radius-pill:    100px;
+      --radius-xl:      32px;
+      --radius-lg:      24px;
+      --radius-md:      16px;
+      --radius-sm:      10px;
+      --radius-pill:    9999px;
 
-      --ff:             'Montserrat', system-ui, -apple-system, sans-serif;
-      --ease:           cubic-bezier(0.16, 1, 0.3, 1);
+      --ff-heading:     'Montserrat', system-ui, -apple-system, sans-serif;
+      --ff-body:        'Plus Jakarta Sans', 'Montserrat', system-ui, sans-serif;
+      --ease-smooth:    cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     /* ============================================================
        RESET & BASE
     ============================================================ */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; overflow-x: hidden; }
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    html {
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
     body {
-      font-family: var(--ff);
-      background-color: #020409;
-      background-image: 
-        radial-gradient(ellipse 90% 65% at 50% -5%, rgba(14, 38, 88, 0.55) 0%, rgba(6, 18, 44, 0.35) 45%, transparent 80%),
-        radial-gradient(ellipse 80% 50% at 50% 50%, rgba(10, 26, 62, 0.3) 0%, transparent 75%),
-        radial-gradient(ellipse 90% 65% at 50% 105%, rgba(13, 34, 78, 0.5) 0%, rgba(4, 11, 26, 0.85) 55%, transparent 90%);
-      background-attachment: fixed;
-      background-repeat: no-repeat;
+      font-family: var(--ff-body);
+      background-color: var(--bg-dark);
       color: var(--text-main);
       -webkit-font-smoothing: antialiased;
       overflow-x: hidden;
       min-height: 100vh;
+      position: relative;
     }
+
+    /* High-end Summit ambient spotlights */
+    .ambient-bg {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      background:
+        radial-gradient(circle 900px at 50% -10%, rgba(0, 245, 155, 0.10) 0%, rgba(3, 7, 13, 0) 70%),
+        radial-gradient(circle 800px at 80% 30%, rgba(0, 140, 255, 0.08) 0%, rgba(3, 7, 13, 0) 65%),
+        radial-gradient(circle 900px at 20% 70%, rgba(255, 230, 0, 0.06) 0%, rgba(3, 7, 13, 0) 70%),
+        radial-gradient(circle 1000px at 50% 100%, rgba(0, 245, 155, 0.08) 0%, rgba(3, 7, 13, 0) 75%);
+    }
+
+    .ambient-grid {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      background-image: 
+        linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+      background-size: 60px 60px;
+      opacity: 0.6;
+    }
+
     a { color: inherit; text-decoration: none; }
     img { display: block; max-width: 100%; height: auto; }
 
-    /* ============================================================
-       LAYOUT
-    ============================================================ */
-    .container  { width: 100%; max-width: 1100px; margin: 0 auto; padding: 0 24px; }
-    .container--sm { width: 100%; max-width: 680px; margin: 0 auto; padding: 0 24px; }
+    /* Layout Containers */
+    .container    { width: 100%; max-width: 1160px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
+    .container-md { width: 100%; max-width: 900px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
+    .container-sm { width: 100%; max-width: 680px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
 
     /* ============================================================
-       NAV
+       NAVBAR
     ============================================================ */
     .site-nav {
       position: fixed;
       top: 0; left: 0; width: 100%;
-      z-index: 990;
-      background: rgba(6, 6, 6, 0.95);
-      backdrop-filter: blur(24px) saturate(1.5);
-      -webkit-backdrop-filter: blur(24px) saturate(1.5);
-      border-bottom: 1px solid var(--border);
+      z-index: 999;
+      background: rgba(3, 7, 13, 0.85);
+      backdrop-filter: blur(20px) saturate(1.6);
+      -webkit-backdrop-filter: blur(20px) saturate(1.6);
+      border-bottom: 1px solid var(--border-subtle);
+      transition: background 0.3s ease;
     }
     .site-nav__inner {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      height: 72px;
+      height: 74px;
     }
     .site-nav__brand {
       display: flex;
       align-items: center;
-      gap: 11px;
-      font-size: 18px;
-      font-weight: 700;
+      gap: 12px;
+      font-family: var(--ff-heading);
+      font-size: 17px;
+      font-weight: 800;
       letter-spacing: -0.01em;
       color: #fff;
-      text-decoration: none;
     }
-    .nav-logo {
-      width: 32px;
-      height: 32px;
-      border-radius: 8px;
+    .nav-logo-icon {
+      width: 34px;
+      height: 34px;
+      border-radius: 9px;
       object-fit: cover;
+      border: 1px solid rgba(0, 245, 155, 0.3);
+      box-shadow: 0 0 14px rgba(0, 245, 155, 0.25);
     }
-    .nav-back {
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--text-muted);
-      letter-spacing: 0.02em;
-      transition: color 0.2s;
-    }
-    .nav-back:hover { color: #fff; }
-
-    /* ============================================================
-       HERO SECTION
-    ============================================================ */
-    .hero {
-      padding: 148px 0 80px;
-      position: relative;
-      overflow: hidden;
-    }
-    /* Background radial gradient orbs */
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: -120px; left: 50%;
-      transform: translateX(-50%);
-      width: 900px; height: 600px;
-      background: radial-gradient(ellipse at 50% 0%, rgba(255, 230, 0, 0.06) 0%, transparent 70%);
-      pointer-events: none;
-    }
-    .hero::after {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: radial-gradient(ellipse at 20% 50%, rgba(0, 136, 255, 0.04) 0%, transparent 60%);
-      pointer-events: none;
-    }
-
-    .hero__inner {
-      display: grid;
-      grid-template-columns: 1fr 420px;
-      gap: 64px;
-      align-items: center;
-      position: relative;
-      z-index: 1;
-    }
-
-    /* Eyebrow label */
-    .hero__eyebrow {
+    .nav-live-badge {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
+      gap: 7px;
       font-size: 11px;
       font-weight: 700;
-      letter-spacing: 0.16em;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
-      color: var(--accent-yellow);
-      background: var(--accent-dim);
-      border: 1px solid var(--border-gold);
-      padding: 6px 16px;
+      color: var(--emerald-glow);
+      background: var(--emerald-dim);
+      border: 1px solid var(--border-emerald);
+      padding: 5px 12px;
       border-radius: var(--radius-pill);
-      margin-bottom: 28px;
-      width: fit-content;
     }
-    .hero__eyebrow span { opacity: 0.7; }
-
-    /* Main headline */
-    .hero__headline {
-      font-size: clamp(38px, 5.5vw, 64px);
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+    .nav-link {
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--text-muted);
+      transition: color 0.2s;
+    }
+    .nav-link:hover { color: #fff; }
+    .btn-nav-cta {
+      font-family: var(--ff-heading);
+      font-size: 12.5px;
       font-weight: 800;
-      letter-spacing: -0.035em;
-      line-height: 1.06;
-      margin-bottom: 20px;
-      color: #fff;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 10px 20px;
+      border-radius: var(--radius-pill);
+      background: var(--emerald-grad);
+      color: #03130c;
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      box-shadow: 0 0 18px rgba(0, 245, 155, 0.35);
+      transition: transform 0.2s var(--ease-smooth), box-shadow 0.2s ease;
     }
-    .hero__headline .stop {
-      display: block;
-      font-size: clamp(44px, 6.5vw, 74px);
-      background: var(--gold-gradient);
+    .btn-nav-cta:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 0 26px rgba(0, 245, 155, 0.55);
+    }
+
+    /* ============================================================
+       HERO SECTION — SUMMIT / MONETISE STAGE
+    ============================================================ */
+    .hero-summit {
+      padding: 140px 0 70px;
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+    }
+    /* Summit stage cone lighting */
+    .hero-summit::before {
+      content: '';
+      position: absolute;
+      top: -40px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 850px;
+      height: 480px;
+      background: radial-gradient(ellipse at 50% 0%, rgba(0, 245, 155, 0.18) 0%, rgba(0, 245, 155, 0.04) 45%, transparent 75%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Top Summit Live Pill (Matching Reference) */
+    .summit-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 7px 22px;
+      border-radius: var(--radius-pill);
+      background: linear-gradient(180deg, rgba(0, 245, 155, 0.15) 0%, rgba(0, 40, 25, 0.45) 100%);
+      border: 1px solid rgba(0, 245, 155, 0.5);
+      box-shadow: 
+        0 0 20px rgba(0, 245, 155, 0.25),
+        inset 0 1px 1px rgba(255, 255, 255, 0.25);
+      margin-bottom: 28px;
+      position: relative;
+      z-index: 2;
+    }
+    .live-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background-color: #ff3344;
+      box-shadow: 0 0 10px #ff3344;
+      animation: pulseLive 1.8s infinite;
+    }
+    @keyframes pulseLive {
+      0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 51, 68, 0.7); }
+      70% { transform: scale(1.15); box-shadow: 0 0 0 8px rgba(255, 51, 68, 0); }
+      100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 51, 68, 0); }
+    }
+    .summit-pill__text {
+      font-family: var(--ff-heading);
+      font-size: 11.5px;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #FFFFFF;
+    }
+    .summit-pill__highlight {
+      color: var(--emerald-glow);
+      font-weight: 900;
+    }
+
+    /* Main Summit Headline */
+    .hero-summit__headline {
+      font-family: var(--ff-heading);
+      font-size: clamp(32px, 5.2vw, 56px);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.12;
+      color: #FFFFFF;
+      max-width: 980px;
+      margin: 0 auto 20px;
+      text-wrap: balance;
+    }
+    .hero-summit__headline .highlight-grad {
+      background: var(--emerald-grad);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      background-clip: text;
-      line-height: 1.0;
-      margin-bottom: 10px;
+    }
+    .hero-summit__headline .highlight-gold {
+      background: var(--gold-grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
 
-    .hero__sub {
-      font-size: 18px;
+    /* Subtitle */
+    .hero-summit__sub {
+      font-size: clamp(16px, 2vw, 19px);
       font-weight: 400;
       line-height: 1.65;
       color: var(--text-muted);
-      margin-bottom: 16px;
-      max-width: 520px;
+      max-width: 760px;
+      margin: 0 auto 36px;
+      text-wrap: balance;
     }
-    .hero__sub strong { color: #fff; font-weight: 600; }
+    .hero-summit__sub strong {
+      color: var(--text-bright);
+      font-weight: 700;
+    }
 
-    .hero__tagline {
-      font-size: 14px;
-      font-weight: 500;
+    /* Urgency & Countdown Bar */
+    .summit-countdown {
+      display: inline-flex;
+      align-items: center;
+      gap: 16px;
+      background: rgba(10, 20, 38, 0.85);
+      border: 1px solid var(--border-subtle);
+      padding: 10px 24px;
+      border-radius: var(--radius-pill);
+      margin-bottom: 48px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+    }
+    .summit-countdown__label {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
       color: var(--text-faint);
-      margin-bottom: 40px;
-      padding-left: 14px;
-      border-left: 2px solid var(--accent-yellow);
-      line-height: 1.55;
+    }
+    .countdown-timer {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--ff-heading);
+      font-weight: 800;
+      font-size: 14px;
+      color: var(--emerald-glow);
+    }
+    .timer-unit {
+      background: rgba(0, 245, 155, 0.12);
+      padding: 3px 8px;
+      border-radius: 6px;
+      border: 1px solid rgba(0, 245, 155, 0.25);
     }
 
-    /* What the Blueprint covers */
-    .hero__bullets {
+    /* ============================================================
+       HERO DUAL-BOX (FAST REGISTRATION & PREVIEW)
+    ============================================================ */
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.08fr;
+      gap: 36px;
+      align-items: center;
+      text-align: left;
+      margin-top: 10px;
+    }
+
+    /* Preview Card */
+    .preview-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-emerald);
+      border-radius: var(--radius-xl);
+      padding: 36px 32px;
+      position: relative;
+      overflow: hidden;
+      box-shadow:
+        0 30px 90px rgba(0, 0, 0, 0.7),
+        0 0 40px rgba(0, 245, 155, 0.12);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+    }
+    .preview-card::after {
+      content: '';
+      position: absolute;
+      top: -30px; right: -30px;
+      width: 180px; height: 180px;
+      background: radial-gradient(circle, rgba(0, 245, 155, 0.2) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .preview-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 10.5px;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: var(--radius-pill);
+      background: rgba(0, 245, 155, 0.15);
+      color: var(--emerald-glow);
+      border: 1px solid rgba(0, 245, 155, 0.3);
+      margin-bottom: 18px;
+    }
+    .preview-title {
+      font-family: var(--ff-heading);
+      font-size: 26px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: #fff;
+      line-height: 1.25;
+      margin-bottom: 14px;
+    }
+    .preview-desc {
+      font-size: 14.5px;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 24px;
+    }
+    .blueprint-features-list {
       list-style: none;
       display: flex;
       flex-direction: column;
-      gap: 10px;
-      margin-bottom: 40px;
+      gap: 12px;
     }
-    .hero__bullets li {
+    .blueprint-features-list li {
       display: flex;
       align-items: flex-start;
-      gap: 10px;
-      font-size: 15px;
-      font-weight: 500;
-      color: var(--text-muted);
-      line-height: 1.5;
+      gap: 12px;
+      font-size: 14px;
+      color: var(--text-bright);
+      line-height: 1.45;
     }
-    .hero__bullets li::before {
-      content: '→';
-      color: var(--accent-yellow);
-      font-weight: 700;
+    .feature-icon-check {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: rgba(0, 245, 155, 0.15);
+      border: 1px solid var(--border-emerald);
+      color: var(--emerald-glow);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 900;
       flex-shrink: 0;
       margin-top: 1px;
     }
 
-    /* ============================================================
-       REGISTRATION CARD
-    ============================================================ */
-    .reg-card {
-      background: linear-gradient(180deg, rgba(12, 26, 56, 0.92) 0%, rgba(6, 15, 34, 0.97) 100%);
-      border: 1px solid rgba(0, 136, 255, 0.32);
-      border-radius: var(--radius-lg);
+    /* Fast Action Card with Traveling Beam */
+    .register-card {
+      background: linear-gradient(180deg, rgba(12, 24, 48, 0.95) 0%, rgba(6, 14, 28, 0.98) 100%);
+      border: 1px solid rgba(0, 245, 155, 0.4);
+      border-radius: var(--radius-xl);
       padding: 40px 36px;
       position: relative;
       box-shadow:
-        0 24px 80px rgba(0, 0, 0, 0.75),
-        0 0 50px rgba(0, 136, 255, 0.12),
-        0 0 0 1px rgba(255, 255, 255, 0.04) inset;
+        0 24px 80px rgba(0, 0, 0, 0.8),
+        0 0 45px rgba(0, 245, 155, 0.15);
       backdrop-filter: blur(24px);
-      -webkit-backdrop-filter: blur(24px);
     }
-
-    /* Animated border beam on card */
-    .reg-card::before {
-      content: '';
-      position: absolute;
-      inset: -1px;
-      border-radius: calc(var(--radius-lg) + 1px);
-      background: conic-gradient(
-        from var(--beam-angle, 0deg),
-        transparent 0deg,
-        rgba(255, 230, 0, 0.8) 60deg,
-        transparent 120deg
-      );
-      animation: beamRotate 3.5s linear infinite;
-      opacity: 0.4;
-      z-index: -1;
-    }
+    /* Traveling Conic Beam Animation */
     @property --beam-angle {
       syntax: '<angle>';
       inherits: false;
@@ -291,108 +460,213 @@
     @keyframes beamRotate {
       to { --beam-angle: 360deg; }
     }
+    .register-card::before {
+      content: '';
+      position: absolute;
+      inset: -1.5px;
+      border-radius: calc(var(--radius-xl) + 1.5px);
+      background: conic-gradient(
+        from var(--beam-angle, 0deg),
+        transparent 0deg,
+        rgba(0, 245, 155, 0.9) 60deg,
+        rgba(255, 230, 0, 0.85) 120deg,
+        transparent 180deg
+      );
+      animation: beamRotate 4s linear infinite;
+      z-index: -1;
+    }
 
-    .reg-card__label {
+    .reg-header {
+      margin-bottom: 24px;
+    }
+    .reg-badge-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+    .reg-label {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--emerald-glow);
+    }
+    .reg-spots {
       font-size: 11px;
       font-weight: 700;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--text-faint);
-      margin-bottom: 6px;
+      color: var(--gold-primary);
+      background: var(--gold-dim);
+      padding: 3px 10px;
+      border-radius: var(--radius-pill);
+      border: 1px solid var(--border-gold);
     }
-    .reg-card__title {
-      font-size: 22px;
+    .reg-title {
+      font-family: var(--ff-heading);
+      font-size: 24px;
       font-weight: 800;
-      letter-spacing: -0.025em;
-      line-height: 1.2;
-      margin-bottom: 6px;
+      letter-spacing: -0.02em;
       color: #fff;
+      line-height: 1.25;
+      margin-bottom: 6px;
     }
-    .reg-card__subtitle {
-      font-size: 14px;
+    .reg-subtitle {
+      font-size: 13.5px;
       color: var(--text-muted);
-      margin-bottom: 28px;
-      line-height: 1.55;
+      line-height: 1.5;
     }
 
-    /* Form */
-    .reg-form { display: flex; flex-direction: column; gap: 14px; }
-
-    .form-group { display: flex; flex-direction: column; gap: 6px; }
-    .form-label {
+    /* Form Styles */
+    .form-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .form-field {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+    .form-field label {
       font-size: 12px;
-      font-weight: 600;
-      letter-spacing: 0.06em;
+      font-weight: 700;
+      letter-spacing: 0.05em;
       text-transform: uppercase;
-      color: var(--text-muted);
+      color: var(--text-bright);
     }
-    .form-input {
+    .form-control {
       width: 100%;
-      padding: 14px 18px;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.10);
+      padding: 15px 18px;
+      background: var(--bg-input);
+      border: 1px solid rgba(255, 255, 255, 0.12);
       border-radius: var(--radius-sm);
-      font-family: var(--ff);
+      font-family: var(--ff-body);
       font-size: 15px;
       font-weight: 500;
-      color: #fff;
+      color: #FFFFFF;
       outline: none;
       transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
     }
-    .form-input::placeholder { color: var(--text-faint); }
-    .form-input:focus {
-      border-color: rgba(255, 230, 0, 0.4);
-      background: rgba(255, 230, 0, 0.04);
-      box-shadow: 0 0 0 3px rgba(255, 230, 0, 0.08);
+    .form-control::placeholder {
+      color: var(--text-faint);
+    }
+    .form-control:focus {
+      border-color: var(--emerald-glow);
+      background: rgba(0, 245, 155, 0.04);
+      box-shadow: 0 0 0 3px rgba(0, 245, 155, 0.15);
     }
 
-    /* Submit button */
-    .btn-submit {
-      width: 100%;
-      padding: 17px 24px;
-      background: linear-gradient(180deg, #FFF75A 0%, #FFE600 50%, #F5CE00 100%);
-      border: 1px solid rgba(255, 255, 255, 0.4);
+    /* Monetization Choice Toggle */
+    .pass-selector {
+      background: rgba(3, 7, 13, 0.7);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 6px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px;
+      margin-bottom: 4px;
+    }
+    .pass-option {
+      cursor: pointer;
       border-radius: var(--radius-sm);
-      font-family: var(--ff);
-      font-size: 15px;
+      padding: 10px 12px;
+      text-align: center;
+      transition: all 0.2s ease;
+      border: 1px solid transparent;
+      position: relative;
+    }
+    .pass-option input {
+      display: none;
+    }
+    .pass-option.active-free {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+    .pass-option.active-vip {
+      background: linear-gradient(135deg, rgba(0, 245, 155, 0.18) 0%, rgba(0, 140, 255, 0.15) 100%);
+      border-color: var(--emerald-glow);
+      box-shadow: 0 0 16px rgba(0, 245, 155, 0.2);
+    }
+    .pass-opt-title {
+      font-family: var(--ff-heading);
+      font-size: 12px;
       font-weight: 800;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      display: block;
+      color: #fff;
+    }
+    .pass-opt-price {
+      font-size: 11.5px;
+      font-weight: 700;
+      color: var(--text-muted);
+      margin-top: 2px;
+      display: block;
+    }
+    .pass-option.active-vip .pass-opt-price {
+      color: var(--emerald-glow);
+    }
+    .vip-tag-mini {
+      position: absolute;
+      top: -8px;
+      right: 8px;
+      background: var(--gold-grad);
+      color: #000;
+      font-size: 8.5px;
+      font-weight: 900;
+      padding: 1px 6px;
+      border-radius: var(--radius-pill);
       letter-spacing: 0.06em;
       text-transform: uppercase;
-      color: #000;
+    }
+
+    /* Action Submit Button */
+    .btn-action-submit {
+      width: 100%;
+      padding: 18px 24px;
+      background: var(--emerald-grad);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      border-radius: var(--radius-sm);
+      font-family: var(--ff-heading);
+      font-size: 14.5px;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #02140d;
       cursor: pointer;
       box-shadow:
-        0 4px 16px rgba(0, 0, 0, 0.4),
-        0 0 18px rgba(255, 230, 0, 0.25),
-        inset 0 1.5px 1px rgba(255, 255, 255, 0.9),
-        inset 0 -2px 3px rgba(0, 0, 0, 0.12);
-      transition: transform 0.18s var(--ease), box-shadow 0.18s ease, filter 0.18s ease;
+        0 8px 24px rgba(0, 0, 0, 0.5),
+        0 0 24px rgba(0, 245, 155, 0.35),
+        inset 0 1.5px 1px rgba(255, 255, 255, 0.9);
+      transition: transform 0.2s var(--ease-smooth), filter 0.2s ease, box-shadow 0.2s ease;
       margin-top: 4px;
       position: relative;
       overflow: hidden;
     }
-    .btn-submit:hover:not(:disabled) {
+    .btn-action-submit:hover:not(:disabled) {
       transform: translateY(-2px);
-      filter: brightness(1.06);
+      filter: brightness(1.08);
       box-shadow:
-        0 8px 28px rgba(0, 0, 0, 0.45),
-        0 0 28px rgba(255, 230, 0, 0.35),
-        inset 0 1.5px 1px rgba(255, 255, 255, 0.9);
+        0 12px 36px rgba(0, 0, 0, 0.6),
+        0 0 35px rgba(0, 245, 155, 0.55),
+        inset 0 1.5px 1px #ffffff;
     }
-    .btn-submit:active:not(:disabled) {
+    .btn-action-submit:active:not(:disabled) {
       transform: translateY(0);
       filter: brightness(0.98);
     }
-    .btn-submit:disabled {
-      opacity: 0.65;
-      cursor: not-allowed;
+    .btn-action-submit.gold-mode {
+      background: var(--gold-grad);
+      color: #000;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5), 0 0 24px rgba(255, 230, 0, 0.35);
     }
-    .btn-submit .btn-text { position: relative; z-index: 1; }
 
-    /* Loading spinner */
-    .btn-submit .btn-spinner {
+    .btn-spinner {
       display: none;
-      width: 18px; height: 18px;
-      border: 2px solid rgba(0,0,0,0.3);
+      width: 20px;
+      height: 20px;
+      border: 2px solid rgba(0,0,0,0.25);
       border-top-color: #000;
       border-radius: 50%;
       animation: spin 0.7s linear infinite;
@@ -401,14 +675,12 @@
       transform: translate(-50%, -50%);
     }
     @keyframes spin { to { transform: translate(-50%, -50%) rotate(360deg); } }
-    .btn-submit.loading .btn-text { opacity: 0; }
-    .btn-submit.loading .btn-spinner { display: block; }
+    .btn-action-submit.loading .btn-label { opacity: 0; }
+    .btn-action-submit.loading .btn-spinner { display: block; }
 
-    /* Status messages */
     .form-status {
       font-size: 13.5px;
-      font-weight: 500;
-      line-height: 1.5;
+      font-weight: 600;
       text-align: center;
       padding: 12px 16px;
       border-radius: var(--radius-sm);
@@ -417,560 +689,1064 @@
     .form-status.error {
       display: block;
       color: #fca5a5;
-      background: rgba(239, 68, 68, 0.10);
-      border: 1px solid rgba(239, 68, 68, 0.25);
+      background: rgba(239, 68, 68, 0.12);
+      border: 1px solid rgba(239, 68, 68, 0.3);
     }
     .form-status.success {
       display: block;
       color: #86efac;
-      background: rgba(34, 197, 94, 0.10);
-      border: 1px solid rgba(34, 197, 94, 0.25);
+      background: rgba(34, 197, 94, 0.12);
+      border: 1px solid rgba(34, 197, 94, 0.3);
     }
 
-    .reg-card__guarantee {
+    .reg-trust {
       display: flex;
       align-items: center;
-      gap: 8px;
-      margin-top: 16px;
-      font-size: 12px;
-      color: var(--text-faint);
       justify-content: center;
+      gap: 18px;
+      margin-top: 14px;
+      font-size: 11.5px;
+      color: var(--text-faint);
     }
-    .reg-card__guarantee svg { flex-shrink: 0; opacity: 0.6; }
+    .reg-trust-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
 
     /* ============================================================
-       WHAT IS THE BLUEPRINT — Framework Section
+       SECTION 2: MONETIZATION TIERS (PASS COMPARISON)
     ============================================================ */
-    .section-framework {
-      padding: 100px 0 80px;
+    .section-pricing {
+      padding: 100px 0 90px;
       position: relative;
     }
-    .section-framework::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--border-blue), transparent);
+    .section-header {
+      text-align: center;
+      margin-bottom: 60px;
     }
-
-    .section-label {
+    .section-kicker {
+      display: inline-block;
       font-size: 11px;
-      font-weight: 700;
+      font-weight: 800;
       letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: var(--accent-yellow);
-      opacity: 0.85;
-      margin-bottom: 16px;
-      text-align: center;
+      color: var(--emerald-glow);
+      margin-bottom: 14px;
     }
     .section-title {
-      font-size: clamp(28px, 4vw, 44px);
+      font-family: var(--ff-heading);
+      font-size: clamp(28px, 4.2vw, 44px);
       font-weight: 800;
       letter-spacing: -0.03em;
-      line-height: 1.1;
-      text-align: center;
+      color: #FFFFFF;
+      line-height: 1.15;
       margin-bottom: 16px;
-      color: #fff;
     }
-    .section-sub {
-      font-size: 17px;
+    .section-subtitle {
+      font-size: 16.5px;
       color: var(--text-muted);
-      text-align: center;
-      line-height: 1.65;
-      max-width: 580px;
-      margin: 0 auto 60px;
+      max-width: 620px;
+      margin: 0 auto;
+      line-height: 1.6;
     }
 
-    /* Two-column distinction cards */
-    .distinction-grid {
+    .passes-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 24px;
-      margin-bottom: 64px;
+      grid-template-columns: 1fr 1.08fr;
+      gap: 28px;
+      align-items: stretch;
     }
-    .distinction-card {
-      background: var(--surface-card);
-      border-radius: var(--radius-md);
-      padding: 36px 32px;
-      border: 1px solid var(--border);
+
+    .pass-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-xl);
+      padding: 44px 36px;
+      display: flex;
+      flex-direction: column;
       position: relative;
-      overflow: hidden;
+      transition: transform 0.3s var(--ease-smooth), border-color 0.3s ease;
+      backdrop-filter: blur(16px);
     }
-    .distinction-card--free {
-      border-color: rgba(255, 230, 0, 0.18);
-      background: linear-gradient(160deg, rgba(255, 230, 0, 0.04) 0%, var(--surface-card) 60%);
+    .pass-card:hover {
+      transform: translateY(-4px);
     }
-    .distinction-card--paid {
-      border-color: var(--border-blue);
-      background: linear-gradient(160deg, rgba(0, 136, 255, 0.06) 0%, var(--surface-card) 60%);
+
+    /* Standard Free Pass */
+    .pass-card--free {
+      border-color: rgba(255, 255, 255, 0.12);
     }
-    .distinction-card__tag {
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 0.16em;
+
+    /* VIP Executive Pass (Featured) */
+    .pass-card--vip {
+      background: linear-gradient(170deg, rgba(10, 24, 48, 0.95) 0%, rgba(6, 14, 28, 0.98) 100%);
+      border: 1.5px solid var(--emerald-glow);
+      box-shadow:
+        0 24px 80px rgba(0, 0, 0, 0.8),
+        0 0 45px rgba(0, 245, 155, 0.22);
+    }
+    .vip-ribbon {
+      position: absolute;
+      top: 20px;
+      right: 24px;
+      background: var(--gold-grad);
+      color: #000;
+      font-family: var(--ff-heading);
+      font-size: 10.5px;
+      font-weight: 900;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
-      padding: 4px 12px;
+      padding: 5px 14px;
       border-radius: var(--radius-pill);
-      display: inline-block;
-      margin-bottom: 18px;
+      box-shadow: 0 4px 14px rgba(255, 230, 0, 0.35);
     }
-    .tag--free  { color: #000; background: var(--accent-yellow); }
-    .tag--paid  { color: #fff; background: rgba(0, 136, 255, 0.25); border: 1px solid var(--border-blue); }
-    .distinction-card__name {
-      font-size: 20px;
+
+    .pass-badge {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      display: inline-block;
+    }
+    .pass-badge--free { color: var(--text-muted); }
+    .pass-badge--vip  { color: var(--emerald-glow); }
+
+    .pass-name {
+      font-family: var(--ff-heading);
+      font-size: 26px;
       font-weight: 800;
       letter-spacing: -0.02em;
-      margin-bottom: 8px;
       color: #fff;
+      margin-bottom: 10px;
     }
-    .distinction-card__desc {
-      font-size: 14px;
+    .pass-price-row {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+    .pass-price {
+      font-family: var(--ff-heading);
+      font-size: 42px;
+      font-weight: 900;
+      color: #fff;
+      line-height: 1;
+    }
+    .pass-price-strike {
+      font-size: 18px;
+      color: var(--text-faint);
+      text-decoration: line-through;
+    }
+    .pass-price-period {
+      font-size: 13px;
       color: var(--text-muted);
-      line-height: 1.6;
-      margin-bottom: 20px;
+      font-weight: 600;
     }
-    .distinction-card__list {
+
+    .pass-pitch {
+      font-size: 14.5px;
+      color: var(--text-muted);
+      line-height: 1.55;
+      margin-bottom: 28px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .pass-features-header {
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-bright);
+      margin-bottom: 16px;
+    }
+    .pass-features-list {
       list-style: none;
       display: flex;
       flex-direction: column;
-      gap: 9px;
+      gap: 13px;
+      margin-bottom: 36px;
+      flex-grow: 1;
     }
-    .distinction-card__list li {
-      font-size: 13.5px;
-      color: var(--text-muted);
+    .pass-features-list li {
       display: flex;
       align-items: flex-start;
-      gap: 8px;
+      gap: 11px;
+      font-size: 14px;
+      color: var(--text-bright);
       line-height: 1.45;
     }
-    .distinction-card__list li .check {
-      color: var(--accent-yellow);
+    .pass-check {
+      color: var(--emerald-glow);
+      font-weight: 900;
       flex-shrink: 0;
-      font-weight: 700;
-    }
-    .distinction-card__list li .check-blue { color: #00d2ff; }
-
-    /* The positioning line */
-    .positioning-line {
-      text-align: center;
-      font-size: 17px;
-      font-weight: 600;
-      color: var(--text-muted);
-      line-height: 1.6;
-      padding: 32px;
-      border: 1px solid var(--border-blue);
-      border-radius: var(--radius-md);
-      background: var(--surface-navy);
-      margin-top: 0;
-    }
-    .positioning-line strong { color: #fff; }
-    .positioning-line em {
-      display: block;
-      margin-top: 10px;
       font-size: 14px;
-      font-style: normal;
-      color: var(--text-faint);
+    }
+    .pass-check-gold {
+      color: var(--gold-primary);
+    }
+
+    .btn-pass-select {
+      width: 100%;
+      padding: 16px 24px;
+      border-radius: var(--radius-sm);
+      font-family: var(--ff-heading);
+      font-size: 13.5px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: inline-block;
+    }
+    .btn-pass-select--free {
+      background: rgba(255, 255, 255, 0.08);
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    .btn-pass-select--free:hover {
+      background: rgba(255, 255, 255, 0.15);
+      border-color: #fff;
+    }
+    .btn-pass-select--vip {
+      background: var(--gold-grad);
+      color: #000;
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      box-shadow: 0 6px 20px rgba(255, 230, 0, 0.35);
+    }
+    .btn-pass-select--vip:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(255, 230, 0, 0.5);
     }
 
     /* ============================================================
-       FOUNDER SECTION
+       SECTION 3: SUMMIT ROADMAP & SCHEDULE (3 PHASES)
     ============================================================ */
-    .section-founder {
-      padding: 80px 0 100px;
-    }
-    .founder-inner {
-      display: grid;
-      grid-template-columns: 280px 1fr;
-      gap: 60px;
-      align-items: start;
-    }
-    .founder-img-wrap {
+    .section-schedule {
+      padding: 90px 0 100px;
       position: relative;
     }
-    .founder-img {
+    .schedule-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .schedule-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 28px 32px;
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      gap: 32px;
+      align-items: center;
+      transition: all 0.25s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .schedule-card:hover {
+      border-color: var(--border-emerald);
+      background: var(--bg-card-hover);
+      transform: translateX(4px);
+    }
+    .schedule-card::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 4px;
+      background: var(--emerald-grad);
+      opacity: 0.7;
+    }
+    .schedule-phase-tag {
+      font-family: var(--ff-heading);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--emerald-glow);
+      margin-bottom: 4px;
+    }
+    .schedule-phase-timeline {
+      font-family: var(--ff-heading);
+      font-size: 20px;
+      font-weight: 800;
+      color: #fff;
+    }
+    .schedule-main-title {
+      font-family: var(--ff-heading);
+      font-size: 19px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+    .schedule-main-desc {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* ============================================================
+       SECTION 4: VIP BONUSES & TOOLKIT SHOWCASE
+    ============================================================ */
+    .section-bonuses {
+      padding: 90px 0;
+      background: linear-gradient(180deg, rgba(3, 7, 13, 0) 0%, rgba(7, 16, 32, 0.7) 50%, rgba(3, 7, 13, 0) 100%);
+      position: relative;
+    }
+    .bonuses-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 22px;
+      margin-top: 50px;
+    }
+    .bonus-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 28px 24px;
+      position: relative;
+      transition: transform 0.25s ease, border-color 0.25s ease;
+    }
+    .bonus-box:hover {
+      transform: translateY(-4px);
+      border-color: var(--border-gold);
+    }
+    .bonus-val-pill {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold-primary);
+      background: var(--gold-dim);
+      border: 1px solid var(--border-gold);
+      padding: 3px 9px;
+      border-radius: var(--radius-pill);
+      margin-bottom: 14px;
+    }
+    .bonus-title {
+      font-family: var(--ff-heading);
+      font-size: 17px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 8px;
+      line-height: 1.3;
+    }
+    .bonus-desc {
+      font-size: 13.5px;
+      color: var(--text-muted);
+      line-height: 1.55;
+    }
+
+    /* ============================================================
+       SECTION 5: FOUNDER & MENTOR SPOTLIGHT
+    ============================================================ */
+    .section-founder {
+      padding: 100px 0;
+      position: relative;
+    }
+    .founder-stage {
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      gap: 54px;
+      align-items: center;
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-xl);
+      padding: 48px;
+      box-shadow: 0 30px 90px rgba(0, 0, 0, 0.6);
+    }
+    .founder-photo-wrap {
+      position: relative;
+    }
+    .founder-photo {
       width: 100%;
       aspect-ratio: 3/4;
       object-fit: cover;
       object-position: top center;
-      border-radius: var(--radius-md);
-      border: 1px solid var(--border-blue);
-      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.6);
+      border-radius: var(--radius-lg);
+      border: 1.5px solid var(--border-emerald);
+      box-shadow: 0 16px 50px rgba(0, 0, 0, 0.8), 0 0 30px rgba(0, 245, 155, 0.15);
     }
-    .founder-badge {
+    .founder-badge-float {
       position: absolute;
-      bottom: 16px;
+      bottom: -16px;
       left: 50%;
       transform: translateX(-50%);
-      background: rgba(6, 6, 6, 0.90);
-      border: 1px solid var(--border-blue);
-      backdrop-filter: blur(10px);
-      border-radius: var(--radius-sm);
-      padding: 10px 18px;
+      background: rgba(3, 7, 13, 0.95);
+      border: 1px solid var(--border-emerald);
+      padding: 8px 18px;
+      border-radius: var(--radius-pill);
       text-align: center;
       white-space: nowrap;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.8);
     }
-    .founder-badge__name { font-size: 14px; font-weight: 700; color: #fff; }
-    .founder-badge__role { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
-
-    .founder-content__eyebrow {
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--accent-yellow);
-      margin-bottom: 16px;
-    }
-    .founder-content__title {
-      font-size: clamp(24px, 3.5vw, 38px);
+    .founder-name-text {
+      font-family: var(--ff-heading);
+      font-size: 13.5px;
       font-weight: 800;
-      letter-spacing: -0.03em;
-      line-height: 1.15;
-      margin-bottom: 20px;
       color: #fff;
     }
-    .founder-content__body {
+    .founder-role-text {
+      font-size: 11px;
+      color: var(--emerald-glow);
+      font-weight: 600;
+    }
+
+    .founder-story__eyebrow {
+      font-size: 11.5px;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--emerald-glow);
+      margin-bottom: 12px;
+    }
+    .founder-story__title {
+      font-family: var(--ff-heading);
+      font-size: clamp(24px, 3.2vw, 34px);
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      color: #fff;
+      line-height: 1.2;
+      margin-bottom: 20px;
+    }
+    .founder-story__body {
       display: flex;
       flex-direction: column;
       gap: 16px;
-    }
-    .founder-content__body p {
-      font-size: 16px;
+      font-size: 15.5px;
       color: var(--text-muted);
       line-height: 1.7;
     }
-    .founder-content__body p strong { color: #fff; }
+    .founder-story__body strong {
+      color: #fff;
+    }
 
     /* ============================================================
-       BOTTOM CTA STRIP
+       SECTION 6: FAQ & GUARANTEE ACCORDION
     ============================================================ */
-    .section-cta {
-      padding: 80px 0;
-      position: relative;
+    .section-faq {
+      padding: 90px 0;
     }
-    .section-cta::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--border-gold), transparent);
+    .faq-accordion {
+      max-width: 800px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
     }
-    .cta-box {
-      background: var(--surface-card);
-      border: 1px solid rgba(255, 230, 0, 0.15);
-      border-radius: var(--radius-lg);
-      padding: 64px 48px;
-      text-align: center;
-      position: relative;
+    .faq-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
       overflow: hidden;
+      transition: border-color 0.2s;
     }
-    .cta-box::after {
-      content: '';
-      position: absolute;
-      top: -60px; left: 50%;
-      transform: translateX(-50%);
-      width: 600px; height: 200px;
-      background: radial-gradient(ellipse at 50% 0%, rgba(255, 230, 0, 0.08) 0%, transparent 70%);
-      pointer-events: none;
+    .faq-item:hover {
+      border-color: rgba(255, 255, 255, 0.2);
     }
-    .cta-box__title {
-      font-size: clamp(28px, 4vw, 44px);
-      font-weight: 800;
-      letter-spacing: -0.03em;
+    .faq-question {
+      padding: 20px 24px;
+      font-family: var(--ff-heading);
+      font-size: 16px;
+      font-weight: 700;
       color: #fff;
-      margin-bottom: 14px;
-      position: relative;
-      z-index: 1;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      user-select: none;
     }
-    .cta-box__sub {
-      font-size: 17px;
+    .faq-toggle-icon {
+      font-size: 20px;
+      color: var(--emerald-glow);
+      transition: transform 0.25s ease;
+    }
+    .faq-item.open .faq-toggle-icon {
+      transform: rotate(45deg);
+    }
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s var(--ease-smooth), padding 0.35s ease;
+      font-size: 14.5px;
       color: var(--text-muted);
-      line-height: 1.6;
-      max-width: 520px;
-      margin: 0 auto 36px;
-      position: relative;
-      z-index: 1;
+      line-height: 1.65;
+      padding: 0 24px;
+    }
+    .faq-item.open .faq-answer {
+      max-height: 300px;
+      padding: 0 24px 22px;
     }
 
-    /* Inline form for bottom CTA */
-    .cta-form {
-      display: flex;
-      gap: 12px;
-      max-width: 520px;
-      margin: 0 auto;
+    /* ============================================================
+       FINAL SUMMIT CALL TO ACTION
+    ============================================================ */
+    .section-final-cta {
+      padding: 100px 0 120px;
+      text-align: center;
+      position: relative;
+    }
+    .final-cta-card {
+      background: linear-gradient(180deg, rgba(14, 28, 56, 0.95) 0%, rgba(6, 14, 28, 0.98) 100%);
+      border: 1.5px solid var(--border-emerald);
+      border-radius: var(--radius-xl);
+      padding: 64px 40px;
+      position: relative;
+      overflow: hidden;
+      box-shadow:
+        0 30px 100px rgba(0, 0, 0, 0.8),
+        0 0 50px rgba(0, 245, 155, 0.18);
+    }
+    .final-cta-card::after {
+      content: '';
+      position: absolute;
+      top: -50px; left: 50%;
+      transform: translateX(-50%);
+      width: 600px; height: 250px;
+      background: radial-gradient(ellipse, rgba(0, 245, 155, 0.25) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .final-cta-title {
+      font-family: var(--ff-heading);
+      font-size: clamp(28px, 4.5vw, 44px);
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      color: #fff;
+      margin-bottom: 16px;
       position: relative;
       z-index: 1;
     }
-    .cta-form .form-input {
-      flex: 1;
+    .final-cta-desc {
+      font-size: 17px;
+      color: var(--text-muted);
+      max-width: 600px;
+      margin: 0 auto 36px;
+      line-height: 1.6;
+      position: relative;
+      z-index: 1;
     }
-    .cta-form .btn-submit-sm {
-      padding: 14px 28px;
-      background: linear-gradient(180deg, #FFF75A 0%, #FFE600 50%, #F5CE00 100%);
-      border: 1px solid rgba(255, 255, 255, 0.4);
-      border-radius: var(--radius-sm);
-      font-family: var(--ff);
+    .final-cta-btn-wrap {
+      position: relative;
+      z-index: 1;
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+
+    /* ============================================================
+       STICKY BOTTOM FLOATING ACCESS BAR
+    ============================================================ */
+    .sticky-pass-bar {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%) translateY(120%);
+      background: rgba(8, 16, 32, 0.94);
+      border: 1px solid var(--border-emerald);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.8), 0 0 30px rgba(0, 245, 155, 0.25);
+      backdrop-filter: blur(20px);
+      padding: 12px 24px;
+      border-radius: var(--radius-pill);
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      z-index: 900;
+      transition: transform 0.4s var(--ease-smooth);
+    }
+    .sticky-pass-bar.visible {
+      transform: translateX(-50%) translateY(0);
+    }
+    .sticky-info {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .sticky-text-main {
+      font-family: var(--ff-heading);
       font-size: 13px;
       font-weight: 800;
-      letter-spacing: 0.05em;
+      color: #fff;
+    }
+    .sticky-text-sub {
+      font-size: 11px;
+      color: var(--emerald-glow);
+      font-weight: 700;
+    }
+    .btn-sticky-action {
+      font-family: var(--ff-heading);
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
-      color: #000;
+      padding: 9px 20px;
+      border-radius: var(--radius-pill);
+      background: var(--emerald-grad);
+      color: #03130c;
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      box-shadow: 0 0 16px rgba(0, 245, 155, 0.35);
       cursor: pointer;
       white-space: nowrap;
-      transition: transform 0.18s var(--ease), filter 0.18s ease;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.3), 0 0 14px rgba(255,230,0,0.2);
     }
-    .cta-form .btn-submit-sm:hover { transform: translateY(-1px); filter: brightness(1.05); }
 
     /* ============================================================
        FOOTER
     ============================================================ */
     .site-footer {
-      border-top: 1px solid var(--border);
-      padding: 40px 0;
+      border-top: 1px solid var(--border-subtle);
+      padding: 50px 0 40px;
       text-align: center;
+      background: #020408;
+      position: relative;
+      z-index: 1;
     }
-    .site-footer__top {
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.14em;
+    .footer-brand {
+      font-family: var(--ff-heading);
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--text-faint);
       margin-bottom: 16px;
     }
-    .site-footer__links {
+    .footer-links {
       display: flex;
       justify-content: center;
       gap: 24px;
-      margin-bottom: 16px;
+      margin-bottom: 20px;
       flex-wrap: wrap;
     }
-    .site-footer__links a {
+    .footer-links a {
       font-size: 13px;
       color: var(--text-faint);
       transition: color 0.2s;
     }
-    .site-footer__links a:hover { color: var(--text-muted); }
-    .site-footer__legal {
-      font-size: 11.5px;
+    .footer-links a:hover { color: var(--text-muted); }
+    .footer-disclaimer {
+      font-size: 11px;
       color: var(--text-faint);
-      line-height: 1.7;
-      max-width: 600px;
-      margin: 0 auto;
+      line-height: 1.6;
+      max-width: 650px;
+      margin: 0 auto 16px;
     }
-    .site-footer__copy {
+    .footer-copy {
       font-size: 12px;
       color: var(--text-faint);
-      margin-top: 12px;
     }
 
     /* ============================================================
-       RESPONSIVE
+       RESPONSIVE DESIGN
     ============================================================ */
-    @media (max-width: 880px) {
-      .hero__inner {
-        grid-template-columns: 1fr;
-        gap: 48px;
-      }
-      .reg-card { padding: 32px 24px; }
-      .distinction-grid { grid-template-columns: 1fr; }
-      .founder-inner { grid-template-columns: 1fr; }
-      .founder-img-wrap { max-width: 260px; }
-      .cta-form { flex-direction: column; }
-      .cta-box { padding: 48px 24px; }
+    @media (max-width: 960px) {
+      .hero-grid { grid-template-columns: 1fr; gap: 40px; }
+      .passes-grid { grid-template-columns: 1fr; }
+      .founder-stage { grid-template-columns: 1fr; padding: 36px 28px; }
+      .founder-photo-wrap { max-width: 260px; margin: 0 auto; }
+      .schedule-card { grid-template-columns: 1fr; gap: 12px; }
     }
-    @media (max-width: 560px) {
-      .hero { padding: 120px 0 60px; }
-      .hero__headline { font-size: 34px; }
-      .hero__headline .stop { font-size: 40px; }
-      .hero__sub { font-size: 16px; }
+    @media (max-width: 600px) {
+      .hero-summit { padding: 120px 0 50px; }
+      .summit-pill { font-size: 10px; padding: 6px 14px; }
+      .summit-countdown { flex-direction: column; gap: 8px; border-radius: var(--radius-md); }
+      .register-card { padding: 30px 20px; }
+      .pass-card { padding: 32px 24px; }
+      .sticky-pass-bar { width: 92%; justify-content: space-between; padding: 10px 18px; }
+      .sticky-text-sub { display: none; }
     }
   </style>
 </head>
 <body>
 
-  <!-- ── NAV ─────────────────────────────────────────────── -->
+  <!-- Ambient Light Effects -->
+  <div class="ambient-bg"></div>
+  <div class="ambient-grid"></div>
+
+  <!-- ── SITE NAV ─────────────────────────────────────────── -->
   <nav class="site-nav" id="site-nav">
     <div class="container">
       <div class="site-nav__inner">
         <a href="/" class="site-nav__brand">
-          <img src="/favicon-32x32.png" alt="Adams X Project" class="nav-logo">
-          Adams X Project
+          <img src="/favicon-32x32.png" alt="Adams X Project" class="nav-logo-icon">
+          <span>Adams X Project</span>
         </a>
-        <a href="/" class="nav-back">← Back to main site</a>
+
+        <div class="nav-actions">
+          <div class="nav-live-badge">
+            <span class="live-dot" style="width:7px;height:7px;"></span>
+            <span>2026 EDITION</span>
+          </div>
+          <a href="#claim-access" class="btn-nav-cta">GET BLUEPRINT</a>
+        </div>
       </div>
     </div>
   </nav>
 
-  <!-- ── HERO ────────────────────────────────────────────── -->
-  <section class="hero" id="hero">
+  <!-- ── HERO: SUMMIT & MONETISE STAGE ─────────────────────── -->
+  <header class="hero-summit" id="hero">
     <div class="container">
-      <div class="hero__inner">
 
-        <!-- LEFT: Copy -->
-        <div class="hero__copy">
-          <div class="hero__eyebrow">
-            <span>Free Resource</span>
-            · Comeback: Unrecognizable
+      <!-- Emerald Glowing Event Pill (Matching Reference) -->
+      <div class="summit-pill">
+        <span class="live-dot"></span>
+        <span class="summit-pill__text">
+          FREE BLUEPRINT &amp; SYSTEM: <span class="summit-pill__highlight">COMEBACK UNRECOGNIZABLE</span>
+        </span>
+      </div>
+
+      <!-- Main Headline -->
+      <h1 class="hero-summit__headline">
+        Here's Everything You Need To Know Before <span class="highlight-grad">Rebuilding Your Focus</span>, Discipline &amp; <span class="highlight-gold">Execution in 90 Days:</span>
+      </h1>
+
+      <!-- Subtitle -->
+      <p class="hero-summit__sub">
+        The practical blueprint to break the starting-over cycle, lock into uninterrupted deep work, and turn your potential into irreversible momentum.
+      </p>
+
+      <!-- Urgency Bar -->
+      <div class="summit-countdown">
+        <span class="summit-countdown__label">⏳ Immediate Download Window:</span>
+        <div class="countdown-timer" id="countdown-timer">
+          <span class="timer-unit" id="timer-min">14</span>m
+          <span>:</span>
+          <span class="timer-unit" id="timer-sec">59</span>s
+        </div>
+      </div>
+
+      <!-- Hero 2-Column Section: Framework Preview + Registration Box -->
+      <div class="hero-grid" id="claim-access">
+
+        <!-- LEFT: Blueprint Breakdown Preview -->
+        <div class="preview-card">
+          <div class="preview-tag">
+            <span>⚡ THE FOUNDATION BLUEPRINT</span>
           </div>
-
-          <h1 class="hero__headline">
-            <span class="stop">STOP STARTING OVER.</span>
-            The Comeback:<br>Unrecognizable Blueprint
-          </h1>
-
-          <p class="hero__sub">
-            A practical framework for rebuilding your <strong>focus, discipline, productivity, and execution</strong> — starting from where you actually are.
+          <h2 class="preview-title">What's Inside The Comeback Framework:</h2>
+          <p class="preview-desc">
+            Most productivity systems fail because they assume you are already consistent. This framework is engineered specifically for getting back on track when you've lost momentum.
           </p>
 
-          <p class="hero__tagline">
-            Get the Blueprint for free and understand the framework behind the 90-day Comeback system.
-          </p>
-
-          <ul class="hero__bullets">
-            <li>The exact problem that keeps you stuck in the starting-over loop</li>
-            <li>The three-phase Comeback framework — explained clearly</li>
-            <li>What 90 days of consistent execution actually looks like</li>
-            <li>Practical starting exercises to apply the framework now</li>
-            <li>The roadmap to Comeback: Unrecognizable</li>
+          <ul class="blueprint-features-list">
+            <li>
+              <span class="feature-icon-check">✓</span>
+              <span><strong>The Starting-Over Loop Breaker:</strong> Why willpower always runs out in week three and the exact protocol to fix it.</span>
+            </li>
+            <li>
+              <span class="feature-icon-check">✓</span>
+              <span><strong>The 3-Phase Comeback Roadmap:</strong> The structured 90-day progression from Reset to Focus Engine to Unrecognizable Scale.</span>
+            </li>
+            <li>
+              <span class="feature-icon-check">✓</span>
+              <span><strong>Dopamine &amp; Focus Baseline:</strong> Practical daily levers to eliminate mental fog without extreme burnout.</span>
+            </li>
+            <li>
+              <span class="feature-icon-check">✓</span>
+              <span><strong>Instant PDF Guidebook:</strong> Actionable 24-page PDF framework delivered instantly to your inbox.</span>
+            </li>
           </ul>
         </div>
 
-        <!-- RIGHT: Registration Card -->
-        <div>
-          <div class="reg-card" id="reg-card">
-            <p class="reg-card__label">Free Download</p>
-            <h2 class="reg-card__title">Get the Free Blueprint</h2>
-            <p class="reg-card__subtitle">Enter your details and we'll send it directly to your inbox.</p>
+        <!-- RIGHT: Instant Pass Registration & Upsell Card -->
+        <div class="register-card" id="reg-card">
+          <div class="reg-header">
+            <div class="reg-badge-row">
+              <span class="reg-label">Instant Pass Access</span>
+              <span class="reg-spots">Limited Edition</span>
+            </div>
+            <h3 class="reg-title" id="form-heading-title">Claim Your Access Pass</h3>
+            <p class="reg-subtitle" id="form-heading-sub">Enter your details below to receive the complete blueprint immediately.</p>
+          </div>
 
-            <form class="reg-form" id="blueprint-form" novalidate>
-              <div class="form-group">
-                <label class="form-label" for="bp-first-name">First Name</label>
-                <input
-                  class="form-input"
-                  type="text"
-                  id="bp-first-name"
-                  name="firstName"
-                  placeholder="Your first name"
-                  autocomplete="given-name"
-                  required
-                >
-              </div>
+          <!-- Pass Selection Toggle -->
+          <div class="pass-selector" role="radiogroup" aria-label="Select Access Level">
+            <label class="pass-option active-free" id="opt-free">
+              <input type="radio" name="passType" value="free" checked>
+              <span class="pass-opt-title">Free Blueprint</span>
+              <span class="pass-opt-price">$0 · Free Pass</span>
+            </label>
 
-              <div class="form-group">
-                <label class="form-label" for="bp-email">Email Address</label>
-                <input
-                  class="form-input"
-                  type="email"
-                  id="bp-email"
-                  name="email"
-                  placeholder="your@email.com"
-                  autocomplete="email"
-                  required
-                >
-              </div>
+            <label class="pass-option" id="opt-vip">
+              <span class="vip-tag-mini">Recommended</span>
+              <input type="radio" name="passType" value="vip">
+              <span class="pass-opt-title">VIP Fast-Track</span>
+              <span class="pass-opt-price">$17 · Full System</span>
+            </label>
+          </div>
 
-              <div id="form-status" class="form-status" role="alert" aria-live="polite"></div>
+          <!-- Registration Form -->
+          <form class="form-stack" id="blueprint-form" novalidate>
+            <div class="form-field">
+              <label for="bp-first-name">First Name</label>
+              <input
+                type="text"
+                class="form-control"
+                id="bp-first-name"
+                name="firstName"
+                placeholder="Your first name"
+                autocomplete="given-name"
+                required
+              >
+            </div>
 
-              <button class="btn-submit" type="submit" id="bp-submit">
-                <span class="btn-text">SEND ME THE BLUEPRINT</span>
-                <span class="btn-spinner" aria-hidden="true"></span>
-              </button>
-            </form>
+            <div class="form-field">
+              <label for="bp-email">Email Address</label>
+              <input
+                type="email"
+                class="form-control"
+                id="bp-email"
+                name="email"
+                placeholder="your@email.com"
+                autocomplete="email"
+                required
+              >
+            </div>
 
-            <div class="reg-card__guarantee">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-              Free. No credit card. Unsubscribe anytime.
+            <div id="form-status" class="form-status" role="alert" aria-live="polite"></div>
+
+            <button type="submit" class="btn-action-submit" id="bp-submit">
+              <span class="btn-label" id="btn-submit-label">GET FREE BLUEPRINT NOW →</span>
+              <span class="btn-spinner" aria-hidden="true"></span>
+            </button>
+          </form>
+
+          <div class="reg-trust">
+            <div class="reg-trust-item">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              <span>Instant Delivery</span>
+            </div>
+            <div class="reg-trust-item">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>No Spam Guarantee</span>
             </div>
           </div>
         </div>
 
       </div>
+
+    </div>
+  </header>
+
+  <!-- ── SECTION 2: MONETIZATION TIERS (PASS COMPARISON) ────── -->
+  <section class="section-pricing" id="passes">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-kicker">Choose Your Pathway</span>
+        <h2 class="section-title">The Map vs. The Complete Vehicle</h2>
+        <p class="section-subtitle">
+          Start with the free blueprint framework or get the complete daily operating system, tracker templates, and AI coaching.
+        </p>
+      </div>
+
+      <div class="passes-grid">
+
+        <!-- Free Blueprint Pass -->
+        <div class="pass-card pass-card--free">
+          <span class="pass-badge pass-badge--free">Starter Access</span>
+          <h3 class="pass-name">Free Blueprint Pass</h3>
+          <div class="pass-price-row">
+            <span class="pass-price">$0</span>
+            <span class="pass-price-period">/ instant free download</span>
+          </div>
+          <p class="pass-pitch">
+            The foundational conceptual framework. Understand why you've struggled with consistency and see the 90-day roadmap.
+          </p>
+
+          <div class="pass-features-header">What's included in free pass:</div>
+          <ul class="pass-features-list">
+            <li><span class="pass-check">✓</span> <span><strong>The 24-Page Blueprint PDF:</strong> Complete theoretical breakdown of the Comeback system.</span></li>
+            <li><span class="pass-check">✓</span> <span><strong>The 3-Phase Execution Roadmap:</strong> Step-by-step milestones to follow.</span></li>
+            <li><span class="pass-check">✓</span> <span><strong>The Starting-Over Diagnostic:</strong> Identify your unique friction loops.</span></li>
+            <li><span class="pass-check">✓</span> <span><strong>Daily Email Coaching:</strong> Bite-sized lessons delivered to your inbox.</span></li>
+          </ul>
+
+          <a href="#claim-access" class="btn-pass-select btn-pass-select--free" onclick="selectPassType('free')">
+            Claim Free Pass
+          </a>
+        </div>
+
+        <!-- VIP Executive Pass (Upsell) -->
+        <div class="pass-card pass-card--vip">
+          <span class="vip-ribbon">Most Popular</span>
+          <span class="pass-badge pass-badge--vip">Full Implementation System</span>
+          <h3 class="pass-name">VIP Executive Fast-Track</h3>
+          <div class="pass-price-row">
+            <span class="pass-price">$17</span>
+            <span class="pass-price-strike">$97</span>
+            <span class="pass-price-period">/ one-time launch offer</span>
+          </div>
+          <p class="pass-pitch">
+            The actionable daily operating system. Get the exact tracker templates, monk mode protocols, private community, and AI copilot.
+          </p>
+
+          <div class="pass-features-header">Everything in Free PLUS:</div>
+          <ul class="pass-features-list">
+            <li><span class="pass-check pass-check-gold">✓</span> <span><strong>90-Day Monk Mode Daily Scoreboard:</strong> Notion &amp; Spreadsheet execution tracking.</span></li>
+            <li><span class="pass-check pass-check-gold">✓</span> <span><strong>Focus Firewall Deep Work Protocols:</strong> Distraction-blocking framework and timers.</span></li>
+            <li><span class="pass-check pass-check-gold">✓</span> <span><strong>Ask Adams AI Assistant:</strong> 24/7 personalized coaching trained on the system.</span></li>
+            <li><span class="pass-check pass-check-gold">✓</span> <span><strong>Private Builders Community:</strong> Peer accountability and direct support.</span></li>
+            <li><span class="pass-check pass-check-gold">✓</span> <span><strong>30-Day Money-Back Guarantee:</strong> 100% risk-free.</span></li>
+          </ul>
+
+          <a href="#claim-access" class="btn-pass-select btn-pass-select--vip" onclick="selectPassType('vip')">
+            Upgrade To VIP Fast-Track ($17) →
+          </a>
+        </div>
+
+      </div>
     </div>
   </section>
 
-  <!-- ── WHAT IS THE BLUEPRINT ────────────────────────────── -->
-  <section class="section-framework" id="blueprint-detail">
+  <!-- ── SECTION 3: SUMMIT ROADMAP / SCHEDULE ───────────────── -->
+  <section class="section-schedule" id="curriculum">
     <div class="container">
-      <p class="section-label">About the Blueprint</p>
-      <h2 class="section-title">The map. Not the vehicle.</h2>
-      <p class="section-sub">
-        The Blueprint explains the framework. The paid system gives you the daily structure to actually run it.
-      </p>
-
-      <div class="distinction-grid">
-        <!-- Free Blueprint -->
-        <div class="distinction-card distinction-card--free">
-          <span class="distinction-card__tag tag--free">Free Blueprint</span>
-          <h3 class="distinction-card__name">THE MAP</h3>
-          <p class="distinction-card__desc">Explains the problem, the framework, and the roadmap. What needs to change and why.</p>
-          <ul class="distinction-card__list">
-            <li><span class="check">→</span> The starting-over loop explained</li>
-            <li><span class="check">→</span> The Comeback framework overview</li>
-            <li><span class="check">→</span> The three phases and their purpose</li>
-            <li><span class="check">→</span> The major principles behind the system</li>
-            <li><span class="check">→</span> Practical starting exercises</li>
-            <li><span class="check">→</span> The roadmap to 90-day execution</li>
-          </ul>
-        </div>
-
-        <!-- Paid Product -->
-        <div class="distinction-card distinction-card--paid">
-          <span class="distinction-card__tag tag--paid">Comeback: Unrecognizable — $17</span>
-          <h3 class="distinction-card__name">THE IMPLEMENTATION SYSTEM</h3>
-          <p class="distinction-card__desc">The complete daily system for running the framework. Tools, structure, and accountability.</p>
-          <ul class="distinction-card__list">
-            <li><span class="check check-blue">→</span> 90-day structure with phase checkpoints</li>
-            <li><span class="check check-blue">→</span> Daily Scoreboard — execution tracking</li>
-            <li><span class="check check-blue">→</span> Focus Firewall — deep work protocol</li>
-            <li><span class="check check-blue">→</span> Challenge protocols for discipline</li>
-            <li><span class="check check-blue">→</span> Community access + accountability</li>
-            <li><span class="check check-blue">→</span> Ask Adams AI — system-aware support</li>
-          </ul>
-        </div>
+      <div class="section-header">
+        <span class="section-kicker">Curriculum Breakdown</span>
+        <h2 class="section-title">The 90-Day Execution Schedule</h2>
+        <p class="section-subtitle">
+          How the Comeback system is structured from day 1 to day 90 to ensure sustainable execution without relapse.
+        </p>
       </div>
 
-      <div class="positioning-line">
-        <strong>"The Blueprint shows you what to change.<br>Comeback gives you the system to actually do it."</strong>
-        <em>Start with the Blueprint. See the full picture. Then decide.</em>
+      <div class="schedule-stack">
+
+        <!-- Phase 1 -->
+        <div class="schedule-card">
+          <div>
+            <p class="schedule-phase-tag">Phase 1</p>
+            <p class="schedule-phase-timeline">Days 1 – 30</p>
+          </div>
+          <div>
+            <h3 class="schedule-main-title">The Foundation &amp; Baseline Reset</h3>
+            <p class="schedule-main-desc">
+              Eliminate dopamine drains, lock in your non-negotiable daily anchor habits, and stop starting over by establishing an unbreakable baseline.
+            </p>
+          </div>
+        </div>
+
+        <!-- Phase 2 -->
+        <div class="schedule-card">
+          <div>
+            <p class="schedule-phase-tag">Phase 2</p>
+            <p class="schedule-phase-timeline">Days 31 – 60</p>
+          </div>
+          <div>
+            <h3 class="schedule-main-title">The Focus Engine &amp; Deep Work System</h3>
+            <p class="schedule-main-desc">
+              Activate the Focus Firewall protocol. Implement 90-minute uninterrupted work sprints and track daily execution scores.
+            </p>
+          </div>
+        </div>
+
+        <!-- Phase 3 -->
+        <div class="schedule-card">
+          <div>
+            <p class="schedule-phase-tag">Phase 3</p>
+            <p class="schedule-phase-timeline">Days 61 – 90</p>
+          </div>
+          <div>
+            <h3 class="schedule-main-title">The Unrecognizable Scale</h3>
+            <p class="schedule-main-desc">
+              Transition discipline into automatic identity. Accelerate output, monetize your new skills, and solidify compounding daily momentum.
+            </p>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
 
-  <!-- ── FOUNDER ───────────────────────────────────────────── -->
-  <section class="section-founder" id="about">
+  <!-- ── SECTION 4: VIP TOOLKIT & BONUSES ───────────────────── -->
+  <section class="section-bonuses" id="bonuses">
     <div class="container">
-      <div class="founder-inner">
+      <div class="section-header">
+        <span class="section-kicker">Monetization &amp; VIP Arsenal</span>
+        <h2 class="section-title">The Complete Implementation Toolkit</h2>
+        <p class="section-subtitle">
+          Every resource is built to eliminate friction and ensure you hit all 90 days with measurable results.
+        </p>
+      </div>
 
-        <!-- Image -->
-        <div class="founder-img-wrap">
+      <div class="bonuses-grid">
+        <!-- Bonus 1 -->
+        <div class="bonus-box">
+          <span class="bonus-val-pill">Value $47 · Included in VIP</span>
+          <h3 class="bonus-title">The 90-Day Daily Scoreboard</h3>
+          <p class="bonus-desc">
+            A battle-tested Notion and Google Sheets tracker that gamifies your discipline and keeps your score visible every morning.
+          </p>
+        </div>
+
+        <!-- Bonus 2 -->
+        <div class="bonus-box">
+          <span class="bonus-val-pill">Value $37 · Included in VIP</span>
+          <h3 class="bonus-title">Focus Firewall Protocol</h3>
+          <p class="bonus-desc">
+            The exact environment architecture and digital lockdown guide to block distractions and trigger instant flow state.
+          </p>
+        </div>
+
+        <!-- Bonus 3 -->
+        <div class="bonus-box">
+          <span class="bonus-val-pill">Value $97 · Included in VIP</span>
+          <h3 class="bonus-title">Ask Adams AI Copilot</h3>
+          <p class="bonus-desc">
+            24/7 custom-trained AI assistant that troubleshoots your productivity bottlenecks and gives real-time habit adjustments.
+          </p>
+        </div>
+
+        <!-- Bonus 4 -->
+        <div class="bonus-box">
+          <span class="bonus-val-pill">Value $67 · Included in VIP</span>
+          <h3 class="bonus-title">Private Builders Community</h3>
+          <p class="bonus-desc">
+            Connect with high-performing developers, creators, and entrepreneurs running the same 90-day protocol.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SECTION 5: FOUNDER SPOTLIGHT ───────────────────────── -->
+  <section class="section-founder" id="founder">
+    <div class="container">
+      <div class="founder-stage">
+
+        <!-- Photo -->
+        <div class="founder-photo-wrap">
           <img
             src="/adams-x.jpg"
             alt="Adams — Founder of Adams X Project"
-            class="founder-img"
+            class="founder-photo"
             loading="lazy"
           >
-          <div class="founder-badge">
-            <div class="founder-badge__name">Adams</div>
-            <div class="founder-badge__role">Founder — Adams X Project</div>
+          <div class="founder-badge-float">
+            <div class="founder-name-text">Adams</div>
+            <div class="founder-role-text">Founder, Adams X Project</div>
           </div>
         </div>
 
-        <!-- Content -->
-        <div class="founder-content">
-          <p class="founder-content__eyebrow">Why I built this</p>
-          <h2 class="founder-content__title">The problem with most productivity advice is that it assumes you're already consistent.</h2>
-          <div class="founder-content__body">
+        <!-- Bio Story -->
+        <div class="founder-story">
+          <p class="founder-story__eyebrow">The Philosophy</p>
+          <h2 class="founder-story__title">Most productivity advice assumes you are already disciplined.</h2>
+          <div class="founder-story__body">
             <p>
-              Most systems are designed for people who are already showing up. What they give you is optimization — a better morning routine, a tighter schedule, a new app to track your habits. None of that is useful if you keep starting over every three weeks.
+              When you search for productivity tips, you get optimization: fancy morning routines, complex calendar tricks, or expensive apps. But none of that helps if you keep burning out and resetting every three weeks.
             </p>
             <p>
-              The Comeback framework was built for the person who keeps stopping. Who has the goals, the ideas, the drive on a good day — but can't make the execution stick past the initial wave of motivation.
+              I engineered the <strong>Comeback: Unrecognizable</strong> framework for the person who has the ambition and vision, but needs a foolproof system to turn bursts of motivation into permanent, automatic execution.
             </p>
             <p>
-              <strong>The Blueprint is where I start explaining this.</strong> It's free because the first step is understanding the problem clearly. Once you see it, the rest makes sense.
+              Start with the free blueprint today. See the mechanics for yourself, and when you're ready, upgrade to run the full 90-day system.
             </p>
             <p>
-              — Adams
+              — <strong>Adams</strong>
             </p>
           </div>
         </div>
@@ -979,159 +1755,234 @@
     </div>
   </section>
 
-  <!-- ── BOTTOM CTA ─────────────────────────────────────────── -->
-  <section class="section-cta" id="get-blueprint">
-    <div class="container--sm">
-      <div class="cta-box">
-        <h2 class="cta-box__title">Get the Blueprint. Start today.</h2>
-        <p class="cta-box__sub">
-          Free. No credit card. Delivered immediately to your inbox.
+  <!-- ── SECTION 6: FAQ ACCORDION ───────────────────────────── -->
+  <section class="section-faq" id="faq">
+    <div class="container-md">
+      <div class="section-header">
+        <span class="section-kicker">Got Questions?</span>
+        <h2 class="section-title">Frequently Asked Questions</h2>
+      </div>
+
+      <div class="faq-accordion">
+        <div class="faq-item open">
+          <div class="faq-question">
+            <span>What is the difference between the Free Blueprint and VIP?</span>
+            <span class="faq-toggle-icon">+</span>
+          </div>
+          <div class="faq-answer">
+            The Free Blueprint is the comprehensive theoretical guidebook that breaks down why you get stuck and outlines the 3-phase framework. The VIP Fast-Track ($17) provides the actual operational tools: Notion &amp; Sheets scoreboards, Focus Firewall audio/protocols, private community access, and 24/7 AI coaching.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>How is the Blueprint delivered?</span>
+            <span class="faq-toggle-icon">+</span>
+          </div>
+          <div class="faq-answer">
+            Immediately upon submitting your details in the form above, you will be redirected to the access portal and a direct download link will be emailed to your inbox.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>Is there a guarantee on the VIP Fast-Track?</span>
+            <span class="faq-toggle-icon">+</span>
+          </div>
+          <div class="faq-answer">
+            Yes, 100%. You have a full 30-day money-back guarantee. If you don't feel the scoreboard and protocols transformed your daily consistency, simply email us for an immediate refund.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SECTION 7: FINAL CALL TO ACTION ───────────────────── -->
+  <section class="section-final-cta" id="get-started">
+    <div class="container-sm">
+      <div class="final-cta-card">
+        <h2 class="final-cta-title">Stop Starting Over.<br>Become Unrecognizable.</h2>
+        <p class="final-cta-desc">
+          Join hundreds of creators and builders who have locked in their focus and built permanent execution momentum.
         </p>
-        <form class="cta-form" id="blueprint-form-bottom" novalidate>
-          <input
-            class="form-input"
-            type="email"
-            id="bp-email-bottom"
-            name="email"
-            placeholder="your@email.com"
-            autocomplete="email"
-            required
-          >
-          <button class="btn-submit-sm" type="submit" id="bp-submit-bottom">
-            GET IT FREE →
-          </button>
-        </form>
-        <p id="form-status-bottom" style="font-size:13px;color:#86efac;text-align:center;margin-top:12px;display:none;"></p>
+        <div class="final-cta-btn-wrap">
+          <a href="#claim-access" class="btn-action-submit" style="display:inline-block;padding:18px 40px;text-align:center;width:auto;">
+            CLAIM YOUR ACCESS PASS NOW →
+          </a>
+          <span style="font-size:12px;color:var(--text-faint);">Instant digital delivery · Secure access</span>
+        </div>
       </div>
     </div>
   </section>
+
+  <!-- ── STICKY BOTTOM PASS BAR ─────────────────────────────── -->
+  <div class="sticky-pass-bar" id="sticky-bar">
+    <div class="sticky-info">
+      <span class="live-dot"></span>
+      <div>
+        <div class="sticky-text-main">Comeback Blueprint &amp; System</div>
+        <div class="sticky-text-sub">Free PDF + VIP Fast-Track Pass</div>
+      </div>
+    </div>
+    <a href="#claim-access" class="btn-sticky-action">Claim Pass →</a>
+  </div>
 
   <!-- ── FOOTER ─────────────────────────────────────────────── -->
-  <footer class="site-footer" id="footer">
+  <footer class="site-footer">
     <div class="container">
-      <p class="site-footer__top">Adams X Project</p>
-      <nav class="site-footer__links" aria-label="Footer navigation">
+      <div class="footer-brand">Adams X Project</div>
+      <nav class="footer-links" aria-label="Footer links">
         <a href="/">Home</a>
         <a href="/privacy">Privacy Policy</a>
         <a href="/terms">Terms &amp; Conditions</a>
         <a href="/unsubscribe">Unsubscribe</a>
       </nav>
-      <p class="site-footer__legal">
-        This site is not a part of the Facebook website or Facebook Inc. Additionally, this site is NOT endorsed by Facebook in any way. FACEBOOK is a trademark of FACEBOOK, Inc.
+      <p class="footer-disclaimer">
+        Disclaimer: Results vary depending on your individual work ethic, consistency, and application of the framework. This site is not affiliated with Facebook, Instagram, or Meta Platforms, Inc.
       </p>
-      <p class="site-footer__copy">
-        &copy; 2026 Adams X Project &middot; All rights reserved. &middot; Built for creators, developers, and builders ready to execute.
+      <p class="footer-copy">
+        &copy; 2026 Adams X Project. All rights reserved.
       </p>
     </div>
   </footer>
 
+  <!-- ── INTERACTIVE SCRIPTS ────────────────────────────────── -->
   <script>
-    // ── Registration form handler ────────────────────────────
-    async function submitBlueprint(firstName, email, statusEl, submitBtn) {
+    // ── 1. Pass Selection Logic ──────────────────────────────
+    const optFree = document.getElementById('opt-free');
+    const optVip  = document.getElementById('opt-vip');
+    const formHeadingTitle = document.getElementById('form-heading-title');
+    const formHeadingSub   = document.getElementById('form-heading-sub');
+    const btnSubmitLabel   = document.getElementById('btn-submit-label');
+    const submitBtn        = document.getElementById('bp-submit');
+
+    let currentPassType = 'free';
+
+    function selectPassType(type) {
+      currentPassType = type;
+      if (type === 'free') {
+        optFree.classList.add('active-free');
+        optVip.classList.remove('active-vip');
+        document.querySelector('input[name="passType"][value="free"]').checked = true;
+        formHeadingTitle.textContent = 'Claim Your Free Blueprint';
+        formHeadingSub.textContent = "Enter your details below to receive the free blueprint immediately.";
+        btnSubmitLabel.textContent = 'GET FREE BLUEPRINT NOW →';
+        submitBtn.classList.remove('gold-mode');
+      } else {
+        optVip.classList.add('active-vip');
+        optFree.classList.remove('active-free');
+        document.querySelector('input[name="passType"][value="vip"]').checked = true;
+        formHeadingTitle.textContent = 'Claim VIP Fast-Track Pass';
+        formHeadingSub.textContent = "Get the complete 90-day system, scoreboards, and AI coaching ($17 launch offer).";
+        btnSubmitLabel.textContent = 'UNLOCK VIP FAST-TRACK ($17) →';
+        submitBtn.classList.add('gold-mode');
+      }
+    }
+
+    optFree.addEventListener('click', () => selectPassType('free'));
+    optVip.addEventListener('click',  () => selectPassType('vip'));
+
+    // ── 2. Countdown Timer Simulator ─────────────────────────
+    let timeLeft = 14 * 60 + 59;
+    const minEl = document.getElementById('timer-min');
+    const secEl = document.getElementById('timer-sec');
+
+    setInterval(() => {
+      if (timeLeft > 0) {
+        timeLeft--;
+        const mins = Math.floor(timeLeft / 60);
+        const secs = timeLeft % 60;
+        if (minEl) minEl.textContent = String(mins).padStart(2, '0');
+        if (secEl) secEl.textContent = String(secs).padStart(2, '0');
+      }
+    }, 1000);
+
+    // ── 3. Sticky Bottom Bar Visibility on Scroll ───────────
+    const stickyBar = document.getElementById('sticky-bar');
+    const heroSection = document.getElementById('hero');
+
+    window.addEventListener('scroll', () => {
+      if (!heroSection || !stickyBar) return;
+      const heroBottom = heroSection.offsetTop + heroSection.offsetHeight;
+      if (window.scrollY > heroBottom - 200) {
+        stickyBar.classList.add('visible');
+      } else {
+        stickyBar.classList.remove('visible');
+      }
+    });
+
+    // ── 4. FAQ Accordion ─────────────────────────────────────
+    document.querySelectorAll('.faq-question').forEach(q => {
+      q.addEventListener('click', () => {
+        const item = q.parentElement;
+        const isOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+        if (!isOpen) item.classList.add('open');
+      });
+    });
+
+    // ── 5. Form Submission Handler ───────────────────────────
+    const blueprintForm = document.getElementById('blueprint-form');
+    const formStatus    = document.getElementById('form-status');
+
+    blueprintForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const firstName = document.getElementById('bp-first-name').value.trim();
+      const email     = document.getElementById('bp-email').value.trim();
+
+      if (!firstName) {
+        formStatus.textContent = 'Please enter your first name.';
+        formStatus.className = 'form-status error';
+        document.getElementById('bp-first-name').focus();
+        return;
+      }
+      if (!email || !email.includes('@')) {
+        formStatus.textContent = 'Please enter a valid email address.';
+        formStatus.className = 'form-status error';
+        document.getElementById('bp-email').focus();
+        return;
+      }
+
       submitBtn.disabled = true;
       submitBtn.classList.add('loading');
-      if (statusEl) { statusEl.className = 'form-status'; statusEl.style.display = ''; statusEl.textContent = ''; }
+      formStatus.className = 'form-status';
+      formStatus.textContent = '';
 
       try {
         const res = await fetch('/api/blueprint-register', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ firstName: firstName || 'Friend', email })
+          body: JSON.stringify({
+            firstName: firstName || 'Friend',
+            email: email,
+            tier: currentPassType
+          })
         });
+
         const data = await res.json();
 
         if (res.ok && data.success) {
-          // Redirect to thank-you page
-          window.location.href = '/thank-you';
-        } else {
-          console.error('[blueprint-register failed]', data);
-          const msg = data.error || 'Something went wrong. Please try again.';
-          if (statusEl) {
-            statusEl.textContent = msg;
-            statusEl.className = 'form-status error';
+          if (currentPassType === 'vip') {
+            // Redirect to VIP checkout or thank you page
+            window.location.href = '/thank-you?pass=vip';
+          } else {
+            // Free pass redirect
+            window.location.href = '/thank-you?pass=free';
           }
+        } else {
+          console.error('[blueprint-register error]', data);
+          formStatus.textContent = data.error || 'Registration failed. Please try again.';
+          formStatus.className = 'form-status error';
           submitBtn.disabled = false;
           submitBtn.classList.remove('loading');
         }
       } catch (err) {
-        const msg = 'Network error. Please check your connection and try again.';
-        if (statusEl) {
-          statusEl.textContent = msg;
-          statusEl.className = 'form-status error';
-        }
+        console.error('[blueprint-register network error]', err);
+        formStatus.textContent = 'Network error. Please check your connection and try again.';
+        formStatus.className = 'form-status error';
         submitBtn.disabled = false;
         submitBtn.classList.remove('loading');
-      }
-    }
-
-    // ── Main hero form ───────────────────────────────────────
-    const heroForm   = document.getElementById('blueprint-form');
-    const heroStatus = document.getElementById('form-status');
-    const heroSubmit = document.getElementById('bp-submit');
-
-    heroForm.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const firstName = document.getElementById('bp-first-name').value.trim();
-      const email     = document.getElementById('bp-email').value.trim();
-
-      if (!firstName) {
-        heroStatus.textContent = 'Please enter your first name.';
-        heroStatus.className = 'form-status error';
-        document.getElementById('bp-first-name').focus();
-        return;
-      }
-      if (!email || !email.includes('@')) {
-        heroStatus.textContent = 'Please enter a valid email address.';
-        heroStatus.className = 'form-status error';
-        document.getElementById('bp-email').focus();
-        return;
-      }
-
-      await submitBlueprint(firstName, email, heroStatus, heroSubmit);
-    });
-
-    // ── Bottom CTA form ──────────────────────────────────────
-    const bottomForm   = document.getElementById('blueprint-form-bottom');
-    const bottomStatus = document.getElementById('form-status-bottom');
-    const bottomSubmit = document.getElementById('bp-submit-bottom');
-
-    bottomForm.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const email = document.getElementById('bp-email-bottom').value.trim();
-
-      if (!email || !email.includes('@')) {
-        bottomStatus.textContent = 'Please enter a valid email address.';
-        bottomStatus.style.display = 'block';
-        bottomStatus.style.color = '#fca5a5';
-        return;
-      }
-
-      bottomSubmit.disabled = true;
-      bottomSubmit.textContent = '...';
-
-      try {
-        const res  = await fetch('/api/blueprint-register', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ firstName: 'Friend', email })
-        });
-        const data = await res.json();
-
-        if (res.ok && data.success) {
-          window.location.href = '/thank-you';
-        } else {
-          bottomStatus.textContent = data.error || 'Something went wrong. Try again.';
-          bottomStatus.style.color = '#fca5a5';
-          bottomStatus.style.display = 'block';
-          bottomSubmit.disabled = false;
-          bottomSubmit.textContent = 'GET IT FREE →';
-        }
-      } catch {
-        bottomStatus.textContent = 'Network error. Please try again.';
-        bottomStatus.style.color = '#fca5a5';
-        bottomStatus.style.display = 'block';
-        bottomSubmit.disabled = false;
-        bottomSubmit.textContent = 'GET IT FREE →';
       }
     });
   </script>
