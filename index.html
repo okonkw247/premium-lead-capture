@@ -1094,11 +1094,18 @@
       display: none !important;
     }
 
-    /* Gold Card Variant for Dedicated Support */
+    /* Gold Card Variant for Bonus 3 & 4 — Monetise warm dark gold style */
     .monetise-offer-card.gold-theme {
-      background: #080A11;
-      border: 1px solid rgba(255, 230, 0, 0.22);
-      box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.85);
+      background: linear-gradient(160deg, #12090100 0%, #0c0800 60%, #0f0a01 100%);
+      background-color: #0c0800;
+      border: 1.5px solid rgba(190, 130, 0, 0.75);
+      box-shadow:
+        0 0 0 1px rgba(0,0,0,0.6),
+        0 0 45px rgba(180, 120, 0, 0.22),
+        0 20px 50px -10px rgba(0, 0, 0, 0.9);
+    }
+    .monetise-offer-card.gold-theme:hover {
+      border-color: rgba(220, 160, 0, 0.9);
     }
     .monetise-offer-card.gold-theme::before {
       display: none !important;
@@ -1213,11 +1220,12 @@
       margin-top: 20px;
     }
 
-    /* Visual Mockup Frames (Monetise Deep Dark Well with Centered Radial Spotlight) */
+    /* Visual Mockup Frames — Monetise: dark well + real border + rotating spotlight mask */
     .offer-visual-frame {
-      background: #030408;
-      background-image: radial-gradient(circle at 50% 50%, rgba(0, 102, 255, 0.18) 0%, rgba(2, 4, 10, 0.95) 75%);
-      border: 1px solid rgba(255, 255, 255, 0.07);
+      background: #020307;
+      background-image: radial-gradient(circle at 50% 45%, rgba(0, 80, 220, 0.16) 0%, rgba(1, 2, 8, 0.98) 70%);
+      /* Solid always-visible base border */
+      border: 1.5px solid rgba(255, 255, 255, 0.11);
       border-radius: 24px;
       padding: 36px 24px;
       height: 100%;
@@ -1228,18 +1236,54 @@
       justify-content: center;
       position: relative;
       overflow: hidden;
-      box-shadow: inset 0 2px 14px rgba(0, 0, 0, 0.85);
+      box-shadow: inset 0 2px 18px rgba(0, 0, 0, 0.9), 0 8px 32px rgba(0,0,0,0.6);
     }
+    /* Monetise rotating border spotlight — conic gradient masked to border-only ring */
     .offer-visual-frame::before {
-      display: none !important; /* Remove rotating conic beam streak */
+      content: '';
+      position: absolute;
+      inset: -1.5px;
+      border-radius: inherit;
+      padding: 1.5px;
+      background: conic-gradient(
+        from var(--beam-angle, 0deg) at 50% 50%,
+        transparent 0deg,
+        transparent 290deg,
+        rgba(0, 120, 255, 0.12) 315deg,
+        rgba(0, 195, 255, 0.65) 348deg,
+        rgba(255, 255, 255, 0.85) 356deg,
+        rgba(0, 195, 255, 0.65) 360deg
+      );
+      -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+      z-index: 3;
+      animation: beamRotate 7s linear infinite;
     }
+
+    /* Gold variant — warm dark amber bg + gold border + gold beam */
     .offer-visual-frame.gold-bg {
-      background: #030408;
-      background-image: radial-gradient(circle at 50% 50%, rgba(255, 230, 0, 0.12) 0%, rgba(10, 8, 2, 0.95) 75%);
-      border-color: rgba(255, 230, 0, 0.18);
+      background: #050300;
+      background-image: radial-gradient(circle at 50% 45%, rgba(190, 120, 0, 0.22) 0%, rgba(5, 3, 0, 0.98) 70%);
+      border: 1.5px solid rgba(190, 130, 0, 0.7);
+      box-shadow:
+        inset 0 2px 18px rgba(0, 0, 0, 0.95),
+        0 0 40px rgba(160, 100, 0, 0.18),
+        0 8px 32px rgba(0,0,0,0.7);
     }
     .offer-visual-frame.gold-bg::before {
-      display: none !important;
+      background: conic-gradient(
+        from var(--beam-angle, 0deg) at 50% 50%,
+        transparent 0deg,
+        transparent 290deg,
+        rgba(160, 100, 0, 0.18) 315deg,
+        rgba(210, 155, 0, 0.72) 348deg,
+        rgba(255, 220, 0, 0.92) 356deg,
+        rgba(210, 155, 0, 0.72) 360deg
+      );
     }
 
     /* Mockup 1: Glowing Graph & Floating Squircle */
@@ -3787,8 +3831,8 @@
         </div>
 
         <!-- BONUS 3: Ask Adams AI (24/7 Access) -->
-        <div class="monetise-offer-card">
-          <div class="offer-visual-frame">
+        <div class="monetise-offer-card gold-theme">
+          <div class="offer-visual-frame gold-bg">
             <div class="mockup-radar-wrap">
               <div class="radar-ring radar-ring-3"></div>
               <div class="radar-ring radar-ring-2"></div>
@@ -3802,7 +3846,7 @@
           <div class="offer-content-col">
             <span class="offer-pill-badge gold">BONUS 3</span>
             <h3 class="offer-item-title">Ask Adams AI (24/7 Access)</h3>
-            <div class="offer-value-tag">Value: $37</div>
+            <div class="offer-value-tag gold">Value: $37</div>
             <p class="offer-desc">
               My entire discipline journey, every video, every routine protocol, and hundreds of hours of high-performance coaching fed into an AI you can message like a friend.
             </p>
