@@ -153,21 +153,23 @@
 
     /* Glowing Emerald Chevron Mark */
     .summit-brand-icon {
-      width: 32px;
-      height: 32px;
+      width: 40px;
+      height: 40px;
       display: flex;
       align-items: center;
       justify-content: center;
-      filter: drop-shadow(0 0 14px rgba(0, 245, 155, 0.8));
     }
-    .summit-brand-icon svg {
-      width: 100%;
-      height: 100%;
-      fill: none;
-      stroke: var(--emerald-glow);
-      stroke-width: 2.8;
-      stroke-linecap: round;
-      stroke-linejoin: round;
+    .summit-real-logo {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      object-fit: cover;
+      object-position: top center;
+      border: 1.5px solid rgba(0, 245, 155, 0.55);
+      box-shadow:
+        0 0 0 3px rgba(0, 245, 155, 0.12),
+        0 0 18px rgba(0, 245, 155, 0.55),
+        0 4px 12px rgba(0, 0, 0, 0.6);
     }
 
     /* High-tech Stacked Typography */
@@ -419,40 +421,79 @@
       margin-top: 1px;
     }
 
-    /* Fast Action Card with Conic Beam */
+    /* Fast Action Card with Side-Running Beam */
     .register-card {
       background: linear-gradient(180deg, rgba(8, 24, 16, 0.96) 0%, rgba(4, 14, 9, 0.98) 100%);
       border: 1px solid rgba(0, 230, 118, 0.4);
       border-radius: var(--radius-xl);
       padding: 38px 32px;
       position: relative;
+      overflow: hidden;
       box-shadow:
         0 24px 80px rgba(0, 0, 0, 0.8),
         0 0 45px rgba(0, 230, 118, 0.18);
       backdrop-filter: blur(24px);
     }
-    @property --beam-angle {
-      syntax: '<angle>';
-      inherits: false;
-      initial-value: 0deg;
+
+    /* Left side beam — glowing line that sweeps up and down */
+    @keyframes beamSlideLeft {
+      0%   { top: -80px; opacity: 0; }
+      10%  { opacity: 1; }
+      90%  { opacity: 1; }
+      100% { top: calc(100% + 80px); opacity: 0; }
     }
-    @keyframes beamRotate {
-      to { --beam-angle: 360deg; }
+    @keyframes beamSlideRight {
+      0%   { bottom: -80px; opacity: 0; }
+      10%  { opacity: 1; }
+      90%  { opacity: 1; }
+      100% { bottom: calc(100% + 80px); opacity: 0; }
     }
+
+    /* Left beam strip */
     .register-card::before {
       content: '';
       position: absolute;
-      inset: -1.5px;
-      border-radius: calc(var(--radius-xl) + 1.5px);
-      background: conic-gradient(
-        from var(--beam-angle, 0deg),
-        transparent 0deg,
-        rgba(0, 230, 118, 0.9) 60deg,
-        rgba(255, 230, 0, 0.85) 120deg,
-        transparent 180deg
+      left: -1px;
+      top: -80px;
+      width: 2.5px;
+      height: 80px;
+      background: linear-gradient(
+        180deg,
+        transparent 0%,
+        rgba(0, 245, 155, 0.0) 5%,
+        rgba(0, 245, 155, 1) 30%,
+        rgba(255, 230, 0, 1) 60%,
+        rgba(0, 245, 155, 0.0) 95%,
+        transparent 100%
       );
-      animation: beamRotate 4s linear infinite;
-      z-index: -1;
+      border-radius: 2px;
+      animation: beamSlideLeft 3.2s ease-in-out infinite;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    /* Right beam strip */
+    .register-card::after {
+      content: '';
+      position: absolute;
+      right: -1px;
+      bottom: -80px;
+      width: 2.5px;
+      height: 80px;
+      background: linear-gradient(
+        0deg,
+        transparent 0%,
+        rgba(0, 245, 155, 0.0) 5%,
+        rgba(0, 245, 155, 1) 30%,
+        rgba(255, 230, 0, 1) 60%,
+        rgba(0, 245, 155, 0.0) 95%,
+        transparent 100%
+      );
+      border-radius: 2px;
+      animation: beamSlideRight 3.2s ease-in-out infinite;
+      animation-delay: -1.6s;
+      z-index: 2;
+      pointer-events: none;
     }
 
     .reg-header {
@@ -1358,13 +1399,10 @@
   <header class="summit-top-header">
     <div class="container">
       
-      <!-- Iconic Stacked Summit Brand Logo -->
+      <!-- Real Brand Logo -->
       <a href="/" class="summit-brand-lockup" aria-label="Adams X Project Home">
         <div class="summit-brand-icon">
-          <svg viewBox="0 0 24 24">
-            <path d="M12 3L2 21h20L12 3z"/>
-            <path d="M12 9l5 10H7l5-10z" opacity="0.6"/>
-          </svg>
+          <img src="/adams-x.jpg" alt="Adams X Project" class="summit-real-logo">
         </div>
         <div class="summit-brand-text">
           <span class="summit-brand-line-1">ADAMS X</span>
@@ -1373,12 +1411,12 @@
         </div>
       </a>
 
-      <!-- Glowing Emerald Event Pill (Exact Reference) -->
+      <!-- Free Blueprint Event Pill -->
       <div>
         <div class="summit-live-pill">
           <span class="live-dot"></span>
           <span class="summit-live-pill__text">
-            LIVE VIRTUAL EVENT: <strong>SEP 6TH - SEP 13TH</strong>
+            COMEBACK UNRECOGNIZABLE: <strong>FREE BLUEPRINT</strong>
           </span>
         </div>
       </div>
@@ -1391,14 +1429,14 @@
     <section class="hero-summit" id="hero">
       <div class="container">
 
-        <!-- Exact Heading (Clean, High-Impact Monetise Style) -->
+        <!-- Heading -->
         <h1 class="hero-summit__headline">
-          Here's Everything You Need To Know Before September 6th:
+          Here's Everything You Need To Know About The Free Blueprint:
         </h1>
 
-        <!-- Exact Subtext Cadence (From Reference Image) -->
+        <!-- Subtext -->
         <p class="hero-summit__sub">
-          Five live sessions with Adams and guest mentors starting Sunday September 6th at 1 PM Eastern Time. Below you'll find the full schedule, who's speaking on which day, and how to make sure you get the most out of this:
+          Honestly? This guide belongs inside the paid system. Every framework, principle, and phase breakdown in this Blueprint is the exact foundation that the full Comeback: Unrecognizable course is built on. I'm giving it to you at no cost — but that doesn't mean you should treat it that way. Read it like you paid $97 for it.
         </p>
 
         <!-- Urgency & Countdown Bar -->
