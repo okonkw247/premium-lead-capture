@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-  <title>Comeback: Unrecognizable Blueprint & Masterclass — Adams X Project</title>
-  <meta name="description" content="Here's everything you need to know to rebuild your focus, discipline, and execution in 90 days. Get the free Blueprint or upgrade to the VIP Executive Fast-Track.">
+  <title>Here's Everything You Need To Know Before Rebuilding Your Focus — Adams X Project</title>
+  <meta name="description" content="Here's everything you need to know before rebuilding your focus, discipline, and execution in 90 days. Get the Comeback: Unrecognizable Blueprint.">
   <meta name="author" content="Adams X Project">
-  <meta property="og:title" content="Comeback: Unrecognizable Blueprint & Masterclass — Adams X Project">
+  <meta property="og:title" content="Comeback: Unrecognizable Blueprint — Adams X Project">
   <meta property="og:description" content="Stop starting over. Get the exact 90-day framework for rebuilding your focus, discipline, and execution.">
   <meta property="og:image" content="/adams-x.jpg">
   <meta property="og:url" content="https://adamsxproject.com.ng/blueprint">
@@ -18,29 +18,30 @@
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-  <meta name="theme-color" content="#03070d">
+  <meta name="theme-color" content="#020805">
 
-  <!-- Google Fonts: Montserrat & Plus Jakarta Sans -->
+  <!-- Google Fonts: Inter & Montserrat (Exact Monetise & Summit Typography) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,600;1,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Montserrat:ital,wght@0,500;0,600;0,700;0,800;0,900;1,700&display=swap" rel="stylesheet">
 
   <style>
     /* ============================================================
-       DESIGN TOKENS — Summit & Monetise Luxury System
+       DESIGN TOKENS — Exact Monetise & Summit Dark Emerald Aesthetic
     ============================================================ */
     :root {
-      --bg-dark:        #03070d;
-      --bg-surface:     #070d18;
-      --bg-card:        rgba(10, 19, 36, 0.75);
-      --bg-card-hover:  rgba(14, 26, 50, 0.88);
+      --bg-dark:        #020805;
+      --bg-surface:     #040f09;
+      --bg-card:        rgba(6, 18, 12, 0.78);
+      --bg-card-hover:  rgba(8, 26, 17, 0.90);
       --bg-input:       rgba(255, 255, 255, 0.05);
 
       --border-subtle:  rgba(255, 255, 255, 0.08);
-      --border-emerald: rgba(0, 245, 155, 0.32);
-      --border-gold:    rgba(255, 230, 0, 0.35);
+      --border-emerald: #00e676;
+      --border-glow:    rgba(0, 230, 118, 0.35);
 
       --emerald-glow:   #00F59B;
+      --emerald-brand:  #00E676;
       --emerald-dim:    rgba(0, 245, 155, 0.12);
       --emerald-grad:   linear-gradient(135deg, #00F59B 0%, #00C875 50%, #009955 100%);
 
@@ -49,18 +50,19 @@
       --gold-grad:      linear-gradient(135deg, #FFF75A 0%, #FFE600 50%, #F5CE00 100%);
 
       --text-main:      #FFFFFF;
-      --text-muted:     #9bb0cb;
-      --text-faint:     #5b6f8a;
-      --text-bright:    #E5EFFB;
+      --text-muted:     #98aeb0;
+      --text-faint:     #526d6f;
+      --text-bright:    #eafaf1;
 
-      --radius-xl:      28px;
-      --radius-lg:      20px;
-      --radius-md:      14px;
-      --radius-sm:      10px;
+      --radius-xl:      24px;
+      --radius-lg:      18px;
+      --radius-md:      12px;
+      --radius-sm:      8px;
       --radius-pill:    9999px;
 
-      --ff-heading:     'Montserrat', system-ui, -apple-system, sans-serif;
-      --ff-body:        'Plus Jakarta Sans', 'Montserrat', system-ui, sans-serif;
+      --ff-heading:     'Inter', system-ui, -apple-system, sans-serif;
+      --ff-brand:       'Montserrat', system-ui, -apple-system, sans-serif;
+      --ff-body:        'Inter', system-ui, -apple-system, sans-serif;
       --ease-smooth:    cubic-bezier(0.16, 1, 0.3, 1);
     }
 
@@ -88,45 +90,46 @@
       position: relative;
     }
 
-    /* Ambient Background Spotlights */
+    /* Exact Summit Stage Lighting Spotlight Cone */
+    .stage-cone {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 1000px;
+      max-width: 100vw;
+      height: 680px;
+      background: 
+        radial-gradient(ellipse 650px 320px at 50% 0%, rgba(0, 230, 118, 0.22) 0%, rgba(0, 180, 80, 0.08) 45%, transparent 75%),
+        conic-gradient(from 180deg at 50% 0%, transparent 65deg, rgba(0, 230, 118, 0.06) 80deg, rgba(0, 245, 155, 0.14) 90deg, rgba(0, 230, 118, 0.06) 100deg, transparent 115deg);
+      pointer-events: none;
+      z-index: 0;
+    }
+
     .ambient-bg {
       position: fixed;
       inset: 0;
       pointer-events: none;
       z-index: 0;
       background:
-        radial-gradient(circle 800px at 50% -10%, rgba(0, 245, 155, 0.13) 0%, rgba(3, 7, 13, 0) 70%),
-        radial-gradient(circle 750px at 85% 25%, rgba(0, 140, 255, 0.08) 0%, rgba(3, 7, 13, 0) 65%),
-        radial-gradient(circle 800px at 15% 65%, rgba(255, 230, 0, 0.07) 0%, rgba(3, 7, 13, 0) 70%),
-        radial-gradient(circle 900px at 50% 100%, rgba(0, 245, 155, 0.08) 0%, rgba(3, 7, 13, 0) 75%);
-    }
-
-    .ambient-grid {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 0;
-      background-image: 
-        linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-      background-size: 50px 50px;
-      opacity: 0.5;
+        radial-gradient(circle 900px at 50% 100%, rgba(0, 230, 118, 0.06) 0%, transparent 70%),
+        radial-gradient(circle 800px at 85% 30%, rgba(0, 140, 255, 0.04) 0%, transparent 60%);
     }
 
     a { color: inherit; text-decoration: none; }
     img { display: block; max-width: 100%; height: auto; }
 
     /* Containers */
-    .container    { width: 100%; max-width: 1160px; margin: 0 auto; padding: 0 20px; position: relative; z-index: 1; }
+    .container    { width: 100%; max-width: 1140px; margin: 0 auto; padding: 0 20px; position: relative; z-index: 1; }
     .container-md { width: 100%; max-width: 900px; margin: 0 auto; padding: 0 20px; position: relative; z-index: 1; }
     .container-sm { width: 100%; max-width: 680px; margin: 0 auto; padding: 0 20px; position: relative; z-index: 1; }
 
     /* ============================================================
-       SUMMIT HEADER & LOGO (NO NAVBAR)
+       SUMMIT TOP LOGO & BRAND (EXACT REFERENCE DESIGN)
     ============================================================ */
     .summit-top-header {
-      padding-top: 40px;
-      padding-bottom: 12px;
+      padding-top: 48px;
+      padding-bottom: 20px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -135,52 +138,90 @@
       position: relative;
       z-index: 2;
     }
-    .summit-brand-logo {
+
+    .summit-brand-lockup {
       display: inline-flex;
       align-items: center;
-      gap: 11px;
-      margin-bottom: 22px;
+      gap: 12px;
+      margin-bottom: 26px;
+      text-decoration: none;
       transition: transform 0.2s ease;
     }
-    .summit-brand-logo:hover {
-      transform: scale(1.03);
-    }
-    .summit-logo-img {
-      width: 38px;
-      height: 38px;
-      border-radius: 10px;
-      object-fit: cover;
-      border: 1px solid rgba(0, 245, 155, 0.4);
-      box-shadow: 0 0 16px rgba(0, 245, 155, 0.35);
-    }
-    .summit-brand-title {
-      font-family: var(--ff-heading);
-      font-size: 18px;
-      font-weight: 800;
-      letter-spacing: 0.02em;
-      color: #FFFFFF;
-      text-transform: uppercase;
+    .summit-brand-lockup:hover {
+      transform: scale(1.02);
     }
 
-    /* Emerald Glowing Event Pill (Matching Reference Image) */
-    .summit-pill {
+    /* Glowing Emerald Chevron Mark */
+    .summit-brand-icon {
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      filter: drop-shadow(0 0 14px rgba(0, 245, 155, 0.8));
+    }
+    .summit-brand-icon svg {
+      width: 100%;
+      height: 100%;
+      fill: none;
+      stroke: var(--emerald-glow);
+      stroke-width: 2.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    /* High-tech Stacked Typography */
+    .summit-brand-text {
+      display: flex;
+      flex-direction: column;
+      text-align: left;
+      line-height: 1.05;
+    }
+    .summit-brand-line-1 {
+      font-family: var(--ff-brand);
+      font-size: 14px;
+      font-weight: 900;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #FFFFFF;
+    }
+    .summit-brand-line-2 {
+      font-family: var(--ff-brand);
+      font-size: 14px;
+      font-weight: 900;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #FFFFFF;
+    }
+    .summit-brand-line-3 {
+      font-family: var(--ff-brand);
+      font-size: 8.5px;
+      font-weight: 800;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--emerald-glow);
+      margin-top: 2px;
+    }
+
+    /* Exact Event Pill Badge */
+    .summit-live-pill {
       display: inline-flex;
       align-items: center;
       gap: 9px;
-      padding: 7px 20px;
+      padding: 6.5px 22px;
       border-radius: var(--radius-pill);
-      background: linear-gradient(180deg, rgba(0, 245, 155, 0.18) 0%, rgba(0, 45, 28, 0.5) 100%);
-      border: 1px solid rgba(0, 245, 155, 0.55);
+      background: rgba(0, 30, 16, 0.75);
+      border: 1px solid var(--border-emerald);
       box-shadow: 
-        0 0 24px rgba(0, 245, 155, 0.3),
-        inset 0 1px 1px rgba(255, 255, 255, 0.3);
+        0 0 20px rgba(0, 230, 118, 0.28),
+        inset 0 1px 1px rgba(255, 255, 255, 0.2);
       position: relative;
       z-index: 2;
-      max-width: 100%;
+      backdrop-filter: blur(10px);
     }
     .live-dot {
-      width: 9px;
-      height: 9px;
+      width: 8.5px;
+      height: 8.5px;
       border-radius: 50%;
       background-color: #ff3344;
       box-shadow: 0 0 10px #ff3344;
@@ -189,96 +230,77 @@
     }
     @keyframes pulseLive {
       0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 51, 68, 0.7); }
-      70% { transform: scale(1.15); box-shadow: 0 0 0 8px rgba(255, 51, 68, 0); }
+      70% { transform: scale(1.15); box-shadow: 0 0 0 7px rgba(255, 51, 68, 0); }
       100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 51, 68, 0); }
     }
-    .summit-pill__text {
+    .summit-live-pill__text {
       font-family: var(--ff-heading);
       font-size: 11.5px;
-      font-weight: 800;
+      font-weight: 700;
       letter-spacing: 0.12em;
       text-transform: uppercase;
       color: #FFFFFF;
       white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
     }
-    .summit-pill__highlight {
-      color: var(--emerald-glow);
-      font-weight: 900;
+    .summit-live-pill__text strong {
+      color: #FFFFFF;
+      font-weight: 800;
     }
 
     /* ============================================================
-       HERO SUMMIT STAGE
+       HERO HEADLINE & TEXT (EXACT MONETISE DESIGN & FONTS)
     ============================================================ */
     .hero-summit {
       padding: 10px 0 60px;
       position: relative;
       text-align: center;
     }
-    .hero-summit::before {
-      content: '';
-      position: absolute;
-      top: -30px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 780px;
-      height: 420px;
-      background: radial-gradient(ellipse at 50% 0%, rgba(0, 245, 155, 0.18) 0%, rgba(0, 245, 155, 0.03) 50%, transparent 75%);
-      pointer-events: none;
-      z-index: 0;
-    }
 
+    /* Exact Heading Typography from Reference Image */
     .hero-summit__headline {
       font-family: var(--ff-heading);
-      font-size: clamp(28px, 4.8vw, 54px);
-      font-weight: 800;
-      letter-spacing: -0.03em;
+      font-size: clamp(32px, 5.4vw, 56px);
+      font-weight: 700;
+      letter-spacing: -0.025em;
       line-height: 1.15;
       color: #FFFFFF;
       max-width: 960px;
-      margin: 18px auto 16px;
+      margin: 24px auto 18px;
       word-break: break-word;
-      overflow-wrap: break-word;
-    }
-    .hero-summit__headline .highlight-grad {
-      background: var(--emerald-grad);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      display: inline-block;
-    }
-    .hero-summit__headline .highlight-gold {
-      background: var(--gold-grad);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      display: inline-block;
+      text-wrap: balance;
     }
 
+    /* Exact Subtext Typography from Reference Image */
     .hero-summit__sub {
-      font-size: clamp(15px, 2vw, 18px);
+      font-family: var(--ff-body);
+      font-size: clamp(14px, 1.8vw, 16.5px);
       font-weight: 400;
       line-height: 1.65;
-      color: var(--text-muted);
-      max-width: 760px;
-      margin: 0 auto 28px;
+      color: rgba(255, 255, 255, 0.82);
+      max-width: 780px;
+      margin: 0 auto 32px;
+      text-wrap: balance;
+    }
+    .hero-summit__sub strong {
+      color: #FFFFFF;
+      font-weight: 600;
     }
 
     /* Urgency & Countdown Bar */
     .summit-countdown {
       display: inline-flex;
       align-items: center;
-      gap: 14px;
-      background: rgba(10, 20, 38, 0.85);
+      gap: 12px;
+      background: rgba(6, 18, 12, 0.85);
       border: 1px solid var(--border-subtle);
-      padding: 9px 20px;
+      padding: 8px 18px;
       border-radius: var(--radius-pill);
       margin-bottom: 40px;
       box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
-      max-width: 100%;
     }
     .summit-countdown__label {
-      font-size: 11.5px;
-      font-weight: 700;
+      font-size: 11px;
+      font-weight: 600;
       letter-spacing: 0.08em;
       text-transform: uppercase;
       color: var(--text-faint);
@@ -288,14 +310,14 @@
       align-items: center;
       gap: 6px;
       font-family: var(--ff-heading);
-      font-weight: 800;
-      font-size: 13.5px;
+      font-weight: 700;
+      font-size: 13px;
       color: var(--emerald-glow);
     }
     .timer-unit {
       background: rgba(0, 245, 155, 0.12);
-      padding: 3px 8px;
-      border-radius: 6px;
+      padding: 2px 7px;
+      border-radius: 5px;
       border: 1px solid rgba(0, 245, 155, 0.25);
     }
 
@@ -321,7 +343,7 @@
       overflow: hidden;
       box-shadow:
         0 24px 80px rgba(0, 0, 0, 0.7),
-        0 0 35px rgba(0, 245, 155, 0.12);
+        0 0 35px rgba(0, 230, 118, 0.12);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
       display: flex;
@@ -333,7 +355,7 @@
       position: absolute;
       top: -30px; right: -30px;
       width: 160px; height: 160px;
-      background: radial-gradient(circle, rgba(0, 245, 155, 0.2) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(0, 230, 118, 0.2) 0%, transparent 70%);
       pointer-events: none;
     }
     .preview-tag {
@@ -341,21 +363,21 @@
       align-items: center;
       gap: 6px;
       font-size: 10px;
-      font-weight: 800;
+      font-weight: 700;
       letter-spacing: 0.14em;
       text-transform: uppercase;
       padding: 4px 12px;
       border-radius: var(--radius-pill);
-      background: rgba(0, 245, 155, 0.15);
+      background: rgba(0, 230, 118, 0.15);
       color: var(--emerald-glow);
-      border: 1px solid rgba(0, 245, 155, 0.35);
+      border: 1px solid rgba(0, 230, 118, 0.35);
       margin-bottom: 16px;
       width: fit-content;
     }
     .preview-title {
       font-family: var(--ff-heading);
       font-size: clamp(22px, 3vw, 26px);
-      font-weight: 800;
+      font-weight: 700;
       letter-spacing: -0.02em;
       color: #fff;
       line-height: 1.25;
@@ -385,7 +407,7 @@
       width: 20px;
       height: 20px;
       border-radius: 50%;
-      background: rgba(0, 245, 155, 0.15);
+      background: rgba(0, 230, 118, 0.15);
       border: 1px solid var(--border-emerald);
       color: var(--emerald-glow);
       display: flex;
@@ -399,14 +421,14 @@
 
     /* Fast Action Card with Conic Beam */
     .register-card {
-      background: linear-gradient(180deg, rgba(12, 24, 48, 0.96) 0%, rgba(6, 14, 28, 0.98) 100%);
-      border: 1px solid rgba(0, 245, 155, 0.4);
+      background: linear-gradient(180deg, rgba(8, 24, 16, 0.96) 0%, rgba(4, 14, 9, 0.98) 100%);
+      border: 1px solid rgba(0, 230, 118, 0.4);
       border-radius: var(--radius-xl);
       padding: 38px 32px;
       position: relative;
       box-shadow:
         0 24px 80px rgba(0, 0, 0, 0.8),
-        0 0 45px rgba(0, 245, 155, 0.18);
+        0 0 45px rgba(0, 230, 118, 0.18);
       backdrop-filter: blur(24px);
     }
     @property --beam-angle {
@@ -425,7 +447,7 @@
       background: conic-gradient(
         from var(--beam-angle, 0deg),
         transparent 0deg,
-        rgba(0, 245, 155, 0.9) 60deg,
+        rgba(0, 230, 118, 0.9) 60deg,
         rgba(255, 230, 0, 0.85) 120deg,
         transparent 180deg
       );
@@ -444,7 +466,7 @@
     }
     .reg-label {
       font-size: 10.5px;
-      font-weight: 800;
+      font-weight: 700;
       letter-spacing: 0.14em;
       text-transform: uppercase;
       color: var(--emerald-glow);
@@ -461,7 +483,7 @@
     .reg-title {
       font-family: var(--ff-heading);
       font-size: 22px;
-      font-weight: 800;
+      font-weight: 700;
       letter-spacing: -0.02em;
       color: #fff;
       line-height: 1.25;
@@ -475,7 +497,7 @@
 
     /* Pass Toggle */
     .pass-selector {
-      background: rgba(3, 7, 13, 0.7);
+      background: rgba(2, 8, 5, 0.7);
       border: 1px solid var(--border-subtle);
       border-radius: var(--radius-md);
       padding: 5px;
@@ -500,14 +522,14 @@
       border-color: rgba(255, 255, 255, 0.22);
     }
     .pass-option.active-vip {
-      background: linear-gradient(135deg, rgba(0, 245, 155, 0.18) 0%, rgba(0, 140, 255, 0.15) 100%);
+      background: linear-gradient(135deg, rgba(0, 230, 118, 0.18) 0%, rgba(0, 140, 255, 0.15) 100%);
       border-color: var(--emerald-glow);
-      box-shadow: 0 0 16px rgba(0, 245, 155, 0.2);
+      box-shadow: 0 0 16px rgba(0, 230, 118, 0.2);
     }
     .pass-opt-title {
       font-family: var(--ff-heading);
       font-size: 11.5px;
-      font-weight: 800;
+      font-weight: 700;
       letter-spacing: 0.04em;
       text-transform: uppercase;
       display: block;
@@ -515,7 +537,7 @@
     }
     .pass-opt-price {
       font-size: 11px;
-      font-weight: 700;
+      font-weight: 600;
       color: var(--text-muted);
       margin-top: 2px;
       display: block;
@@ -530,7 +552,7 @@
       background: var(--gold-grad);
       color: #000;
       font-size: 8px;
-      font-weight: 900;
+      font-weight: 800;
       padding: 1px 6px;
       border-radius: var(--radius-pill);
       letter-spacing: 0.06em;
@@ -550,7 +572,7 @@
     }
     .form-field label {
       font-size: 11.5px;
-      font-weight: 700;
+      font-weight: 600;
       letter-spacing: 0.05em;
       text-transform: uppercase;
       color: var(--text-bright);
@@ -571,8 +593,8 @@
     .form-control::placeholder { color: var(--text-faint); }
     .form-control:focus {
       border-color: var(--emerald-glow);
-      background: rgba(0, 245, 155, 0.04);
-      box-shadow: 0 0 0 3px rgba(0, 245, 155, 0.15);
+      background: rgba(0, 230, 118, 0.04);
+      box-shadow: 0 0 0 3px rgba(0, 230, 118, 0.15);
     }
 
     .btn-action-submit {
@@ -583,14 +605,14 @@
       border-radius: var(--radius-sm);
       font-family: var(--ff-heading);
       font-size: 13.5px;
-      font-weight: 900;
+      font-weight: 700;
       letter-spacing: 0.08em;
       text-transform: uppercase;
       color: #02140d;
       cursor: pointer;
       box-shadow:
         0 6px 20px rgba(0, 0, 0, 0.5),
-        0 0 22px rgba(0, 245, 155, 0.35),
+        0 0 22px rgba(0, 230, 118, 0.35),
         inset 0 1.5px 1px rgba(255, 255, 255, 0.9);
       transition: transform 0.2s var(--ease-smooth), filter 0.2s ease, box-shadow 0.2s ease;
       margin-top: 4px;
@@ -603,7 +625,7 @@
       filter: brightness(1.08);
       box-shadow:
         0 10px 30px rgba(0, 0, 0, 0.6),
-        0 0 30px rgba(0, 245, 155, 0.55),
+        0 0 30px rgba(0, 230, 118, 0.55),
         inset 0 1.5px 1px #ffffff;
     }
     .btn-action-submit:active:not(:disabled) {
@@ -683,7 +705,7 @@
     .section-kicker {
       display: inline-block;
       font-size: 11px;
-      font-weight: 800;
+      font-weight: 700;
       letter-spacing: 0.18em;
       text-transform: uppercase;
       color: var(--emerald-glow);
@@ -692,7 +714,7 @@
     .section-title {
       font-family: var(--ff-heading);
       font-size: clamp(26px, 4vw, 42px);
-      font-weight: 800;
+      font-weight: 700;
       letter-spacing: -0.03em;
       color: #FFFFFF;
       line-height: 1.15;
@@ -736,11 +758,11 @@
     }
 
     .pass-card--vip {
-      background: linear-gradient(170deg, rgba(10, 24, 48, 0.95) 0%, rgba(6, 14, 28, 0.98) 100%);
+      background: linear-gradient(170deg, rgba(8, 24, 16, 0.95) 0%, rgba(4, 14, 9, 0.98) 100%);
       border: 1.5px solid var(--emerald-glow);
       box-shadow:
         0 24px 80px rgba(0, 0, 0, 0.8),
-        0 0 40px rgba(0, 245, 155, 0.2);
+        0 0 40px rgba(0, 230, 118, 0.2);
     }
     .vip-ribbon {
       position: absolute;
@@ -750,7 +772,7 @@
       color: #000;
       font-family: var(--ff-heading);
       font-size: 10px;
-      font-weight: 900;
+      font-weight: 800;
       letter-spacing: 0.1em;
       text-transform: uppercase;
       padding: 4px 12px;
@@ -760,7 +782,7 @@
 
     .pass-badge {
       font-size: 10.5px;
-      font-weight: 800;
+      font-weight: 700;
       letter-spacing: 0.14em;
       text-transform: uppercase;
       margin-bottom: 10px;
@@ -772,7 +794,7 @@
     .pass-name {
       font-family: var(--ff-heading);
       font-size: clamp(22px, 3vw, 26px);
-      font-weight: 800;
+      font-weight: 700;
       letter-spacing: -0.02em;
       color: #fff;
       margin-bottom: 10px;
@@ -787,7 +809,7 @@
     .pass-price {
       font-family: var(--ff-heading);
       font-size: clamp(34px, 5vw, 44px);
-      font-weight: 900;
+      font-weight: 800;
       color: #fff;
       line-height: 1;
     }
@@ -813,7 +835,7 @@
 
     .pass-features-header {
       font-size: 11.5px;
-      font-weight: 800;
+      font-weight: 700;
       letter-spacing: 0.08em;
       text-transform: uppercase;
       color: var(--text-bright);
@@ -849,7 +871,7 @@
       border-radius: var(--radius-sm);
       font-family: var(--ff-heading);
       font-size: 13px;
-      font-weight: 800;
+      font-weight: 700;
       letter-spacing: 0.08em;
       text-transform: uppercase;
       text-align: center;
@@ -920,7 +942,7 @@
     .schedule-phase-tag {
       font-family: var(--ff-heading);
       font-size: 11.5px;
-      font-weight: 800;
+      font-weight: 700;
       letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--emerald-glow);
@@ -929,7 +951,7 @@
     .schedule-phase-timeline {
       font-family: var(--ff-heading);
       font-size: 18px;
-      font-weight: 800;
+      font-weight: 700;
       color: #fff;
     }
     .schedule-main-title {
@@ -950,7 +972,7 @@
     ============================================================ */
     .section-bonuses {
       padding: 80px 0;
-      background: linear-gradient(180deg, rgba(3, 7, 13, 0) 0%, rgba(7, 16, 32, 0.7) 50%, rgba(3, 7, 13, 0) 100%);
+      background: linear-gradient(180deg, rgba(2, 8, 5, 0) 0%, rgba(6, 18, 12, 0.7) 50%, rgba(2, 8, 5, 0) 100%);
       position: relative;
     }
     .bonuses-grid {
@@ -974,7 +996,7 @@
     .bonus-val-pill {
       display: inline-block;
       font-size: 9.5px;
-      font-weight: 800;
+      font-weight: 700;
       letter-spacing: 0.1em;
       text-transform: uppercase;
       color: var(--gold-primary);
@@ -1026,14 +1048,14 @@
       object-position: top center;
       border-radius: var(--radius-lg);
       border: 1.5px solid var(--border-emerald);
-      box-shadow: 0 16px 50px rgba(0, 0, 0, 0.8), 0 0 30px rgba(0, 245, 155, 0.15);
+      box-shadow: 0 16px 50px rgba(0, 0, 0, 0.8), 0 0 30px rgba(0, 230, 118, 0.15);
     }
     .founder-badge-float {
       position: absolute;
       bottom: -14px;
       left: 50%;
       transform: translateX(-50%);
-      background: rgba(3, 7, 13, 0.95);
+      background: rgba(2, 8, 5, 0.95);
       border: 1px solid var(--border-emerald);
       padding: 7px 16px;
       border-radius: var(--radius-pill);
@@ -1044,7 +1066,7 @@
     .founder-name-text {
       font-family: var(--ff-heading);
       font-size: 13px;
-      font-weight: 800;
+      font-weight: 700;
       color: #fff;
     }
     .founder-role-text {
@@ -1055,7 +1077,7 @@
 
     .founder-story__eyebrow {
       font-size: 11px;
-      font-weight: 800;
+      font-weight: 700;
       letter-spacing: 0.16em;
       text-transform: uppercase;
       color: var(--emerald-glow);
@@ -1064,7 +1086,7 @@
     .founder-story__title {
       font-family: var(--ff-heading);
       font-size: clamp(22px, 3vw, 32px);
-      font-weight: 800;
+      font-weight: 700;
       letter-spacing: -0.025em;
       color: #fff;
       line-height: 1.2;
@@ -1103,7 +1125,7 @@
       padding: 18px 22px;
       font-family: var(--ff-heading);
       font-size: 15.5px;
-      font-weight: 700;
+      font-weight: 600;
       color: #fff;
       cursor: pointer;
       display: flex;
@@ -1132,7 +1154,7 @@
     }
 
     /* ============================================================
-       FINAL SUMMIT CALL TO ACTION
+       FINAL CALL TO ACTION
     ============================================================ */
     .section-final-cta {
       padding: 80px 0 110px;
@@ -1140,7 +1162,7 @@
       position: relative;
     }
     .final-cta-card {
-      background: linear-gradient(180deg, rgba(14, 28, 56, 0.95) 0%, rgba(6, 14, 28, 0.98) 100%);
+      background: linear-gradient(180deg, rgba(8, 26, 17, 0.95) 0%, rgba(4, 14, 9, 0.98) 100%);
       border: 1.5px solid var(--border-emerald);
       border-radius: var(--radius-xl);
       padding: 56px 32px;
@@ -1148,7 +1170,7 @@
       overflow: hidden;
       box-shadow:
         0 30px 100px rgba(0, 0, 0, 0.8),
-        0 0 50px rgba(0, 245, 155, 0.18);
+        0 0 50px rgba(0, 230, 118, 0.18);
     }
     .final-cta-card::after {
       content: '';
@@ -1156,13 +1178,13 @@
       top: -50px; left: 50%;
       transform: translateX(-50%);
       width: 600px; height: 220px;
-      background: radial-gradient(ellipse, rgba(0, 245, 155, 0.25) 0%, transparent 70%);
+      background: radial-gradient(ellipse, rgba(0, 230, 118, 0.25) 0%, transparent 70%);
       pointer-events: none;
     }
     .final-cta-title {
       font-family: var(--ff-heading);
       font-size: clamp(26px, 4.2vw, 42px);
-      font-weight: 900;
+      font-weight: 700;
       letter-spacing: -0.03em;
       color: #fff;
       margin-bottom: 14px;
@@ -1188,16 +1210,16 @@
     }
 
     /* ============================================================
-       STICKY BOTTOM FLOATING ACCESS BAR
+       STICKY BOTTOM ACCESS BAR
     ============================================================ */
     .sticky-pass-bar {
       position: fixed;
       bottom: 18px;
       left: 50%;
       transform: translateX(-50%) translateY(120%);
-      background: rgba(8, 16, 32, 0.95);
+      background: rgba(4, 16, 10, 0.95);
       border: 1px solid var(--border-emerald);
-      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.8), 0 0 30px rgba(0, 245, 155, 0.25);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.8), 0 0 30px rgba(0, 230, 118, 0.25);
       backdrop-filter: blur(20px);
       padding: 10px 20px;
       border-radius: var(--radius-pill);
@@ -1219,18 +1241,18 @@
     .sticky-text-main {
       font-family: var(--ff-heading);
       font-size: 12.5px;
-      font-weight: 800;
+      font-weight: 700;
       color: #fff;
     }
     .sticky-text-sub {
       font-size: 10.5px;
       color: var(--emerald-glow);
-      font-weight: 700;
+      font-weight: 600;
     }
     .btn-sticky-action {
       font-family: var(--ff-heading);
       font-size: 11.5px;
-      font-weight: 900;
+      font-weight: 700;
       letter-spacing: 0.08em;
       text-transform: uppercase;
       padding: 8px 18px;
@@ -1238,7 +1260,7 @@
       background: var(--emerald-grad);
       color: #03130c;
       border: 1px solid rgba(255, 255, 255, 0.4);
-      box-shadow: 0 0 16px rgba(0, 245, 155, 0.35);
+      box-shadow: 0 0 16px rgba(0, 230, 118, 0.35);
       cursor: pointer;
       white-space: nowrap;
     }
@@ -1250,14 +1272,14 @@
       border-top: 1px solid var(--border-subtle);
       padding: 48px 0 36px;
       text-align: center;
-      background: #020408;
+      background: #010503;
       position: relative;
       z-index: 1;
     }
     .footer-brand {
       font-family: var(--ff-heading);
       font-size: 13.5px;
-      font-weight: 800;
+      font-weight: 700;
       letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--text-faint);
@@ -1289,63 +1311,34 @@
     }
 
     /* ============================================================
-       MOBILE & TABLET RESPONSIVENESS
+       RESPONSIVENESS
     ============================================================ */
     @media (max-width: 1024px) {
-      .hero-grid {
-        grid-template-columns: 1fr;
-        gap: 32px;
-      }
-      .passes-grid {
-        grid-template-columns: 1fr;
-        gap: 24px;
-      }
-      .founder-stage {
-        grid-template-columns: 1fr;
-        padding: 36px 28px;
-        gap: 32px;
-      }
-      .founder-photo-wrap {
-        max-width: 260px;
-        margin: 0 auto;
-      }
+      .hero-grid { grid-template-columns: 1fr; gap: 32px; }
+      .passes-grid { grid-template-columns: 1fr; gap: 24px; }
+      .founder-stage { grid-template-columns: 1fr; padding: 36px 28px; gap: 32px; }
+      .founder-photo-wrap { max-width: 260px; margin: 0 auto; }
     }
 
     @media (max-width: 768px) {
       .container { padding: 0 16px; }
-      .summit-top-header { padding-top: 28px; }
-      .summit-pill { padding: 6px 14px; }
-      .summit-pill__text { font-size: 10px; }
-      .summit-countdown {
-        flex-direction: column;
-        gap: 6px;
-        border-radius: var(--radius-md);
-        padding: 8px 14px;
-      }
+      .summit-top-header { padding-top: 36px; }
+      .summit-live-pill { padding: 6px 14px; }
+      .summit-live-pill__text { font-size: 10.5px; }
+      .hero-summit__headline { font-size: 30px; margin-top: 18px; }
+      .summit-countdown { flex-direction: column; gap: 6px; border-radius: var(--radius-md); padding: 8px 14px; }
       .preview-card { padding: 28px 20px; }
       .register-card { padding: 28px 18px; }
       .pass-card { padding: 32px 20px; }
-      .schedule-card {
-        grid-template-columns: 1fr;
-        gap: 10px;
-        padding: 22px 20px;
-      }
+      .schedule-card { grid-template-columns: 1fr; gap: 10px; padding: 22px 20px; }
       .final-cta-card { padding: 40px 20px; }
-      .sticky-pass-bar {
-        width: 94%;
-        justify-content: space-between;
-        padding: 8px 14px;
-      }
+      .sticky-pass-bar { width: 94%; justify-content: space-between; padding: 8px 14px; }
       .sticky-text-sub { display: none; }
     }
 
     @media (max-width: 480px) {
-      .summit-brand-title { font-size: 16px; }
       .hero-summit__headline { font-size: 26px; }
-      .pass-selector {
-        grid-template-columns: 1fr 1fr;
-        gap: 4px;
-      }
+      .pass-selector { grid-template-columns: 1fr 1fr; gap: 4px; }
       .pass-opt-title { font-size: 10.5px; }
       .pass-opt-price { font-size: 10px; }
       .vip-tag-mini { font-size: 7.5px; padding: 1px 4px; }
@@ -1357,27 +1350,39 @@
 </head>
 <body>
 
-  <!-- Ambient Stage Light -->
+  <!-- Stage Cone & Ambient Spotlights -->
+  <div class="stage-cone"></div>
   <div class="ambient-bg"></div>
-  <div class="ambient-grid"></div>
 
-  <!-- ── SUMMIT TOP HEADER (CLEAN BRAND + PILL, NO NAVBAR) ───── -->
+  <!-- ── SUMMIT TOP LOGO & LIVE PILL (EXACT MATCH TO REFERENCE) ── -->
   <header class="summit-top-header">
     <div class="container">
-      <a href="/" class="summit-brand-logo" aria-label="Adams X Project Home">
-        <img src="/favicon-32x32.png" alt="Adams X Project Logo" class="summit-logo-img">
-        <span class="summit-brand-title">Adams X Project</span>
+      
+      <!-- Iconic Stacked Summit Brand Logo -->
+      <a href="/" class="summit-brand-lockup" aria-label="Adams X Project Home">
+        <div class="summit-brand-icon">
+          <svg viewBox="0 0 24 24">
+            <path d="M12 3L2 21h20L12 3z"/>
+            <path d="M12 9l5 10H7l5-10z" opacity="0.6"/>
+          </svg>
+        </div>
+        <div class="summit-brand-text">
+          <span class="summit-brand-line-1">ADAMS X</span>
+          <span class="summit-brand-line-2">PROJECT</span>
+          <span class="summit-brand-line-3">B L U E P R I N T</span>
+        </div>
       </a>
 
-      <!-- Glowing Emerald Summit Pill (Matching Reference) -->
+      <!-- Glowing Emerald Event Pill (Exact Reference) -->
       <div>
-        <div class="summit-pill">
+        <div class="summit-live-pill">
           <span class="live-dot"></span>
-          <span class="summit-pill__text">
-            FREE RESOURCE &bull; <span class="summit-pill__highlight">COMEBACK: UNRECOGNIZABLE</span>
+          <span class="summit-live-pill__text">
+            LIVE VIRTUAL EVENT: <strong>SEP 6TH - SEP 13TH</strong>
           </span>
         </div>
       </div>
+
     </div>
   </header>
 
@@ -1386,17 +1391,17 @@
     <section class="hero-summit" id="hero">
       <div class="container">
 
-        <!-- Main Headline -->
+        <!-- Exact Heading (Clean, High-Impact Monetise Style) -->
         <h1 class="hero-summit__headline">
-          Here's Everything You Need To Know Before <span class="highlight-grad">Rebuilding Your Focus</span>, Discipline &amp; <span class="highlight-gold">Execution in 90 Days:</span>
+          Here's Everything You Need To Know Before September 6th:
         </h1>
 
-        <!-- Subtitle -->
+        <!-- Exact Subtext Cadence (From Reference Image) -->
         <p class="hero-summit__sub">
-          The practical framework and daily system to break the starting-over cycle, lock into deep focus, and turn your potential into irreversible momentum.
+          Five live sessions with Adams and guest mentors starting Sunday September 6th at 1 PM Eastern Time. Below you'll find the full schedule, who's speaking on which day, and how to make sure you get the most out of this:
         </p>
 
-        <!-- Urgency Bar -->
+        <!-- Urgency & Countdown Bar -->
         <div class="summit-countdown">
           <span class="summit-countdown__label">⏳ Immediate Download Window:</span>
           <div class="countdown-timer" id="countdown-timer">
@@ -1446,7 +1451,7 @@
             <div class="reg-header">
               <div class="reg-badge-row">
                 <span class="reg-label">Instant Pass Access</span>
-                <span class="reg-spots">2026 Edition</span>
+                <span class="reg-spots">Limited Edition</span>
               </div>
               <h3 class="reg-title" id="form-heading-title">Claim Your Access Pass</h3>
               <p class="reg-subtitle" id="form-heading-sub">Enter your details below to receive the complete blueprint immediately.</p>
@@ -1805,7 +1810,7 @@
     </section>
   </main>
 
-  <!-- ── STICKY BOTTOM PASS BAR ─────────────────────────────── -->
+  <!-- ── STICKY BOTTOM ACCESS BAR ────────────────────────────── -->
   <div class="sticky-pass-bar" id="sticky-bar">
     <div class="sticky-info">
       <span class="live-dot"></span>
